@@ -1,8 +1,8 @@
 {
-  "name": "project-petly-backend",
+  "name": "project-petly-frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://project-petly-backend.onrender.com",
+  "homepage": "https://vercel.com/stavr101/project-petly-frontend",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",

@@ -1,8 +1,8 @@
 {
-  "name": "goit-react-hw-08-phonebook",
+  "name": "project-petly-backend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Stavr101.github.io/goit-react-hw-08-phonebook/",
+  "homepage": "https://project-petly-backend.onrender.com",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",

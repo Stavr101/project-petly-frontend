@@ -2,7 +2,7 @@
   "name": "project-petly-frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Stavr101.github.io/project-petly-frontend",
+  "homepage": "https://project-petly-frontend.vercel.app/",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",

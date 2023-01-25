@@ -6,7 +6,7 @@ import { ThemeProvider } from "styled-components";
 import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
 import { store, persistor } from "./redux/store";
-import {theme} from './services/theme'
+import { theme } from "./services/theme";
 import "modern-normalize";
 import "./index.css";
 
@@ -14,7 +14,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter basename="/stavr101/project-petly-frontend">
+        <BrowserRouter basename="project-petly-frontend">
           <ThemeProvider theme={theme}>
             <App />
           </ThemeProvider>

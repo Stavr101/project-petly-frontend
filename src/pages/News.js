@@ -1,7 +1,10 @@
-import React from 'react'
+import { NewsList } from "components/NewsList/NewsList.jsx";
 
-export default function News() {
+export default function OurFriends() {
   return (
-    <div>NewsPage</div>
-  )
+    <>
+      <h1>News</h1>
+      <NewsList />
+    </>
+  );
 }

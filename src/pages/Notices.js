@@ -5,7 +5,7 @@ export default function Notices() {
   return (
     <div>
       NoticesPage
-      <NoticesCategoriesList />
+      {/* <NoticesCategoriesList /> */}
     </div>
   );
 }

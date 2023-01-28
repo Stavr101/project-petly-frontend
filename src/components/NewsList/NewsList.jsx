@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { NewsItem } from "../NewsItem/NewsItem";
 // import Loader from "../../shared/loader";
 import { getAllNews } from "../../api/news";
+import Error from "components/Error/Error";
 
 const mocNews = [
   {
@@ -56,7 +57,7 @@ export const NewsList = () => {
           })}
         </ul>
       )}
-      {error && <p>Sorry, something wrong....</p>}
+      {error && <Error/>}
       {/* {loading && <Loader />} */}
       {loading && <p>Hello</p>}
       {/* {isFriends && !loading && <LoadMoreBtn onLoadMore={loadMore} />} */}

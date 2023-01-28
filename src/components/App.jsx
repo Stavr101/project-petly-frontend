@@ -8,6 +8,7 @@ import { RestrictedRoute } from "./RestrictedRoute";
 import { refreshUser } from "redux/auth/operations";
 import { useAuth } from "hooks";
 import AuthForm from "./AuthForm/AuthForm";
+import NotFound from "./NotFound/NotFound";
 
 const HomePage = lazy(() => import("../pages/Home/Home"));
 const RegisterPage = lazy(() => import("../pages/Register"));
@@ -68,6 +69,7 @@ export const App = () => {
             }
           />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );

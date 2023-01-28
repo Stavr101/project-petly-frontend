@@ -15,7 +15,7 @@ export default function NoticeCategoryItem({avatar,favorite,title,breed,location
     <button>Learn more</button>
     {favorite? <button
       type='submit'
-      onClick={onDeletePets(id)}>
+      onClick={() => onDeletePets(id)}>
       Delete
     </button> : null}
     </li>

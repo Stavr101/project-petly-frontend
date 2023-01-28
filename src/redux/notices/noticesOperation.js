@@ -1,4 +1,4 @@
-import * as api from "../../api/notices";
+/* import * as api from "../../api/notices";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const noticesSell = createAsyncThunk(
@@ -47,4 +47,4 @@ export const noticesRemoveFavorite = createAsyncThunk(
       return rejectWithValue(error.message);
     }
   }
-);
+); */

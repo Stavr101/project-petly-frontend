@@ -1,4 +1,4 @@
-import axios from "axios";
+/* import axios from "axios";
 
 export const noticesSell = async () => {
   const { data } = await axios.get("/notices/sell");
@@ -18,4 +18,4 @@ export const noticesForFree = async () => {
 export const noticesRemoveFavorite = async (id) => {
   const { data } = await axios.delete(`/notices/${id}`);
   return data;
-};
+}; */

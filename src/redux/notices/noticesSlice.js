@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+/* import { createSlice } from "@reduxjs/toolkit";
 import {
   noticesSell,
   noticesForFree,
@@ -56,3 +56,4 @@ const noticesSlice = createSlice({
 });
 
 export const noticesReducer = noticesSlice.reducer;
+ */

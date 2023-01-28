@@ -6,6 +6,11 @@ export const Search = styled.div`
   align-items: center;
   margin-top: 28px;
   margin-bottom: 28px;
+
+  @media only screen and (min-width: 768px) {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
 `;
 
 export const SearchForm = styled.form`
@@ -17,6 +22,11 @@ export const SearchForm = styled.form`
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 20px;
   overflow: hidden;
+
+  @media only screen and (min-width: 768px) {
+    width: 608px;
+    height: 44px;
+  }
 `;
 
 export const FormButton = styled.button`
@@ -26,11 +36,6 @@ export const FormButton = styled.button`
   cursor: pointer;
   outline: none;
   background-color: #fff;
-`;
-
-export const FormButtonIcon = styled.img`
-  width: 20px;
-  height: 20px;
 `;
 
 export const FormInput = styled.input`
@@ -47,5 +52,14 @@ export const FormInput = styled.input`
     font-size: 16px;
     line-height: 1.37;
     letter-spacing: 0.04em;
+
+    @media only screen and (min-width: 768px) {
+      font-size: 20px;
+    }
+  }
+
+  @media only screen and (min-width: 768px) {
+    padding-left: 20px;
+    font-size: 20px;
   }
 `;

@@ -1,7 +1,18 @@
-import React from 'react'
+import NoticesSearch from "components/NoticesSearch/NoticesSearch";
+// import { NoticesCategoriesNav } from "components/NoticesCategoriesNav/NoticesCategoriesNav";
+// import { NoticesCategoriesList } from "components/NoticesCategoriesList/NoticesCategoriesList";
+// import { AddNoticeButton } from "components/AddNoticeButton/AddNoticeButton";
 
-export default function Notices() {
+function NoticesPage() {
   return (
-    <div>NoticesPage</div>
-  )
+    <>
+      <h1>Find your favorite pet</h1>
+       <NoticesSearch />
+      {/*<NoticesCategoriesNav />
+      <NoticesCategoriesList />
+      <AddNoticeButton /> */}
+    </>
+  );
 }
+
+export default NoticesPage

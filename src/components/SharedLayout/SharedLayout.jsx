@@ -10,6 +10,7 @@ import HeaderContainer from "components/Container/HeaderContainer/HeaderContaine
 
 export const SharedLayout = () => {
   return (
+
     <>
       <MainPageContainer>
         <HeaderContainer>
@@ -22,6 +23,7 @@ export const SharedLayout = () => {
           Burger menu Btn
         </HeaderContainer>
       </MainPageContainer>
+
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>

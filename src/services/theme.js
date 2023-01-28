@@ -18,6 +18,8 @@ export const theme = {
     body: "system-ui, sans-serif",
     heading: "system-ui, sans-serif",
     monospace: "Menlo, monospace",
+    logo: 'Poppins, sans-serif',
+    manrope: 'Manrope, sans-serif',
   },
   fontSizes: {
     xs: "12px",

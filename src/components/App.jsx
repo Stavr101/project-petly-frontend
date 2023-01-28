@@ -7,13 +7,21 @@ import { PrivateRoute } from "./PrivateRoute";
 import { RestrictedRoute } from "./RestrictedRoute";
 import { refreshUser } from "redux/auth/operations";
 import { useAuth } from "hooks";
+import AuthForm from "./AuthForm/AuthForm";
+import NotFound from "./NotFound/NotFound";
 
-const HomePage = lazy(() => import("../pages/Home"));
+const HomePage = lazy(() => import("../pages/Home/Home"));
 const RegisterPage = lazy(() => import("../pages/Register"));
 const LoginPage = lazy(() => import("../pages/Login"));
+
+// const NewsPage = lazy(() => import("../pages/News"));
+// const NoticesPage = lazy(() => import("../pages/Notices"));
+// const OurFriendsPage = lazy(() => import("../pages/Notices"));
+
 const NewsPage = lazy(() => import("../pages/News"));
 // const NoticesPage = lazy(() => import("../pages/Notices"));
 const OurFriendsPage = lazy(() => import("../pages/OurFriends"));
+
 const UserPage = lazy(() => import("../pages/Notices"));
 
 export const App = () => {
@@ -28,6 +36,7 @@ export const App = () => {
     <b>Refreshing user...</b>
   ) : (
     <>
+      <AuthForm />
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<SharedLayout />}>
@@ -60,6 +69,7 @@ export const App = () => {
             }
           />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );

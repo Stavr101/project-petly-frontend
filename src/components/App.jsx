@@ -7,17 +7,17 @@ import { PrivateRoute } from "./PrivateRoute";
 import { RestrictedRoute } from "./RestrictedRoute";
 import { refreshUser } from "redux/auth/operations";
 import { useAuth } from "hooks";
-import AuthForm from "./AuthForm/AuthForm";
+import NotFound from "./NotFound/NotFound";
 
 const HomePage = lazy(() => import("../pages/Home/Home"));
-const RegisterPage = lazy(() => import("../pages/Register"));
-const LoginPage = lazy(() => import("../pages/Login"));
+const Register = lazy(() => import("../pages/Register"));
+const Login = lazy(() => import("../pages/Login"));
 
 const NewsPage = lazy(() => import("../pages/News"));
 const NoticesPage = lazy(() => import("../pages/Notices"));
 const OurFriendsPage = lazy(() => import("../pages/OurFriends"));
 
-const UserPage = lazy(() => import("../pages/Notices"));
+const UserPage = lazy(() => import("../pages/User"));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -31,32 +31,27 @@ export const App = () => {
     <b>Refreshing user...</b>
   ) : (
     <>
-      <AuthForm />
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-        <Route index element={<HomePage />} />
-        <Route path="news" element={<NewsPage />} />
-        <Route path="notices" element={<NoticesPage />} />
-        <Route path="friends" element={<OurFriendsPage />} />
-          
+          <Route index element={<HomePage />} />
+          <Route path="news" element={<NewsPage />} />
+          <Route path="notices" element={<NoticesPage />} />
+          <Route path="friends" element={<OurFriendsPage />} />
 
           <Route
             path="/register"
             element={
               <RestrictedRoute
                 redirectTo="/contacts"
-                component={<RegisterPage />}
+                component={<Register />}
               />
             }
           />
           <Route
             path="/login"
             element={
-              <RestrictedRoute
-                redirectTo="/contacts"
-                component={<LoginPage />}
-              />
+              <RestrictedRoute redirectTo="/contacts" component={<Login />} />
             }
           />
           <Route
@@ -66,6 +61,7 @@ export const App = () => {
             }
           />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );

@@ -21,7 +21,17 @@ const RegisterSchemaSecondPage = Yup.object().shape({
   phone: Yup.string().required("Phone is a required"),
 });
 
+const LoginSchema = Yup.object().shape({
+  email: Yup.string().email("Invalid email").required("Email is a required"),
+  password: Yup.string()
+    .min(7, "Min length 7 symbols")
+    .max(32, "Too Long!")
+    .matches(regExp.pwd, "Spaces should not be")
+    .required("Password a required field"),
+});
+
 export const authValidate = {
   RegisterSchemaFirstPage,
   RegisterSchemaSecondPage,
+  LoginSchema,
 };

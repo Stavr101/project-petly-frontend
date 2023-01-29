@@ -9,6 +9,7 @@ import Loader from "shared/loader/Loader";
 
 export const SharedLayout = () => {
   return (
+
     <>
       <MainPageContainer>
         <HeaderContainer>

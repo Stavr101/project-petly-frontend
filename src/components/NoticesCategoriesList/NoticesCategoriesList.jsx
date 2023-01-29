@@ -1,5 +1,3 @@
-import React from 'react'
-
 import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem'
 
 export default function NoticesCategoriesList(userPets) {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { ErrorMessage, Formik } from "formik";
 import { authValidate } from "helpers/validationSchema/authValidate";
 import {
@@ -9,11 +9,14 @@ import {
   InputField,
   ErrorMsg,
   Text,
-} from "./AuthForm.styled";
+  LinkAuth,
+} from "./RegisterForm.styled";
+import { Link } from "react-router-dom";
 
-export default function AuthForm() {
+export default function RegisterForm() {
   const [currentPage, setCurrentPage] = useState(false);
   const [formData, setFormData] = useState(null);
+  console.log(formData);
   return (
     <>
       {!currentPage && (
@@ -55,7 +58,9 @@ export default function AuthForm() {
               </FormEl>
             )}
           </Formik>
-          <Text>Already have an account? Login</Text>
+          <Text>
+            Already have an account? <LinkAuth to="/login">Login</LinkAuth>
+          </Text>
         </FormWrapper>
       )}
       {currentPage && (
@@ -93,7 +98,9 @@ export default function AuthForm() {
               </FormEl>
             )}
           </Formik>
-          <Text>Already have an account? Login</Text>
+          <Text>
+            Already have an account? <Link to="/login">Login</Link>
+          </Text>
         </FormWrapper>
       )}
     </>

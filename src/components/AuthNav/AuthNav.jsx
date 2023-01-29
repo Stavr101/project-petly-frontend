@@ -1,7 +1,17 @@
-import React from 'react'
+import React from 'react';
+import { AuthNavItem, AuthBtn } from './AuthNav.styled';
 
-export default function AuthNav() {
+ const AuthNav = () => {
   return (
-    <div>AuthNav</div>
+    <>
+      <AuthNavItem>
+        <AuthBtn type="button" href="/login">Login</AuthBtn>
+      </AuthNavItem>
+      <AuthNavItem>
+        <AuthBtn type="button" href="/register">Registration</AuthBtn>
+      </AuthNavItem>
+    </>
   )
 }
+
+export default AuthNav;

@@ -36,7 +36,8 @@ export const App = () => {
     <b>Refreshing user...</b>
   ) : (
     <>
-      <AuthForm />
+      {/* <AuthForm /> */}
+
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<SharedLayout />}>

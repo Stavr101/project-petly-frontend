@@ -1,8 +1,8 @@
-// import { useState } from "react";
 import { OurFriendsItem } from "../OurFriendsItem/OurFriendsItem";
 import { FriendsList } from "./OurFriendsList.styled";
 import { useEffect, useState } from "react";
 import { getAllFriends } from "api/friends";
+import Loader from "shared/loader/Loader";
 
 export const OurFriendsList = () => {
   const [friends, setFriends] = useState([]);
@@ -37,8 +37,7 @@ export const OurFriendsList = () => {
         </FriendsList>
       )}
       {error && <p>The list of friends is still empty...</p>}
-      {/* {loading && <Loader />} */}
-      {/* {isFriends && !loading && <LoadMoreBtn onLoadMore={loadMore} />} */}
+      {loading && <Loader />}
     </>
   );
 };

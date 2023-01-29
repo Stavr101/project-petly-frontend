@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import { PrimaryHeader } from './Header.styled';
 
 const Header = ({children}) => {
   return (
-    <div>{children}</div>
+    <PrimaryHeader>{children}</PrimaryHeader>
   )
 }
 

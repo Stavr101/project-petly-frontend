@@ -2,15 +2,15 @@ import styled from "styled-components";
 
 import MainImgMob1x from "images/HomePage/main-img-mobile-1x-min.png";
 import MainImgTab1x from "images/HomePage/main-img-tablet-1x-min.png";
-import MainImgDesk1x from "images/HomePage/main-img-desktop-1x-min.png";
+// import MainImgDesk1x from "images/HomePage/main-img-desktop-1x-min.png";
 
 import MainImgMob2x from "images/HomePage/main-img-mobile-2x-min.png";
 import MainImgTab2x from "images/HomePage/main-img-tablet-2x-min.png";
 import MainImgDesk2x from "images/HomePage/main-img-desktop-2x-min.png";
 
 import BgColoredMob1x from "images/HomePage/waves-mobile-1x-min.png";
-import BgColoredTab1x from "images/HomePage/waves-tablet-1x-min.png";
-import BgColoredDesk1x from "images/HomePage/waves-desktop-1x-min.png";
+// import BgColoredTab1x from "images/HomePage/waves-tablet-1x-min.png";
+// import BgColoredDesk1x from "images/HomePage/waves-desktop-1x-min.png";
 
 import BgColoredMob2x from "images/HomePage/waves-mobile-2x-min.png";
 import BgColoredTab2x from "images/HomePage/waves-tablet-2x-min.png";
@@ -73,7 +73,6 @@ background-position: bottom;
 background-repeat: no-repeat;
 background-image: url(${BgColoredMob1x});
 
-
 @media screen and (min-device-pixel-ratio: 2),
     screen and (min-resolution: 192dpi),
     screen and (min-resolution: 2dppx) {
@@ -81,7 +80,7 @@ background-image: url(${BgColoredMob1x});
 }
 
 @media screen and (min-width: 768px) {
-    background-image: url(${BgColoredTab1x});
+    background-image: url(${BgColoredTab2x});
     background-position: top;
     background-size: 140%; 
 }
@@ -96,7 +95,7 @@ background-image: url(${BgColoredMob1x});
 // }
 
 @media screen and (min-width: 1280px) {
-    background-image: url(${MainImgDesk1x}), url(${HeartImg}), url(${BgColoredDesk1x});
+    background-image: url(${MainImgDesk2x}), url(${HeartImg}), url(${BgColoredDesk2x});
     background-size: contain, 8%, 100% auto; 
     background-position: 100% 100%, top 5% right 40%, bottom;
     min-height: calc(100vh - 133px);

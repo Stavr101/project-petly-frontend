@@ -18,9 +18,15 @@ export default function RegisterForm() {
   const [currentPage, setCurrentPage] = useState(false);
   const [formData, setFormData] = useState(null);
   const dispatch = useDispatch();
-  console.log(formData);
+  // console.log(signUp);
 
-  async function onHandleSubmit(data) {}
+  async function onHandleSubmit(event) {
+    setFormData({ ...formData, ...event });
+    const res = await dispatch(
+      authOperation.register({ ...formData, ...event })
+    );
+    console.log(res.meta.arg);
+  }
 
   return (
     <>
@@ -78,12 +84,7 @@ export default function RegisterForm() {
               phone: "",
             }}
             validationSchema={authValidate.RegisterSchemaSecondPage}
-            onSubmit={async (values) => {
-              setFormData({ ...formData, ...values });
-              await dispatch(
-                authOperation.register({ ...formData, ...values })
-              );
-            }}
+            onSubmit={onHandleSubmit}
           >
             {({ errors, touched }) => (
               <FormEl>

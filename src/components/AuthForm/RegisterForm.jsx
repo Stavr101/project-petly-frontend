@@ -11,12 +11,17 @@ import {
   Text,
   LinkAuth,
 } from "./RegisterForm.styled";
-import { Link } from "react-router-dom";
+import authOperation from "redux/auth/operations";
+import { useDispatch } from "react-redux";
 
 export default function RegisterForm() {
   const [currentPage, setCurrentPage] = useState(false);
   const [formData, setFormData] = useState(null);
+  const dispatch = useDispatch();
   console.log(formData);
+
+  async function onHandleSubmit(data) {}
+
   return (
     <>
       {!currentPage && (
@@ -29,8 +34,8 @@ export default function RegisterForm() {
               confirmPassword: "",
             }}
             validationSchema={authValidate.RegisterSchemaFirstPage}
-            onSubmit={(values) => {
-              setFormData(values);
+            onSubmit={({ email, password }) => {
+              setFormData({ email, password });
               setCurrentPage(true);
             }}
           >
@@ -69,12 +74,15 @@ export default function RegisterForm() {
           <Formik
             initialValues={{
               name: "",
-              location: "",
+              address: "",
               phone: "",
             }}
             validationSchema={authValidate.RegisterSchemaSecondPage}
-            onSubmit={(values) => {
+            onSubmit={async (values) => {
               setFormData({ ...formData, ...values });
+              await dispatch(
+                authOperation.register({ ...formData, ...values })
+              );
             }}
           >
             {({ errors, touched }) => (
@@ -84,9 +92,9 @@ export default function RegisterForm() {
                   name="name"
                   render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
                 />
-                <InputField name="location" placeholder="Location" />
+                <InputField name="address" placeholder="address" />
                 <ErrorMessage
-                  name="location"
+                  name="address"
                   render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
                 />
                 <InputField name="phone" placeholder="Phone" />
@@ -99,7 +107,7 @@ export default function RegisterForm() {
             )}
           </Formik>
           <Text>
-            Already have an account? <Link to="/login">Login</Link>
+            Already have an account? <LinkAuth to="/login">Login</LinkAuth>
           </Text>
         </FormWrapper>
       )}

@@ -15,8 +15,8 @@ const RegisterSchemaFirstPage = Yup.object().shape({
 
 const RegisterSchemaSecondPage = Yup.object().shape({
   name: Yup.string().required("Name is a required"),
-  location: Yup.string()
-    .matches(regExp.location, "только город и регион")
+  address: Yup.string()
+    .matches(regExp.location, "For example: Bucha,Kyiv")
     .required("Location a required field"),
   phone: Yup.string().required("Phone is a required"),
 });

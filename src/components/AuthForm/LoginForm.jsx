@@ -10,8 +10,16 @@ import {
   Text,
 } from "./LoginForm.styled";
 import { LinkAuth } from "./RegisterForm.styled";
+import authOperation from "redux/auth/operations";
+import { useDispatch } from "react-redux";
 
 export default function RegisterForm() {
+  const dispatch = useDispatch();
+
+  async function onHandleSubmit(data) {
+    await dispatch(authOperation.logIn(data));
+  }
+
   return (
     <FormWrapper>
       <FormTitle>Login</FormTitle>
@@ -21,9 +29,7 @@ export default function RegisterForm() {
           password: "",
         }}
         validationSchema={authValidate.LoginSchema}
-        onSubmit={(values) => {
-          console.log(values);
-        }}
+        onSubmit={onHandleSubmit}
       >
         {({ errors, touched }) => (
           <FormEl>

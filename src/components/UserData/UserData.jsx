@@ -1,7 +1,10 @@
-import React from 'react'
+import React from 'react';
+import { UserDataWrapper, UserDataTitle } from './UserData.styled';
 
 export default function UserData() {
   return (
-    <div>UserData</div>
-  )
+    <UserDataWrapper>
+      <UserDataTitle>User Page</UserDataTitle>
+    </UserDataWrapper>
+  );
 }

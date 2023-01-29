@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { ErrorMessage, Formik } from "formik";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { authValidate } from "helpers/validationSchema/authValidate";
 import {
   BtnForm,
@@ -9,10 +10,31 @@ import {
   InputField,
   ErrorMsg,
   Text,
-} from "./AuthForm.styled";
+  LinkAuth,
+} from "./RegisterForm.styled";
+import authOperation from "redux/auth/operations";
+import { useDispatch } from "react-redux";
 
-export default function AuthForm() {
+export default function RegisterForm() {
   const [currentPage, setCurrentPage] = useState(false);
+  const [formData, setFormData] = useState(null);
+  const dispatch = useDispatch();
+  // console.log(signUp);
+
+  async function onHandleSubmit(event) {
+    try {
+      // setFormData({ ...formData, ...event });
+      const res = await dispatch(
+        authOperation.register({ ...formData, ...event })
+      );
+      if (res.payload === 409) {
+        return Notify.failure("Email already exist");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <>
       {!currentPage && (
@@ -25,9 +47,8 @@ export default function AuthForm() {
               confirmPassword: "",
             }}
             validationSchema={authValidate.RegisterSchemaFirstPage}
-            onSubmit={(values) => {
-              // same shape as initial values
-              console.log(values);
+            onSubmit={({ email, password }) => {
+              setFormData({ email, password });
               setCurrentPage(true);
             }}
           >
@@ -55,7 +76,9 @@ export default function AuthForm() {
               </FormEl>
             )}
           </Formik>
-          <Text>Already have an account? Login</Text>
+          <Text>
+            Already have an account? <LinkAuth to="/login">Login</LinkAuth>
+          </Text>
         </FormWrapper>
       )}
       {currentPage && (
@@ -64,14 +87,11 @@ export default function AuthForm() {
           <Formik
             initialValues={{
               name: "",
-              location: "",
+              address: "",
               phone: "",
             }}
             validationSchema={authValidate.RegisterSchemaSecondPage}
-            onSubmit={(values) => {
-              // same shape as initial values
-              console.log(values);
-            }}
+            onSubmit={onHandleSubmit}
           >
             {({ errors, touched }) => (
               <FormEl>
@@ -80,9 +100,9 @@ export default function AuthForm() {
                   name="name"
                   render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
                 />
-                <InputField name="location" placeholder="Location" />
+                <InputField name="address" placeholder="address" />
                 <ErrorMessage
-                  name="location"
+                  name="address"
                   render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
                 />
                 <InputField name="phone" placeholder="Phone" />
@@ -94,7 +114,9 @@ export default function AuthForm() {
               </FormEl>
             )}
           </Formik>
-          <Text>Already have an account? Login</Text>
+          <Text>
+            Already have an account? <LinkAuth to="/login">Login</LinkAuth>
+          </Text>
         </FormWrapper>
       )}
     </>

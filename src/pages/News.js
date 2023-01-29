@@ -1,6 +1,6 @@
 import { NewsList } from "components/NewsList/NewsList.jsx";
 
-export default function OurFriends() {
+export default function NewsPage() {
   return (
     <>
       <h1>News</h1>

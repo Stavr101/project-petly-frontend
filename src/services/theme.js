@@ -5,6 +5,7 @@ export const theme = {
     text: {
       primary: "#111111",
       secondary: "#111321",
+      secondBlack: "#181C27",
       gray: "rgba(17, 17, 17, 0.6)",
       links: "#3091EB",
     },

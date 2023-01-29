@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function NoticeCategoryItem({avatar,favorite,title,breed,location,age,condition,onDeletePets}) {
   return (
     <li>

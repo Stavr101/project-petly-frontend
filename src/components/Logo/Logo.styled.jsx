@@ -8,6 +8,9 @@ color: ${p => p.theme.colors.black};
 letter-spacing: 0.07em;
 line-height: 1.5;
 font-size: 28px;
+
+@media screen and (min-width: 768px) {
+    font-size: 32px;
 `
 export const LogoAccent = styled(LogoBlack)`
 color: ${p => p.theme.colors.accent};

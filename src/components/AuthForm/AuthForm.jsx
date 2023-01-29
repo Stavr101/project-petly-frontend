@@ -13,6 +13,7 @@ import {
 
 export default function AuthForm() {
   const [currentPage, setCurrentPage] = useState(false);
+  const [formData, setFormData] = useState(null);
   return (
     <>
       {!currentPage && (
@@ -26,8 +27,7 @@ export default function AuthForm() {
             }}
             validationSchema={authValidate.RegisterSchemaFirstPage}
             onSubmit={(values) => {
-              // same shape as initial values
-              console.log(values);
+              setFormData(values);
               setCurrentPage(true);
             }}
           >
@@ -69,8 +69,7 @@ export default function AuthForm() {
             }}
             validationSchema={authValidate.RegisterSchemaSecondPage}
             onSubmit={(values) => {
-              // same shape as initial values
-              console.log(values);
+              setFormData({ ...formData, ...values });
             }}
           >
             {({ errors, touched }) => (

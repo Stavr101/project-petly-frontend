@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ErrorMessage, Formik } from "formik";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { authValidate } from "helpers/validationSchema/authValidate";
 import {
   BtnForm,
@@ -21,11 +22,17 @@ export default function RegisterForm() {
   // console.log(signUp);
 
   async function onHandleSubmit(event) {
-    setFormData({ ...formData, ...event });
-    const res = await dispatch(
-      authOperation.register({ ...formData, ...event })
-    );
-    console.log(res.meta.arg);
+    try {
+      // setFormData({ ...formData, ...event });
+      const res = await dispatch(
+        authOperation.register({ ...formData, ...event })
+      );
+      if (res.payload === 409) {
+        return Notify.failure("Email already exist");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (

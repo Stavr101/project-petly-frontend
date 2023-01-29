@@ -7,19 +7,31 @@ export const FormTitle = styled.h1`
   margin-bottom: 40px;
   font-size: 24px;
   line-height: 33px;
-
   letter-spacing: 0.04em;
+  margin-top: 42px;
+  @media screen and (min-width: 768px) {
+    font-size: 36px;
+    line-height: 49px;
+    margin-top: 0;
+  }
 `;
 
 export const FormWrapper = styled.div`
   padding: 20px;
-  /* background: radial-gradient(
-    166.91% 140.22% at 27.27% 7.97%,
-    #febb40 0%,
-    #ec4c76 55.76%,
-    #d60b52 97.26%
-  ); */
-  /* transform: matrix(-1, 0, 0, 1, 0, 0); */
+
+  @media screen and (min-width: 768px) {
+    width: 608px;
+    /* height: 517px; */
+    margin: 0 auto;
+    padding: 60px 80px 40px 80px;
+    box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+    border-radius: 40px;
+    margin-top: 170px;
+  }
+  @media screen and (min-width: 1280px) {
+    padding: 60px 80px;
+    margin-top: 57px;
+  }
 `;
 
 export const FormEl = styled(Form)`

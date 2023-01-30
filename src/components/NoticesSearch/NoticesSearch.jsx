@@ -3,11 +3,10 @@ import {
   Search,
   SearchForm,
   FormButton,
+  IconSearch,
+  IconClose,
   FormInput,
 } from "components/NoticesSearch/NoticesSearch.styled";
-import SearchIcon from "@mui/icons-material/Search";
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import PropTypes from "prop-types";
 
 const NoticesSearch = (onSubmit) => {
   const [query, setQuery] = useState("");
@@ -46,16 +45,12 @@ const NoticesSearch = (onSubmit) => {
         />
         <FormButton type="submit">
           {filteredData.length === 0 ?
-            <SearchIcon /> : <HighlightOffIcon onClick={clearInput} />
+            <IconSearch /> : <IconClose onClick={clearInput} />
           }
         </FormButton>
       </SearchForm>
     </Search>
   );
-};
-
-NoticesSearch.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
 };
 
 export default NoticesSearch;

@@ -11,6 +11,7 @@ import {
   ErrorMsg,
   Text,
   LinkAuth,
+  FormWrapperEl,
 } from "./RegisterForm.styled";
 import authOperation from "redux/auth/operations";
 import { useDispatch } from "react-redux";
@@ -82,7 +83,7 @@ export default function RegisterForm() {
         </FormWrapper>
       )}
       {currentPage && (
-        <FormWrapper>
+        <FormWrapperEl>
           <FormTitle>Registration</FormTitle>
           <Formik
             initialValues={{
@@ -117,7 +118,7 @@ export default function RegisterForm() {
           <Text>
             Already have an account? <LinkAuth to="/login">Login</LinkAuth>
           </Text>
-        </FormWrapper>
+        </FormWrapperEl>
       )}
     </>
   );

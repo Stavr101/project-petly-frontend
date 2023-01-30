@@ -1,12 +1,10 @@
-import { NavLink as Link } from 'react-router-dom';
 import styled from 'styled-components';
-import BurgerMenuBtn from "images/icons/BurgerMenuBtn.svg";
+import { NavLink as Link } from 'react-router-dom';
 
 export const NavContainer = styled.div`
 display: flex;
 justify-content: space-between;
 `
-
 export const PrimaryNav = styled.nav`
 display: flex;
 justify-content: space-around;
@@ -21,9 +19,14 @@ font-family: ${p => p.theme.fonts.manrope};
 color: ${p => p.theme.colors.text.secondBlack};
 letter-spacing: 0.04em;
 margin-left: 80px;
+transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
 &.active {
-    color: ${p => p.theme.colors.accent};
+  color: ${p => p.theme.colors.accent};
+  text-decoration-line: underline;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 `
 export const NavMenu = styled.div`
@@ -44,16 +47,10 @@ display: none;
 `
 export const MobileMenuBtn = styled.button`
 display: flex;
-height: 40px;
-width: 40px;
 align-items: center;
 justify-content: center;
 background: none;
 border: none;
-background-image: url(${BurgerMenuBtn});
-background-repeat: no-repeat;
-background-size: contain;
-background-position: center;
 
 @media screen and (min-width: 768px) {
 display: flex;

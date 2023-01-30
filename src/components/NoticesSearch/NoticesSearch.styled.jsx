@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import SearchIcon from "@mui/icons-material/Search";
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 export const Search = styled.div`
   display: flex;
@@ -36,6 +38,18 @@ export const FormButton = styled.button`
   cursor: pointer;
   outline: none;
   background-color: #fff;
+`;
+
+export const IconSearch = styled(SearchIcon)`
+  &:hover {
+    transform: scale(1.2);
+  }
+`;
+
+export const IconClose = styled(HighlightOffIcon)`
+  &:hover {
+    transform: scale(1.2);
+  }
 `;
 
 export const FormInput = styled.input`

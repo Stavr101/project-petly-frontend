@@ -17,8 +17,10 @@ const RegisterSchemaSecondPage = Yup.object().shape({
   name: Yup.string().required("Name is a required"),
   address: Yup.string()
     .matches(regExp.location, "For example: Bucha,Kyiv")
-    .required("Location a required field"),
-  phone: Yup.string().required("Phone is a required"),
+    .required("Address a required field"),
+  phone: Yup.string()
+    .required("Phone is a required")
+    .matches(regExp.mobile, "Example: +380111111111"),
 });
 
 const LoginSchema = Yup.object().shape({

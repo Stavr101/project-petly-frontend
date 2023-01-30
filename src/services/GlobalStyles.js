@@ -14,7 +14,7 @@ h4,
 h5 {
   margin: 0;
 }
-ul {
+ul, li {
   margin: 0;
   padding: 0;
   list-style: none;

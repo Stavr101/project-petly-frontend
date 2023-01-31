@@ -1,7 +1,12 @@
-import React from 'react';
-import { NavContainer, PrimaryNav, NavLink, NavMenu, AuthMenu } from "./Nav.styled";
-import AuthNav from 'components/AuthNav/AuthNav';
-import { MobileMenuBtn } from './Nav.styled';
+import {
+  NavContainer,
+  PrimaryNav,
+  NavLink,
+  NavMenu,
+  AuthMenu,
+} from "./Nav.styled";
+import AuthNav from "components/AuthNav/AuthNav";
+import { MobileMenuBtn } from "./Nav.styled";
 // import BurgerMenuBtn from "images/icons/BurgerMenuBtn.svg";
 import Logo from "components/Logo/Logo";
 
@@ -18,12 +23,12 @@ const Nav = () => {
           </NavMenu>
         </PrimaryNav>
         <AuthMenu>
-            <AuthNav/>
+          <AuthNav />
         </AuthMenu>
         <MobileMenuBtn />
       </NavContainer>
     </>
-  )
-}
+  );
+};
 
 export default Nav;

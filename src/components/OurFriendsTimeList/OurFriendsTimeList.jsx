@@ -1,8 +1,10 @@
 import { Tooltip } from "@mui/material";
 import { theme } from "../../services/theme";
 import { styled } from "@mui/material/styles";
-import { tooltipClasses } from "@mui/material/Tooltip";
+// import { tooltipClasses } from "@mui/material/Tooltip";
 import { TimeListRow, TimeListTable } from "./OurFriendsTimeList.styled";
+
+const WEEK = ["MN", "TU", "WE", "TH", "FR", "SA", "SU"];
 
 const LightTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
@@ -34,7 +36,6 @@ const LightTooltip = styled(({ className, ...props }) => (
 export default function OurFriendsTimeList({
   workDays,
   dayOfTheWeek,
-  week,
   children,
 }) {
   return (
@@ -55,7 +56,7 @@ export default function OurFriendsTimeList({
                         : theme.colors.black,
                   }}
                 >
-                  <td style={{ paddingRight: "14px" }}>{week[index]}</td>
+                  <td style={{ paddingRight: "14px" }}>{WEEK[index]}</td>
                   <td>{item.from}</td>
                   <td>-</td>
                   <td>{item.to}</td>

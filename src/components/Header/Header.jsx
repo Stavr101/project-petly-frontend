@@ -1,7 +1,10 @@
-import React from 'react'
+import React from 'react';
+import { PrimaryHeader } from './Header.styled';
 
-export default function Header() {
+const Header = ({children}) => {
   return (
-    <div>Header</div>
+    <PrimaryHeader>{children}</PrimaryHeader>
   )
 }
+
+export default Header;

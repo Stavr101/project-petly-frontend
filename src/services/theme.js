@@ -5,6 +5,7 @@ export const theme = {
     text: {
       primary: "#111111",
       secondary: "#111321",
+      secondBlack: "#181C27",
       gray: "rgba(17, 17, 17, 0.6)",
       links: "#3091EB",
     },
@@ -18,6 +19,8 @@ export const theme = {
     body: "system-ui, sans-serif",
     heading: "system-ui, sans-serif",
     monospace: "Menlo, monospace",
+    logo: 'Poppins, sans-serif',
+    manrope: 'Manrope, sans-serif',
   },
   fontSizes: {
     xs: "12px",
@@ -44,6 +47,7 @@ export const theme = {
   shadows: {
     card: "7px 4px 14px rgba(49, 21, 4, 0.07)",
     modal: "7px 4px 14px rgba(0, 0, 0, 0.11)",
+    time: "4px 4px 8px rgba(0, 0, 0, 0.25);",
   },
   zIndices: {
     search: 1100,

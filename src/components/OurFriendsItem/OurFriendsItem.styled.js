@@ -1,42 +1,121 @@
 import styled from "styled-components";
 
-export const OurFriendsListItem = styled.li`
+export const FriendsItem = styled.li`
   display: flex;
+  flex-direction: column;
   align-items: center;
-  width: ${(p) => p.theme.space[8]}px;
-  color: ${(p) => p.theme.colors.text};
-  font-weight: ${(p) => p.theme.fontWeights.semibold};
-  font-size: ${(p) => p.theme.fontSizes.s};
-  :not(:last-child) {
-    margin-bottom: ${(p) => p.theme.space[4]}px;
+  width: 280px;
+  min-height: 192px;
+  padding: 14px 4px 12px;
+
+  background-color: ${(p) => p.theme.colors.white};
+  border-radius: 20px;
+  box-shadow: ${(p) => p.theme.shadows.card};
+  transition: scale 250ms linear;
+
+  :hover {
+    scale: 1.05;
   }
-  ::before {
-    content: "";
-    display: block;
-    margin-right: ${(p) => p.theme.space[3]}px;
-    border-radius: 5 ${(p) => p.theme.radii.round};
-    width: ${(p) => p.theme.space[2]}px;
-    height: ${(p) => p.theme.space[2]}px;
-    background-color: ${(p) => p.theme.colors.black};
+
+  @media screen and (min-width: 768px) {
+    width: 336px;
+    min-height: 246px;
+    padding-top: ${(p) => p.theme.space[4]}px;
+    padding-bottom: ${(p) => p.theme.space[4]}px;
+
+    border-radius: 40px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 395px;
+    min-height: 287px;
+  } ;
+`;
+
+export const FriendsLinkTitle = styled.a`
+  text-align: center;
+  width: 100%;
+  margin-bottom: 12px;
+
+  font-weight: ${(p) => p.theme.fontWeights.bold};
+  font-size: ${(p) => p.theme.fontSizes.xs};
+  line-height: 1.33;
+  text-decoration: underline;
+  color: ${(p) => p.theme.colors.accent};
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 16px;
+
+    font-size: 16px;
+    line-height: 1.375;
+  }
+  @media screen and (min-width: 1280px) {
+    font-size: ${(p) => p.theme.fontSizes.m};
+    line-height: 1.35;
+  } ;
+`;
+
+export const FriendsInfoWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+
+  @media screen and (min-width: 768px) {
+    gap: 14px;
+  }
+  @media screen and (min-width: 1280px) {
+    gap: 16px;
+  } ;
+`;
+
+export const FriendsImage = styled.img`
+  display: block;
+  width: 110px;
+  height: auto;
+
+  @media screen and (min-width: 768px) {
+    width: 120px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 158px;
+  } ;
+`;
+
+export const FriendsInfoList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  font-family: ${(p) => p.theme.fonts.manrope};
+  font-size: ${(p) => p.theme.fontSizes.xs};
+  font-weight: ${(p) => p.theme.fontWeights.semibold};
+  line-height: 1.33;
+
+  @media screen and (min-width: 768px) {
+    gap: 8px;
+
+    font-size: 14px;
+    line-height: 1.357;
+  }
+  @media screen and (min-width: 1280px) {
+    gap: 12px;
+
+    font-size: 16px;
+    line-height: 1.375;
+  } ;
+`;
+
+export const FriendsInfoItemTime = styled.li`
+  cursor: pointer;
+  :hover {
+    color: ${(p) => p.theme.colors.accent};
   }
 `;
 
-// export const ContactDeleteButton = styled.button`
-// display: inline-flex;
-//     align-items:center;
-//     justify-content:center;
-//     margin-left: auto;
-//     font-size: ${p => p.theme.fontSizes.xs};
-//     color:  ${p => p.theme.colors.white};
-//     padding-top:${p => p.theme.space[2]}px;
-//     padding-bottom:${p => p.theme.space[2]}px;
-//     background-color: ${p=> p.theme.colors.primary};
-//     border:none;
-//     border-radius:${p=>p.theme.radii.normal};
-//     transition: background-color 250ms ease-in-out;
+export const FriendsInfoItemLink = styled.a`
+  color: ${(p) => p.theme.colors.text.primary};
 
-//     :hover{
-//         background-color: ${p=> p.theme.colors.accent};
-
-// }
-// `
+  :hover {
+    color: ${(p) => p.theme.colors.accent};
+  }
+`;

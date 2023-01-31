@@ -1,14 +1,14 @@
 import React from 'react';
-import { AuthNavItem, AuthBtn } from './AuthNav.styled';
+import { AuthNavItem, NavBtnLink } from './AuthNav.styled';
 
  const AuthNav = () => {
   return (
     <>
       <AuthNavItem>
-        <AuthBtn type="button" href="/login">Login</AuthBtn>
+        <NavBtnLink to="/login" className={({ isActive }) => (isActive ? "active" : "")}>Login</NavBtnLink>
       </AuthNavItem>
       <AuthNavItem>
-        <AuthBtn type="button" href="/register">Registration</AuthBtn>
+        <NavBtnLink to="/register" className={({ isActive }) => (isActive ? "active" : "")}>Registration</NavBtnLink>
       </AuthNavItem>
     </>
   )

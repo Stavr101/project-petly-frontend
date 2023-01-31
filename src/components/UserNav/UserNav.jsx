@@ -1,6 +1,10 @@
+import { NavBtnLink } from "./UserNav.styled";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
 const UserNav = () => {
+
   return (
-    <div>AuthNav</div>
+    <NavBtnLink to="/user"> <AccountCircleIcon /> &nbsp; Account</NavBtnLink>
   );
 };
 

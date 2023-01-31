@@ -6,7 +6,7 @@ export default function NoticeCategoryItem({avatar,favorite,title,breed,location
       <div>
         <img src={avatar} alt="Pets" width="100" />
         <p>{condition}</p>
-        {/* <span className={ favorite ? css.onFavorite : css.offFavorite}></span> */}
+        <span>icon</span>
       </div>
     <h3>{title}</h3>
       <p>Breed:{breed}</p> 

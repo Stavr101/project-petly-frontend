@@ -5,8 +5,7 @@ import { NewsItem } from "../NewsItem/NewsItem";
 // import Loader from "../../shared/loader";
 import { getAllNews } from "../../api/news";
 import Error from "components/Error/Error";
-import { ThemeProvider } from "@mui/material/styles";
-import { theme } from "./NewsList.styled.js";
+
 
 export const NewsList = () => {
   const [news, setNews] = useState([]);
@@ -30,12 +29,12 @@ export const NewsList = () => {
   }, []);
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       {news && (
         <Grid
           container
           columnSpacing={4}
-          rowSpacing={{ mobile: 6, tablet: 7.5, desktop: 7.5 }}        
+          rowSpacing={{ mobile: 6, tablet: 7.5, desktop: 7.5 }}
           component="ul"
           alignItems="stretch"
         >
@@ -48,6 +47,6 @@ export const NewsList = () => {
       {/* {loading && <Loader />} */}
       {loading && <p>Hello</p>}
       {/* {isFriends && !loading && <LoadMoreBtn onLoadMore={loadMore} />} */}
-    </ThemeProvider>
+    </>
   );
 };

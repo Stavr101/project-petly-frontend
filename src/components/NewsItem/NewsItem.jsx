@@ -7,15 +7,14 @@ import {
   Box,
   Grid,
 } from "@mui/material";
-import { ThemeProvider } from "@mui/material/styles";
 import EllipsisText from "react-ellipsis-text";
-import { theme } from "./NewsItem.styled.js";
+
 
 export const NewsItem = ({ data }) => {
   const { title, url, date, description } = data;
 
   return (
-    <ThemeProvider theme={theme}>
+  
       <Grid
         item
         component="li"
@@ -63,7 +62,7 @@ export const NewsItem = ({ data }) => {
           </Box>
         </Card>
       </Grid>
-    </ThemeProvider>
+   
   );
 };
 

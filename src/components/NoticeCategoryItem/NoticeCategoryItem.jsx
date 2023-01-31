@@ -1,16 +1,28 @@
+/* import { useDispatch } from 'react-redux';
+import { deletePets } from 'api/notices'; */
+
 import { 
     ItemNoticesImgDiv,
     ItemNoticesTitle,
+    ItemNoticesUlList,
     ItemNoticesSpan,
-    ItemNoticesUl} from "./NoticeCategoryItem.styled"
+    ItemNoticesLi,
+    ItemButtonNotices,
+    ItemButtonNoticesLearnMore,
+    ItemButtonNoticesDelete,
+    ItemNoticesListLi} from "./NoticeCategoryItem.styled"
 
 export default function NoticeCategoryItem({id,avatar,favorite,title,breed,location,age,condition,onDeletePets,onLearnMore}) {
-return (
+  /*   const dispatch = useDispatch();
+    const onDeletePets = (id) => dispatch(deletePets(id)); */
+
+    return (
     <>
-    <li>
+    <ItemNoticesLi>
         <ItemNoticesImgDiv>
             <img
                 width={280}
+                height={288}
                 src={avatar}
                 alt={title}
             />
@@ -20,28 +32,30 @@ return (
             </div>
         </ItemNoticesImgDiv>
         <ItemNoticesTitle>{title}</ItemNoticesTitle>
-        <ItemNoticesUl>
-            <li>
+        <ItemNoticesUlList>
+            <ItemNoticesListLi>
                 <p>Breed:<ItemNoticesSpan>{breed}</ItemNoticesSpan></p>
-            </li>
-            <li>
+            </ItemNoticesListLi>
+            <ItemNoticesListLi>
                 <p>Place:<ItemNoticesSpan>{location}</ItemNoticesSpan></p>
-            </li>
-            <li>
+            </ItemNoticesListLi>
+            <ItemNoticesListLi>
                 <p>Age:<ItemNoticesSpan>{age}</ItemNoticesSpan></p>
-            </li>
-        </ItemNoticesUl>
-        <button
-        type="submit"
-        onClick={() => onLearnMore(id)}>
-            Learn more
-        </button>
-        {favorite ? <button
-          type="submit"
-          onClick={() => onDeletePets(id)}>
-          Delete
-        </button> : null}
-    </li>
+            </ItemNoticesListLi>
+        </ItemNoticesUlList>
+        <ItemButtonNotices>
+            <ItemButtonNoticesLearnMore
+                type="submit"
+                onClick={() => onLearnMore(id)}>
+                Learn more
+            </ItemButtonNoticesLearnMore>
+            {favorite ? <ItemButtonNoticesDelete
+                type="submit"
+                onClick={() => onDeletePets(id)}>
+                Delete
+                </ItemButtonNoticesDelete> : null}
+        </ItemButtonNotices>
+    </ItemNoticesLi>
     </>
-)
+  )
 }

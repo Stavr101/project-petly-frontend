@@ -1,23 +1,36 @@
-
+import { 
+    ItemNoticesImgDiv,
+    ItemNoticesTitle,
+    ItemNoticesSpan,
+    ItemNoticesUl} from "./NoticeCategoryItem.styled"
 
 export default function NoticeCategoryItem({id,avatar,favorite,title,breed,location,age,condition,onDeletePets,onLearnMore}) {
 return (
     <>
     <li>
-        <div>
+        <ItemNoticesImgDiv>
             <img
+                width={280}
                 src={avatar}
                 alt={title}
             />
-            <p>{condition}</p>
-            <span>icon</span>
-        </div>
-        <h2>{title}</h2>
-        <div>
-            <p>Breed:<span>{breed}</span></p>
-            <p>Place:<span>{location}</span></p>
-            <p>Age:<span>{age}</span></p>
-        </div>
+            <div>
+                <p>{condition}</p>
+                <span>icon</span>
+            </div>
+        </ItemNoticesImgDiv>
+        <ItemNoticesTitle>{title}</ItemNoticesTitle>
+        <ItemNoticesUl>
+            <li>
+                <p>Breed:<ItemNoticesSpan>{breed}</ItemNoticesSpan></p>
+            </li>
+            <li>
+                <p>Place:<ItemNoticesSpan>{location}</ItemNoticesSpan></p>
+            </li>
+            <li>
+                <p>Age:<ItemNoticesSpan>{age}</ItemNoticesSpan></p>
+            </li>
+        </ItemNoticesUl>
         <button
         type="submit"
         onClick={() => onLearnMore(id)}>

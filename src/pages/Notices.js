@@ -1,7 +1,7 @@
 import NoticesSearch from "components/NoticesSearch/NoticesSearch";
 import NoticesCategoriesNav from "components/NoticesCategoriesNav/NoticesCategoriesNav";
 // import NoticesCategoriesList from "components/NoticesCategoriesList/NoticesCategoriesList";
-// import AddNoticeButton from "components/AddNoticeButton/AddNoticeButton";
+import AddNoticeButton from "components/AddNoticeButton/AddNoticeButton";
 import MainPageContainer from "components/Container/MainPageContainer/MainPageContainer";
 
 function NoticesPage() {
@@ -11,7 +11,7 @@ function NoticesPage() {
       <NoticesSearch />
       <NoticesCategoriesNav />
       {/* <NoticesCategoriesList /> */}
-      {/* <AddNoticeButton /> */}
+      <AddNoticeButton />
     </MainPageContainer>
   );
 }

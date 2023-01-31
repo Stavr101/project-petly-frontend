@@ -2,11 +2,14 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
  
-  a {
+a {
      cursor: pointer;
      text-decoration: none;
-  }
-     P,
+}
+button {
+     cursor: pointer;
+}
+p,
 h1,
 h2,
 h3,

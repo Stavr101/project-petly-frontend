@@ -5,7 +5,7 @@
      "breed": "Airedale Terrier",
      "location": "location 1",
      "age": "age 1",
-     "favorite": false,
+     "favorite": true,
      "id": "1"
     },
     {
@@ -41,7 +41,7 @@
      "breed": "Bouvier des Ardennes",
      "location": "location 5",
      "age": "age 5",
-     "favorite": false,
+     "favorite": true,
      "id": "5"
     }
    ]

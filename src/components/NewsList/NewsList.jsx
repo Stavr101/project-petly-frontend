@@ -6,11 +6,17 @@ import { NewsItem } from "../NewsItem/NewsItem";
 import { getAllNews } from "../../api/news";
 import Error from "components/Error/Error";
 
-
-export const NewsList = () => {
+export const NewsList = ({ query }) => {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  let filteredNews = news;
+
+  if (query !== "") {
+    filteredNews = news.filter(({ title }) => {
+      return title.toLowerCase().includes(query.toLowerCase());
+    });
+  }
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -30,7 +36,7 @@ export const NewsList = () => {
 
   return (
     <>
-      {news && (
+      {filteredNews && (
         <Grid
           container
           columnSpacing={4}
@@ -38,14 +44,14 @@ export const NewsList = () => {
           component="ul"
           alignItems="stretch"
         >
-          {news.map((item) => {
+          {filteredNews.map((item) => {
             return <NewsItem key={item._id} data={item} />;
           })}
         </Grid>
       )}
       {error && <Error />}
       {/* {loading && <Loader />} */}
-      {loading && <p>Hello</p>}
+      {loading && <p>is loading...</p>}
       {/* {isFriends && !loading && <LoadMoreBtn onLoadMore={loadMore} />} */}
     </>
   );

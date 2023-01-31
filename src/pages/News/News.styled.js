@@ -12,9 +12,7 @@ export const theme = createTheme({
     link: {
       main: "#3091EB",
     },
-    gradient: {
-      main: "linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%)",
-    },
+
     text: {
       primary: "#111111",
       secondary: "rgba(17, 17, 17, 0.6)",

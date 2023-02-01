@@ -8,7 +8,7 @@ import { LogOutButton, SVG } from './Logout.styled';
 
 export const Logout = () => {
   const dispatch = useDispatch();
-  const { user } = useAuth();
+  // const { user } = useAuth();
 
   return (
     <LogOutButton type="button" onClick={() => dispatch(logOut())}>

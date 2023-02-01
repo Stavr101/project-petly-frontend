@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PetsList from 'components/PetsList/PetsList';
 import {
   PetsWrapper,

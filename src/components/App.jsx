@@ -8,7 +8,8 @@ import { RestrictedRoute } from "./RestrictedRoute";
 import { refreshUser } from "redux/auth/operations";
 import { useAuth } from "hooks";
 import NotFound from "./NotFound/NotFound";
-import  ModalAddsPetApp  from "./ModalAddsPet/ModalAddsPetsApp"
+import Loader from 'shared/loader/Loader';
+
 
 
 const HomePage = lazy(() => import("../pages/Home/Home"));
@@ -35,7 +36,6 @@ export const App = () => {
       <>
        
         <GlobalStyles />
-        <ModalAddsPetApp />
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />

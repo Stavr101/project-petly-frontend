@@ -31,11 +31,10 @@ export const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <b>Refreshing user...</b>
+    <Loader />
   ) : (
-      <>
-       
-        <GlobalStyles />
+    <>
+      <GlobalStyles />
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />

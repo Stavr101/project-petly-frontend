@@ -9,6 +9,14 @@ export const PrimaryNav = styled.nav`
 display: flex;
 justify-content: space-around;
 `
+export const SecondaryNav = styled.div`
+display: flex;
+justify-content: space-around;
+
+@media (max-width: 767px) {
+display: none;
+}
+`
 export const NavLink = styled(Link)`
 display: flex;
 align-items: center;
@@ -33,7 +41,7 @@ export const NavMenu = styled.div`
 display: flex;
 align-items: center;
 
-@media screen and (max-width: 1279px) {
+@media (max-width: 1279px) {
 display: none;
 }
 `
@@ -41,23 +49,19 @@ export const AuthMenu = styled.ul`
 display: flex;
 align-items: center;
 
-@media screen and (max-width: 767px) {
+@media (max-width: 767px) {
 display: none;
 }
 `
-export const MobileMenuBtn = styled.button`
-display: flex;
-align-items: center;
-justify-content: center;
-background: none;
+export const BurgerBtn = styled.button`
+Width: 40px;
+height: 40px;
+cursor: pointer;
+background-color: transparent;
+outline: none;
 border: none;
 
-@media screen and (min-width: 768px) {
-display: flex;
-margin-left: 20px;
-}
-
-@media screen and (min-width: 1280px) {
+@media (min-width: 1280px) {
 display: none;
 }
 `

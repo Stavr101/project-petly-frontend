@@ -1,5 +1,6 @@
 /* import { useDispatch } from 'react-redux';
 import { deletePets } from 'api/notices'; */
+import DeleteSvg from "./NoticesDeleteSvg"
 
 import { 
     ItemNoticesImgDiv,
@@ -10,7 +11,9 @@ import {
     ItemButtonNotices,
     ItemButtonNoticesLearnMore,
     ItemButtonNoticesDelete,
-    ItemNoticesListLi} from "./NoticeCategoryItem.styled"
+    ItemNoticesListLi,
+    ItemNoticesListP,
+    ItemButtonNoticesDeleteSpan} from "./NoticeCategoryItem.styled"
 
 export default function NoticeCategoryItem({id,avatar,favorite,title,breed,location,age,condition,onDeletePets,onLearnMore}) {
   /*   const dispatch = useDispatch();
@@ -34,13 +37,13 @@ export default function NoticeCategoryItem({id,avatar,favorite,title,breed,locat
         <ItemNoticesTitle>{title}</ItemNoticesTitle>
         <ItemNoticesUlList>
             <ItemNoticesListLi>
-                <p>Breed:<ItemNoticesSpan>{breed}</ItemNoticesSpan></p>
+                <ItemNoticesListP>Breed:<ItemNoticesSpan>{breed}</ItemNoticesSpan></ItemNoticesListP>
             </ItemNoticesListLi>
             <ItemNoticesListLi>
-                <p>Place:<ItemNoticesSpan>{location}</ItemNoticesSpan></p>
+                <ItemNoticesListP>Place:<ItemNoticesSpan>{location}</ItemNoticesSpan></ItemNoticesListP>
             </ItemNoticesListLi>
             <ItemNoticesListLi>
-                <p>Age:<ItemNoticesSpan>{age}</ItemNoticesSpan></p>
+                <ItemNoticesListP>Age:<ItemNoticesSpan>{age}</ItemNoticesSpan></ItemNoticesListP>
             </ItemNoticesListLi>
         </ItemNoticesUlList>
         <ItemButtonNotices>
@@ -52,7 +55,8 @@ export default function NoticeCategoryItem({id,avatar,favorite,title,breed,locat
             {favorite ? <ItemButtonNoticesDelete
                 type="submit"
                 onClick={() => onDeletePets(id)}>
-                Delete
+                <ItemButtonNoticesDeleteSpan>Delete</ItemButtonNoticesDeleteSpan>
+                <DeleteSvg/>
                 </ItemButtonNoticesDelete> : null}
         </ItemButtonNotices>
     </ItemNoticesLi>

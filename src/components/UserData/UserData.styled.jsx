@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import userPhoto from 'images/UserPage/userPhoto.png';
 
 export const UserWrapper = styled.div``;
 
@@ -60,6 +61,7 @@ export const AvatarInfoWrapper = styled.div`
 `;
 
 export const AvatarImg = styled.img`
+  background-image: url(${userPhoto});
   object-fit: cover;
   border-radius: ${p => p.theme.radii.round};
   margin: auto auto 12px;

@@ -15,7 +15,6 @@ import {
 import UserDataItem from 'components/UserDataItem/UserDataItem';
 import { Logout } from 'components/Logout/Logout';
 import editAvatar from 'images/UserPage/editAvatar.svg';
-import { UserDatePicker } from 'helpers/datePicker/datePicker';
 
 export default function UserData() {
   // const handleSubmit = e => {

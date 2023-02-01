@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import { GlobalStyles } from 'services/GlobalStyles';
-// import { PrivateRoute } from './PrivateRoute';
+import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
 import { refreshUser } from 'redux/auth/operations';
 import { useAuth } from 'hooks';
@@ -57,8 +57,7 @@ export const App = () => {
           <Route
             path="/user"
             element={
-              // <PrivateRoute redirectTo="/login" component={<UserPage />} />
-              <RestrictedRoute redirectTo="/user" component={<UserPage />} />
+              <PrivateRoute redirectTo="/login" component={<UserPage />} />
             }
           />
         </Route>

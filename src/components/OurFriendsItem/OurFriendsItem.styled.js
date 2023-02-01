@@ -5,7 +5,7 @@ export const FriendsItem = styled.li`
   flex-direction: column;
   align-items: center;
   width: 280px;
-  /* height: 192px; */
+  min-height: 192px;
   padding: 14px 4px 12px;
 
   background-color: ${(p) => p.theme.colors.white};
@@ -19,7 +19,7 @@ export const FriendsItem = styled.li`
 
   @media screen and (min-width: 768px) {
     width: 336px;
-    /* height: 246px; */
+    min-height: 246px;
     padding-top: ${(p) => p.theme.space[4]}px;
     padding-bottom: ${(p) => p.theme.space[4]}px;
 
@@ -27,7 +27,7 @@ export const FriendsItem = styled.li`
   }
   @media screen and (min-width: 1280px) {
     width: 395px;
-    /* height: 287px; */
+    min-height: 287px;
   } ;
 `;
 
@@ -86,28 +86,33 @@ export const FriendsInfoList = styled.ul`
   flex-direction: column;
   gap: 4px;
 
-  /* font-family: ${(p) => p.theme.fonts.monospace}; */
+  font-family: ${(p) => p.theme.fonts.manrope};
   font-size: ${(p) => p.theme.fontSizes.xs};
   font-weight: ${(p) => p.theme.fontWeights.semibold};
   line-height: 1.33;
 
   @media screen and (min-width: 768px) {
     gap: 8px;
+
+    font-size: 14px;
+    line-height: 1.357;
   }
   @media screen and (min-width: 1280px) {
     gap: 12px;
+
+    font-size: 16px;
+    line-height: 1.375;
   } ;
 `;
 
-export const FriendsInfoItem = styled.li`
-  @media screen and (min-width: 768px) {
+export const FriendsInfoItemTime = styled.li`
+  cursor: pointer;
+  :hover {
+    color: ${(p) => p.theme.colors.accent};
   }
-  @media screen and (min-width: 1280px) {
-  } ;
 `;
 
 export const FriendsInfoItemLink = styled.a`
-  text-decoration: underline;
   color: ${(p) => p.theme.colors.text.primary};
 
   :hover {

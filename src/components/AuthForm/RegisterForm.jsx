@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ErrorMessage, Formik } from "formik";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { authValidate } from "helpers/validationSchema/authValidate";
 import {
   BtnForm,
@@ -10,13 +11,31 @@ import {
   ErrorMsg,
   Text,
   LinkAuth,
+  FormWrapperEl,
 } from "./RegisterForm.styled";
-import { Link } from "react-router-dom";
+import authOperation from "redux/auth/operations";
+import { useDispatch } from "react-redux";
 
 export default function RegisterForm() {
   const [currentPage, setCurrentPage] = useState(false);
   const [formData, setFormData] = useState(null);
-  console.log(formData);
+  const dispatch = useDispatch();
+  // console.log(signUp);
+
+  async function onHandleSubmit(event) {
+    try {
+      // setFormData({ ...formData, ...event });
+      const res = await dispatch(
+        authOperation.register({ ...formData, ...event })
+      );
+      if (res.payload === 409) {
+        return Notify.failure("Email already exist");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <>
       {!currentPage && (
@@ -29,8 +48,8 @@ export default function RegisterForm() {
               confirmPassword: "",
             }}
             validationSchema={authValidate.RegisterSchemaFirstPage}
-            onSubmit={(values) => {
-              setFormData(values);
+            onSubmit={({ email, password }) => {
+              setFormData({ email, password });
               setCurrentPage(true);
             }}
           >
@@ -64,18 +83,16 @@ export default function RegisterForm() {
         </FormWrapper>
       )}
       {currentPage && (
-        <FormWrapper>
+        <FormWrapperEl>
           <FormTitle>Registration</FormTitle>
           <Formik
             initialValues={{
               name: "",
-              location: "",
+              address: "",
               phone: "",
             }}
             validationSchema={authValidate.RegisterSchemaSecondPage}
-            onSubmit={(values) => {
-              setFormData({ ...formData, ...values });
-            }}
+            onSubmit={onHandleSubmit}
           >
             {({ errors, touched }) => (
               <FormEl>
@@ -84,9 +101,9 @@ export default function RegisterForm() {
                   name="name"
                   render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
                 />
-                <InputField name="location" placeholder="Location" />
+                <InputField name="address" placeholder="address" />
                 <ErrorMessage
-                  name="location"
+                  name="address"
                   render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
                 />
                 <InputField name="phone" placeholder="Phone" />
@@ -99,9 +116,9 @@ export default function RegisterForm() {
             )}
           </Formik>
           <Text>
-            Already have an account? <Link to="/login">Login</Link>
+            Already have an account? <LinkAuth to="/login">Login</LinkAuth>
           </Text>
-        </FormWrapper>
+        </FormWrapperEl>
       )}
     </>
   );

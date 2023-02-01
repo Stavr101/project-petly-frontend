@@ -1,4 +1,6 @@
 import { ErrorMessage, Formik } from "formik";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
+
 import { authValidate } from "helpers/validationSchema/authValidate";
 import {
   BtnForm,
@@ -8,10 +10,25 @@ import {
   InputField,
   ErrorMsg,
   Text,
+  LinkAuth,
 } from "./LoginForm.styled";
-import { LinkAuth } from "./RegisterForm.styled";
+import authOperation from "redux/auth/operations";
+import { useDispatch } from "react-redux";
 
 export default function RegisterForm() {
+  const dispatch = useDispatch();
+
+  async function onHandleSubmit(data) {
+    try {
+      const res = await dispatch(authOperation.logIn(data));
+      if (res.payload === 401) {
+        return Notify.failure("Must be authorization");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <FormWrapper>
       <FormTitle>Login</FormTitle>
@@ -21,9 +38,7 @@ export default function RegisterForm() {
           password: "",
         }}
         validationSchema={authValidate.LoginSchema}
-        onSubmit={(values) => {
-          console.log(values);
-        }}
+        onSubmit={onHandleSubmit}
       >
         {({ errors, touched }) => (
           <FormEl>

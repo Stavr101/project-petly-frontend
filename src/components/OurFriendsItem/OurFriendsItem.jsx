@@ -1,48 +1,31 @@
-import { Tooltip, Stack, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import {
   FriendsInfoList,
   FriendsInfoWrapper,
   FriendsLinkTitle,
   FriendsItem,
-  FriendsInfoItem,
   FriendsImage,
   FriendsInfoItemLink,
+  FriendsInfoItemTime,
 } from "./OurFriendsItem.styled";
 import { theme } from "../../services/theme";
-import { useState } from "react";
 import { styled } from "@mui/material/styles";
-import { tooltipClasses } from "@mui/material/Tooltip";
+import OurFriendsTimeList from "../OurFriendsTimeList/OurFriendsTimeList";
 
-const dayOfTheWeek = new Date().getDay() - 1;
-
-const LightTooltip = styled(({ className, ...props }) => (
-  <Tooltip {...props} classes={{ popper: className }} />
-))(() => ({
-  [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: "white",
-    border: `1px solid ${theme.colors.accent}`,
-    boxShadow: theme.shadows.time,
-    borderRadius: 5,
-    color: theme.colors.black,
-  },
-}));
+const days = [7, 1, 2, 3, 4, 5, 6];
+const week = ["MN", "TU", "WE", "TH", "FR", "SA", "SU"];
+const myDate = new Date();
+const dayOfTheWeek = days[myDate.getDay()] - 1;
 
 const checkField = (fieldName, value, setterValue) => {
   if (value) {
     if (fieldName === "time" && value[dayOfTheWeek]) {
       if (value[dayOfTheWeek].isOpen) {
         return (
-          //   <Typography
-          //     sx={{
-          //       color: setterValue ? theme.colors.accent : theme.colors.black,
-          //     }}
-          //   >
-          //     {value[dayOfTheWeek].from} - {value[dayOfTheWeek].to}
-          //   </Typography>
           <p
-            style={{
-              color: setterValue ? theme.colors.accent : theme.colors.black,
-            }}
+          // style={{
+          //   color: setterValue ? theme.colors.accent : theme.colors.black,
+          // }}
           >
             {value[dayOfTheWeek].from} - {value[dayOfTheWeek].to}
           </p>
@@ -57,6 +40,7 @@ const checkField = (fieldName, value, setterValue) => {
             href={value.addressUrl}
             target="_blank"
             rel="noreferrer"
+            style={{ textDecoration: "underline" }}
           >
             {value.address}
           </FriendsInfoItemLink>
@@ -85,9 +69,9 @@ const checkField = (fieldName, value, setterValue) => {
 
   return (
     <div
-      style={{
-        color: setterValue ? theme.colors.accent : theme.colors.black,
-      }}
+    //   style={{
+    //     color: setterValue ? theme.colors.accent : theme.colors.black,
+    //   }}
     >
       ---------------------
     </div>
@@ -98,7 +82,7 @@ export const OurFriendsItem = ({ data }) => {
   const { title, url, addressUrl, imageUrl, address, workDays, phone, email } =
     data;
 
-  const [isTimeHovered, setIsTimeHovered] = useState(false);
+  //   const [isTimeHovered, setIsTimeHovered] = useState(false);
 
   return (
     <FriendsItem>
@@ -112,39 +96,28 @@ export const OurFriendsItem = ({ data }) => {
         ) : (
           <div>no image</div>
         )}
+
         <FriendsInfoList>
-          <FriendsInfoItem>
-            <LightTooltip
-              sx={{ backgroundColor: "transparent" }}
-              title={
-                workDays ? (
-                  <Stack spacing={2}>
-                    {workDays.map((item) => (
-                      <Typography key={item._id}>
-                        {item.from} - {item.to}
-                      </Typography>
-                    ))}
-                  </Stack>
-                ) : (
-                  ""
-                )
-              }
+          <FriendsInfoItemTime
+          // onMouseEnter={() => setIsTimeHovered(true)}
+          // onMouseLeave={() => setIsTimeHovered(false)}
+          >
+            <p
+            //   style={{
+            //     color: isTimeHovered ? theme.colors.accent : theme.colors.black,
+            //   }}
             >
-              <p
-                onMouseEnter={() => setIsTimeHovered(true)}
-                onMouseLeave={() => setIsTimeHovered(false)}
-                style={{
-                  cursor: "pointer",
-                  color: isTimeHovered
-                    ? theme.colors.accent
-                    : theme.colors.black,
-                }}
-              >
-                Time:
-                {checkField("time", workDays, isTimeHovered)}
-              </p>
-            </LightTooltip>
-          </FriendsInfoItem>
+              Time:
+            </p>
+
+            <OurFriendsTimeList
+              workDays={workDays}
+              dayOfTheWeek={dayOfTheWeek}
+              week={week}
+            >
+              {checkField("time", workDays)}
+            </OurFriendsTimeList>
+          </FriendsInfoItemTime>
 
           <li>
             <p>Address:</p>

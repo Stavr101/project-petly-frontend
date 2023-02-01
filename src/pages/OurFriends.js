@@ -1,10 +1,12 @@
+import { MainPageContainerBlock } from "components/Container/MainPageContainer/MainPageContainer.styled";
 import { OurFriendsList } from "components/OurFriendsList/OurFriendsList";
+import TitlePage from "components/TitlePage/TitlePage";
 
 export default function OurFriends() {
   return (
-    <section>
-      <h1>Our friends</h1>
+    <MainPageContainerBlock>
+      <TitlePage> OurFriends</TitlePage>
       <OurFriendsList />
-    </section>
+    </MainPageContainerBlock>
   );
 }

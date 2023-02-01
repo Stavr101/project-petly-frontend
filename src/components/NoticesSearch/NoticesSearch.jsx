@@ -3,11 +3,11 @@ import {
   Search,
   SearchForm,
   FormButton,
+  IconSearch,
+  IconClose,
   FormInput,
 } from "components/NoticesSearch/NoticesSearch.styled";
-import SearchIcon from "@mui/icons-material/Search";
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import PropTypes from "prop-types";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 const NoticesSearch = (onSubmit) => {
   const [query, setQuery] = useState("");
@@ -21,8 +21,7 @@ const NoticesSearch = (onSubmit) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (query.trim() === "") {
-      alert("What pet do you need?");
-      return;
+      return Notify.failure("What pet do you need?");
     }
     onSubmit(query);
   };
@@ -46,16 +45,12 @@ const NoticesSearch = (onSubmit) => {
         />
         <FormButton type="submit">
           {filteredData.length === 0 ?
-            <SearchIcon /> : <HighlightOffIcon onClick={clearInput} />
+            <IconSearch /> : <IconClose onClick={clearInput} />
           }
         </FormButton>
       </SearchForm>
     </Search>
   );
-};
-
-NoticesSearch.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
 };
 
 export default NoticesSearch;

@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import SearchIcon from "@mui/icons-material/Search";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 export const Search = styled.div`
   display: flex;
@@ -18,7 +20,7 @@ export const SearchForm = styled.form`
   align-items: center;
   width: 280px;
   height: 40px;
-  background-color: #fff;
+  background-color: ${(p) => p.theme.colors.white};
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 20px;
   overflow: hidden;
@@ -35,12 +37,26 @@ export const FormButton = styled.button`
   border: 0;
   cursor: pointer;
   outline: none;
-  background-color: #fff;
+  background-color: ${(p) => p.theme.colors.white};
+`;
+
+export const IconSearch = styled(SearchIcon)`
+  transition: scale 250ms linear;
+  &:hover {
+    transform: scale(1.2);
+  }
+`;
+
+export const IconClose = styled(HighlightOffIcon)`
+  transition: scale 250ms linear;
+  &:hover {
+    transform: scale(1.2);
+  }
 `;
 
 export const FormInput = styled.input`
   width: 100%;
-  font-weight: 500;
+  font-weight: ${(p) => p.theme.fontWeights.semibold};
   font-size: 16px;
   border: none;
   outline: none;
@@ -48,7 +64,7 @@ export const FormInput = styled.input`
   &::placeholder {
     color: #535353;
     font: inherit;
-    font-weight: 500;
+    font-weight: ${(p) => p.theme.fontWeights.semibold};
     font-size: 16px;
     line-height: 1.37;
     letter-spacing: 0.04em;

@@ -18,7 +18,7 @@ export default function RegisterForm() {
   const [currentPage, setCurrentPage] = useState(false);
   const [formData, setFormData] = useState(null);
   const dispatch = useDispatch();
-  // console.log(formData);
+  console.log(formData);
 
   async function onHandleSubmit(data) {}
 

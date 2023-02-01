@@ -3,9 +3,9 @@ import { Overlay, ModalWindow } from "./ModalMenu.styled";
 
 const modalRoot = document.querySelector('#modal-root');
 
-const Modal = ({ children, onClick }) => {
+const Modal = ({ setIsOpen, children }) => {
     return createPortal(
-        <Overlay onClick={onClick}> 
+        <Overlay onClick={() => setIsOpen(false)} > 
           <ModalWindow>{children}</ModalWindow>  
         </Overlay>
     ), modalRoot

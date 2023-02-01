@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ErrorMessage, Formik } from "formik";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { authValidate } from "helpers/validationSchema/authValidate";
 import {
   BtnForm,
@@ -10,6 +11,7 @@ import {
   ErrorMsg,
   Text,
   LinkAuth,
+  FormWrapperEl,
 } from "./RegisterForm.styled";
 import authOperation from "redux/auth/operations";
 import { useDispatch } from "react-redux";
@@ -18,9 +20,21 @@ export default function RegisterForm() {
   const [currentPage, setCurrentPage] = useState(false);
   const [formData, setFormData] = useState(null);
   const dispatch = useDispatch();
-  console.log(formData);
+  // console.log(signUp);
 
-  async function onHandleSubmit(data) {}
+  async function onHandleSubmit(event) {
+    try {
+      // setFormData({ ...formData, ...event });
+      const res = await dispatch(
+        authOperation.register({ ...formData, ...event })
+      );
+      if (res.payload === 409) {
+        return Notify.failure("Email already exist");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <>
@@ -69,7 +83,7 @@ export default function RegisterForm() {
         </FormWrapper>
       )}
       {currentPage && (
-        <FormWrapper>
+        <FormWrapperEl>
           <FormTitle>Registration</FormTitle>
           <Formik
             initialValues={{
@@ -78,12 +92,7 @@ export default function RegisterForm() {
               phone: "",
             }}
             validationSchema={authValidate.RegisterSchemaSecondPage}
-            onSubmit={async (values) => {
-              setFormData({ ...formData, ...values });
-              await dispatch(
-                authOperation.register({ ...formData, ...values })
-              );
-            }}
+            onSubmit={onHandleSubmit}
           >
             {({ errors, touched }) => (
               <FormEl>
@@ -109,7 +118,7 @@ export default function RegisterForm() {
           <Text>
             Already have an account? <LinkAuth to="/login">Login</LinkAuth>
           </Text>
-        </FormWrapper>
+        </FormWrapperEl>
       )}
     </>
   );

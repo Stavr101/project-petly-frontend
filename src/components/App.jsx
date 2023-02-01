@@ -8,6 +8,7 @@ import { RestrictedRoute } from "./RestrictedRoute";
 import { refreshUser } from "redux/auth/operations";
 import { useAuth } from "hooks";
 import NotFound from "./NotFound/NotFound";
+import Loader from "shared/loader/Loader";
 
 const HomePage = lazy(() => import("../pages/Home/Home"));
 const Register = lazy(() => import("../pages/Register"));
@@ -28,7 +29,7 @@ export const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <b>Refreshing user...</b>
+    <Loader />
   ) : (
     <>
       <GlobalStyles />
@@ -37,7 +38,12 @@ export const App = () => {
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
           <Route path="news" element={<NewsPage />} />
-          <Route path="notices" element={<NoticesPage />} />
+          <Route path="notices" element=
+          {<NoticesPage />}>
+          <Route path="sell" element={<p>sell</p>}/>
+          <Route path="lost-found" element={<p>lost-found</p>}/>
+          <Route path="for-free" element={<p>in good hands</p>}/>
+          </Route>
           <Route path="friends" element={<OurFriendsPage />} />
 
           <Route

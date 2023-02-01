@@ -1,13 +1,13 @@
-import { useEffect, lazy } from "react";
-import { useDispatch } from "react-redux";
-import { Route, Routes } from "react-router-dom";
-import { SharedLayout } from "./SharedLayout/SharedLayout";
-import { GlobalStyles } from "services/GlobalStyles";
-import { PrivateRoute } from "./PrivateRoute";
-import { RestrictedRoute } from "./RestrictedRoute";
-import { refreshUser } from "redux/auth/operations";
-import { useAuth } from "hooks";
-import NotFound from "./NotFound/NotFound";
+import { useEffect, lazy } from 'react';
+import { useDispatch } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import { SharedLayout } from './SharedLayout/SharedLayout';
+import { GlobalStyles } from 'services/GlobalStyles';
+import { PrivateRoute } from './PrivateRoute';
+import { RestrictedRoute } from './RestrictedRoute';
+import { refreshUser } from 'redux/auth/operations';
+import { useAuth } from 'hooks';
+import NotFound from './NotFound/NotFound';
 import Loader from 'shared/loader/Loader';
 
 

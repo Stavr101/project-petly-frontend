@@ -46,7 +46,7 @@ const Nav = () => {
       </Modal>}
         <BurgerBtn onClick={() => setShowModal(current => !current)}> <Menu fontSize="large" /></BurgerBtn>
     </>
-  )
-}
+  );
+};
 
 export default Nav;

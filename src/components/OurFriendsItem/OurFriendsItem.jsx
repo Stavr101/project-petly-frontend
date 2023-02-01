@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import {
   FriendsInfoList,
   FriendsInfoWrapper,
@@ -8,26 +8,18 @@ import {
   FriendsInfoItemLink,
   FriendsInfoItemTime,
 } from "./OurFriendsItem.styled";
-import { theme } from "../../services/theme";
-import { styled } from "@mui/material/styles";
 import OurFriendsTimeList from "../OurFriendsTimeList/OurFriendsTimeList";
+import { getDayIndex } from "../../utils/getDayIndex";
 
-const days = [7, 1, 2, 3, 4, 5, 6];
-const week = ["MN", "TU", "WE", "TH", "FR", "SA", "SU"];
-const myDate = new Date();
-const dayOfTheWeek = days[myDate.getDay()] - 1;
+const DAY_OF_THE_WEEK = getDayIndex(new Date().getDay());
 
-const checkField = (fieldName, value, setterValue) => {
+const checkField = (fieldName, value) => {
   if (value) {
-    if (fieldName === "time" && value[dayOfTheWeek]) {
-      if (value[dayOfTheWeek].isOpen) {
+    if (fieldName === "time" && value[DAY_OF_THE_WEEK]) {
+      if (value[DAY_OF_THE_WEEK].isOpen) {
         return (
-          <p
-          // style={{
-          //   color: setterValue ? theme.colors.accent : theme.colors.black,
-          // }}
-          >
-            {value[dayOfTheWeek].from} - {value[dayOfTheWeek].to}
+          <p>
+            {value[DAY_OF_THE_WEEK].from} - {value[DAY_OF_THE_WEEK].to}
           </p>
         );
       }
@@ -67,22 +59,12 @@ const checkField = (fieldName, value, setterValue) => {
     }
   }
 
-  return (
-    <div
-    //   style={{
-    //     color: setterValue ? theme.colors.accent : theme.colors.black,
-    //   }}
-    >
-      ---------------------
-    </div>
-  );
+  return <div>---------------------</div>;
 };
 
 export const OurFriendsItem = ({ data }) => {
   const { title, url, addressUrl, imageUrl, address, workDays, phone, email } =
     data;
-
-  //   const [isTimeHovered, setIsTimeHovered] = useState(false);
 
   return (
     <FriendsItem>
@@ -98,24 +80,15 @@ export const OurFriendsItem = ({ data }) => {
         )}
 
         <FriendsInfoList>
-          <FriendsInfoItemTime
-          // onMouseEnter={() => setIsTimeHovered(true)}
-          // onMouseLeave={() => setIsTimeHovered(false)}
-          >
-            <p
-            //   style={{
-            //     color: isTimeHovered ? theme.colors.accent : theme.colors.black,
-            //   }}
-            >
-              Time:
-            </p>
-
+          <FriendsInfoItemTime shouldHighlight={workDays}>
             <OurFriendsTimeList
               workDays={workDays}
-              dayOfTheWeek={dayOfTheWeek}
-              week={week}
+              dayOfTheWeek={DAY_OF_THE_WEEK}
             >
-              {checkField("time", workDays)}
+              <Box>
+                <Typography>Time:</Typography>
+                {checkField("time", workDays)}
+              </Box>
             </OurFriendsTimeList>
           </FriendsInfoItemTime>
 
@@ -123,10 +96,12 @@ export const OurFriendsItem = ({ data }) => {
             <p>Address:</p>
             {checkField("address", { address, addressUrl })}
           </li>
+
           <li>
             <p>Email:</p>
             {checkField("email", email)}
           </li>
+
           <li>
             <p>Phone:</p>
             {checkField("phone", phone)}

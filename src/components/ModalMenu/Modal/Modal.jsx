@@ -9,14 +9,16 @@ const Modal = ({ children, onClose }) => {
   useEffect(() => {
 
     document.addEventListener('keydown', closeModal);
+    document.body.style.overflow = "hidden";
         return () => {
-        document.removeEventListener('keydown', closeModal);
+          document.removeEventListener('keydown', closeModal);
+          document.body.style.overflow = ""; 
         }
    
   })
 
   const closeModal = ({ target, currentTarget, code }) => {
-    if (target === currentTarget || code === "Escape") {
+    if (target !== currentTarget || code === "Escape") {
       onClose();
     }
   }

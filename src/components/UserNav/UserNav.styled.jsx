@@ -15,14 +15,4 @@ letter-spacing: 0.04em;
 font-family: ${p => p.theme.fonts.manrope};
 font-size: 16px;
 line-height: 1.375;
-transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-:hover,
-:focus {
-    background-color: ${p => p.theme.colors.white};
-    color: ${p => p.theme.colors.accent};
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
 `

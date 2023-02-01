@@ -1,11 +1,7 @@
 import styled from "styled-components";
 
 export const FriendsItem = styled.li`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   width: 280px;
-  min-height: 192px;
   padding: 14px 4px 12px;
 
   background-color: ${(p) => p.theme.colors.white};
@@ -14,25 +10,22 @@ export const FriendsItem = styled.li`
   transition: scale 250ms linear;
 
   :hover {
-    scale: 1.05;
+    scale: 1.03;
   }
 
   @media screen and (min-width: 768px) {
-    width: 336px;
-    min-height: 246px;
+    width: 100%;
     padding-top: ${(p) => p.theme.space[4]}px;
     padding-bottom: ${(p) => p.theme.space[4]}px;
 
     border-radius: 40px;
   }
-  @media screen and (min-width: 1280px) {
-    width: 395px;
-    min-height: 287px;
-  } ;
 `;
 
 export const FriendsLinkTitle = styled.a`
+  display: block;
   text-align: center;
+  flex-grow: 1;
   width: 100%;
   margin-bottom: 12px;
 
@@ -106,9 +99,10 @@ export const FriendsInfoList = styled.ul`
 `;
 
 export const FriendsInfoItemTime = styled.li`
-  cursor: pointer;
+  cursor: ${(props) => (props.shouldHighlight ? "pointer" : "inherit")};
   :hover {
-    color: ${(p) => p.theme.colors.accent};
+    color: ${(props) =>
+      props.shouldHighlight ? props.theme.colors.accent : "inherit"};
   }
 `;
 

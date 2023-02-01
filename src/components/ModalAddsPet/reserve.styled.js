@@ -1,6 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import cross from "./ImgModalAddsPet/clarity_close-cross.png";
-import crossPhoto from "./ImgModalAddsPet/CrossForPhoto.png";
+import { Field }  from "formik";
+// import { Form } from "react-router-dom";
 
 const slideIn = keyframes`
   from {
@@ -25,7 +26,7 @@ export const AddPhoto = styled.p`
   color: #111111;
 `;
 
-export const DownloadPhoto = styled.input`
+export const DownloadPhoto = styled(Field)`
   & + label {
     /* стилі для кнопки */
     display: inline-block;
@@ -34,38 +35,19 @@ export const DownloadPhoto = styled.input`
     background-color: blue;
     border-radius: 4px;
     cursor: pointer;
-  }`
+  }
 
-export const Download = styled.input`
-opacity: 0;
-width: 182px;
-height: 182px;
-`
-export const DownloadContainer = styled.div`
-width: 182px;
+  /* width: 182px;
 height: 182px;
 cursor: pointer;
  margin-bottom: 20px;
   padding: 11px 14px;
   border-radius: 20px;
-  border: #fdf7f2;
   outline: none;
-  
   background: #fdf7f2;
-  color: rgba(27, 27, 27, 0.6);
-   background-image: url(${crossPhoto});
-    /* background-image: url(${cross}); */
-  background-size: 48px 48px;
-  background-repeat: no-repeat;
-  background-position: center center;
-  :hover, :active
-   {
-    
-
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  }
-`
-
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  color: rgba(27, 27, 27, 0.6); */
+`;
 
 export const ModalContainer = styled.div`
   padding: 20px;
@@ -99,27 +81,6 @@ export const FormContainer = styled.form`
     max-width: 448px;
   }
 `;
-export const NextFormContainer = styled.div`
-  width: 240px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  
-  @media (min-width: 768px) {
-    max-width: 448px;
-  }
-`
-export const CommentsContainer = styled.div`
-/* width: 240px; */
-  /* 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  @media (min-width: 768px) {
-    max-width: 448px;
-  } */
-`
-
 
 export const InputBox = styled.div``;
 
@@ -132,7 +93,7 @@ export const InputLable = styled.label`
   line-height: 36px;
 `;
 
-export const InputField = styled.input`
+export const InputField = styled(Field)`
   margin-bottom: 20px;
   padding: 11px 14px;
   width: 240px;
@@ -168,7 +129,7 @@ export const Comments = styled.textarea`
   margin-bottom: 20px;
   padding: 11px 14px;
   width: 240px;
-  height: 116px;
+  height: 40px;
   border-radius: 20px;
   outline: none;
   background: #fdf7f2;
@@ -177,7 +138,7 @@ export const Comments = styled.textarea`
 
   @media (min-width: 768px) {
     width: 448px;
-    height: 116px;
+    height: 48px;
     font-size: 16px;
     line-height: 26px;
   }

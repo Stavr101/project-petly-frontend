@@ -42,6 +42,8 @@ export const App = () => {
             <Route path="sell" element={<p>sell</p>} />
             <Route path="lost-found" element={<p>lost-found</p>} />
             <Route path="for-free" element={<p>in good hands</p>} />
+            <Route path="favorite" element={<PrivateRoute redirectTo="/notices" component={<p>favorite ads</p>}/>} />
+            <Route path="own" element={<PrivateRoute redirectTo="/notices" component={<p>my ads</p>}/>} />
           </Route>
           <Route path="friends" element={<OurFriendsPage />} />
 

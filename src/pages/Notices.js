@@ -4,11 +4,12 @@ import NoticesCategoriesList from "components/NoticesCategoriesList/NoticesCateg
 import testPets from "components/NoticesCategoriesList/testList.json";
 import AddNoticeButton from "components/AddNoticeButton/AddNoticeButton";
 import MainPageContainer from "components/Container/MainPageContainer/MainPageContainer";
+import { Title } from "components/NoticesCategoriesNav/NoticesCategoriesNav.styled";
 
 function NoticesPage() {
   return (
     <MainPageContainer>
-      <h1>Find your favorite pet</h1>
+      <Title>Find your favorite pet</Title>
       <NoticesSearch />
       <NoticesCategoriesNav />
       <NoticesCategoriesList userPets={testPets} />

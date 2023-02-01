@@ -21,7 +21,10 @@ const NoticesSearch = (onSubmit) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (query.trim() === "") {
-      return Notify.failure("What pet do you need?");
+      return Notify.failure("What pet do you need?", {
+        position: 'center-top',
+        cssAnimationStyle: 'from-right',
+      });
     }
     onSubmit(query);
   };
@@ -29,8 +32,6 @@ const NoticesSearch = (onSubmit) => {
   const clearInput = () => {
     setFilteredData("");
   };
-
-  console.log(filteredData)
 
   return (
     <Search>

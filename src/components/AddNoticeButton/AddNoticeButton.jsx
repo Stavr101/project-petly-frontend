@@ -9,7 +9,10 @@ import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 export default function AddNoticeButton() {
   const handleClick = () => {
-    Notify.failure("Please log in")
+    Notify.failure("Please log in", {
+      position: 'center-top',
+      cssAnimationStyle: 'from-right',
+    })
   }
 
   return (

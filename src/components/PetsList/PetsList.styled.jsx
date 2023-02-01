@@ -15,6 +15,9 @@ export const PetWrapper = styled.div`
     align-items: flex-start;
     margin-bottom: 22px;
   }
+  @media screen and (min-width: 1280px) {
+    position: relative;
+  }
 `;
 
 export const PetAvatar = styled.img`
@@ -33,6 +36,9 @@ export const PetAvatar = styled.img`
 `;
 export const DescriptionPet = styled.div`
   position: relative;
+  @media screen and (min-width: 768px) {
+    position: inherit;
+  }
 `;
 
 export const PetDescriptionInfo = styled.p`
@@ -76,5 +82,6 @@ export const DeleteBtn = styled.button`
     background-position: center;
     background-size: 24px;
     object-fit: cover;
+    position: relative;
   }
 `;

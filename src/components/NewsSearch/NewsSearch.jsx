@@ -19,7 +19,7 @@ export default function NewsSearch({ handleChange }) {
         disableUnderline={true}
         placeholder="Search"
         endAdornment={
-          <InputAdornment>
+          <InputAdornment position="end">
             <SearchIcon sx={{ color: "text.primary" }} />
           </InputAdornment>
         }

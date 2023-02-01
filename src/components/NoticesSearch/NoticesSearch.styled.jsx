@@ -32,7 +32,7 @@ export const SearchForm = styled.form`
 `;
 
 export const FormButton = styled.button`
-  width: 40px;
+  width: 50px;
   height: 40px;
   border: 0;
   cursor: pointer;
@@ -41,16 +41,18 @@ export const FormButton = styled.button`
 `;
 
 export const IconSearch = styled(SearchIcon)`
+transform: scale(1.2);
   transition: scale 250ms linear;
   &:hover {
-    transform: scale(1.2);
+    transform: scale(1.4);
   }
 `;
 
 export const IconClose = styled(HighlightOffIcon)`
+transform: scale(1.2);
   transition: scale 250ms linear;
   &:hover {
-    transform: scale(1.2);
+    transform: scale(1.4);
   }
 `;
 
@@ -58,20 +60,14 @@ export const FormInput = styled.input`
   width: 100%;
   font-weight: ${(p) => p.theme.fontWeights.semibold};
   font-size: 16px;
+  line-height: 1.37;
+  letter-spacing: 0.04em;
   border: none;
   outline: none;
   padding-left: 12px;
   &::placeholder {
-    color: #535353;
+    color: #b5b5b5;
     font: inherit;
-    font-weight: ${(p) => p.theme.fontWeights.semibold};
-    font-size: 16px;
-    line-height: 1.37;
-    letter-spacing: 0.04em;
-
-    @media only screen and (min-width: 768px) {
-      font-size: 20px;
-    }
   }
 
   @media only screen and (min-width: 768px) {

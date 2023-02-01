@@ -14,7 +14,7 @@ const HomePage = lazy(() => import("../pages/Home/Home"));
 const Register = lazy(() => import("../pages/Register"));
 const Login = lazy(() => import("../pages/Login"));
 
-const NewsPage = lazy(() => import("../pages/News"));
+const NewsPage = lazy(() => import("../pages/News/News"));
 const NoticesPage = lazy(() => import("../pages/Notices"));
 const OurFriendsPage = lazy(() => import("../pages/OurFriends"));
 
@@ -33,6 +33,7 @@ export const App = () => {
   ) : (
     <>
       <GlobalStyles />
+
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
@@ -49,7 +50,7 @@ export const App = () => {
             path="/register"
             element={
               <RestrictedRoute
-                redirectTo="/contacts"
+                redirectTo="/notices"
                 component={<Register />}
               />
             }
@@ -57,7 +58,7 @@ export const App = () => {
           <Route
             path="/login"
             element={
-              <RestrictedRoute redirectTo="/contacts" component={<Login />} />
+              <RestrictedRoute redirectTo="/notices" component={<Login />} />
             }
           />
           <Route

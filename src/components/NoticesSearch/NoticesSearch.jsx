@@ -7,6 +7,7 @@ import {
   IconClose,
   FormInput,
 } from "components/NoticesSearch/NoticesSearch.styled";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 const NoticesSearch = (onSubmit) => {
   const [query, setQuery] = useState("");
@@ -20,8 +21,7 @@ const NoticesSearch = (onSubmit) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (query.trim() === "") {
-      alert("What pet do you need?");
-      return;
+      return Notify.failure("What pet do you need?");
     }
     onSubmit(query);
   };

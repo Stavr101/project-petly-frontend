@@ -14,7 +14,7 @@ export const Wrap = styled.div`
   }
 
   position: absolute;
-  top: 160px;
+  top: 192px;
   right: 16px;
   display: flex;
   align-items: center;

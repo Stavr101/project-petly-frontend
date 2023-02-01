@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "https://project-petly-backend.onrender.com/api/v1/";
+axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
 
 export const getAllFriends = async () => {
   const response = await axios.get(`services`);

@@ -1,26 +1,27 @@
-import { useEffect, lazy } from 'react';
-import { useDispatch } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
-import { SharedLayout } from './SharedLayout/SharedLayout';
-import { GlobalStyles } from 'services/GlobalStyles';
-import { PrivateRoute } from './PrivateRoute';
-import { RestrictedRoute } from './RestrictedRoute';
-import { refreshUser } from 'redux/auth/operations';
-import { useAuth } from 'hooks';
-import NotFound from './NotFound/NotFound';
-import Loader from 'shared/loader/Loader';
+import { useEffect, lazy } from "react";
+import { useDispatch } from "react-redux";
+import { Route, Routes } from "react-router-dom";
+import { SharedLayout } from "./SharedLayout/SharedLayout";
+import { GlobalStyles } from "services/GlobalStyles";
+import { PrivateRoute } from "./PrivateRoute";
+import { RestrictedRoute } from "./RestrictedRoute";
+import { refreshUser } from "redux/auth/operations";
+import { useAuth } from "hooks";
+import NotFound from "./NotFound/NotFound";
+import Loader from "shared/loader/Loader";
 
-const HomePage = lazy(() => import('../pages/Home/Home'));
-const Register = lazy(() => import('../pages/Register'));
-const Login = lazy(() => import('../pages/Login'));
+const HomePage = lazy(() => import("../pages/Home/Home"));
+const Register = lazy(() => import("../pages/Register"));
+const Login = lazy(() => import("../pages/Login"));
 
-const NewsPage = lazy(() => import('../pages/News/News'));
-const NoticesPage = lazy(() => import('../pages/Notices'));
-const OurFriendsPage = lazy(() => import('../pages/OurFriends'));
+const NewsPage = lazy(() => import("../pages/News/News"));
+const NoticesPage = lazy(() => import("../pages/Notices"));
+const OurFriendsPage = lazy(() => import("../pages/OurFriends"));
 
-const UserPage = lazy(() => import('../pages/User/User'));
+const UserPage = lazy(() => import("../pages/User/User"));
 
 export const App = () => {
+  console.log(process.env.REACT_APP_TEST);
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
 
@@ -42,6 +43,21 @@ export const App = () => {
             <Route path="sell" element={<p>sell</p>} />
             <Route path="lost-found" element={<p>lost-found</p>} />
             <Route path="for-free" element={<p>in good hands</p>} />
+            <Route
+              path="favorite"
+              element={
+                <PrivateRoute
+                  redirectTo="/notices"
+                  component={<p>favorite ads</p>}
+                />
+              }
+            />
+            <Route
+              path="own"
+              element={
+                <PrivateRoute redirectTo="/notices" component={<p>my ads</p>} />
+              }
+            />
           </Route>
           <Route path="friends" element={<OurFriendsPage />} />
 

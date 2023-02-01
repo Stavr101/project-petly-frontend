@@ -1,10 +1,13 @@
 /* import { useDispatch } from 'react-redux';
 import { deletePets } from 'api/notices'; */
 import DeleteSvg from "./NoticesDeleteSvg"
+import HeartSvg from "./NoticesHeartSvg"
 
 import { 
     ItemNoticesImgDiv,
     ItemNoticesTitle,
+    ItemPositionNoticesDiv,
+    ItemPositionNoticesDivParagraf,
     ItemNoticesUlList,
     ItemNoticesSpan,
     ItemNoticesLi,
@@ -13,6 +16,8 @@ import {
     ItemButtonNoticesDelete,
     ItemNoticesListLi,
     ItemNoticesListP,
+    ItemNoticesImg,
+    ItemButtonNoticesHeartSpan,
     ItemButtonNoticesDeleteSpan} from "./NoticeCategoryItem.styled"
 
 export default function NoticeCategoryItem({id,avatar,favorite,title,breed,location,age,condition,onDeletePets,onLearnMore}) {
@@ -23,16 +28,14 @@ export default function NoticeCategoryItem({id,avatar,favorite,title,breed,locat
     <>
     <ItemNoticesLi>
         <ItemNoticesImgDiv>
-            <img
-                width={280}
-                height={288}
+            <ItemNoticesImg
                 src={avatar}
                 alt={title}
             />
-            <div>
-                <p>{condition}</p>
-                <span>icon</span>
-            </div>
+            <ItemPositionNoticesDiv>
+                <ItemPositionNoticesDivParagraf>{condition}</ItemPositionNoticesDivParagraf>
+                <ItemButtonNoticesHeartSpan><HeartSvg/></ItemButtonNoticesHeartSpan>
+            </ItemPositionNoticesDiv>
         </ItemNoticesImgDiv>
         <ItemNoticesTitle>{title}</ItemNoticesTitle>
         <ItemNoticesUlList>

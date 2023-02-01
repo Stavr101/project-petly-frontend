@@ -6,15 +6,11 @@ import {
     ButtonContainer,
     Button,
     Comments,
-    FormContainer,
-    CommentsContainer,
-   AddPhoto,
-    Download,
-    DownloadContainer,
-    NextFormContainer
+    AddPhoto,
+    DownloadPhoto,
 } from "./ModalAddsPet.styled";
 
-function Forma({ handleClose }) {
+function Form({ handleClose }) {
 
     const [step, setStep] = useState(1);
     const [formData, setFormData] = useState({
@@ -25,29 +21,40 @@ function Forma({ handleClose }) {
         comment: ''
     });
 
+    // const handleChangeImg = (e) => {
+    //   if (e.target.name === 'image') {
+    //     const file = e.target.files[0];
+    //     if (file) {
+    //       setFormData({
+    //         ...formData,
+    //         [e.target.name]: file
+    //       });
+    //     }
+    //   } else {
+    //     setFormData({
+    //       ...formData,
+    //       [e.target.name]: e.target.value
+    //     });
+    //   }
+    //     };
+
     const handleChange = (e) => {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value
         });
     };
-
+// const handleChangeImg = (event) => {
+//     setFormData(event.target.files[0]);
+//   };
     const handleSubmit = (e) => {
         e.preventDefault();
         // send the formData to the server or do something else
         console.log(formData);
-        setFormData({
-            firstName: '',
-            lastName: '',
-            date: '',
-            image: null,
-            comment: ''
-        });
     };
 
-    const nextStep = (e) => {
-       setStep(2);
-
+    const nextStep = () => {
+        setStep(2);
     };
 
     const prevStep = () => {
@@ -57,85 +64,63 @@ function Forma({ handleClose }) {
     switch (step) {
         case 1:
             return (
-                <FormContainer onSubmit={handleSubmit}>
-                    <InputBox>
-                    <InputLable htmlFor="name">Name pet</InputLable>
+                <form onSubmit={handleSubmit}>
                     <InputField
                         type="text"
-                        name="name"
-                        value={formData.name || ''}
+                        name="firstName"
+                        value={formData.firstName || ''}
                         onChange={handleChange}
-                        placeholder="Name pet"
+                        placeholder="First Name"
                     />
-                    </InputBox>
-                    <InputBox>
-                     <InputLable htmlFor="breed">Date of birth</InputLable>
+                    <InputField
+                        type="text"
+                        name="lastName"
+                        value={formData.lastName || ''}
+                        onChange={handleChange}
+                        placeholder="Last Name"
+                    />
                     <InputField
                         type="date"
                         name="date"
                         value={formData.date || ''}
                         onChange={handleChange}
-                        placeholder="DD/MM/YYYY/"
                     />
-                    </InputBox>
-                    <InputBox>
-                    <InputLable htmlFor="breed">Breed</InputLable>
-                    <InputField
-                        type="text"
-                        name="breed"
-                        value={formData.breed || ''}
-                        onChange={handleChange}
-                        placeholder="Breed"
-                        />
-                    </InputBox>
-                    <ButtonContainer>
                     <Button type="button" onClick={handleClose}>
                         Close
                     </Button>
                     <Button type="button" onClick={nextStep}>
                         Next
                     </Button>
-                    </ButtonContainer>
-                </FormContainer>
+                </form>
             );
         case 2:
             return (
-                <NextFormContainer>
-                     <AddPhoto>Add photo and some comments</AddPhoto>
+                <div>
                     {/* <img src="https://via.placeholder.com/150" alt="image"/> */}
-                    <DownloadContainer>
-                      
-                    <Download
+                    <input
                         name="image"
                         type="file"
                         value={formData.image || ''}
                         onChange={handleChange}
-                        />
-                    </DownloadContainer>
-                    <InputBox>
-                        <CommentsContainer>
+                    />
                     <Comments
                         name="comment"
                         type="text"
                         value={formData.comment || ''}
                         onChange={handleChange}
-                        placeholder="Type comments"
-                        />
-                        </CommentsContainer>
-                        </InputBox>
-                    <ButtonContainer>
+                        placeholder="Comment"
+                    />
                     <Button type="button" onClick={prevStep}>
                         Back
                     </Button>
                     <Button type="submit" onClick={handleSubmit}>
                         Submit
-                        </Button>
-                    </ButtonContainer>
-                </NextFormContainer>
+                    </Button>
+                </div>
             );
         default:
             return <div>Something went wrong</div>;
     }
 }
 
-export default Forma;
+export default Form;

@@ -25,12 +25,12 @@ font-size: 32px;
 line-height: 1.38;
 min-height: 133px;
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
     font-size: 68px;
     line-height: 1.47;
     width: 588px;
 }
-@media screen and (min-width: 1280px) {
+@media (min-width: 1280px) {
     max-width: 588px;
     padding-top: 34px;
 }
@@ -41,7 +41,7 @@ background-position: bottom;
 background-repeat: no-repeat;
 background-size: contain;
 background-position: bottom, center;
-min-height: calc(100vh - 270px);
+min-height: calc(100vh - 230px);
 
 @media screen and (min-device-pixel-ratio: 2),
     screen and (min-resolution: 192dpi),
@@ -49,19 +49,19 @@ min-height: calc(100vh - 270px);
     background-image: url(${MainImgMob2x});
 }
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
     background-image: url(${MainImgTab1x});
-    min-height: calc(100vh - 350px);
+    min-height: calc(100vh - 300px);
 }
 
-@media screen and (min-width: 768px),
+@media (min-width: 768px),
     screen and (min-device-pixel-ratio: 2),
     screen and (min-resolution: 192dpi),
     screen and (min-resolution: 2dppx) {
     background-image: url(${MainImgTab2x});
 }
 
-@media screen and (min-width: 1280px) {
+@media (min-width: 1280px) {
     background: none;
 }
 `
@@ -79,7 +79,7 @@ background-image: url(${BgColoredMob1x});
     background-image: url(${BgColoredMob2x});
 }
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
     background-image: url(${BgColoredTab2x});
     background-position: top;
     background-size: 140%; 
@@ -94,7 +94,7 @@ background-image: url(${BgColoredMob1x});
 //     background-size: 140%; 
 // }
 
-@media screen and (min-width: 1280px) {
+@media (min-width: 1280px) {
     background-image: url(${MainImgDesk2x}), url(${HeartImg}), url(${BgColoredDesk2x});
     background-size: contain, 8%, 100% auto; 
     background-position: 100% 100%, top 5% right 40%, bottom;

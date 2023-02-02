@@ -28,26 +28,6 @@ const rotate = keyframes`
 
 export const FormWrapper = styled.div`
   padding: 20px;
-  /* animation: ${rotate} 2s linear forwards; */
-
-  @media screen and (min-width: 768px) {
-    width: 608px;
-    /* height: 517px; */
-    margin: 0 auto;
-    padding: 60px 80px 40px 80px;
-    box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
-    border-radius: 40px;
-    /* margin-top: 170px; */
-    background-color: ${(p) => p.theme.colors.white};
-  }
-  @media screen and (min-width: 1280px) {
-    padding: 60px 80px;
-    /* margin-top: 57px; */
-  }
-`;
-
-export const FormWrapperEl = styled.div`
-  padding: 20px;
   animation: ${rotate} 0.5s linear forwards;
 
   @media screen and (min-width: 768px) {
@@ -67,6 +47,8 @@ export const FormWrapperEl = styled.div`
 `;
 
 export const FormEl = styled(Form)`
+  animation: ${rotate} 0.5s linear forwards;
+
   display: flex;
   flex-direction: column;
 `;
@@ -89,12 +71,22 @@ export const ErrorMsg = styled.p`
 
 export const BtnForm = styled.button`
   cursor: pointer;
-  margin-top: 40px;
+  margin-top: 28px;
   border-radius: 40px;
   border: none;
   padding: 10px 28px;
   color: ${(p) => p.theme.colors.white};
   background-color: ${(p) => p.theme.colors.accent};
+`;
+
+export const BtnFormBack = styled.button`
+  cursor: pointer;
+  margin-top: 15px;
+  border-radius: 40px;
+  border: solid ${(p) => p.theme.colors.accent};
+  padding: 10px 28px;
+  color: ${(p) => p.theme.colors.black};
+  background-color: transparent;
 `;
 
 export const Text = styled.p`

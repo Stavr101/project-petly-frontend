@@ -20,38 +20,38 @@ const userSlice = createSlice({
   },
   extraReducers: {
     [getUserInfo.pending]: handlePending,
-    [addPet.pending]: handlePending,
-    [getPetInfo.pending]: handlePending,
-    [deletePet.pending]: handlePending,
+    // [addPet.pending]: handlePending,
+    // [getPetInfo.pending]: handlePending,
+    // [deletePet.pending]: handlePending,
 
     [getUserInfo.rejected]: handleRejected,
-    [addPet.rejected]: handleRejected,
-    [getPetInfo.rejected]: handleRejected,
-    [deletePet.rejected]: handleRejected,
+    // [addPet.rejected]: handleRejected,
+    // [getPetInfo.rejected]: handleRejected,
+    // [deletePet.rejected]: handleRejected,
 
     [getUserInfo.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
       state.items = action.payload;
     },
-    [addPet.fulfilled](state, action) {
-      state.isLoading = false;
-      state.error = null;
-      state.items.push(action.payload);
-    },
-    [getPetInfo.fulfilled](state, action) {
-      state.isLoading = false;
-      state.error = null;
-      state.items = action.payload;
-    },
-    [deletePet.fulfilled](state, action) {
-      state.isLoading = false;
-      state.error = null;
-      const index = state.items.findIndex(
-        pet => pet._id === action.payload._id
-      );
-      state.items.splice(index, 1);
-    },
+    // [addPet.fulfilled](state, action) {
+    //   state.isLoading = false;
+    //   state.error = null;
+    //   state.items.push(action.payload);
+    // },
+    // [getPetInfo.fulfilled](state, action) {
+    //   state.isLoading = false;
+    //   state.error = null;
+    //   state.items = action.payload;
+    // },
+    // [deletePet.fulfilled](state, action) {
+    //   state.isLoading = false;
+    //   state.error = null;
+    //   const index = state.items.findIndex(
+    //     pet => pet._id === action.payload._id
+    //   );
+    //   state.items.splice(index, 1);
+    // },
     // [patchContact.fulfilled](state, action) {
     //   state.isLoading = false;
     //   state.error = null;

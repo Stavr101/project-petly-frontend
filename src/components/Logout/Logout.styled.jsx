@@ -17,7 +17,7 @@ export const LogOutButton = styled.button`
   transition: 0.2s;
 
   &:hover {
-    transform: scale(1.2);
+    transform: scale(1.25);
   }
 
   @media screen and (min-width: 768px) {

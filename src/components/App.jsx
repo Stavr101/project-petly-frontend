@@ -1,6 +1,6 @@
-import { useEffect, lazy } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { useDispatch } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import { GlobalStyles } from 'services/GlobalStyles';
 import { PrivateRoute } from './PrivateRoute';
@@ -10,15 +10,15 @@ import { useAuth } from 'hooks';
 import NotFound from './NotFound/NotFound';
 import Loader from 'shared/loader/Loader';
 
-const HomePage = lazy(() => import('../pages/Home/Home'));
-const Register = lazy(() => import('../pages/Register'));
-const Login = lazy(() => import('../pages/Login'));
+const HomePage = lazy(() => import("../pages/Home/Home"));
+const Register = lazy(() => import("../pages/Register"));
+const Login = lazy(() => import("../pages/Login"));
 
-const NewsPage = lazy(() => import('../pages/News/News'));
-const NoticesPage = lazy(() => import('../pages/Notices'));
-const OurFriendsPage = lazy(() => import('../pages/OurFriends'));
+const NewsPage = lazy(() => import("../pages/News/News"));
+const NoticesPage = lazy(() => import("../pages/Notices"));
+const OurFriendsPage = lazy(() => import("../pages/OurFriends"));
 
-const UserPage = lazy(() => import('../pages/User/User'));
+const UserPage = lazy(() => import("../pages/User/User"));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -31,20 +31,36 @@ export const App = () => {
   return isRefreshing ? (
     <Loader />
   ) : (
-    <>
+      <>
       <GlobalStyles />
 
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
           <Route path="news" element={<NewsPage />} />
-          <Route path="notices" element={<NoticesPage />}>
-            <Route path="sell" element={<p>sell</p>} />
-            <Route path="lost-found" element={<p>lost-found</p>} />
-            <Route path="for-free" element={<p>in good hands</p>} />
-            <Route path="favorite" element={<PrivateRoute redirectTo="/notices" component={<p>favorite ads</p>}/>} />
-            <Route path="own" element={<PrivateRoute redirectTo="/notices" component={<p>my ads</p>}/>} />
-          </Route>
+          <Route
+          path="notices"
+          element={
+            <Suspense fallback={<Loader />}>
+              <Outlet />
+            </Suspense>
+          }
+        >
+          <Route
+            path="favorite"
+            element={
+              <PrivateRoute redirectTo="/login" component={<NoticesPage />} />
+            }
+          />
+          <Route
+            path="own"
+            element={
+              <PrivateRoute redirectTo="/login" component={<NoticesPage />} />
+            }
+          />
+          <Route path=":categoryName" element={<NoticesPage />} />
+          <Route path="" element={<Navigate to="sell" />} />
+        </Route>
           <Route path="friends" element={<OurFriendsPage />} />
 
           <Route

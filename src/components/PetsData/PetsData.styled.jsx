@@ -9,6 +9,7 @@ export const PetsWrapper = styled.div`
     margin-left: 32px;
   }
   @media screen and (min-width: 1280px) {
+    width: 100%;
     margin-right: 16px;
     margin-left: 0;
   }

@@ -1,52 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-
+import React from 'react';
+import { deletePet } from 'redux/pets/operations';
+import { getPets } from 'redux/pets/selectors';
 import { useSelector, useDispatch } from 'react-redux';
-import { getPetInfo } from 'redux/user/operations';
 import {
   PetWrapper,
   PetAvatar,
-  DescriptionPet,
+  PetList,
   PetTitleInfo,
   PetDescriptionInfo,
   DeleteBtn,
 } from './PetsList.styled';
-axios.defaults.baseURL = 'https://project-petly-backend.onrender.com/api/v1/';
-
-const getPets = async () => {
-  const res = await axios.get('user/pets');
-  return res.data;
-};
 
 export default function PetsList() {
-  const [pets, setPets] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const petsData = useSelector(getPets);
 
-  const isPets = Boolean(pets.length);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    const fetchPets = async () => {
-      setLoading(true);
+  const isPets = Boolean(petsData.length);
 
-      try {
-        const data = await getPets();
-        setPets(prevFriends => [...prevFriends, ...data]);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchPets();
-  }, []);
+  const removePet = _id => {
+    // toast.success('Pet removed');
+    const action = deletePet(_id);
+    dispatch(action);
+  };
 
-  const elements = pets.map(
+  const elements = petsData.map(
     ({ name, date, breed, avatarUrl, comment, _id }) => {
       return (
         <PetWrapper key={_id}>
           <PetAvatar src={avatarUrl} alt={name} width="150" height="150" />
-          <DescriptionPet>
+          <PetList>
             <li>
               <PetDescriptionInfo>
                 <PetTitleInfo>Name: </PetTitleInfo> {name}
@@ -59,6 +42,7 @@ export default function PetsList() {
               </PetDescriptionInfo>
             </li>
             <li>
+              {' '}
               <PetDescriptionInfo>
                 <PetTitleInfo>Breed: </PetTitleInfo>
                 {breed}
@@ -70,8 +54,9 @@ export default function PetsList() {
                 {comment}
               </PetDescriptionInfo>
             </li>
-            <DeleteBtn></DeleteBtn>
-          </DescriptionPet>
+          </PetList>
+
+          <DeleteBtn onClick={() => removePet(_id)}></DeleteBtn>
         </PetWrapper>
       );
     }

@@ -19,6 +19,7 @@ export const UserDataTitle = styled.h2`
     line-height: 1.35;
   }
   @media screen and (min-width: 1280px) {
+    margin-bottom: 24px;
   }
 `;
 
@@ -135,7 +136,6 @@ export const UserInfoItem = styled.li`
 `;
 
 export const UserInfoTitle = styled.p`
-  /* align-items: baseline; */
   margin-right: 10px;
   margin-bottom: 12px;
   font-family: ${p => p.theme.fonts.manrope};
@@ -143,7 +143,6 @@ export const UserInfoTitle = styled.p`
   font-size: ${p => p.theme.fontSizes.xs};
   line-height: 1.33;
   display: flex;
-  /* justify-content: space-between; */
   align-items: center;
   letter-spacing: 0.04em;
   @media screen and (min-width: 768px) {

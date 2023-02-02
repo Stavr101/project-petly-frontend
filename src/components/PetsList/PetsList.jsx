@@ -6,6 +6,7 @@ import {
   PetWrapper,
   PetAvatar,
   PetList,
+  PetItem,
   PetTitleInfo,
   PetDescriptionInfo,
   DeleteBtn,
@@ -30,30 +31,29 @@ export default function PetsList() {
         <PetWrapper key={_id}>
           <PetAvatar src={avatarUrl} alt={name} width="150" height="150" />
           <PetList>
-            <li>
+            <PetItem>
               <PetDescriptionInfo>
                 <PetTitleInfo>Name: </PetTitleInfo> {name}
               </PetDescriptionInfo>
-            </li>
-            <li>
+            </PetItem>
+            <PetItem>
               <PetDescriptionInfo>
                 <PetTitleInfo>Date of birth: </PetTitleInfo>
                 {date}
               </PetDescriptionInfo>
-            </li>
-            <li>
-              {' '}
+            </PetItem>
+            <PetItem>
               <PetDescriptionInfo>
                 <PetTitleInfo>Breed: </PetTitleInfo>
                 {breed}
               </PetDescriptionInfo>
-            </li>
-            <li>
+            </PetItem>
+            <PetItem>
               <PetDescriptionInfo>
                 <PetTitleInfo>Comments: </PetTitleInfo>
                 {comment}
               </PetDescriptionInfo>
-            </li>
+            </PetItem>
           </PetList>
 
           <DeleteBtn onClick={() => removePet(_id)}></DeleteBtn>

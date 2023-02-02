@@ -39,10 +39,13 @@ export const UserPetsTitle = styled.h2`
 
 export const PetBtnWrapper = styled.div`
   position: absolute;
-  right: 16px;
+  right: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media screen and (min-width: 768px) {
+    right: 32px;
+  }
 `;
 export const AddPetTitleBtn = styled.h3`
   margin-right: 15px;

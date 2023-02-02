@@ -28,3 +28,21 @@ export const deletePets = async (id) => {
     console.log(error.message);
   }
 };
+
+export const fetchAdsByCategory = category => {
+  return axios
+    .get('/notices', { params: { category } })
+    .then(response => response.data.data);
+};
+
+export const fetchFavoriteAds = () => {
+  return axios.get('/notices/favorite').then(response => {
+    return response.data.data;
+  });
+};
+
+export const fetchOwnAds = () => {
+  return axios.get('/notices/user').then(response => {
+    return response.data.data;
+  });
+};

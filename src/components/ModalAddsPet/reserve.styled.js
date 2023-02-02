@@ -5,12 +5,10 @@ import { Field }  from "formik";
 
 const slideIn = keyframes`
   from {
-    /* transform: translateY(-50%); */
  transform: translateX(-50%);
     opacity: 0;
   }
   to {
-    /* transform: translateY(0); */
     transform: translateX(0);
     opacity: 1;
   }

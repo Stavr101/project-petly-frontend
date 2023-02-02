@@ -37,6 +37,7 @@ export default function ModalAddsPetApp() {
         //Присвоювання ID та запис у !
         data.id = nanoid();
         setPets(pets => [data, ...pets]);
+        setModalOpen(false);
     };
 
     const handleOpen = (e) => {

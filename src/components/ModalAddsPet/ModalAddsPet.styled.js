@@ -77,9 +77,10 @@ export const Image = styled.img`
 width: 208px;
 height: 208px;
 border-radius: 20px;
+animation: ${slideIn} 800ms ease-out;
  @media (min-width: 768px) {
-    width: 182px;
-height: 182px;
+  width: 182px;
+  height: 182px;
   }
 ` 
 

@@ -17,8 +17,10 @@ import {
 
 import * as Yup from 'yup';
 
-// import { AddsPetValidate } from "helpers/validationSchema/addsPetValidate";
-
+// export const AddsPetValidate = {
+//     AddsPetFirstPageSchema,
+//     AddsPetSecondPageSchema
+// };
 
 function Forma({ handleClose }) {
     const [errors, setErrors] = useState({});
@@ -83,7 +85,8 @@ const combinedForm = { ...form.firstForm, ...form.secondForm };
                 image: null,
                 comment: ''
             }
-        });
+           });
+    
 
     }
         
@@ -104,6 +107,7 @@ const combinedForm = { ...form.firstForm, ...form.secondForm };
                                 placeholder="Name pet"
                             />
                             {/* {errors.name && <div>{errors.secondForm.name}</div>} */}
+                            
                         </InputBox>
                         <InputBox>
                             <InputLable htmlFor="breed">Date of birth</InputLable>

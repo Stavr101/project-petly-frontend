@@ -3,7 +3,6 @@ import * as Yup from 'yup';
 const AddsPetFirstPageSchema = Yup.object().shape({
   name: Yup.string()
     .matches(/^[a-zA-Z]{2,16}$/, 'Name must be 2-16 letters and only contain alphabets'),
-    
     breed: Yup.string()
     .matches(/^[a-zA-Z]{2,16}$/, 'Name must be 2-16 letters and only contain alphabets'),
 });

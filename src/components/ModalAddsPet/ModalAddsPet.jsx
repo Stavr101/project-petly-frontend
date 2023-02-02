@@ -8,134 +8,181 @@ import {
     Comments,
     FormContainer,
     CommentsContainer,
-   AddPhoto,
+    AddPhoto,
     Download,
+    Image,
     DownloadContainer,
     NextFormContainer
 } from "./ModalAddsPet.styled";
 
+import * as Yup from 'yup';
+
+// import { AddsPetValidate } from "helpers/validationSchema/addsPetValidate";
+
+
 function Forma({ handleClose }) {
-
-    const [step, setStep] = useState(1);
-    const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        date: '',
-        image: null,
-        comment: ''
-    });
-
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // send the formData to the server or do something else
-        console.log(formData);
-        setFormData({
-            firstName: '',
-            lastName: '',
+    const [errors, setErrors] = useState({});
+    const [form, setForm] = useState({
+        firstForm: {
+            name: '',
             date: '',
+            breed: '',
+
+        },
+        secondForm: {
             image: null,
             comment: ''
+        }
+    });
+
+    const [formType, setFormType] = useState('firstForm');;
+
+    const handleFirstFormChange = (event) => {
+        setForm({
+            ...form,
+            firstForm: {
+                ...form.firstForm,
+                [event.target.name]: event.target.value
+            }
         });
     };
 
-    const nextStep = (e) => {
-       setStep(2);
-
+    const handleSecondFormChange = (event) => {
+        if (event.target.name === 'image') {
+            setForm({
+                ...form,
+                secondForm: {
+                    ...form.secondForm,
+                    [event.target.name]: URL.createObjectURL(event.target.files[0])
+                }
+            });
+        } else {
+            setForm({
+                ...form,
+                secondForm: {
+                    ...form.secondForm,
+                    [event.target.name]: event.target.value
+                }
+            });
+        }
     };
 
-    const prevStep = () => {
-        setStep(1);
-    };
+const combinedForm = { ...form.firstForm, ...form.secondForm };
 
-    switch (step) {
-        case 1:
-            return (
-                <FormContainer onSubmit={handleSubmit}>
-                    <InputBox>
-                    <InputLable htmlFor="name">Name pet</InputLable>
-                    <InputField
-                        type="text"
-                        name="name"
-                        value={formData.name || ''}
-                        onChange={handleChange}
-                        placeholder="Name pet"
-                    />
-                    </InputBox>
-                    <InputBox>
-                     <InputLable htmlFor="breed">Date of birth</InputLable>
-                    <InputField
-                        type="date"
-                        name="date"
-                        value={formData.date || ''}
-                        onChange={handleChange}
-                        placeholder="DD/MM/YYYY/"
-                    />
-                    </InputBox>
-                    <InputBox>
-                    <InputLable htmlFor="breed">Breed</InputLable>
-                    <InputField
-                        type="text"
-                        name="breed"
-                        value={formData.breed || ''}
-                        onChange={handleChange}
-                        placeholder="Breed"
-                        />
-                    </InputBox>
-                    <ButtonContainer>
-                    <Button type="button" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button type="button" onClick={nextStep}>
-                        Next
-                    </Button>
-                    </ButtonContainer>
-                </FormContainer>
-            );
-        case 2:
-            return (
-                <NextFormContainer>
-                     <AddPhoto>Add photo and some comments</AddPhoto>
-                    {/* <img src="https://via.placeholder.com/150" alt="image"/> */}
-                    <DownloadContainer>
-                      
-                    <Download
-                        name="image"
-                        type="file"
-                        value={formData.image || ''}
-                        onChange={handleChange}
-                        />
-                    </DownloadContainer>
-                    <InputBox>
-                        <CommentsContainer>
-                    <Comments
-                        name="comment"
-                        type="text"
-                        value={formData.comment || ''}
-                        onChange={handleChange}
-                        placeholder="Type comments"
-                        />
-                        </CommentsContainer>
-                        </InputBox>
-                    <ButtonContainer>
-                    <Button type="button" onClick={prevStep}>
-                        Back
-                    </Button>
-                    <Button type="submit" onClick={handleSubmit}>
-                        Submit
-                        </Button>
-                    </ButtonContainer>
-                </NextFormContainer>
-            );
-        default:
-            return <div>Something went wrong</div>;
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        console.log(combinedForm);
+           setForm({
+            firstForm: {
+                name: '',
+                date: '',
+                breed: '',
+
+            },
+            secondForm: {
+                image: null,
+                comment: ''
+            }
+        });
+
     }
-}
+        
+        
 
-export default Forma;
+        return (
+            <>
+                {formType === 'firstForm' && (
+                    <FormContainer onSubmit={handleSubmit}>
+                        <InputBox>
+                            <InputLable htmlFor="name">Name pet</InputLable>
+                            <InputField
+                                type="text"
+                                name="name"
+                                pattern="/^[a-zA-Z]{2,16}$/"
+                                value={form.firstForm.name}
+                                onChange={handleFirstFormChange}
+                                placeholder="Name pet"
+                            />
+                            {/* {errors.name && <div>{errors.secondForm.name}</div>} */}
+                        </InputBox>
+                        <InputBox>
+                            <InputLable htmlFor="breed">Date of birth</InputLable>
+                            <InputField
+                                type="date"
+                                name="date"
+                                value={form.firstForm.date}
+                                onChange={handleFirstFormChange}
+                            // placeholder="DD/MM/YYYY/"
+                            />
+                        </InputBox>
+                        <InputBox>
+                            <InputLable htmlFor="breed">Breed</InputLable>
+                            <InputField
+                                type="text"
+                                name="breed"
+                                pattern="/^[a-zA-Z]{2,16}$/"
+                                value={form.firstForm.breed}
+                                onChange={handleFirstFormChange}
+                                placeholder="Breed"
+                            />
+                            {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
+                        </InputBox>
+                        <ButtonContainer>
+                            <Button type="button" onClick={handleClose}>
+                                Close
+                            </Button>
+                            <Button
+                                type="button"
+                                onClick={() => setFormType('secondForm')}
+                            >
+                                Next
+                            </Button>
+                        </ButtonContainer>
+                    </FormContainer>
+                )}
+                {formType === 'secondForm' && (
+                    <NextFormContainer encType='mutipart/form-data' onSubmit={handleSubmit}>
+                        <AddPhoto>Add photo and some comments</AddPhoto>
+                        <DownloadContainer >
+                            {form.secondForm.image && (
+                                <Image src={form.secondForm.image} alt="uploaded" />
+                            )}
+                            <Download
+
+                                name="image"
+                                type="file"
+                                accept='image/*'
+                                onChange={handleSecondFormChange}
+                            />
+
+                        </DownloadContainer>
+                        <InputBox>
+                            <CommentsContainer>
+                                <Comments
+                                    name="comment"
+                                    type="text"
+                                    pattern="^[a-zA-Z0-9,.!?;:-_ ]{8,120}$"
+                                    value={form.secondForm.comment}
+                                    onChange={handleSecondFormChange}
+                                    placeholder="Type comments"
+                                />
+                                {/* {errors.comment && <div>{errors.secondForm.comment}</div>} */}
+                            </CommentsContainer>
+                        </InputBox>
+                        <ButtonContainer>
+                            <Button type="button" onClick={() => setFormType('firstForm')}
+                            >
+                                Back
+                            </Button>
+                            <Button type="submit" >
+                                Submit
+                            </Button>
+                        </ButtonContainer>
+                    </NextFormContainer>
+                )}
+            </>
+        );
+    };
+
+
+    export default Forma;

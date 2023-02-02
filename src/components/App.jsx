@@ -9,7 +9,7 @@ import { refreshUser } from 'redux/auth/operations';
 import { useAuth } from 'hooks';
 import NotFound from './NotFound/NotFound';
 import Loader from 'shared/loader/Loader';
-import ModalAddsPetApp from './ModalAddsPet/ModalAddsPetsApp'
+
 
 const HomePage = lazy(() => import("../pages/Home/Home"));
 const Register = lazy(() => import("../pages/Register"));
@@ -33,7 +33,6 @@ export const App = () => {
     <Loader />
   ) : (
       <>
-        <ModalAddsPetApp />
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<SharedLayout />}>

@@ -4,7 +4,7 @@ import { NavLink as Link } from 'react-router-dom';
 export const PrimaryNav = styled.nav`
 display: flex;
 align-items: center;
-text-aligh: center;
+text-align: center;
 justify-content: center;
 
 @media (min-width: 1280px) {
@@ -65,9 +65,7 @@ flex-direction: row;
 export const AuthMenu = styled.ul`
 display: flex;
 align-items: center;
-}
 `
-
 export const MobileContainer = styled.div`
 display: flex;
 flex-direction: column;
@@ -76,15 +74,15 @@ align-items: center;
 export const TabletContainer = styled.div`
 `
 export const StyledBurger = styled.button`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 2rem;
-  height: 2rem;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+width: 2rem;
+height: 2rem;
+background: transparent;
+border: none;
+cursor: pointer;
+padding: 0;
 
 @media (min-width: 1280px) {
 display: none;

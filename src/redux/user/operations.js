@@ -1,7 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { REACT_APP_BASE_URL } from "services/baseurl";
 
-axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
+axios.defaults.baseURL = REACT_APP_BASE_URL;
 
 // GET @ /user
 export const getUserInfo = createAsyncThunk('user/get', async (_, thunkAPI) => {

@@ -1,13 +1,9 @@
 import axios from "axios";
+import { REACT_APP_BASE_URL } from "services/baseurl";
 
-axios.defaults.baseURL = "https://project-petly-backend.onrender.com/api/v1/";
+axios.defaults.baseURL = REACT_APP_BASE_URL;
 
-export const getAllNews = async () => {
-  const response = await axios.get(`news`);
+export const getAllNews = async (pageNumber=1) => {
+  const response = await axios.get(`news?page=${pageNumber}`);
   return response.data;
 };
-
-// export const searchNews = async (query) => {
-//   const response = await axios.get(`search/news?query=${query}`);
-//   return await response.data;
-// };

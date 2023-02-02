@@ -118,6 +118,7 @@ export const SVG = styled.img`
 export const UserInfoWrapper = styled.div`
   @media screen and (min-width: 768px) {
     width: 100%;
+    margin-right: 52px;
   }
 `;
 export const UserInfoList = styled.ul`
@@ -130,7 +131,6 @@ export const UserInfoList = styled.ul`
   @media screen and (min-width: 768px) {
     margin-bottom: 0;
     width: 100%;
-    margin-right: 52px;
   }
   @media screen and (min-width: 1280px) {
     margin-right: 0;

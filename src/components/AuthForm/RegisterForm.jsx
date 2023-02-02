@@ -69,9 +69,9 @@ export default function RegisterForm() {
               ? authValidate.RegisterSchemaFirstPage
               : authValidate.RegisterSchemaSecondPage
           }
-          onSubmit={!currentPage ? onNext : onHandleSubmit}
+          onSubmit={currentPage ? onHandleSubmit : onNext}
         >
-          {({ handleChange, handleSubmit, values }) => (
+          {({ handleChange, handleSubmit, values, handleBlur }) => (
             <>
               {!currentPage && (
                 <FormEl>
@@ -81,26 +81,31 @@ export default function RegisterForm() {
                     placeholder="Email"
                     value={values.email}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                   />
                   <ErrorMessage
                     name="email"
                     render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
                   />
                   <InputField
+                    type="password"
                     name="password"
                     placeholder="Password"
                     value={values.password}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                   />
                   <ErrorMessage
                     name="password"
                     render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
                   />
                   <InputField
+                    type="password"
                     name="confirmPassword"
                     placeholder="Confirm Password"
                     value={values.confirmPassword}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                   />
                   <ErrorMessage
                     name="confirmPassword"
@@ -114,10 +119,12 @@ export default function RegisterForm() {
               {currentPage && (
                 <FormEl>
                   <InputField
+                    type="text"
                     name="name"
                     placeholder="Name"
                     value={values.name}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                   />
                   <ErrorMessage
                     name="name"
@@ -128,6 +135,7 @@ export default function RegisterForm() {
                     placeholder="address"
                     value={values.address}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                   />
                   <ErrorMessage
                     name="address"
@@ -138,6 +146,7 @@ export default function RegisterForm() {
                     placeholder="Phone"
                     value={values.phone}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                   />
                   <ErrorMessage
                     name="phone"

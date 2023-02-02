@@ -57,6 +57,9 @@ export const Button = styled.button`
     height: 80px;
     box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   }
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 export const Icon = styled(AddIcon)`
@@ -66,10 +69,6 @@ export const Icon = styled(AddIcon)`
     transform: scale(1.8);
   }
   vertical-align: -5px;
-  transform: scale(1.2);
+  transform: scale(1.5);
   transition: scale 250ms linear;
-
-  &:hover {
-    transform: scale(1.5);
-  }
 `;

@@ -9,15 +9,15 @@ const NoticesCategoriesNav = () => {
   return (
     <>
       <Nav>
-          <Link to={"sell"}>sell</Link>
-          <Link to={"lost-found"}>lost/found</Link>
-          <Link to={"for-free"}>in good hands</Link>
+          <Link to={"/notices/sell"}>sell</Link>
+          <Link to={"/notices/lost-found"}>lost/found</Link>
+          <Link to={"/notices/for-free"}>in good hands</Link>
           {isLoggedIn ? (
             <>
-          <Link to={"favorite"}>favorite ads</Link>
-          <Link to={"own"}>my ads</Link>
+          <Link to={"/notices/favorite"}>favorite ads</Link>
+          <Link to={"/notices/own"}>my ads</Link>
           </>
-        ) : ("")} 
+        ) : (null)} 
       </Nav>
       <Outlet />
     </>

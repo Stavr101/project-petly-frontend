@@ -10,17 +10,18 @@ import { useAuth } from 'hooks';
 import NotFound from './NotFound/NotFound';
 import Loader from 'shared/loader/Loader';
 
-const HomePage = lazy(() => import('../pages/Home/Home'));
-const Register = lazy(() => import('../pages/Register'));
-const Login = lazy(() => import('../pages/Login'));
+const HomePage = lazy(() => import("../pages/Home/Home"));
+const Register = lazy(() => import("../pages/Register"));
+const Login = lazy(() => import("../pages/Login"));
 
-const NewsPage = lazy(() => import('../pages/News/News'));
-const NoticesPage = lazy(() => import('../pages/Notices'));
-const OurFriendsPage = lazy(() => import('../pages/OurFriends'));
+const NewsPage = lazy(() => import("../pages/News/News"));
+const NoticesPage = lazy(() => import("../pages/Notices"));
+const OurFriendsPage = lazy(() => import("../pages/OurFriends"));
 
-const UserPage = lazy(() => import('../pages/User/User'));
+const UserPage = lazy(() => import("../pages/User/User"));
 
 export const App = () => {
+  console.log(process.env.REACT_APP_TEST);
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
 
@@ -31,7 +32,7 @@ export const App = () => {
   return isRefreshing ? (
     <Loader />
   ) : (
-    <>
+      <>
       <GlobalStyles />
 
       <Routes>

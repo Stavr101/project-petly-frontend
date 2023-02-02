@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Modal } from "@mui/material";
 import { nanoid } from "nanoid";
+
+
 import {
     EnterButton,
     ModalContainer,
@@ -10,7 +12,7 @@ import {
 
 } from "./ModalAddsPet.styled";
 
-import Forma  from './ModalAddsPet'
+import Forma from './ModalAddsPet';
 
 export default function ModalAddsPetApp() {
      const [pets, setPets] = useState(

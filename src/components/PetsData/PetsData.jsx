@@ -30,28 +30,13 @@ export default function PetsData() {
         <UserPetsTitle>My pets:</UserPetsTitle>
         <PetBtnWrapper>
           <AddPetTitleBtn>Add pet</AddPetTitleBtn>
-          {/* <AddPetBtn type="button"></AddPetBtn> */}
           <AddPetBtn onClick={() => setIsOpen(true)} />
           {isOpen ? (
             <ModalAddsPet closeModalPets={() => setIsOpen(false)} />
           ) : null}
-          {/* end */}
         </PetBtnWrapper>
       </PetsTitleWrapper>
       {isLoading && !error ? <Loader /> : <PetsList />}
     </PetsWrapper>
   );
 }
-
-// import React, { useState } from "react";
-// import { Popup } from "./components/Popup/Popup";
-// const App = () => {
-//   const [open, setOpen] = useState(false);
-//   return (
-//    <div>
-//     <button onClick={() => setOpen(true)}> Click to Open       Popup</button>
-// {open ? <Popup text="Hello there!" closePopup={() => setOpen(false)} /> : null}
-//    </div>
-//  );
-// };
-// export default App;

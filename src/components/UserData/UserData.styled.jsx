@@ -45,9 +45,10 @@ export const UserDataWrapper = styled.div`
     border-bottom-right-radius: 40px;
   }
   @media screen and (min-width: 1280px) {
+    align-items: center;
     flex-direction: column;
     padding: 20px 16px 64px 16px;
-    width: 400px;
+    width: 410px;
   }
 `;
 
@@ -98,7 +99,7 @@ export const LabelEditPhoto = styled.label`
   @media screen and (min-width: 1280px) {
     position: absolute;
     bottom: 0;
-    right: 10px;
+    right: -60px;
     padding: 0;
   }
 `;
@@ -114,6 +115,11 @@ export const SVG = styled.img`
   transition: 0.2s;
 `;
 
+export const UserInfoWrapper = styled.div`
+  @media screen and (min-width: 768px) {
+    width: 100%;
+  }
+`;
 export const UserInfoList = styled.ul`
   position: relative;
   display: flex;
@@ -123,7 +129,11 @@ export const UserInfoList = styled.ul`
   margin-bottom: 42px;
   @media screen and (min-width: 768px) {
     margin-bottom: 0;
-    width: 60%;
+    width: 100%;
+    margin-right: 52px;
+  }
+  @media screen and (min-width: 1280px) {
+    margin-right: 0;
   }
 `;
 

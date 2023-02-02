@@ -2,7 +2,9 @@ import * as Yup from "yup";
 import { regExp } from "helpers/regExp/regExp";
 
 const RegisterSchemaFirstPage = Yup.object().shape({
-  email: Yup.string().email("Invalid email").required("Email is a required"),
+  email: Yup.string()
+    .matches(regExp.email, "Invalid email")
+    .required("Email is a required"),
   password: Yup.string()
     .min(7, "Min length 7 symbols")
     .max(32, "Too Long!")

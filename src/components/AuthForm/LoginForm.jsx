@@ -47,7 +47,11 @@ export default function RegisterForm() {
               name="email"
               render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
             />
-            <InputField name="password" placeholder="Password" />
+            <InputField
+              type="password"
+              name="password"
+              placeholder="Password"
+            />
             <ErrorMessage
               name="password"
               render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}

@@ -17,18 +17,18 @@ export const FormTitle = styled.h1`
   }
 `;
 
-const rotate = keyframes`
+const scale = keyframes`
   0% {
-    opacity: 0;
+    scale: 0;
   }
   100% {
-    opacity: 1;
-  }
+    scale: 1;
+}
 `;
 
 export const FormWrapper = styled.div`
   padding: 0 20px;
-  animation: ${rotate} 0.5s linear forwards;
+  animation: ${scale} 0.8s linear forwards;
 
   @media screen and (min-width: 768px) {
     width: 608px;

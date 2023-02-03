@@ -21,27 +21,54 @@ import {
   ItemButtonNoticesDeleteSpan,
 } from "./NoticeCategoryItem.styled";
 
-export default function NoticeCategoryItem({id,
-    name,
-    petAvatar,
-    favorite = false,
+export default function NoticeCategoryItem({ data }) {
+  const {
+    id,
+    avatar,
+    favorite,
     title,
-    price,
     breed,
     location,
-    birthdate,
-    categoryName,
+    age,
+    condition,
     onDeletePets,
-    onLearnMore}) {
+    onLearnMore,
+  } = data;
 
-    return (
+  return (
     <>
-      <ItemNoticesLi>
+    <ItemNoticesLi>
         <ItemNoticesImgDiv>
-
+        <ItemNoticesImg src={avatar} alt={title} />
+          <ItemPositionNoticesDiv>
+            <ItemPositionNoticesDivParagraf>
+              {condition}
+            </ItemPositionNoticesDivParagraf>
+            <ItemButtonNoticesHeartSpan>
+              <HeartSvg />
+            </ItemButtonNoticesHeartSpan>
+          </ItemPositionNoticesDiv>
+        </ItemNoticesImgDiv>
+        <ItemNoticesTitle>{title}</ItemNoticesTitle>
+        <ItemNoticesUlList>
+        <ItemNoticesListLi>
+            <ItemNoticesListP>
+              Breed:<ItemNoticesSpan>{breed}</ItemNoticesSpan>
+            </ItemNoticesListP>
+          </ItemNoticesListLi>
+          <ItemNoticesListLi>
+            <ItemNoticesListP>
+              Place:<ItemNoticesSpan>{location}</ItemNoticesSpan>
+            </ItemNoticesListP>
+          </ItemNoticesListLi>
+          <ItemNoticesListLi>
+            <ItemNoticesListP>
+              Age:<ItemNoticesSpan>{age}</ItemNoticesSpan>
+            </ItemNoticesListP>
+          </ItemNoticesListLi>
         </ItemNoticesUlList>
         <ItemButtonNotices>
-          <ItemButtonNoticesLearnMore
+        <ItemButtonNoticesLearnMore
             type="submit"
             onClick={() => onLearnMore(id)}
           >
@@ -57,7 +84,7 @@ export default function NoticeCategoryItem({id,
             </ItemButtonNoticesDelete>
           ) : null}
         </ItemButtonNotices>
-      </ItemNoticesLi>
+        </ItemNoticesLi>
     </>
-  );
-}
+     );
+    }

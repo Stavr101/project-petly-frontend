@@ -14,6 +14,19 @@ const slideIn = keyframes`
   }
 `;
 
+const slideInPhoto = keyframes`
+  from {
+    /* transform: translateX(-50%); */
+    opacity: 0;
+  }
+  to {
+  
+    transform: translateX(0);
+    opacity: 1;
+  }
+`;
+
+
 export const SexButton = styled.div`
 
 
@@ -80,7 +93,7 @@ export const Image = styled.img`
 width: 208px;
 height: 208px;
 border-radius: 20px;
-animation: ${slideIn} 600ms ease-out;
+animation: ${slideInPhoto} 800ms ease-out;
  @media (min-width: 768px) {
     width: 182px;
 height: 182px;
@@ -104,10 +117,6 @@ export const ModalContainer = styled.div`
   @media (min-width: 768px) {
     max-width: 608px;
   margin-top:60px;
-
-   
- 
- 
   }
 `;
 

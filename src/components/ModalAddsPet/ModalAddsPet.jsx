@@ -18,7 +18,6 @@ import {
 import * as Yup from 'yup';
 
 // import { AddsPetValidate } from "helpers/validationSchema/addsPetValidate";
-// Изменила функцию handleClose на closeModalPets для открытия модалки по нажатию кнопки в PetsData
 function Forma({ handleClose }) {
   const [errors, setErrors] = useState({});
   const [form, setForm] = useState({
@@ -81,6 +80,7 @@ function Forma({ handleClose }) {
         comment: '',
       },
     });
+    handleClose();
   };
 
   return (

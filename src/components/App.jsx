@@ -21,7 +21,6 @@ const OurFriendsPage = lazy(() => import('../pages/OurFriends'));
 const UserPage = lazy(() => import('../pages/User/User'));
 
 export const App = () => {
-  console.log(process.env.REACT_APP_TEST);
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
 

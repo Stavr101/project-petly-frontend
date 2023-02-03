@@ -4,9 +4,7 @@ import AuthNav from 'components/AuthNav/AuthNav';
 import UserNav from 'components/UserNav/UserNav';
 import { useAuth } from 'hooks';
 import { useMediaQuery } from 'react-responsive';
-// import Menu from '@mui/icons-material/Menu';
 import Modal from "components/ModalMenu/Modal/Modal";
-import { BurgerBtn } from './Nav.styled';
 
 const Nav = () => {
 
@@ -60,7 +58,7 @@ const Nav = () => {
         </TabletContainer>
       </Modal>}
       
-        <StyledBurger open={showModal} onClick={() => {
+        <StyledBurger aria-label='menu' open={showModal} onClick={() => {
           setShowModal(current => !current);
           setShowModal(!showModal);
         }}>
@@ -74,5 +72,3 @@ const Nav = () => {
 };
 
 export default Nav;
-
-{/* <Menu fontSize="large" /> */}

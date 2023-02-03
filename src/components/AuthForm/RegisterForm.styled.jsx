@@ -17,38 +17,26 @@ export const FormTitle = styled.h1`
   }
 `;
 
-const rotate = keyframes`
+const scale = keyframes`
   0% {
-    opacity: 0;
+    scale: 0;
   }
   100% {
-    opacity: 1;
+    scale: 1;
+}
+`;
+const opacity = keyframes`
+0%{
+   opacity: 0
+}
+  100%{
+    opacity: 1
   }
 `;
 
 export const FormWrapper = styled.div`
   padding: 20px;
-  /* animation: ${rotate} 2s linear forwards; */
-
-  @media screen and (min-width: 768px) {
-    width: 608px;
-    /* height: 517px; */
-    margin: 0 auto;
-    padding: 60px 80px 40px 80px;
-    box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
-    border-radius: 40px;
-    /* margin-top: 170px; */
-    background-color: ${(p) => p.theme.colors.white};
-  }
-  @media screen and (min-width: 1280px) {
-    padding: 60px 80px;
-    /* margin-top: 57px; */
-  }
-`;
-
-export const FormWrapperEl = styled.div`
-  padding: 20px;
-  animation: ${rotate} 0.5s linear forwards;
+  animation: ${scale} 0.8s linear forwards;
 
   @media screen and (min-width: 768px) {
     width: 608px;
@@ -67,22 +55,28 @@ export const FormWrapperEl = styled.div`
 `;
 
 export const FormEl = styled(Form)`
+  animation: ${opacity} 0.7s linear forwards;
   display: flex;
   flex-direction: column;
 `;
 
-export const InputField = styled(Field)`
-  border: 1px solid rgba(245, 146, 86, 0.5);
-  border-radius: 40px;
-  padding: 10px;
+export const Wrapper = styled.div`
+  position: relative;
+  width: 100%;
   & + & {
     margin-top: 16px;
   }
 `;
 
+export const InputField = styled(Field)`
+  width: 100%;
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+  padding: 10px;
+`;
+
 export const ErrorMsg = styled.p`
   color: red;
-  margin-bottom: 6px;
   margin-left: 10px;
   font-size: 9px;
 `;
@@ -95,6 +89,29 @@ export const BtnForm = styled.button`
   padding: 10px 28px;
   color: ${(p) => p.theme.colors.white};
   background-color: ${(p) => p.theme.colors.accent};
+`;
+
+export const BtnFormRegister = styled.button`
+  cursor: pointer;
+  margin-top: 28px;
+  border-radius: 40px;
+  border: none;
+  padding: 10px 28px;
+  color: ${(p) => p.theme.colors.white};
+  background-color: ${(p) => p.theme.colors.accent};
+  @media screen and (min-width: 768px) {
+    margin-top: 40px;
+  }
+`;
+
+export const BtnFormBack = styled.button`
+  cursor: pointer;
+  margin-top: 15px;
+  border-radius: 40px;
+  border: solid ${(p) => p.theme.colors.accent};
+  padding: 10px 28px;
+  color: ${(p) => p.theme.colors.black};
+  background-color: transparent;
 `;
 
 export const Text = styled.p`
@@ -111,4 +128,13 @@ export const Text = styled.p`
 export const LinkAuth = styled(Link)`
   text-decoration: underline;
   color: #3091eb;
+`;
+
+export const EyePassword = styled.button`
+  position: absolute;
+  top: 25%;
+  right: 5px;
+  background-color: transparent;
+  border: none;
+  color: rgba(27, 27, 27, 0.6);
 `;

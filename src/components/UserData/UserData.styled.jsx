@@ -126,12 +126,7 @@ export const UserInfoWrapper = styled.div`
 `;
 export const UserInfoList = styled.ul`
   position: relative;
-  /* display: flex;
-  flex-direction: column;
-  justify-content: space-between; */
   display: block;
-
-  /* margin-bottom: 42px; */
   @media screen and (min-width: 768px) {
     margin-bottom: 0;
     width: 100%;

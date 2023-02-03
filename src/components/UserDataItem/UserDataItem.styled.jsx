@@ -6,16 +6,6 @@ export const InputWrapper = styled.form`
   display: flex;
   justify-content: flex-end;
   width: 100%;
-  /* position: absolute;
-  right: 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 12px;
-  @media screen and (min-width: 768px) {
-    justify-content: flex-start;
-    margin-bottom: 8px;
-  } */
 `;
 
 export const Input = styled.input`
@@ -24,7 +14,6 @@ export const Input = styled.input`
   display: flex;
   align-items: center;
   margin-right: 10px;
-  /* width: 200px; */
   height: 24px;
   font-family: ${p => p.theme.fonts.manrope};
   font-weight: ${p => p.theme.fontWeights.normal};
@@ -35,6 +24,7 @@ export const Input = styled.input`
   background: ${p => p.theme.colors.background};
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
+  text-indent: 10px;
 
   &:disabled {
     border: ${p => p.theme.borders.none};

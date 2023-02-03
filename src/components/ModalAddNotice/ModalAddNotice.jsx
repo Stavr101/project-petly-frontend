@@ -11,6 +11,7 @@ import {
   AddPhoto,
   Download,
   Image,
+  SexButton,
   DownloadContainer,
   NextFormContainer,
 } from './ModalAddNotice.styled';
@@ -29,12 +30,14 @@ function Forma({ closeModalPets }) {
       breed: '',
     },
     secondForm: {
+      sex: '',
       location: '',
       price: '',
       image: null,
       comment: '',
     },
   });
+
 
   const [formType, setFormType] = useState('firstForm');
 
@@ -48,6 +51,17 @@ function Forma({ closeModalPets }) {
     });
   };
 
+  const handleRadioChange = event => {
+    setForm({
+      ...form,
+      secondForm: {
+        ...form.secondForm,
+        [event.target.name]: event.target.value,
+      }
+    });
+  };
+
+
   const handleSecondFormChange = event => {
     if (event.target.name === 'image') {
       setForm({
@@ -55,6 +69,7 @@ function Forma({ closeModalPets }) {
         secondForm: {
           ...form.secondForm,
           [event.target.name]: URL.createObjectURL(event.target.files[0]),
+          
         },
       });
     } else {
@@ -81,14 +96,16 @@ function Forma({ closeModalPets }) {
         breed: '',
       },
       secondForm: {
-        location: '',
+         sex: '',
+         location: '',
         price: '',
         image: null,
         comment: '',
       },
     });
   };
-
+  
+console.log(form.secondForm.sex)
   return (
     <>
       {formType === 'firstForm' && (
@@ -162,6 +179,23 @@ function Forma({ closeModalPets }) {
       )}
       {formType === 'secondForm' && (
         <NextFormContainer encType="mutipart/form-data" onSubmit={handleSubmit}>
+          <SexButton>
+            <input
+              type="radio"
+              name="male"
+              checked={form.secondForm.sex === "male"}
+              onChange={handleRadioChange}
+            />
+            <label>Male</label>
+            <input
+            type="radio"
+              name="female"
+              checked={form.secondForm.sex === "female"}
+              onChange={handleRadioChange}
+            />
+            <label>Female</label>
+          </SexButton>
+
           <InputBox>
             <InputLable htmlFor="location">Location<span>*</span>:</InputLable>
             <InputField

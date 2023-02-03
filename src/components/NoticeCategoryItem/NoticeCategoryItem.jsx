@@ -20,17 +20,6 @@ import {
     ItemButtonNoticesHeartSpan,
     ItemButtonNoticesDeleteSpan} from "./NoticeCategoryItem.styled"
 
-/*     curl --location --request POST 'localhost:4000/api/v1/notices' \
---form 'petAvatar=@"/path/to/file"' \
---form 'title="Cute dog looking for a home"' \
---form 'name="Baron"' \
---form 'birthdate="2020.11.25"' \
---form 'breed="Pomeranian"' \
---form 'sex="male"' \
---form 'location="Lviv"' \
---form 'comments="Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet"' \
---form 'categoryName="sell"' \
---form 'price="100"' */
 
 export default function NoticeCategoryItem({id,
     name,

@@ -2,8 +2,11 @@ import styled from 'styled-components';
 import pencil from 'images/UserPage/pencil.svg';
 import btnOk from 'images/UserPage/btnOk.svg';
 
-export const InputWrapper = styled.div`
-  position: absolute;
+export const InputWrapper = styled.form`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  /* position: absolute;
   right: 12px;
   display: flex;
   justify-content: space-between;
@@ -12,14 +15,14 @@ export const InputWrapper = styled.div`
   @media screen and (min-width: 768px) {
     justify-content: flex-start;
     margin-bottom: 8px;
-  }
+  } */
 `;
 
 export const Input = styled.input`
   display: flex;
   align-items: center;
   margin-right: 10px;
-  width: 100%;
+  width: 200px;
   height: 24px;
   font-family: ${p => p.theme.fonts.manrope};
   font-weight: ${p => p.theme.fontWeights.normal};

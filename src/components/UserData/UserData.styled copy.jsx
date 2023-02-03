@@ -126,12 +126,11 @@ export const UserInfoWrapper = styled.div`
 `;
 export const UserInfoList = styled.ul`
   position: relative;
-  /* display: flex;
+  display: flex;
   flex-direction: column;
-  justify-content: space-between; */
-  display: block;
+  justify-content: space-between;
 
-  /* margin-bottom: 42px; */
+  margin-bottom: 42px;
   @media screen and (min-width: 768px) {
     margin-bottom: 0;
     width: 100%;
@@ -150,7 +149,6 @@ export const UserInfoItem = styled.li`
 `;
 
 export const UserInfoTitle = styled.p`
-  width: 1px;
   margin-right: 10px;
   margin-bottom: 12px;
   font-family: ${p => p.theme.fonts.manrope};

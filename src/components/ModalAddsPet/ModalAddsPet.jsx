@@ -18,8 +18,7 @@ import {
 import * as Yup from 'yup';
 
 // import { AddsPetValidate } from "helpers/validationSchema/addsPetValidate";
-// Изменила функцию handleClose на closeModalPets для открытия модалки по нажатию кнопки в PetsData
-function Forma({ closeModalPets }) {
+function Forma({ handleClose }) {
   const [errors, setErrors] = useState({});
   const [form, setForm] = useState({
     firstForm: {
@@ -81,6 +80,7 @@ function Forma({ closeModalPets }) {
         comment: '',
       },
     });
+    handleClose();
   };
 
   return (
@@ -122,7 +122,7 @@ function Forma({ closeModalPets }) {
             {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
           </InputBox>
           <ButtonContainer>
-            <Button type="button" onClick={closeModalPets}>
+            <Button type="button" onClick={handleClose}>
               Close
             </Button>
             <Button type="button" onClick={() => setFormType('secondForm')}>

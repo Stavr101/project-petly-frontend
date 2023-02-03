@@ -10,15 +10,15 @@ import { useAuth } from 'hooks';
 import NotFound from './NotFound/NotFound';
 import Loader from 'shared/loader/Loader';
 
-const HomePage = lazy(() => import("../pages/Home/Home"));
-const Register = lazy(() => import("../pages/Register"));
-const Login = lazy(() => import("../pages/Login"));
+const HomePage = lazy(() => import('../pages/Home/Home'));
+const Register = lazy(() => import('../pages/Register'));
+const Login = lazy(() => import('../pages/Login'));
 
-const NewsPage = lazy(() => import("../pages/News/News"));
-const NoticesPage = lazy(() => import("../pages/Notices"));
-const OurFriendsPage = lazy(() => import("../pages/OurFriends"));
+const NewsPage = lazy(() => import('../pages/News/News'));
+const NoticesPage = lazy(() => import('../pages/Notices'));
+const OurFriendsPage = lazy(() => import('../pages/OurFriends'));
 
-const UserPage = lazy(() => import("../pages/User/User"));
+const UserPage = lazy(() => import('../pages/User/User'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -31,35 +31,35 @@ export const App = () => {
   return isRefreshing ? (
     <Loader />
   ) : (
-      <>
+    <>
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
           <Route path="news" element={<NewsPage />} />
           <Route
-          path="notices"
-          element={
-            <Suspense fallback={<Loader />}>
-              <Outlet />
-            </Suspense>
-          }
-        >
-          <Route
-            path="favorite"
+            path="notices"
             element={
-              <PrivateRoute redirectTo="/login" component={<NoticesPage />} />
+              <Suspense fallback={<Loader />}>
+                <Outlet />
+              </Suspense>
             }
-          />
-          <Route
-            path="own"
-            element={
-              <PrivateRoute redirectTo="/login" component={<NoticesPage />} />
-            }
-          />
-          <Route path=":categoryName" element={<NoticesPage />} />
-          <Route path="" element={<Navigate to="sell" />} />
-        </Route>
+          >
+            <Route
+              path="favorite"
+              element={
+                <PrivateRoute redirectTo="/login" component={<NoticesPage />} />
+              }
+            />
+            <Route
+              path="own"
+              element={
+                <PrivateRoute redirectTo="/login" component={<NoticesPage />} />
+              }
+            />
+            <Route path=":categoryName" element={<NoticesPage />} />
+            <Route path="" element={<Navigate to="sell" />} />
+          </Route>
           <Route path="friends" element={<OurFriendsPage />} />
 
           <Route

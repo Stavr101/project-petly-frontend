@@ -1,10 +1,12 @@
 import { NavBtnLink } from "./UserNav.styled";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const UserNav = () => {
-
   return (
-    <NavBtnLink to="/user"> <AccountCircleIcon /> &nbsp; Account</NavBtnLink>
+    <NavBtnLink to="/user">
+      {" "}
+      <AccountCircleIcon /> &nbsp; Account
+    </NavBtnLink>
   );
 };
 

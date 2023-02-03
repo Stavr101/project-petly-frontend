@@ -14,6 +14,7 @@ const slideIn = keyframes`
   }
 `;
 
+
 export const AddPhoto = styled.p`
 
   text-align: center;

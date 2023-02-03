@@ -56,7 +56,7 @@ function Forma({ closeModalPets }) {
       ...form,
       secondForm: {
         ...form.secondForm,
-        [event.target.name]: event.target.value,
+         sex: event.target.value
       }
     });
   };
@@ -69,8 +69,7 @@ function Forma({ closeModalPets }) {
         secondForm: {
           ...form.secondForm,
           [event.target.name]: URL.createObjectURL(event.target.files[0]),
-          
-        },
+        }
       });
     } else {
       setForm({
@@ -78,6 +77,7 @@ function Forma({ closeModalPets }) {
         secondForm: {
           ...form.secondForm,
           [event.target.name]: event.target.value,
+         
         },
       });
     }
@@ -105,7 +105,7 @@ function Forma({ closeModalPets }) {
     });
   };
   
-console.log(form.secondForm.sex)
+// console.log(form.secondForm.sex)
   return (
     <>
       {formType === 'firstForm' && (
@@ -182,14 +182,16 @@ console.log(form.secondForm.sex)
           <SexButton>
             <input
               type="radio"
-              name="male"
+              name="secondForm.sex"
+              value='male'
               checked={form.secondForm.sex === "male"}
               onChange={handleRadioChange}
             />
             <label>Male</label>
             <input
             type="radio"
-              name="female"
+              name="secondForm.sex"
+              value='female'
               checked={form.secondForm.sex === "female"}
               onChange={handleRadioChange}
             />

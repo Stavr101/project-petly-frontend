@@ -10,7 +10,6 @@ import Loader from "shared/loader/Loader";
 
 export const SharedLayout = () => {
   return (
-
     <>
       <MainPageContainer>
         <HeaderContainer>
@@ -20,7 +19,7 @@ export const SharedLayout = () => {
           </Header>
         </HeaderContainer>
       </MainPageContainer>
-      <Suspense fallback={<Loader/>}>
+      <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
     </>

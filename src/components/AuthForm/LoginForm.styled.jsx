@@ -27,7 +27,7 @@ const scale = keyframes`
 `;
 
 export const FormWrapper = styled.div`
-  padding: 0 20px;
+  /* padding: 0 20px; */
   animation: ${scale} 0.8s linear forwards;
 
   @media screen and (min-width: 768px) {
@@ -42,7 +42,7 @@ export const FormWrapper = styled.div`
   }
   @media screen and (min-width: 1280px) {
     padding: 60px 80px;
-    margin-top: 57px;
+    margin-top: 35px;
   }
 `;
 

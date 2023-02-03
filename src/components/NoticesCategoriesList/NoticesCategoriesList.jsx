@@ -16,11 +16,11 @@ const NoticesCategoriesList = ({ query }) => {
     const [error, setError] = useState(null);
     let filteredPets = pets;
   
-    if (query !== "") {
-      filteredPets = pets.filter(({ title }) => {
-        return title.toLowerCase().includes(query.toLowerCase());
-      });
-    }
+    // if (query !== "") {
+    //   filteredPets = pets.filter(({ title }) => {
+    //     return title.toLowerCase().includes(query.toLowerCase());
+    //   });
+    // }
   
     useEffect(() => {
       const fetchPets = async () => {

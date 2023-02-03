@@ -8,7 +8,7 @@ import {
 } from "components/AddNoticeButton/AddNoticeButton.styled";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { useAuth } from 'hooks';
-import ModalAddNotice from "components/ModalAddNotice/ModalAddNotice"
+import ModalAddNoticeApp from "components/ModalAddNotice/ModalAddNoticelApp"
 
 export default function AddNoticeButton() {
   const [showModal, setShowModal] = useState(false);
@@ -33,7 +33,7 @@ export default function AddNoticeButton() {
         </Button>
       </Wrap>
       {showModal && (
-        <ModalAddNotice
+        <ModalAddNoticeApp
           setShowModal={setShowModal}
         />
       )}

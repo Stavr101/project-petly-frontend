@@ -20,20 +20,41 @@ import {
     ItemButtonNoticesHeartSpan,
     ItemButtonNoticesDeleteSpan} from "./NoticeCategoryItem.styled"
 
-export default function NoticeCategoryItem({id,avatar,favorite,title,breed,location,age,condition,onDeletePets,onLearnMore}) {
-  /*   const dispatch = useDispatch();
-    const onDeletePets = (id) => dispatch(deletePets(id)); */
+/*     curl --location --request POST 'localhost:4000/api/v1/notices' \
+--form 'petAvatar=@"/path/to/file"' \
+--form 'title="Cute dog looking for a home"' \
+--form 'name="Baron"' \
+--form 'birthdate="2020.11.25"' \
+--form 'breed="Pomeranian"' \
+--form 'sex="male"' \
+--form 'location="Lviv"' \
+--form 'comments="Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet"' \
+--form 'categoryName="sell"' \
+--form 'price="100"' */
+
+export default function NoticeCategoryItem({id,
+    name,
+    petAvatar,
+    favorite = false,
+    title,
+    price,
+    breed,
+    location,
+    birthdate,
+    categoryName,
+    onDeletePets,
+    onLearnMore}) {
 
     return (
     <>
     <ItemNoticesLi>
         <ItemNoticesImgDiv>
             <ItemNoticesImg
-                src={avatar}
-                alt={title}
+                src={petAvatar}
+                alt={name}
             />
             <ItemPositionNoticesDiv>
-                <ItemPositionNoticesDivParagraf>{condition}</ItemPositionNoticesDivParagraf>
+                <ItemPositionNoticesDivParagraf>{categoryName}</ItemPositionNoticesDivParagraf>
                 <ItemButtonNoticesHeartSpan><HeartSvg/></ItemButtonNoticesHeartSpan>
             </ItemPositionNoticesDiv>
         </ItemNoticesImgDiv>
@@ -46,8 +67,12 @@ export default function NoticeCategoryItem({id,avatar,favorite,title,breed,locat
                 <ItemNoticesListP>Place:<ItemNoticesSpan>{location}</ItemNoticesSpan></ItemNoticesListP>
             </ItemNoticesListLi>
             <ItemNoticesListLi>
-                <ItemNoticesListP>Age:<ItemNoticesSpan>{age}</ItemNoticesSpan></ItemNoticesListP>
+                <ItemNoticesListP>Age:<ItemNoticesSpan>{birthdate}</ItemNoticesSpan></ItemNoticesListP>
             </ItemNoticesListLi>
+            {categoryName === "sell" ? 
+            <ItemNoticesListLi>
+                <ItemNoticesListP>Price:<ItemNoticesSpan>{price}$</ItemNoticesSpan></ItemNoticesListP>
+            </ItemNoticesListLi> : null }
         </ItemNoticesUlList>
         <ItemButtonNotices>
             <ItemButtonNoticesLearnMore

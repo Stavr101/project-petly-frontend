@@ -49,10 +49,16 @@ export default function RegisterForm() {
         validationSchema={authValidate.LoginSchema}
         onSubmit={onHandleSubmit}
       >
-        {({ errors, touched }) => (
+        {({ handleChange, values }) => (
           <FormEl>
             <Wrapper>
-              <InputField name="email" type="email" placeholder="Email" />
+              <InputField
+                name="email"
+                type="email"
+                placeholder="Email"
+                value={values.email}
+                onChange={handleChange}
+              />
               <ErrorMessage
                 name="email"
                 render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
@@ -63,6 +69,8 @@ export default function RegisterForm() {
                 type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Password"
+                value={values.password}
+                onChange={handleChange}
               />
               <ErrorMessage
                 name="password"
@@ -77,7 +85,7 @@ export default function RegisterForm() {
         )}
       </Formik>
       <Text>
-        Already have an account? <LinkAuth to="/register">Register</LinkAuth>
+        Don't have an account? <LinkAuth to="/register">Register</LinkAuth>
       </Text>
     </FormWrapper>
   );

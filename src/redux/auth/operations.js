@@ -96,6 +96,19 @@ export const refreshUser = createAsyncThunk(
   }
 );
 
-const authOperation = { register, logIn, logOut, refreshUser };
+export const authGoogle = createAsyncThunk(
+  "auth/google",
+  async (_, { rejectWithValue }) => {
+    try {
+      const res = await axios.get("/auth/google");
+      console.log(res);
+      return res;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+const authOperation = { register, logIn, logOut, refreshUser, authGoogle };
 
 export default authOperation;

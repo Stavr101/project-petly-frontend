@@ -22,22 +22,27 @@ import {
 } from "./NoticeCategoryItem.styled";
 
 export default function NoticeCategoryItem({
-  data,
+  id,
+  name,
+  petAvatar,
+  favorite = false,
+  title,
+  price,
+  breed,
+  location,
+  birthdate,
+  categoryName,
   onDeletePets,
   onLearnMore,
 }) {
-  const { id, avatar, favorite, title, breed, location, age, condition } = data;
-  /*   const dispatch = useDispatch();
-    const onDeletePets = (id) => dispatch(deletePets(id)); */
-
   return (
     <>
       <ItemNoticesLi>
         <ItemNoticesImgDiv>
-          <ItemNoticesImg src={avatar} alt={title} />
+          <ItemNoticesImg src={petAvatar} alt={name} />
           <ItemPositionNoticesDiv>
             <ItemPositionNoticesDivParagraf>
-              {condition}
+              {categoryName}
             </ItemPositionNoticesDivParagraf>
             <ItemButtonNoticesHeartSpan>
               <HeartSvg />
@@ -58,9 +63,16 @@ export default function NoticeCategoryItem({
           </ItemNoticesListLi>
           <ItemNoticesListLi>
             <ItemNoticesListP>
-              Age:<ItemNoticesSpan>{age}</ItemNoticesSpan>
+              Age:<ItemNoticesSpan>{birthdate}</ItemNoticesSpan>
             </ItemNoticesListP>
           </ItemNoticesListLi>
+          {categoryName === "sell" ? (
+            <ItemNoticesListLi>
+              <ItemNoticesListP>
+                Price:<ItemNoticesSpan>{price}$</ItemNoticesSpan>
+              </ItemNoticesListP>
+            </ItemNoticesListLi>
+          ) : null}
         </ItemNoticesUlList>
         <ItemButtonNotices>
           <ItemButtonNoticesLearnMore

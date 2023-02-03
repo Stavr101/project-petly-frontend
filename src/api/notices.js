@@ -29,20 +29,29 @@ export const deletePets = async (id) => {
   }
 };
 
-export const fetchAdsByCategory = category => {
+export const fetchAdsByCategory = (category) => {
   return axios
-    .get('/notices', { params: { category } })
-    .then(response => response.data.data);
+    .get("/notices", { params: { category } })
+    .then((response) => response.data.data);
 };
 
 export const fetchFavoriteAds = () => {
-  return axios.get('/notices/favorite').then(response => {
+  return axios.get("/notices/favorite").then((response) => {
     return response.data.data;
   });
 };
 
 export const fetchOwnAds = () => {
-  return axios.get('/notices/user').then(response => {
+  return axios.get("/notices/user").then((response) => {
     return response.data.data;
   });
 };
+
+// export const getPetsById = async (id) => {
+//   try {
+//     const { data } = await axios.get(`/notices/${id}`);
+//     return data;
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// };

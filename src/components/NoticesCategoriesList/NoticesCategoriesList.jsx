@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
-import { fetchAdsByCategory } from 'api/notices';
+import { fetchAdsByCategory } from "api/notices";
 import Error from "components/Error/Error";
-import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem';
+import NoticeCategoryItem from "components/NoticeCategoryItem/NoticeCategoryItem";
 
 // const categoriesForBack = {
 //   sell: 'sell',
@@ -11,32 +11,32 @@ import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem
 // };
 
 const NoticesCategoriesList = ({ query }) => {
-    const [pets, setPets] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-    let filteredPets = pets;
-  
-    if (query !== "") {
-      filteredPets = pets.filter(({ title }) => {
-        return title.toLowerCase().includes(query.toLowerCase());
-      });
-    }
-  
-    useEffect(() => {
-      const fetchPets = async () => {
-        setLoading(true);
-  
-        try {
-          const data = await fetchAdsByCategory();
-          setPets((prevPets) => [...prevPets, ...data]);
-        } catch (error) {
-          setError(error);
-        } finally {
-          setLoading(false);
-        }
-      };
-      fetchPets();
-    }, []);
+  const [pets, setPets] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  let filteredPets = pets;
+
+  if (query !== "") {
+    filteredPets = pets.filter(({ title }) => {
+      return title.toLowerCase().includes(query.toLowerCase());
+    });
+  }
+
+  useEffect(() => {
+    const fetchPets = async () => {
+      setLoading(true);
+
+      try {
+        const data = await fetchAdsByCategory();
+        setPets((prevPets) => [...prevPets, ...data]);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPets();
+  }, []);
 
   return (
     <>

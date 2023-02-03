@@ -4,25 +4,28 @@ import crossPhoto from "./ImgModalAddsPet/CrossForPhoto.png";
 
 const slideIn = keyframes`
   from {
-    /* transform: translateY(-50%); */
- transform: translateX(-50%);
+    transform: translateX(-50%);
     opacity: 0;
   }
   to {
-    /* transform: translateY(0); */
+  
     transform: translateX(0);
     opacity: 1;
   }
 `;
 
 export const AddPhoto = styled.p`
-  font-family: "Inter";
-  font-style: normal;
+
+  text-align: center;
   margin-bottom: 20px;
   font-size: 20px;
   line-height: 24px;
   letter-spacing: -0.01em;
   color: #111111;
+        @media (min-width: 768px) {
+    width: 300px;
+
+  }
 `;
 
 export const DownloadPhoto = styled.input`
@@ -42,11 +45,12 @@ width: 182px;
 height: 182px;
 `
 export const DownloadContainer = styled.div`
-width: 182px;
-height: 182px;
+width: 208px;
+height: 208px;
+border-radius: 20px;
 cursor: pointer;
  margin-bottom: 20px;
-  padding: 11px 14px;
+  padding: 0;
   border-radius: 20px;
   border: #fdf7f2;
   outline: none;
@@ -54,18 +58,29 @@ cursor: pointer;
   background: #fdf7f2;
   color: rgba(27, 27, 27, 0.6);
    background-image: url(${crossPhoto});
-    /* background-image: url(${cross}); */
+
   background-size: 48px 48px;
   background-repeat: no-repeat;
   background-position: center center;
+    @media (min-width: 768px) {
+    width: 182px;
+height: 182px;
+  }
   :hover, :active
    {
-    
-
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   }
 `
-
+export const Image = styled.img`
+width: 208px;
+height: 208px;
+border-radius: 20px;
+animation: ${slideIn} 800ms ease-out;
+ @media (min-width: 768px) {
+    width: 182px;
+height: 182px;
+  }
+` 
 
 export const ModalContainer = styled.div`
   padding: 20px;
@@ -99,7 +114,7 @@ export const FormContainer = styled.form`
     max-width: 448px;
   }
 `;
-export const NextFormContainer = styled.div`
+export const NextFormContainer = styled.form`
   width: 240px;
   display: flex;
   flex-direction: column;
@@ -121,7 +136,9 @@ export const CommentsContainer = styled.div`
 `
 
 
-export const InputBox = styled.div``;
+export const InputBox = styled.div`
+
+`;
 
 export const InputLable = styled.label`
   /* font-family: "Manrope";
@@ -197,12 +214,13 @@ export const Comments = styled.textarea`
 `;
 
 export const ButtonContainer = styled.div`
-  display: flex;
+  /* display: flex; */
   margin-top: 40px;
   justify-content: space-between;
   width: 100%;
   margin-top: 20px;
   @media (min-width: 768px) {
+     display: flex;
     width: 380px;
   }
 `;

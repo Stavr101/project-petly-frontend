@@ -76,30 +76,3 @@ export default function UserData() {
     </UserWrapper>
   );
 }
-
-// <UserInfoWrapper>
-//   <UserInfoList>
-//     <UserInfoItem>
-//       <UserInfoTitle>Name:</UserInfoTitle>
-//       <UserDataItem type="name" />
-//     </UserInfoItem>
-//     <UserInfoItem>
-//       <UserInfoTitle>Email:</UserInfoTitle>
-//       <UserDataItem type="email" />
-//     </UserInfoItem>
-//     <UserInfoItem>
-//       <UserInfoTitle>Birthday:</UserInfoTitle>
-//       <UserDataItem type="date" />
-//     </UserInfoItem>
-
-//     <UserInfoItem>
-//       <UserInfoTitle>Phone:</UserInfoTitle>
-//       <UserDataItem type="phone" />
-//     </UserInfoItem>
-
-//     <UserInfoItem>
-//       <UserInfoTitle>City:</UserInfoTitle>
-//       <UserDataItem type="text" />
-//     </UserInfoItem>
-//   </UserInfoList>
-// </UserInfoWrapper>;

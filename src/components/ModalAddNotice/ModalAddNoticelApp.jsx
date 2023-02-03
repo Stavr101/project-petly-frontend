@@ -7,15 +7,15 @@ import {
   ModalContainer,
   ModalTitle,
   ButtonOff,
-} from './ModalAddsPet.styled';
+} from './ModalAddNotice.styled';
 
-import Forma from './ModalAddsPet';
+import Forma from './ModalAddNotice';
 
-export default function ModalAddsPetApp({ onOpenModal, onCloseModal }) {
+export default function ModalAddsPetApp() {
   const [pets, setPets] = useState(
     () => JSON.parse(window.localStorage.getItem('pets')) ?? []
   );
-  // const [modalOpen, setModalOpen] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
 
   //Запис в локал сторидж
   useEffect(() => {
@@ -36,24 +36,24 @@ export default function ModalAddsPetApp({ onOpenModal, onCloseModal }) {
     setPets(pets => [data, ...pets]);
   };
 
-  // const handleOpen = e => {
-  //   setModalOpen(true);
-  // };
-  // const handleClose = e => {
-  //   e.preventDefault();
-  //   setModalOpen(false);
-  // };
+  const handleOpen = e => {
+    setModalOpen(true);
+  };
+  const handleClose = e => {
+    e.preventDefault();
+    setModalOpen(false);
+  };
 
   return (
     <>
-      {/* <EnterButton variant="contained" onClick={handleOpen}>
+      <EnterButton variant="contained" onClick={handleOpen}>
         Add Pet
-      </EnterButton> */}
-      <Modal open={onOpenModal} onClose={onCloseModal}>
+      </EnterButton>
+      <Modal open={modalOpen} onClose={handleClose}>
         <ModalContainer>
-          <ButtonOff variant="contained" onClick={onCloseModal}></ButtonOff>
+          <ButtonOff variant="contained" onClick={handleClose}></ButtonOff>
           <ModalTitle>Add Pet</ModalTitle>
-          <Forma handleClose={onCloseModal} onSubmit={submitHandle} />
+          <Forma handleClose={handleClose} onSubmit={submitHandle} />
         </ModalContainer>
       </Modal>
     </>

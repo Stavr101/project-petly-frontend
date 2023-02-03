@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import deleteUserPet from 'images/UserPage/deleteUserPet.svg';
 
-export const PetWrapper = styled.div`
+export const PetWrapper = styled.li`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,12 +12,12 @@ export const PetWrapper = styled.div`
   border-radius: 20px;
   box-shadow: ${p => p.theme.shadows.modal};
   @media screen and (min-width: 768px) {
+    position: relative;
     flex-direction: row;
     align-items: flex-start;
     margin-bottom: 22px;
   }
   @media screen and (min-width: 1280px) {
-    position: relative;
   }
 `;
 
@@ -34,12 +35,8 @@ export const PetAvatar = styled.img`
     border-radius: 40px;
   }
 `;
-export const DescriptionPet = styled.div`
-  position: relative;
-  @media screen and (min-width: 768px) {
-    position: inherit;
-  }
-`;
+export const PetList = styled.ul``;
+export const PetItem = styled.li``;
 
 export const PetDescriptionInfo = styled.p`
   margin-bottom: 12px;
@@ -60,8 +57,8 @@ export const PetTitleInfo = styled.span`
 
 export const DeleteBtn = styled.button`
   position: absolute;
-  top: 0;
-  right: 20px;
+  top: 274px;
+  margin-left: 200px;
   cursor: pointer;
   background-image: url(${deleteUserPet});
   background-color: inherit;
@@ -74,6 +71,9 @@ export const DeleteBtn = styled.button`
     transform: scale(1.2);
   }
   @media screen and (min-width: 768px) {
+    position: absolute;
+    top: 20px;
+    right: 20px;
     width: 44px;
     height: 44px;
     background-color: ${p => p.theme.colors.background};
@@ -82,6 +82,5 @@ export const DeleteBtn = styled.button`
     background-position: center;
     background-size: 24px;
     object-fit: cover;
-    position: relative;
   }
 `;

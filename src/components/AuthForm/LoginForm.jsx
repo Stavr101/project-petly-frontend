@@ -77,7 +77,7 @@ export default function RegisterForm() {
         )}
       </Formik>
       <Text>
-        Already have an account? <LinkAuth to="/register">Register</LinkAuth>
+        Don't have an account? <LinkAuth to="/register">Register</LinkAuth>
       </Text>
     </FormWrapper>
   );

@@ -19,10 +19,12 @@ export const InputWrapper = styled.form`
 `;
 
 export const Input = styled.input`
+  float: left;
+  width: 68%;
   display: flex;
   align-items: center;
   margin-right: 10px;
-  width: 200px;
+  /* width: 200px; */
   height: 24px;
   font-family: ${p => p.theme.fonts.manrope};
   font-weight: ${p => p.theme.fontWeights.normal};
@@ -42,7 +44,7 @@ export const Input = styled.input`
     }
   }
   @media screen and (min-width: 768px) {
-    width: 50%;
+    width: 60%;
     height: 32px;
     margin-right: 24px;
     font-size: ${p => p.theme.fontSizes.s};

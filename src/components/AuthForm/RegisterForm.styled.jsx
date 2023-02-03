@@ -76,6 +76,7 @@ export const InputField = styled(Field)`
 `;
 
 export const ErrorMsg = styled.p`
+  position: absolute;
   color: red;
   margin-left: 10px;
   font-size: 9px;

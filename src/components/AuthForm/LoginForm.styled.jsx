@@ -56,14 +56,13 @@ export const InputField = styled(Field)`
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
   padding: 10px;
-  & + & {
-    margin-top: 16px;
-  }
 `;
 
 export const ErrorMsg = styled.p`
+  position: absolute;
   color: red;
-  margin: 5px;
+  margin-left: 10px;
+  font-size: 9px;
 `;
 
 export const BtnForm = styled.button`

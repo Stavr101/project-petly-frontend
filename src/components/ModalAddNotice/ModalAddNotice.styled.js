@@ -103,7 +103,7 @@ export const ModalContainer = styled.div`
 
   @media (min-width: 768px) {
     max-width: 608px;
-  margin-top:30px;
+  margin-top:60px;
 
    
  

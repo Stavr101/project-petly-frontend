@@ -103,7 +103,7 @@ export const ModalContainer = styled.div`
 
 export const ModalTitle = styled.h2`
   margin-top: -16px;
-  margin-bottom: 20px;
+  margin-bottom: 60px;
 `;
 
 export const FormContainer = styled.form`

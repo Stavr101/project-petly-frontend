@@ -35,7 +35,7 @@ const opacity = keyframes`
 `;
 
 export const FormWrapper = styled.div`
-  padding: 20px;
+  /* padding: 20px; */
   animation: ${scale} 0.8s linear forwards;
 
   @media screen and (min-width: 768px) {

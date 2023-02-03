@@ -21,28 +21,28 @@ import {
   ItemButtonNoticesDeleteSpan,
 } from "./NoticeCategoryItem.styled";
 
-export default function NoticeCategoryItem({
-  id,
-  name,
-  petAvatar,
-  favorite = false,
-  title,
-  price,
-  breed,
-  location,
-  birthdate,
-  categoryName,
-  onDeletePets,
-  onLearnMore,
-}) {
+export default function NoticeCategoryItem({ data }) {
+  const {
+    id,
+    avatar,
+    favorite,
+    title,
+    breed,
+    location,
+    age,
+    condition,
+    onDeletePets,
+    onLearnMore,
+  } = data;
+
   return (
     <>
       <ItemNoticesLi>
         <ItemNoticesImgDiv>
-          <ItemNoticesImg src={petAvatar} alt={name} />
+          <ItemNoticesImg src={avatar} alt={title} />
           <ItemPositionNoticesDiv>
             <ItemPositionNoticesDivParagraf>
-              {categoryName}
+              {condition}
             </ItemPositionNoticesDivParagraf>
             <ItemButtonNoticesHeartSpan>
               <HeartSvg />
@@ -63,16 +63,9 @@ export default function NoticeCategoryItem({
           </ItemNoticesListLi>
           <ItemNoticesListLi>
             <ItemNoticesListP>
-              Age:<ItemNoticesSpan>{birthdate}</ItemNoticesSpan>
+              Age:<ItemNoticesSpan>{age}</ItemNoticesSpan>
             </ItemNoticesListP>
           </ItemNoticesListLi>
-          {categoryName === "sell" ? (
-            <ItemNoticesListLi>
-              <ItemNoticesListP>
-                Price:<ItemNoticesSpan>{price}$</ItemNoticesSpan>
-              </ItemNoticesListP>
-            </ItemNoticesListLi>
-          ) : null}
         </ItemNoticesUlList>
         <ItemButtonNotices>
           <ItemButtonNoticesLearnMore

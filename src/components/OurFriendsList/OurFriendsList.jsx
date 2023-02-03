@@ -3,6 +3,7 @@ import { FriendsList } from "./OurFriendsList.styled";
 import { useEffect, useState } from "react";
 import { getAllFriends } from "api/friends";
 import Loader from "shared/loader/Loader";
+import Error from "components/Error/Error";
 
 export const OurFriendsList = () => {
   const [friends, setFriends] = useState([]);
@@ -36,7 +37,7 @@ export const OurFriendsList = () => {
           })}
         </FriendsList>
       )}
-      {error && <p>The list of friends is still empty...</p>}
+      {error && <Error />}
       {loading && <Loader />}
     </>
   );

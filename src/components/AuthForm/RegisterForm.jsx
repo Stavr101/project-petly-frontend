@@ -173,7 +173,7 @@ export default function RegisterForm() {
                   <Wrapper>
                     <InputField
                       name="address"
-                      placeholder="address"
+                      placeholder="Address"
                       value={values.address}
                       onChange={handleChange}
                       onBlur={handleBlur}

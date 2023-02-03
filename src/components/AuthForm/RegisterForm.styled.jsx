@@ -60,23 +60,38 @@ export const FormEl = styled(Form)`
   flex-direction: column;
 `;
 
-export const InputField = styled(Field)`
-  border: 1px solid rgba(245, 146, 86, 0.5);
-  border-radius: 40px;
-  padding: 10px;
+export const Wrapper = styled.div`
+  position: relative;
+  width: 100%;
   & + & {
     margin-top: 16px;
   }
 `;
 
+export const InputField = styled(Field)`
+  width: 100%;
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+  padding: 10px;
+`;
+
 export const ErrorMsg = styled.p`
   color: red;
-  margin-bottom: 6px;
   margin-left: 10px;
   font-size: 9px;
 `;
 
 export const BtnForm = styled.button`
+  cursor: pointer;
+  margin-top: 40px;
+  border-radius: 40px;
+  border: none;
+  padding: 10px 28px;
+  color: ${(p) => p.theme.colors.white};
+  background-color: ${(p) => p.theme.colors.accent};
+`;
+
+export const BtnFormRegister = styled.button`
   cursor: pointer;
   margin-top: 28px;
   border-radius: 40px;
@@ -84,6 +99,9 @@ export const BtnForm = styled.button`
   padding: 10px 28px;
   color: ${(p) => p.theme.colors.white};
   background-color: ${(p) => p.theme.colors.accent};
+  @media screen and (min-width: 768px) {
+    margin-top: 40px;
+  }
 `;
 
 export const BtnFormBack = styled.button`
@@ -110,4 +128,13 @@ export const Text = styled.p`
 export const LinkAuth = styled(Link)`
   text-decoration: underline;
   color: #3091eb;
+`;
+
+export const EyePassword = styled.button`
+  position: absolute;
+  top: 25%;
+  right: 5px;
+  background-color: transparent;
+  border: none;
+  color: rgba(27, 27, 27, 0.6);
 `;

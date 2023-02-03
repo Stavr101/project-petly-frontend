@@ -52,6 +52,7 @@ export const FormEl = styled(Form)`
 `;
 
 export const InputField = styled(Field)`
+  width: 100%;
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
   padding: 10px;
@@ -89,4 +90,21 @@ export const Text = styled.p`
 export const LinkAuth = styled(Link)`
   text-decoration: underline;
   color: #3091eb;
+`;
+
+export const Wrapper = styled.div`
+  position: relative;
+  width: 100%;
+  & + & {
+    margin-top: 16px;
+  }
+`;
+
+export const EyePassword = styled.button`
+  position: absolute;
+  top: 25%;
+  right: 5px;
+  background-color: transparent;
+  border: none;
+  color: rgba(27, 27, 27, 0.6);
 `;

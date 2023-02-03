@@ -65,6 +65,15 @@ export default function RegisterForm() {
     setCurrentPage(false);
   }
 
+  // async function authGoogle() {
+  //   try {
+  //     const res = await dispatch(authOperation.authGoogle());
+  //     console.log(res);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+
   return (
     <>
       <FormWrapper>
@@ -198,133 +207,13 @@ export default function RegisterForm() {
             </>
           )}
         </Formik>
+        {/* <button type="button" onClick={authGoogle}>
+          google
+        </button> */}
         <Text>
           Already have an account? <LinkAuth to="/login">Login</LinkAuth>
         </Text>
       </FormWrapper>
     </>
   );
-
-  //   return (
-  //     <>
-  //       {!currentPage && (
-  //         <FormWrapper>
-  //           <FormTitle>Registration</FormTitle>
-  //           <Formik
-  //             initialValues={{
-  //               email: valueInput.email || "",
-  //               password: valueInput.password || "",
-  //               confirmPassword: valueInput.confirmPassword || "",
-  //             }}
-  //             validationSchema={authValidate.RegisterSchemaFirstPage}
-  //             onSubmit={({ email, password, confirmPassword }) => {
-  //               setFormData({ email, password });
-  //               setCurrentPage(true);
-  //               setValueInput({ email, password, confirmPassword });
-  //             }}
-  //           >
-  //             {({ handleChange, handleSubmit, values }) => (
-  //               <FormEl>
-  //                 <InputField
-  //                   name="email"
-  //                   type="email"
-  //                   placeholder="Email"
-  //                   value={values.email}
-  //                   onChange={handleChange}
-  //                 />
-  //                 <ErrorMessage
-  //                   name="email"
-  //                   render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
-  //                 />
-  //                 <InputField
-  //                   name="password"
-  //                   placeholder="Password"
-  //                   value={values.password}
-  //                   onChange={handleChange}
-  //                 />
-  //                 <ErrorMessage
-  //                   name="password"
-  //                   render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
-  //                 />
-  //                 <InputField
-  //                   name="confirmPassword"
-  //                   placeholder="Confirm Password"
-  //                   value={values.confirmPassword}
-  //                   onChange={handleChange}
-  //                 />
-  //                 <ErrorMessage
-  //                   name="confirmPassword"
-  //                   render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
-  //                 />
-  //                 <BtnForm type="submit" onClick={handleSubmit}>
-  //                   Next
-  //                 </BtnForm>
-  //               </FormEl>
-  //             )}
-  //           </Formik>
-  //           <Text>
-  //             Already have an account? <LinkAuth to="/login">Login</LinkAuth>
-  //           </Text>
-  //         </FormWrapper>
-  //       )}
-  //       {currentPage && (
-  //         <FormWrapper>
-  //           <FormTitle>Registration</FormTitle>
-  //           <Formik
-  //             initialValues={{
-  //               name: valueInputSecondPage.name || "",
-  //               address: valueInputSecondPage.address || "",
-  //               phone: valueInputSecondPage.phone || "",
-  //             }}
-  //             validationSchema={authValidate.RegisterSchemaSecondPage}
-  //             onSubmit={onHandleSubmit}
-  //           >
-  //             {({ handleChange, handleSubmit, values }) => (
-  // <FormEl>
-  // <InputField
-  //   name="name"
-  //   placeholder="Name"
-  //   value={values.name}
-  //   onChange={handleChange}
-  // />
-  // <ErrorMessage
-  //   name="name"
-  //   render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
-  // />
-  // <InputField
-  //   name="address"
-  //   placeholder="address"
-  //   value={values.address}
-  //   onChange={handleChange}
-  // />
-  // <ErrorMessage
-  //   name="address"
-  //   render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
-  // />
-  // <InputField
-  //   name="phone"
-  //   placeholder="Phone"
-  //   value={values.phone}
-  //   onChange={handleChange}
-  // />
-  // <ErrorMessage
-  //   name="phone"
-  //   render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
-  // />
-  // <BtnForm type="submit" onClick={handleSubmit}>
-  //   Register
-  // </BtnForm>
-  // <BtnFormBack type="button" onClick={prevPage}>
-  //   Back
-  // </BtnFormBack>
-  // </FormEl>
-  //             )}
-  //           </Formik>
-  //           <Text>
-  //             Already have an account? <LinkAuth to="/login">Login</LinkAuth>
-  //           </Text>
-  //         </FormWrapper>
-  //       )}
-  //     </>
-  //   );
 }

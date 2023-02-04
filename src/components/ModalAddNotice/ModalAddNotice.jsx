@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import styled, { keyframes } from "styled-components";
+import male from "./ImgModalAddNotice/male.png";
+import female from "./ImgModalAddNotice/female.png";
 import {
   InputBox,
   InputLable,
@@ -11,9 +14,15 @@ import {
   AddPhoto,
   Download,
   Image,
-  SexButton,
+  InputRadio,
   DownloadContainer,
   NextFormContainer,
+  LabelMale,
+  LabelFemale,
+  InputContainer,
+  InputMaleButton,
+  InputFemaleButton,
+    SexButtons,
 } from './ModalAddNotice.styled';
 
 import * as Yup from 'yup';
@@ -21,6 +30,7 @@ import * as Yup from 'yup';
 // import { AddsPetValidate } from "helpers/validationSchema/addsPetValidate";
 // Изменила функцию handleClose на closeModalPets для открытия модалки по нажатию кнопки в PetsData
 function Forma({ closeModalPets }) {
+  const [selectedRadio, setSelectedRadio] = useState('');
   const [errors, setErrors] = useState({});
   const [form, setForm] = useState({
     firstSellForm: {
@@ -56,7 +66,8 @@ function Forma({ closeModalPets }) {
       ...form,
       secondSellForm: {
         ...form.secondSellForm,
-         sex: event.target.value
+        sex: event.target.value
+         
       }
     });
   };
@@ -105,6 +116,13 @@ function Forma({ closeModalPets }) {
     });
   };
   
+  //+++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+  const handleClick = button => {
+    setSelectedRadio(button);
+  }; 
+//+++++++++++++++++++++++++++++++++++++++++++++++++++
 // console.log(form.secondForm.sex)
   return (
     <>
@@ -179,24 +197,37 @@ function Forma({ closeModalPets }) {
       )}
       {formType === 'secondSellForm' && (
         <NextFormContainer encType="mutipart/form-data" onSubmit={handleSellSubmit}>
-          <SexButton>
-            <input
+          <SexButtons>
+            <InputContainer>
+              
+             <InputMaleButton isSelected={selectedRadio === 'Male'}
+        onClick={() => handleClick('Male')}>
+            <InputRadio
               type="radio"
               name="secondSellForm.sex"
               value='male'
               checked={form.secondSellForm.sex === "male"}
               onChange={handleSellRadioChange}
-            />
-            <label for="radio1"><img src="male.png" />Male</label>
-            <input
+                />
+            </InputMaleButton>
+              <LabelMale for="radio1">Male</LabelMale>
+            </InputContainer>
+
+            <InputContainer>
+            <InputFemaleButton isSelected={selectedRadio === 'Female'}
+        onClick={() => handleClick('Female')}>
+            <InputRadio
             type="radio"
               name="secondSellForm.sex"
               value='female'
               checked={form.secondSellForm.sex === "female"}
               onChange={handleSellRadioChange}
-            />
-            <label for="radio1"><img src="female.png" />Female</label>
-          </SexButton>
+              />         
+              </InputFemaleButton>
+              <LabelFemale for="radio1">Female</LabelFemale>
+            </InputContainer>
+
+          </SexButtons>
 
           <InputBox>
             <InputLable htmlFor="location">Location<span>*</span>:</InputLable>

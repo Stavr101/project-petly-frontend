@@ -1,4 +1,3 @@
-import { useState } from "react";
 import DeleteSvg from "./NoticesDeleteSvg";
 import HeartSvg from "./NoticesHeartSvg";
 
@@ -24,7 +23,7 @@ import {
 export default function NoticeCategoryItem({ data }) {
   const {
     id,
-    avatar,
+    petAvatarURL,
     favorite,
     title,
     breed,
@@ -35,24 +34,33 @@ export default function NoticeCategoryItem({ data }) {
     onLearnMore,
   } = data;
 
-    const [isLoading, setLoading] = useState(true);
-  
-    const handleLoad = async () => {
-      setLoading(false);
-    };
+  const handleOnError = (e) => {
+    e.target.src =
+      "https://www.kindpng.com/picc/m/22-223863_no-avatar-png-circle-transparent-png.png";
+}
 
   return (
     <>
       <ItemNoticesLi>
         <ItemNoticesImgDiv>
-          {!isLoading ? (
-            <ItemNoticesImg src={avatar} alt={title} onLoad={handleLoad}/>
-          ) : (
+        {petAvatarURL ? (
+          <ItemNoticesImg src={petAvatarURL} alt={title} />
+    
+    ) : ( 
+      <ItemNoticesImg
+      src={"https://i.ibb.co/RQ61YYb/1.jpg"}
+      alt={"No image available"}
+      onError={handleOnError}
+      />
+    )}
+          {/* {isLoading === 0 ? (
             <ItemNoticesImg
-              src={"https://i.ibb.co/RQ61YYb/1.jpg"}
-              alt={"No image available"}
-            />
-          )}
+            src={"https://i.ibb.co/RQ61YYb/1.jpg"}
+            alt={"No image available"}
+          />
+          ) : (
+            <ItemNoticesImg src={petAvatarURL} alt={title} />
+          )} */}
           <ItemPositionNoticesDiv>
             <ItemPositionNoticesDivParagraf>
               {categoryName}

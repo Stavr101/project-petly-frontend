@@ -4,7 +4,7 @@ import crossPhoto from "./ImgModalAddNotice/CrossForPhoto.png";
 
 const slideIn = keyframes`
   from {
-    transform: translateX(-100%);
+    transform: translateX(100%);
     opacity: 0;
   }
   to {

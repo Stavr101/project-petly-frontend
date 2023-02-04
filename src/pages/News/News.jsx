@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback} from "react";
 import debounce from "lodash.debounce";
 import { NewsList } from "components/NewsList/NewsList.jsx";
 import { Container, Typography } from "@mui/material";
@@ -9,12 +9,6 @@ import NewsSearch from "components/NewsSearch/NewsSearch.jsx";
 
 export default function NewsPage() {
   const [query, setQuery] = useState("");
-  
-
-  useEffect(() => {
-    console.log("Im in NEWSPAGE")
-  }, [])
-  
 
   const handleChange = (event) => {
     setQuery(event.target.value);
@@ -33,9 +27,9 @@ export default function NewsPage() {
             desktop: 1280,
           },
           py: {
-            mobile: 5.5,
-            tablet: 11.25,
-            desktop: 7.5,
+            mobile: 0,
+            tablet: 5.62,
+            desktop: 1.87,
           },
           px: {
             mobile: 2.5,

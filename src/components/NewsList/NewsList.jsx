@@ -5,13 +5,12 @@ import Error from "components/Error/Error";
 import Loader from "shared/loader/Loader";
 import { useSearchNews } from "hooks";
 import { Typography, Link, Box } from "@mui/material";
+import { dateCompare } from "utils/dateCompare";
 
 export const NewsList = ({ query }) => {
   const [pageNumber, setPageNumber] = useState(1);
 
   const { loading, error, news, hasMore } = useSearchNews(pageNumber);
-
-  console.log(loading, error, news, hasMore);
 
   const observer = useRef();
 
@@ -32,14 +31,19 @@ export const NewsList = ({ query }) => {
   let filteredNews = news;
 
   if (query !== "") {
-    filteredNews = news?.filter(({ title }) => {
+    const filteredNews = news?.filter(({ title }) => {
       return title.toLowerCase().includes(query.toLowerCase());
     });
+   
   }
+
+   const sorteredNews = filteredNews.sort((firstNews, secondNews) => {
+     return (dateCompare(firstNews.date, secondNews.date));
+   });
 
   return (
     <>
-      {Boolean(filteredNews.length) && !loading && (
+      {Boolean(sorteredNews.length) && !loading && (
         <Grid
           id="top"
           container
@@ -48,8 +52,8 @@ export const NewsList = ({ query }) => {
           component="ul"
           alignItems="stretch"
         >
-          {filteredNews.map((item, index) => {
-            if (filteredNews.length === index + 1) {
+          {sorteredNews.map((item, index) => {
+            if (sorteredNews.length === index + 1) {
               return (
                 <NewsItem
                   key={item._id}
@@ -63,7 +67,7 @@ export const NewsList = ({ query }) => {
           })}
         </Grid>
       )}
-      {!hasMore && Boolean(filteredNews.length) && (
+      {!hasMore && Boolean(sorteredNews.length) && (
         <Box sx={{ textAlign: "center" }}>
           <Typography sx={{ mb: 1 }}>End of content...</Typography>
           <Link href="#top">back to top?</Link>

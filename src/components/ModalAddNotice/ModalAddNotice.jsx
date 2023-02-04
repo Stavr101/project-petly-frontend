@@ -187,7 +187,7 @@ function Forma({ closeModalPets }) {
               checked={form.secondForm.sex === "male"}
               onChange={handleRadioChange}
             />
-            <label>Male</label>
+            <label for="radio1"><img src="male.png" />Male</label>
             <input
             type="radio"
               name="secondForm.sex"
@@ -195,7 +195,7 @@ function Forma({ closeModalPets }) {
               checked={form.secondForm.sex === "female"}
               onChange={handleRadioChange}
             />
-            <label>Female</label>
+            <label for="radio1"><img src="female.png" />Female</label>
           </SexButton>
 
           <InputBox>

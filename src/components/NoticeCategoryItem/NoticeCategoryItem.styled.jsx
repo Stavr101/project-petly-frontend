@@ -57,7 +57,7 @@ export const ItemNoticesSpan = styled.span``;
 
 export const ItemNoticesLi = styled.li`
   max-width: 280px;
-  height: 606px;
+  height: 580px;
   margin-top: 32px;
   margin-left: auto;
   margin-right: auto;
@@ -94,7 +94,7 @@ export const ItemButtonNotices = styled.div`
 
 export const ItemButtonNoticesLearnMore = styled.button`
     position: absolute;
-    bottom: 20px;
+    bottom: 40px;
     left: 20px;
     right: 20px;
   padding: 8px 28px;
@@ -108,9 +108,14 @@ export const ItemButtonNoticesLearnMore = styled.button`
   border-radius: 40px;
 
   @media only screen and (min-width: 768px) {
+    bottom: 80px;
     padding: 10px 28px;
     font-size: 20px;
     line-height: 1.2;
+  }
+
+  @media only screen and (min-width: 1279px) {
+    bottom: 40px;
   }
 
   &.active {

@@ -49,3 +49,33 @@ export const deletePet = createAsyncThunk(
     }
   }
 );
+
+// PATCH @ /userAvatar
+// export const changeUserAvatar = createAsyncThunk(
+//   'user/avatar',
+//   async (user, thunkAPI) => {
+//     console.log('user avatar', user);
+//     try {
+//       const response = await axios.patch('/user/avatar', user);
+//       console.log('response :', response.data);
+//       return response.data;
+//     } catch (e) {
+//       return thunkAPI.rejectWithValue(e.message);
+//     }
+//   }
+// );
+
+// PATCH @ /userData
+// export const updateUserData = createAsyncThunk(
+//   'user/changeUserData',
+//   async (user, thunkAPI) => {
+//     console.log('user data', user);
+//     try {
+//       const response = await axios.patch('/user', user);
+//       console.log('response :', response.data);
+//       return response.data;
+//     } catch (e) {
+//       return thunkAPI.rejectWithValue(e.message);
+//     }
+//   }
+// );

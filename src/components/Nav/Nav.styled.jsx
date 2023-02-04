@@ -115,3 +115,7 @@ padding: 0;
     }
   }
 `;
+
+export const LanguageSwitch = styled.div``;
+
+export const LanguageBtn = styled.button``;

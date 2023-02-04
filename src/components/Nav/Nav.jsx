@@ -1,10 +1,22 @@
 import React, { useState } from 'react';
-import { PrimaryNav, SecondaryNav, NavLink, NavMenu, AuthMenu, MobileContainer, TabletContainer, StyledBurger } from "./Nav.styled";
+import {
+  PrimaryNav,
+  SecondaryNav,
+  NavLink,
+  NavMenu,
+  AuthMenu,
+  MobileContainer,
+  TabletContainer,
+  StyledBurger,
+  LanguageSwitch,
+  LanguageBtn
+} from "./Nav.styled";
 import AuthNav from 'components/AuthNav/AuthNav';
 import UserNav from 'components/UserNav/UserNav';
 import { useAuth } from 'hooks';
 import { useMediaQuery } from 'react-responsive';
 import Modal from "components/ModalMenu/Modal/Modal";
+// import { useTranslation } from 'react-i18next';
 
 const Nav = () => {
 
@@ -15,6 +27,11 @@ const Nav = () => {
   const { isLoggedIn } = useAuth();
 
   const [showModal, setShowModal] = useState(false);
+
+  // const { t, i18n } = useTranslation();
+  // const changeLanguage = (language) => {
+  //   i18n.changeLanguage(language);
+  // }
 
   return (
     <>
@@ -27,7 +44,11 @@ const Nav = () => {
           <NavLink to="/notices">Find pet</NavLink>
           <NavLink to="/friends">Our friends</NavLink>
         </NavMenu>
-      </PrimaryNav>
+          </PrimaryNav>
+          {/* <LanguageSwitch>
+            <LanguageBtn onClick={() => changeLanguage("en")}>EN</LanguageBtn>
+            <LanguageBtn onClick={() => changeLanguage("uk")}>UA</LanguageBtn>
+          </LanguageSwitch> */}
       <SecondaryNav>
         {isLoggedIn ? <UserNav /> : <AuthMenu> <AuthNav /> </AuthMenu>}
       </SecondaryNav>

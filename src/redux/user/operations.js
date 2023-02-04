@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+
 axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
 
 // GET @ /user

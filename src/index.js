@@ -22,6 +22,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     </PersistGate>
   </Provider>
    </React.StrictMode>
+
 );
 
 // import React from 'react';

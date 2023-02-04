@@ -8,19 +8,22 @@ import {
 } from "components/AddNoticeButton/AddNoticeButton.styled";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { useAuth } from 'hooks';
-import ModalAddNotice from "components/ModalAddNotice/ModalAddNotice"
+import ModalAddsPetApp from 'components/ModalAddsPet/ModalAddsPetsApp';
 
 export default function AddNoticeButton() {
-  const [showModal, setShowModal] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const { isLoggedIn } = useAuth();
 
   const handleClick = () => {
+    
     if (!isLoggedIn) {
     Notify.failure("Please log in", {
       position: 'center-top',
       cssAnimationStyle: 'from-right',
     })}
-    setShowModal(true);
+    else {
+    setIsOpen(true);
+  }
   }
 
   return (
@@ -31,12 +34,13 @@ export default function AddNoticeButton() {
           <Icon />
           <Cont>Add pet</Cont>
         </Button>
-      </Wrap>
-      {showModal && (
-        <ModalAddNotice
-          setShowModal={setShowModal}
+        {isOpen ? (
+        <ModalAddsPetApp
+          onOpenModal={isOpen}
+          onCloseModal={() => setIsOpen(false)}
         />
-      )}
+      ) : null}
+      </Wrap>
     </>
   );
 }

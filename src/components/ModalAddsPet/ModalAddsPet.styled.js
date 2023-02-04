@@ -4,20 +4,19 @@ import crossPhoto from "./ImgModalAddsPet/CrossForPhoto.png";
 
 const slideIn = keyframes`
   from {
-    /* transform: translateY(-50%); */
- transform: translateX(-50%);
+    transform: translateX(100%);
     opacity: 0;
   }
   to {
-    /* transform: translateY(0); */
+  
     transform: translateX(0);
     opacity: 1;
   }
 `;
 
+
 export const AddPhoto = styled.p`
-  /* font-family: "Inter"; */
-  /* font-style: normal; */
+
   text-align: center;
   margin-bottom: 20px;
   font-size: 20px;
@@ -77,6 +76,7 @@ export const Image = styled.img`
 width: 208px;
 height: 208px;
 border-radius: 20px;
+animation: ${slideIn} 800ms ease-out;
  @media (min-width: 768px) {
     width: 182px;
 height: 182px;
@@ -98,12 +98,13 @@ export const ModalContainer = styled.div`
 
   @media (min-width: 768px) {
     max-width: 608px;
+     margin-top:30px;
   }
 `;
 
 export const ModalTitle = styled.h2`
   margin-top: -16px;
-  margin-bottom: 20px;
+  margin-bottom: 60px;
 `;
 
 export const FormContainer = styled.form`

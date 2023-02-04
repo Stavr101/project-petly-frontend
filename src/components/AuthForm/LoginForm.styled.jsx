@@ -27,7 +27,7 @@ const scale = keyframes`
 `;
 
 export const FormWrapper = styled.div`
-  padding: 0 20px;
+  /* padding: 0 20px; */
   animation: ${scale} 0.8s linear forwards;
 
   @media screen and (min-width: 768px) {
@@ -42,7 +42,7 @@ export const FormWrapper = styled.div`
   }
   @media screen and (min-width: 1280px) {
     padding: 60px 80px;
-    margin-top: 57px;
+    /* margin-top: 35px; */
   }
 `;
 
@@ -52,17 +52,17 @@ export const FormEl = styled(Form)`
 `;
 
 export const InputField = styled(Field)`
+  width: 100%;
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
   padding: 10px;
-  & + & {
-    margin-top: 16px;
-  }
 `;
 
 export const ErrorMsg = styled.p`
+  position: absolute;
   color: red;
-  margin: 5px;
+  margin-left: 10px;
+  font-size: 9px;
 `;
 
 export const BtnForm = styled.button`
@@ -89,4 +89,21 @@ export const Text = styled.p`
 export const LinkAuth = styled(Link)`
   text-decoration: underline;
   color: #3091eb;
+`;
+
+export const Wrapper = styled.div`
+  position: relative;
+  width: 100%;
+  & + & {
+    margin-top: 16px;
+  }
+`;
+
+export const EyePassword = styled.button`
+  position: absolute;
+  top: 25%;
+  right: 5px;
+  background-color: transparent;
+  border: none;
+  color: rgba(27, 27, 27, 0.6);
 `;

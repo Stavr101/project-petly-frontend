@@ -1,68 +1,113 @@
-/* import { useDispatch } from 'react-redux';
-import { deletePets } from 'api/notices'; */
-import DeleteSvg from "./NoticesDeleteSvg"
-import HeartSvg from "./NoticesHeartSvg"
+import DeleteSvg from "./NoticesDeleteSvg";
+import HeartSvg from "./NoticesHeartSvg";
 
-import { 
-    ItemNoticesImgDiv,
-    ItemNoticesTitle,
-    ItemPositionNoticesDiv,
-    ItemPositionNoticesDivParagraf,
-    ItemNoticesUlList,
-    ItemNoticesSpan,
-    ItemNoticesLi,
-    ItemButtonNotices,
-    ItemButtonNoticesLearnMore,
-    ItemButtonNoticesDelete,
-    ItemNoticesListLi,
-    ItemNoticesListP,
-    ItemNoticesImg,
-    ItemButtonNoticesHeartSpan,
-    ItemButtonNoticesDeleteSpan} from "./NoticeCategoryItem.styled"
+import {
+  ItemNoticesImgDiv,
+  ItemNoticesTitle,
+  ItemPositionNoticesDiv,
+  ItemPositionNoticesDivParagraf,
+  ItemNoticesUlList,
+  ItemNoticesSpan,
+  ItemNoticesLi,
+  ItemButtonNotices,
+  ItemNoticesWrap,
+  ItemButtonNoticesLearnMore,
+  ItemButtonNoticesDelete,
+  ItemNoticesListLi,
+  ItemNoticesListP,
+  ItemNoticesImg,
+  ItemButtonNoticesHeartSpan,
+  ItemButtonNoticesDeleteSpan,
+} from "./NoticeCategoryItem.styled";
 
-export default function NoticeCategoryItem({id,avatar,favorite,title,breed,location,age,condition,onDeletePets,onLearnMore}) {
-  /*   const dispatch = useDispatch();
-    const onDeletePets = (id) => dispatch(deletePets(id)); */
+export default function NoticeCategoryItem({ data }) {
+  const {
+    id,
+    petAvatarURL,
+    favorite,
+    title,
+    breed,
+    location,
+    age,
+    categoryName,
+    onDeletePets,
+    onLearnMore,
+  } = data;
 
-    return (
+  const handleOnError = (e) => {
+    e.target.src =
+      "https://www.kindpng.com/picc/m/22-223863_no-avatar-png-circle-transparent-png.png";
+}
+
+  return (
     <>
-    <ItemNoticesLi>
+      <ItemNoticesLi>
         <ItemNoticesImgDiv>
+        {petAvatarURL ? (
+          <ItemNoticesImg src={petAvatarURL} alt={title} />
+    
+    ) : ( 
+      <ItemNoticesImg
+      src={"https://i.ibb.co/RQ61YYb/1.jpg"}
+      alt={"No image available"}
+      onError={handleOnError}
+      />
+    )}
+          {/* {isLoading === 0 ? (
             <ItemNoticesImg
-                src={avatar}
-                alt={title}
-            />
-            <ItemPositionNoticesDiv>
-                <ItemPositionNoticesDivParagraf>{condition}</ItemPositionNoticesDivParagraf>
-                <ItemButtonNoticesHeartSpan><HeartSvg/></ItemButtonNoticesHeartSpan>
-            </ItemPositionNoticesDiv>
+            src={"https://i.ibb.co/RQ61YYb/1.jpg"}
+            alt={"No image available"}
+          />
+          ) : (
+            <ItemNoticesImg src={petAvatarURL} alt={title} />
+          )} */}
+          <ItemPositionNoticesDiv>
+            <ItemPositionNoticesDivParagraf>
+              {categoryName}
+            </ItemPositionNoticesDivParagraf>
+            <ItemButtonNoticesHeartSpan>
+              <HeartSvg />
+            </ItemButtonNoticesHeartSpan>
+          </ItemPositionNoticesDiv>
         </ItemNoticesImgDiv>
+        <ItemNoticesWrap>
         <ItemNoticesTitle>{title}</ItemNoticesTitle>
         <ItemNoticesUlList>
-            <ItemNoticesListLi>
-                <ItemNoticesListP>Breed:<ItemNoticesSpan>{breed}</ItemNoticesSpan></ItemNoticesListP>
-            </ItemNoticesListLi>
-            <ItemNoticesListLi>
-                <ItemNoticesListP>Place:<ItemNoticesSpan>{location}</ItemNoticesSpan></ItemNoticesListP>
-            </ItemNoticesListLi>
-            <ItemNoticesListLi>
-                <ItemNoticesListP>Age:<ItemNoticesSpan>{age}</ItemNoticesSpan></ItemNoticesListP>
-            </ItemNoticesListLi>
+          <ItemNoticesListLi>
+            <ItemNoticesListP>
+              Breed:<ItemNoticesSpan>{breed}</ItemNoticesSpan>
+            </ItemNoticesListP>
+          </ItemNoticesListLi>
+          <ItemNoticesListLi>
+            <ItemNoticesListP>
+              Place:<ItemNoticesSpan>{location}</ItemNoticesSpan>
+            </ItemNoticesListP>
+          </ItemNoticesListLi>
+          <ItemNoticesListLi>
+            <ItemNoticesListP>
+              Age:<ItemNoticesSpan>{age}</ItemNoticesSpan>
+            </ItemNoticesListP>
+          </ItemNoticesListLi>
         </ItemNoticesUlList>
         <ItemButtonNotices>
-            <ItemButtonNoticesLearnMore
-                type="submit"
-                onClick={() => onLearnMore(id)}>
-                Learn more
-            </ItemButtonNoticesLearnMore>
-            {favorite ? <ItemButtonNoticesDelete
-                type="submit"
-                onClick={() => onDeletePets(id)}>
-                <ItemButtonNoticesDeleteSpan>Delete</ItemButtonNoticesDeleteSpan>
-                <DeleteSvg/>
-                </ItemButtonNoticesDelete> : null}
+          <ItemButtonNoticesLearnMore
+            type="submit"
+            onClick={() => onLearnMore(id)}
+          >
+            Learn more
+          </ItemButtonNoticesLearnMore>
+          {favorite ? (
+            <ItemButtonNoticesDelete
+              type="submit"
+              onClick={() => onDeletePets(id)}
+            >
+              <ItemButtonNoticesDeleteSpan>Delete</ItemButtonNoticesDeleteSpan>
+              <DeleteSvg />
+            </ItemButtonNoticesDelete>
+          ) : null}
         </ItemButtonNotices>
-    </ItemNoticesLi>
+        </ItemNoticesWrap>
+      </ItemNoticesLi>
     </>
-  )
+  );
 }

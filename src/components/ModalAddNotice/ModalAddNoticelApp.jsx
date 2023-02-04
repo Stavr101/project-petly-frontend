@@ -1,21 +1,36 @@
 import React, { useState, useEffect } from 'react';
-import { Modal } from '@mui/material';
+import Modal from '@mui/material/Modal';
+// import { makeStyles } from '@material-ui/core/styles';
 import { nanoid } from 'nanoid';
+
+// npm install
+// @mui/material
+// @emotion/react
+// @emotion/styled
 
 import {
   EnterButton,
   ModalContainer,
   ModalTitle,
   ButtonOff,
-} from './ModalAddsPet.styled';
+} from './ModalAddNotice.styled';
 
-import Forma from './ModalAddsPet';
+import Forma from './ModalAddNotice';
 
-export default function ModalAddsPetApp({ onOpenModal, onCloseModal }) {
+// const useStyles = makeStyles({
+//   root: {
+//     display: 'flex',
+//     height: '100vh',
+//     alignItems: 'center'
+//   }
+// });
+
+
+export default function ModalAddsPetApp() {
   const [pets, setPets] = useState(
     () => JSON.parse(window.localStorage.getItem('pets')) ?? []
   );
-  // const [modalOpen, setModalOpen] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
 
   //Запис в локал сторидж
   useEffect(() => {
@@ -36,24 +51,24 @@ export default function ModalAddsPetApp({ onOpenModal, onCloseModal }) {
     setPets(pets => [data, ...pets]);
   };
 
-  // const handleOpen = e => {
-  //   setModalOpen(true);
-  // };
-  // const handleClose = e => {
-  //   e.preventDefault();
-  //   setModalOpen(false);
-  // };
+  const handleOpen = e => {
+    setModalOpen(true);
+  };
+  const handleClose = e => {
+    e.preventDefault();
+    setModalOpen(false);
+  };
 
   return (
     <>
-      {/* <EnterButton variant="contained" onClick={handleOpen}>
+      <EnterButton variant="contained" onClick={handleOpen}>
         Add Pet
-      </EnterButton> */}
-      <Modal open={onOpenModal} onClose={onCloseModal}>
-        <ModalContainer>
-          <ButtonOff variant="contained" onClick={onCloseModal}></ButtonOff>
+      </EnterButton>
+          <Modal open={modalOpen} onClose={handleClose} >
+        <ModalContainer >
+          <ButtonOff variant="contained" onClick={handleClose}></ButtonOff>
           <ModalTitle>Add Pet</ModalTitle>
-          <Forma handleClose={onCloseModal} onSubmit={submitHandle} />
+          <Forma handleClose={handleClose} onSubmit={submitHandle} />
         </ModalContainer>
       </Modal>
     </>

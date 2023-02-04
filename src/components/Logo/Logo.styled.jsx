@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { NavLink as Link } from 'react-router-dom';
 
 export const LogoBlack = styled.span`
 display: inline-block;
@@ -20,5 +21,5 @@ color: ${p => p.theme.colors.accent};
     font-size: 32px;
 }
 `
-export const LogoLink = styled.a`
+export const LogoLink = styled(Link)`
 `

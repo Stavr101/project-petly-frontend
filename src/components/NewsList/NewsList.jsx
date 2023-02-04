@@ -31,7 +31,7 @@ export const NewsList = ({ query }) => {
   let filteredNews = news;
 
   if (query !== "") {
-    const filteredNews = news?.filter(({ title }) => {
+     filteredNews = news?.filter(({ title }) => {
       return title.toLowerCase().includes(query.toLowerCase());
     });
    

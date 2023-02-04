@@ -1,5 +1,4 @@
-/* import { useDispatch } from 'react-redux';
-import { deletePets } from 'api/notices'; */
+import { useState } from "react";
 import DeleteSvg from "./NoticesDeleteSvg";
 import HeartSvg from "./NoticesHeartSvg";
 
@@ -12,6 +11,7 @@ import {
   ItemNoticesSpan,
   ItemNoticesLi,
   ItemButtonNotices,
+  ItemNoticesWrap,
   ItemButtonNoticesLearnMore,
   ItemButtonNoticesDelete,
   ItemNoticesListLi,
@@ -30,28 +30,42 @@ export default function NoticeCategoryItem({ data }) {
     breed,
     location,
     age,
-    condition,
+    categoryName,
     onDeletePets,
     onLearnMore,
   } = data;
 
+    const [isLoading, setLoading] = useState(true);
+  
+    const handleLoad = async () => {
+      setLoading(false);
+    };
+
   return (
     <>
-    <ItemNoticesLi>
+      <ItemNoticesLi>
         <ItemNoticesImgDiv>
-        <ItemNoticesImg src={avatar} alt={title} />
+          {!isLoading ? (
+            <ItemNoticesImg src={avatar} alt={title} onLoad={handleLoad}/>
+          ) : (
+            <ItemNoticesImg
+              src={"https://i.ibb.co/RQ61YYb/1.jpg"}
+              alt={"No image available"}
+            />
+          )}
           <ItemPositionNoticesDiv>
             <ItemPositionNoticesDivParagraf>
-              {condition}
+              {categoryName}
             </ItemPositionNoticesDivParagraf>
             <ItemButtonNoticesHeartSpan>
               <HeartSvg />
             </ItemButtonNoticesHeartSpan>
           </ItemPositionNoticesDiv>
         </ItemNoticesImgDiv>
+        <ItemNoticesWrap>
         <ItemNoticesTitle>{title}</ItemNoticesTitle>
         <ItemNoticesUlList>
-        <ItemNoticesListLi>
+          <ItemNoticesListLi>
             <ItemNoticesListP>
               Breed:<ItemNoticesSpan>{breed}</ItemNoticesSpan>
             </ItemNoticesListP>
@@ -68,7 +82,7 @@ export default function NoticeCategoryItem({ data }) {
           </ItemNoticesListLi>
         </ItemNoticesUlList>
         <ItemButtonNotices>
-        <ItemButtonNoticesLearnMore
+          <ItemButtonNoticesLearnMore
             type="submit"
             onClick={() => onLearnMore(id)}
           >
@@ -84,7 +98,8 @@ export default function NoticeCategoryItem({ data }) {
             </ItemButtonNoticesDelete>
           ) : null}
         </ItemButtonNotices>
-        </ItemNoticesLi>
+        </ItemNoticesWrap>
+      </ItemNoticesLi>
     </>
-     );
-    }
+  );
+}

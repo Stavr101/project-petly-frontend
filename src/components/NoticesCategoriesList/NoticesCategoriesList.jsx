@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import Grid from "@mui/material/Grid";
 import { fetchAdsByCategory } from 'api/notices';
 import Error from "components/Error/Error";
 import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem';
+import { List } from 'components/NoticesCategoriesList/NoticesCategoriesList.slyled'
 
 // const categoriesForBack = {
 //   sell: 'sell',
@@ -12,7 +12,6 @@ import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem
 
 const NoticesCategoriesList = ({ query }) => {
     const [pets, setPets] = useState([]);
-    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     let filteredPets = pets;
   
@@ -24,15 +23,12 @@ const NoticesCategoriesList = ({ query }) => {
   
     useEffect(() => {
       const fetchPets = async () => {
-        setLoading(true);
   
         try {
           const data = await fetchAdsByCategory();
           setPets((prevPets) => [...prevPets, ...data]);
         } catch (error) {
           setError(error);
-        } finally {
-          setLoading(false);
         }
       };
       fetchPets();
@@ -41,20 +37,13 @@ const NoticesCategoriesList = ({ query }) => {
   return (
     <>
       {filteredPets && (
-        <Grid
-          container
-          columnSpacing={4}
-          rowSpacing={{ mobile: 6, tablet: 7.5, desktop: 7.5 }}
-          component="ul"
-          alignItems="stretch"
-        >
+        <List>
           {filteredPets.map((item) => {
             return <NoticeCategoryItem key={item._id} data={item} />;
           })}
-        </Grid>
+        </List>
       )}
       {error && <Error />}
-      {loading && <p>is loading...</p>}
     </>
   );
 };

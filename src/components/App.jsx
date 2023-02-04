@@ -1,14 +1,14 @@
-import { useEffect, lazy, Suspense } from 'react';
-import { useDispatch } from 'react-redux';
-import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
-import { SharedLayout } from './SharedLayout/SharedLayout';
-import { GlobalStyles } from 'services/GlobalStyles';
-import { PrivateRoute } from './PrivateRoute';
-import { RestrictedRoute } from './RestrictedRoute';
-import { refreshUser } from 'redux/auth/operations';
-import { useAuth } from 'hooks';
-import NotFound from './NotFound/NotFound';
-import Loader from 'shared/loader/Loader';
+import { useEffect, lazy, Suspense } from "react";
+import { useDispatch } from "react-redux";
+import { Navigate, Outlet, Route, Routes } from "react-router-dom";
+import { SharedLayout } from "./SharedLayout/SharedLayout";
+import { GlobalStyles } from "services/GlobalStyles";
+import { PrivateRoute } from "./PrivateRoute";
+import { RestrictedRoute } from "./RestrictedRoute";
+import { refreshUser } from "redux/auth/operations";
+import { useAuth } from "hooks";
+import NotFound from "./NotFound/NotFound";
+import Loader from "shared/loader/Loader";
 
 const HomePage = lazy(() => import("../pages/Home/Home"));
 const Register = lazy(() => import("../pages/Register"));
@@ -31,7 +31,7 @@ export const App = () => {
   return isRefreshing ? (
     <Loader />
   ) : (
-      <>
+    <>
       <GlobalStyles />
 
       <Routes>
@@ -39,28 +39,28 @@ export const App = () => {
           <Route index element={<HomePage />} />
           <Route path="news" element={<NewsPage />} />
           <Route
-          path="notices"
-          element={
-            <Suspense fallback={<Loader />}>
-              <Outlet />
-            </Suspense>
-          }
-        >
-          <Route
-            path="favorite"
+            path="notices"
             element={
-              <PrivateRoute redirectTo="/login" component={<NoticesPage />} />
+              <Suspense fallback={<Loader />}>
+                <Outlet />
+              </Suspense>
             }
-          />
-          <Route
-            path="own"
-            element={
-              <PrivateRoute redirectTo="/login" component={<NoticesPage />} />
-            }
-          />
-          <Route path=":categoryName" element={<NoticesPage />} />
-          <Route path="" element={<Navigate to="sell" />} />
-        </Route>
+          >
+            <Route
+              path="favorite"
+              element={
+                <PrivateRoute redirectTo="/login" component={<NoticesPage />} />
+              }
+            />
+            <Route
+              path="own"
+              element={
+                <PrivateRoute redirectTo="/login" component={<NoticesPage />} />
+              }
+            />
+            <Route path=":categoryName" element={<NoticesPage />} />
+            <Route path="" element={<Navigate to="sell" />} />
+          </Route>
           <Route path="friends" element={<OurFriendsPage />} />
 
           <Route

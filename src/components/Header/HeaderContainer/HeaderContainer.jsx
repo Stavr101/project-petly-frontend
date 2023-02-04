@@ -1,12 +1,15 @@
 import { HeaderWrapper } from "./HeaderContainer.styled";
+import Header from "../Header/Header";
+import MainPageContainer from "components/Container/MainPageContainer/MainPageContainer";
 
-const HeaderContainer = ({children}) => {
-    
-    return (
-        <HeaderWrapper>
-            {children}
-        </HeaderWrapper>
-    );
-}
+const HeaderContainer = () => {
+  return (
+    <MainPageContainer>
+      <HeaderWrapper>
+        <Header />
+      </HeaderWrapper>
+    </MainPageContainer>
+  );
+};
 
 export default HeaderContainer;

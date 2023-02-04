@@ -7,9 +7,9 @@ const Home = () => {
   return (
     <main>
       <SectionHero>
-        <MainPageContainer>
+        {/* <MainPageContainer> */}
           <MainHeader>Take good care of your small pets</MainHeader>
-        </MainPageContainer>
+        {/* </MainPageContainer> */}
         <MainImageBlock></MainImageBlock>
       </SectionHero>
     </main>

@@ -14,6 +14,7 @@ const slideIn = keyframes`
   }
 `;
 
+
 export const AddPhoto = styled.p`
 
   text-align: center;
@@ -97,12 +98,13 @@ export const ModalContainer = styled.div`
 
   @media (min-width: 768px) {
     max-width: 608px;
+     margin-top:30px;
   }
 `;
 
 export const ModalTitle = styled.h2`
   margin-top: -16px;
-  margin-bottom: 20px;
+  margin-bottom: 60px;
 `;
 
 export const FormContainer = styled.form`

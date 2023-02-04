@@ -8,7 +8,7 @@ import {
 } from "components/AddNoticeButton/AddNoticeButton.styled";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { useAuth } from 'hooks';
-import ModalAddsPetApp from 'components/ModalAddsPet/ModalAddsPetsApp';
+import ModalAddNoticelApp from 'components/ModalAddNotice/ModalAddNoticelApp';
 
 export default function AddNoticeButton() {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,7 +35,7 @@ export default function AddNoticeButton() {
           <Cont>Add pet</Cont>
         </Button>
         {isOpen ? (
-        <ModalAddsPetApp
+        <ModalAddNoticelApp
           onOpenModal={isOpen}
           onCloseModal={() => setIsOpen(false)}
         />

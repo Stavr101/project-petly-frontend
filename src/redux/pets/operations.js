@@ -1,23 +1,21 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+import dayjs from "dayjs";
 
 axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
 
 // POST @ /user   Add Pet
 
 export const addPet = createAsyncThunk(
-  'user/addPet',
-  async ({ name, date, breed, avatarUrl, comment, _id, owner }, thunkAPI) => {
+  "user/addPet",
+  async (formData, thunkAPI) => {
     try {
-      const response = await axios.post('/user', {
-        name,
-        date,
-        breed,
-        avatarUrl,
-        comment,
-        _id,
-        owner,
-      });
+      const payload = {
+        ...formData,
+        date: dayjs(formData.date).format("DD-MM-YYYY")
+      };
+      console.log(payload);
+      const response = await axios.post("/user", payload);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -27,9 +25,9 @@ export const addPet = createAsyncThunk(
 
 // GET @ /user/pets    Get pets info
 
-export const getPetInfo = createAsyncThunk('pets/get', async (_, thunkAPI) => {
+export const getPetInfo = createAsyncThunk("pets/get", async (_, thunkAPI) => {
   try {
-    const res = await axios.get('/user/pets');
+    const res = await axios.get("/user/pets");
 
     return res.data;
   } catch (error) {
@@ -39,7 +37,7 @@ export const getPetInfo = createAsyncThunk('pets/get', async (_, thunkAPI) => {
 
 // DELETE @ /user/:id
 export const deletePet = createAsyncThunk(
-  'user/deletePet',
+  "user/deletePet",
   async (_id, thunkAPI) => {
     try {
       const response = await axios.delete(`/user/${_id}`);

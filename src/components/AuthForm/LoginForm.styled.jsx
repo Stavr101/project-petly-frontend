@@ -27,7 +27,7 @@ const scale = keyframes`
 `;
 
 export const FormWrapper = styled.div`
-  padding: 0 20px;
+  /* padding: 0 20px; */
   animation: ${scale} 0.8s linear forwards;
 
   @media screen and (min-width: 768px) {
@@ -42,7 +42,7 @@ export const FormWrapper = styled.div`
   }
   @media screen and (min-width: 1280px) {
     padding: 60px 80px;
-    margin-top: 57px;
+    /* margin-top: 35px; */
   }
 `;
 
@@ -56,14 +56,13 @@ export const InputField = styled(Field)`
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
   padding: 10px;
-  & + & {
-    margin-top: 16px;
-  }
 `;
 
 export const ErrorMsg = styled.p`
+  position: absolute;
   color: red;
-  margin: 5px;
+  margin-left: 10px;
+  font-size: 9px;
 `;
 
 export const BtnForm = styled.button`

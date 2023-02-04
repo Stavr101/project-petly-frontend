@@ -4,7 +4,19 @@ import crossPhoto from "./ImgModalAddNotice/CrossForPhoto.png";
 
 const slideIn = keyframes`
   from {
-    transform: translateX(-50%);
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+  
+    transform: translateY(0);
+    opacity: 1;
+  }
+`;
+
+const slideInPhoto = keyframes`
+  from {
+    /* transform: translateX(-50%); */
     opacity: 0;
   }
   to {
@@ -12,6 +24,12 @@ const slideIn = keyframes`
     transform: translateX(0);
     opacity: 1;
   }
+`;
+
+
+export const SexButton = styled.div`
+
+
 `;
 
 export const AddPhoto = styled.p`
@@ -45,6 +63,7 @@ width: 182px;
 height: 182px;
 `
 export const DownloadContainer = styled.div`
+
 width: 208px;
 height: 208px;
 border-radius: 20px;
@@ -54,7 +73,6 @@ cursor: pointer;
   border-radius: 20px;
   border: #fdf7f2;
   outline: none;
-  
   background: #fdf7f2;
   color: rgba(27, 27, 27, 0.6);
 
@@ -75,7 +93,7 @@ export const Image = styled.img`
 width: 208px;
 height: 208px;
 border-radius: 20px;
-animation: ${slideIn} 600ms ease-out;
+animation: ${slideInPhoto} 800ms ease-out;
  @media (min-width: 768px) {
     width: 182px;
 height: 182px;
@@ -83,6 +101,8 @@ height: 182px;
 `
 
 export const ModalContainer = styled.div`
+ 
+
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -91,12 +111,12 @@ export const ModalContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
   max-width: 280px;
-  /* height: 530px; */
   border-radius: 16px;
   animation: ${slideIn} 600ms ease-out;
 
   @media (min-width: 768px) {
     max-width: 608px;
+  margin-top:60px;
   }
 `;
 

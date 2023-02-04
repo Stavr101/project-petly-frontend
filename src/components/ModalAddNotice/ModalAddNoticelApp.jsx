@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Modal } from '@mui/material';
+import Modal from '@mui/material/Modal';
+// import { makeStyles } from '@material-ui/core/styles';
 import { nanoid } from 'nanoid';
+
+// npm install
+// @mui/material
+// @emotion/react
+// @emotion/styled
 
 import {
   EnterButton,
@@ -10,6 +16,15 @@ import {
 } from './ModalAddNotice.styled';
 
 import Forma from './ModalAddNotice';
+
+// const useStyles = makeStyles({
+//   root: {
+//     display: 'flex',
+//     height: '100vh',
+//     alignItems: 'center'
+//   }
+// });
+
 
 export default function ModalAddsPetApp() {
   const [pets, setPets] = useState(
@@ -49,8 +64,8 @@ export default function ModalAddsPetApp() {
       <EnterButton variant="contained" onClick={handleOpen}>
         Add Pet
       </EnterButton>
-      <Modal open={modalOpen} onClose={handleClose}>
-        <ModalContainer>
+          <Modal open={modalOpen} onClose={handleClose} >
+        <ModalContainer >
           <ButtonOff variant="contained" onClick={handleClose}></ButtonOff>
           <ModalTitle>Add Pet</ModalTitle>
           <Forma handleClose={handleClose} onSubmit={submitHandle} />

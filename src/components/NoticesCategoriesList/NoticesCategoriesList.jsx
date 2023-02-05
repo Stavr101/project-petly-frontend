@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import { fetchAdsByCategory } from "api/notices";
 import Error from "components/Error/Error";
 import NoticeCategoryItem from "components/NoticeCategoryItem/NoticeCategoryItem";
@@ -10,6 +11,7 @@ import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
+import Loader from "shared/loader/Loader";
 
 const style = {
   position: "absolute",
@@ -39,14 +41,15 @@ const styleBackdrop = {
 //   'for-free': 'inGoodHands',
 // };
 
-const NoticesCategoriesList = ({ query }) => {
+const NoticesCategoriesList = () => {
   const [pets, setPets] = useState([]);
+  const [favorite,setFavorice] = useState([])
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [open, setOpen] = useState(false);
   const [petId, setPetId] = useState("");
-
-  let filteredPets = pets;
+  const {categoryName} = useParams()
+  let filteredPets = pets.filter(pet => pet.categoryName === categoryName);
 
   // if (query !== "") {
   //   filteredPets = pets.filter(({ title }) => {
@@ -59,17 +62,18 @@ const NoticesCategoriesList = ({ query }) => {
       setLoading(true);
 
       try {
-        const data = await fetchAdsByCategory();
+        const data = await fetchAdsByCategory(categoryName);
+        console.log(data)
         setPets((prevPets) => [...prevPets, ...data]);
-        console.log("data", data);
       } catch (error) {
         setError(error);
       } finally {
         setLoading(false);
       }
     };
-    fetchPets();
-  }, []);
+    fetchPets()
+  }, [categoryName]);
+
 
   //==================
   const openModal = (petId) => {
@@ -99,7 +103,7 @@ const NoticesCategoriesList = ({ query }) => {
         </List>
       )}
       {error && <Error />}
-      {loading && <p>is loading...</p>}
+      {loading && <p>Loading...</p>}
 
       {open && (
         <Modal

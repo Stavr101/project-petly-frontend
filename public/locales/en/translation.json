@@ -1,0 +1,44 @@
+{
+    "main": {
+        "news": "News",
+        "find": "Find pet",
+        "friends": "Our friends",
+        "welcome": "Take good care of your small pets",
+        "login": "Login",
+        "register": "Registration"
+    },
+
+    "registration": {
+        "registration": "Registration",
+        "password": "Password",
+        "confirm": "Confirm Password",
+        "name": "Name",
+        "city": "City, region",
+        "phone": "Mobile phone",
+        "have": "Already have an account?",
+        "login": "Login",
+        "register": "Register",
+        "next": "Next",
+        "back": "Back"
+    },
+    
+    "login": {
+        "login": "Login",
+        "password": "Password",
+        "register": "Register",
+        "noacc": "Don't have an account?"
+    },
+
+    "news": {
+        "news": "News",
+        "search": "Search",
+        "more": "Read more"
+    },
+
+    "friends": {
+        "friends": "Our friends",
+        "time": "Time",
+        "address": "Address",
+        "phone": "Phone"
+    }
+}

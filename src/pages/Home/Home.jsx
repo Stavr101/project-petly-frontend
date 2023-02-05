@@ -2,13 +2,17 @@ import MainPageContainer from "components/Container/MainPageContainer/MainPageCo
 import { MainHeader } from "./Home.styled";
 import { MainImageBlock } from "./Home.styled";
 import { SectionHero } from "./Home.styled";
+import { useTranslation } from 'react-i18next';
 
 const Home = () => {
+
+  const { t } = useTranslation();
+
   return (
     <main>
       <SectionHero>
         <MainPageContainer>
-          <MainHeader>Take good care of your small pets</MainHeader>
+          <MainHeader>{t("main.welcome")}</MainHeader>
         </MainPageContainer>
         <MainImageBlock></MainImageBlock>
       </SectionHero>

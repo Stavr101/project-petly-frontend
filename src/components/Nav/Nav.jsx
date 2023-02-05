@@ -9,14 +9,14 @@ import {
   TabletContainer,
   StyledBurger,
   LanguageSwitch,
-  LanguageBtn
+  LanguageOption
 } from "./Nav.styled";
 import AuthNav from 'components/AuthNav/AuthNav';
 import UserNav from 'components/UserNav/UserNav';
 import { useAuth } from 'hooks';
 import { useMediaQuery } from 'react-responsive';
 import Modal from "components/ModalMenu/Modal/Modal";
-// import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 const Nav = () => {
 
@@ -28,10 +28,10 @@ const Nav = () => {
 
   const [showModal, setShowModal] = useState(false);
 
-  // const { t, i18n } = useTranslation();
-  // const changeLanguage = (language) => {
-  //   i18n.changeLanguage(language);
-  // }
+  const { t, i18n } = useTranslation();
+  const changeLanguage = (language) => {
+    i18n.changeLanguage(language);
+  }
 
   return (
     <>
@@ -40,15 +40,15 @@ const Nav = () => {
     <>
         <PrimaryNav>
         <NavMenu>
-          <NavLink to="/news">News</NavLink>
-          <NavLink to="/notices">Find pet</NavLink>
-          <NavLink to="/friends">Our friends</NavLink>
+          <NavLink to="/news">{t("main.news")}</NavLink>
+          <NavLink to="/notices">{t("main.find")}</NavLink>
+          <NavLink to="/friends">{t("main.friends")}</NavLink>
         </NavMenu>
           </PrimaryNav>
-          {/* <LanguageSwitch>
-            <LanguageBtn onClick={() => changeLanguage("en")}>EN</LanguageBtn>
-            <LanguageBtn onClick={() => changeLanguage("uk")}>UA</LanguageBtn>
-          </LanguageSwitch> */}
+          <LanguageSwitch>
+            <LanguageOption label="EN" type="radio" name="language" value="en" onClick={() => changeLanguage("en")}></LanguageOption>
+            <LanguageOption label="UA" type="radio" name="language" value="uk" onClick={() => changeLanguage("uk")}></LanguageOption>
+          </LanguageSwitch>
       <SecondaryNav>
         {isLoggedIn ? <UserNav /> : <AuthMenu> <AuthNav /> </AuthMenu>}
       </SecondaryNav>
@@ -60,21 +60,22 @@ const Nav = () => {
           <SecondaryNav>{isLoggedIn ? <UserNav /> : <AuthMenu> <AuthNav /> </AuthMenu>}</SecondaryNav>
           <PrimaryNav>
             <NavMenu>
-              <NavLink to="/news">News</NavLink>
-              <NavLink to="/notices">Find pet</NavLink>
-              <NavLink to="/friends">Our friends</NavLink>
+              <NavLink to="/news">{t("main.news")}</NavLink>
+              <NavLink to="/notices">{t("main.find")}</NavLink>
+              <NavLink to="/friends">{t("main.friends")}</NavLink>
             </NavMenu>
           </PrimaryNav>
         </MobileContainer>
       </Modal>}
 
-      {isTablet && <SecondaryNav>{isLoggedIn ? <UserNav /> : <AuthMenu> <AuthNav /> </AuthMenu>}</SecondaryNav>}
+      {isTablet &&
+        <SecondaryNav>{isLoggedIn ? <UserNav /> : <AuthMenu> <AuthNav /> </AuthMenu>}</SecondaryNav>}
       {isTablet && showModal && <Modal onClose={setShowModal}>
         <TabletContainer>
           <NavMenu>
-            <NavLink to="/news">News</NavLink>
-            <NavLink to="/notices">Find pet</NavLink>
-            <NavLink to="/friends">Our friends</NavLink>
+            <NavLink to="/news">{t("main.news")}</NavLink>
+            <NavLink to="/notices">{t("main.find")}</NavLink>
+            <NavLink to="/friends">{t("main.friends")}</NavLink>
           </NavMenu>
         </TabletContainer>
       </Modal>}

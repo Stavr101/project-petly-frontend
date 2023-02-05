@@ -116,6 +116,35 @@ padding: 0;
   }
 `;
 
-export const LanguageSwitch = styled.div``;
+export const LanguageSwitch = styled.div`
+background: transparent;
+padding: 4px;
+border-radius: 3px;
+position: relative;
+width: fit-content;
+`;
 
-export const LanguageBtn = styled.button``;
+export const LanguageOption = styled.input`
+appearance: none;
+cursor: pointer;
+border-radius: 20%;
+border:  ${p => p.theme.borders.normal}  ${p => p.theme.colors.accent};
+padding: 5px 10px;
+background: ${p => p.theme.colors.white};
+color: ${p => p.theme.colors.black};
+font-size: 15px;
+transition: all 0.1s;
+
+:first-child {
+      margin-right:10px;
+    }
+
+&:checked {
+background: ${p => p.theme.colors.accent};
+}
+
+&::before {
+content: attr(label);
+text-align: center;
+}
+`

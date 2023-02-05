@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
-import Grid from "@mui/material/Grid";
-import { fetchAdsByCategory } from 'api/notices';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { fetchAdsByCategory } from "api/notices";
 import Error from "components/Error/Error";
-import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem';
+import NoticeCategoryItem from "components/NoticeCategoryItem/NoticeCategoryItem";
+import { List } from "components/NoticesCategoriesList/NoticesCategoriesList.slyled";
 
 // const categoriesForBack = {
 //   sell: 'sell',
@@ -10,48 +11,51 @@ import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem
 //   'for-free': 'inGoodHands',
 // };
 
-const NoticesCategoriesList = ({ query }) => {
-    const [pets, setPets] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-    let filteredPets = pets;
-  
-    // if (query !== "") {
-    //   filteredPets = pets.filter(({ title }) => {
-    //     return title.toLowerCase().includes(query.toLowerCase());
-    //   });
-    // }
-  
-    useEffect(() => {
-      const fetchPets = async () => {
-        setLoading(true);
-  
-        try {
-          const data = await fetchAdsByCategory();
-          setPets((prevPets) => [...prevPets, ...data]);
-        } catch (error) {
-          setError(error);
-        } finally {
-          setLoading(false);
-        }
-      };
-      fetchPets();
-    }, []);
+const NoticesCategoriesList = () => {
+  const [pets, setPets] = useState([]);
+  const [favorite, setFavorice] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const { categoryName } = useParams();
+  let filteredPets = pets.filter((pet) => pet.categoryName === categoryName);
+
+  // if (query !== "") {
+  //   filteredPets = pets.filter(({ title }) => {
+  //     return title.toLowerCase().includes(query.toLowerCase());
+  //   });
+  // }
+
+  useEffect(() => {
+    const fetchPets = async () => {
+      setLoading(true);
+
+      try {
+        const data = await fetchAdsByCategory(categoryName);
+        console.log(data);
+        setPets((prevPets) => [...prevPets, ...data]);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPets();
+  }, [categoryName]);
 
   return (
     <>
       {filteredPets && (
-        <Grid
-          container
-          columnSpacing={4}
-          rowSpacing={{ mobile: 6, tablet: 7.5, desktop: 7.5 }}
-          component="ul"
-          alignItems="stretch"
-        >
+        <List>
           {filteredPets.map((item) => {
-            return <NoticeCategoryItem key={item._id} data={item} />;
+            return (
+              <NoticeCategoryItem
+                key={item._id}
+                data={item}
+                // onLearnMore={openModal}
+              />
+            );
           })}
-        </Grid>
+        </List>
       )}
       {error && <Error />}
       {loading && <p>is loading...</p>}

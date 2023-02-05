@@ -4,10 +4,12 @@ import TabletImg from "images/AuthPage/tablet-img.png";
 import DesktopImg from "images/AuthPage/desktop-img.png";
 
 export const AuthContainerSection = styled.section`
-  min-height: 100vh;
+  min-height: calc(100vh - 105px);
+  margin: 0 auto;
+  max-width: 1600px;
   background-image: url(${MobileImg});
   background-repeat: no-repeat;
-  background-position: 0px 100%;
+  /* background-position: 0px 100%; */
   background-position: bottom;
   background-size: contain;
   padding-bottom: 159px;

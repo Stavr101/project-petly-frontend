@@ -9,6 +9,7 @@ export const InputWrapper = styled.form`
 `;
 
 export const Input = styled.input`
+  overflow: visible;
   float: left;
   width: 68%;
   display: flex;
@@ -58,4 +59,44 @@ export const UpdateBtn = styled.button`
     height: 32px;
     background-size: 16px;
   }
+  /* &:disabled {
+    background-color: blue;
+  } */
+`;
+
+export const PensileBtn = styled(UpdateBtn)`
+  background-image: url(${pencil});
+`;
+
+export const UpdateBtnDeactive = styled.button`
+  cursor: pointer;
+  background-image: url(${pencil});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: red;
+  /* background-color: ${p => p.theme.colors.background}; */
+  border-radius: ${p => p.theme.radii.round};
+  border: ${p => p.theme.borders.none};
+  width: 20px;
+  height: 20px;
+  @media screen and (min-width: 768px) {
+    width: 32px;
+    height: 32px;
+    background-size: 16px;
+  }
+`;
+
+export const Btn1 = styled.button`
+  border-radius: ${p => p.theme.radii.round};
+  border: ${p => p.theme.borders.none};
+  width: 20px;
+  height: 20px;
+  background-color: green;
+`;
+
+export const Btn2 = styled(Btn1)`
+  background-color: orange;
+`;
+export const Btn3 = styled(Btn1)`
+  background-color: red;
 `;

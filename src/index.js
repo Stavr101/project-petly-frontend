@@ -14,6 +14,7 @@ import "./i18n.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   // <React.StrictMode>
+  <Suspense fallback={<Loader />}>
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
       <BrowserRouter basename="/">
@@ -22,7 +23,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         </ThemeProvider>
       </BrowserRouter>
     </PersistGate>
-  </Provider>
+    </Provider>
+    </Suspense>
   // </React.StrictMode>
 );
 

@@ -9,12 +9,9 @@ import { getUserInfo } from 'redux/users/operations';
 import { getUserData } from 'redux/users/selectors';
 
 export default function UserData() {
-  // const userInfo = useSelector(getUserInfo);
   const isLoading = useSelector(getLoading);
   const error = useSelector(getError);
-  // const dataUser = useSelector(getUserData);
-  // const { avatarURL } = dataUser.user;
-  // console.log(avatarURL, 'avatar');
+
   const dispatch = useDispatch();
 
   useEffect(() => {

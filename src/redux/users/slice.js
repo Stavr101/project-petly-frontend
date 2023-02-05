@@ -3,6 +3,7 @@ import { getUserInfo, updateUserData, updateUserAvatar } from './operations';
 
 const initialState = {
   user: {
+    _id: '',
     name: '',
     email: '',
     phone: '',

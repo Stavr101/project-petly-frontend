@@ -1,42 +1,33 @@
-import { avatarClasses } from '@mui/material';
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import {
   Input,
   UpdateBtn,
   InputWrapper,
   PensileBtn,
 } from './UserDataItem.styled';
+import { updateUserData } from '../../redux/users/operations';
+import { selectUser } from 'redux/auth/selectors';
 
-export default function UserDataItem({
-  typeInput,
-  nameInput,
-  valueUser,
-  onEdit,
-}) {
+export default function UserDataItem({ typeInput, nameInput, valueUser }) {
+  const user = useSelector(selectUser);
+
+  const dispatch = useDispatch();
+  const [userInfo, setUserInfo] = useState(valueUser);
+
   const [isEditing, setIsEditing] = useState(false);
   const [editedValue, setEditedValue] = useState(valueUser);
-
-  //   const handleEditButtonClick = typeInput => {
-  //     setActiveInput(typeInput);
-  //   };
-
-  //   const handleSaveButtonClick = () => {
-  //     setActiveInput(null);
-  //     // здесь вы можете сохранить данные, используя любые функции, необходимые для этого
-  //   };
+  const [activeBtn, setActiveBtn] = useState(true);
 
   const handleEdit = e => {
     e.preventDefault();
     setIsEditing(true);
-    // setActiveInput(true);
-    // handleEditButtonClick();
   };
 
-  const handleSave = e => {
+  const handleSubmit = e => {
     setIsEditing(false);
-    // handleSaveButtonClick();
-    // setActiveInput(false);
-    // onEdit(editedValue);
+    dispatch(updateUserData(editedValue));
   };
 
   return (
@@ -49,7 +40,7 @@ export default function UserDataItem({
             value={editedValue}
             onChange={e => setEditedValue(e.target.value)}
           />
-          <UpdateBtn onClick={handleSave}></UpdateBtn>
+          <UpdateBtn onClick={handleSubmit}></UpdateBtn>
         </>
       ) : (
         <>

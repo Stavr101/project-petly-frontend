@@ -1,30 +1,54 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-// import { useSelector, useDispatch } from 'react-redux';
-// import { getUserData } from 'redux/user/selectors';
-// import { updateUserData } from 'redux/user/operations';
-import { Input, UpdateBtn, InputWrapper } from './UserDataItem.styled';
+import {
+  Input,
+  UpdateBtn,
+  InputWrapper,
+  PensileBtn,
+} from './UserDataItem.styled';
+import { updateUserData } from '../../redux/users/operations';
+import { selectUser } from 'redux/auth/selectors';
 
-export default function UserDataItem(props) {
-  const [disabled, setDisabled] = useState(true);
-  // const [display, setDisplay] = useState(false);
+export default function UserDataItem({ typeInput, nameInput, valueUser }) {
+  const user = useSelector(selectUser);
 
-  function handleChangeInput(e) {
+  const dispatch = useDispatch();
+  const [userInfo, setUserInfo] = useState(valueUser);
+
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedValue, setEditedValue] = useState(valueUser);
+  const [activeBtn, setActiveBtn] = useState(true);
+
+  const handleEdit = e => {
     e.preventDefault();
-    setDisabled(!disabled);
-  }
+    setIsEditing(true);
+  };
+
+  const handleSubmit = e => {
+    setIsEditing(false);
+    dispatch(updateUserData(editedValue));
+  };
 
   return (
     <InputWrapper>
-      <Input
-        type={props.type}
-        name="city"
-        // value={value}
-        onChange={event => console.log(event.target.value)}
-        disabled={disabled}
-      />
-      <UpdateBtn type="submit" onClick={handleChangeInput}></UpdateBtn>
-      {/* <UpdateBtn type="submit"></UpdateBtn> */}
+      {isEditing ? (
+        <>
+          <Input
+            type={typeInput}
+            name={nameInput}
+            value={editedValue}
+            onChange={e => setEditedValue(e.target.value)}
+          />
+          <UpdateBtn onClick={handleSubmit}></UpdateBtn>
+        </>
+      ) : (
+        <>
+          <Input type={typeInput} name={nameInput} value={valueUser} disabled />
+          {/* <PensileBtn onClick={handleEdit}></PensileBtn> */}
+          <PensileBtn onClick={handleEdit}></PensileBtn>
+        </>
+      )}
     </InputWrapper>
   );
 }

@@ -5,6 +5,7 @@ import DesktopImg from "images/AuthPage/desktop-img.png";
 
 export const AuthContainerSection = styled.section`
   min-height: calc(100vh - 105px);
+  margin: 0 auto;
   max-width: 1600px;
   background-image: url(${MobileImg});
   background-repeat: no-repeat;

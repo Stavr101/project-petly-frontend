@@ -20,6 +20,8 @@ import {
   ItemButtonNoticesHeartButton,
   ItemButtonNoticesDeleteSpan,
 } from "./NoticeCategoryItem.styled";
+import { useState } from "react";
+import ModalNotice from "components/ModalNotice/ModalNotice";
 
 export default function NoticeCategoryItem({
   data,
@@ -38,6 +40,12 @@ export default function NoticeCategoryItem({
     birthdate,
     categoryName,
   } = data;
+
+  const [open, setOpen] = useState(false);
+
+  const onLearnMoreClick = () => {
+    setOpen(true);
+  };
 
   const handleOnError = (e) => {
     e.target.src =
@@ -121,7 +129,8 @@ export default function NoticeCategoryItem({
           <ItemButtonNotices>
             <ItemButtonNoticesLearnMore
               type="submit"
-              onClick={() => onLearnMore(_id)}
+              // onClick={() => onLearnMore(_id)}
+              onClick={onLearnMoreClick}
             >
               Learn more
             </ItemButtonNoticesLearnMore>
@@ -139,6 +148,17 @@ export default function NoticeCategoryItem({
           </ItemButtonNotices>
         </ItemNoticesWrap>
       </ItemNoticesLi>
+
+      {open && (
+        <ModalNotice
+          petId={_id}
+          setShowModal={setOpen}
+          // isFavorite={isFavorite}
+          // onClickFavorite={onClickFavorite}
+          // onDeleteAdClick={onDeleteAdClick}
+          // categories={categoriesForFront}
+        />
+      )}
     </>
   );
 }

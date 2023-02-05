@@ -1,14 +1,40 @@
 import styled from "styled-components";
+import cross from "../ModalAddsPet/ImgModalAddsPet/clarity_close-cross.png";
+
+export const Overlay = styled.div`
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(17, 17, 17, 0.6);
+  backdrop-filter: blur(10px);
+`;
 
 export const ModalNoticeAll = styled.div`
-  position: relative;
+  position: absolute;
+  overflow: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-height: 90%;
+  border-radius: 20px;
   padding: 60px 20px 40px;
+  background: ${(p) => p.theme.colors.white};
+
+  @media screen and (min-width: 480px) {
+    width: 480px;
+  }
 
   @media screen and (min-width: 768px) {
     display: flex;
     flex-direction: column;
+    width: 704px;
+    border-radius: 40px;
     padding: 32px 20px;
-    height: 100%;
+    height: 548px;
   }
 `;
 
@@ -23,10 +49,21 @@ export const ModalNoticeBtnDel = styled.button`
   background-color: ${(p) => p.theme.colors.background};
   border-radius: 50%;
 
+  background-color: #fdf7f2;
+  background-image: url(${cross});
+  background-size: 28px 28px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  :hover,
+  :active {
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  }
+
   @media screen and (min-width: 768px) {
     top: 12px;
     width: 44px;
     height: 44px;
+    background-size: 32px 32px;
   }
 `;
 
@@ -39,8 +76,9 @@ export const ModalNoticeWrapperContent = styled.div`
 `;
 
 export const ModalNoticeWrapperImg = styled.div`
+  width: 100%;
+
   position: relative;
-  width: 240px;
   height: 240px;
   overflow: hidden;
   margin-bottom: 16px;
@@ -59,9 +97,7 @@ export const ModalNoticeImg = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* display: block;
-  max-width: 100%;
-  height: auto; */
+  display: block;
 `;
 
 export const ModalNoticeCategotyDiv = styled.div`
@@ -96,9 +132,7 @@ export const ModalNoticeTitle = styled.h3`
   }
 `;
 
-export const ModalNoticeList = styled.ul`
-  /* margin-bottom: 28px; */
-`;
+export const ModalNoticeList = styled.ul``;
 
 export const ModalNoticeLi = styled.li`
   display: flex;
@@ -110,8 +144,7 @@ export const ModalNoticeLi = styled.li`
 `;
 
 export const ModalNoticeItemParametr = styled.p`
-  width: 50%;
-  /* padding-right: 57px; */
+  width: 40%;
   font-size: 14px;
   font-weight: 600;
   line-height: 1.357;
@@ -166,11 +199,7 @@ export const ModalNoticeButtonsList = styled.ul`
   }
 `;
 
-export const ModalNoticeButtonsItem = styled.li`
-  /* :not(:last-child) {
-    margin-bottom: 12px;
-  } */
-`;
+export const ModalNoticeButtonsItem = styled.li``;
 
 export const ModalNoticeButton = styled.button`
   width: 100%;

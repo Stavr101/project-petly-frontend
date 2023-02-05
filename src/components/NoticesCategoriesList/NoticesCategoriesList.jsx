@@ -4,7 +4,6 @@ import { fetchAdsByCategory } from "api/notices";
 import Error from "components/Error/Error";
 import NoticeCategoryItem from "components/NoticeCategoryItem/NoticeCategoryItem";
 import { List } from "components/NoticesCategoriesList/NoticesCategoriesList.slyled";
-
 // =============
 import ModalNotice from "components/ModalNotice/ModalNotice";
 import Backdrop from "@mui/material/Backdrop";
@@ -39,10 +38,8 @@ const NoticesCategoriesList = (searchQuery) => {
   const [favorite, setFavorice] = useState([])
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [open, setOpen] = useState(false);
-  const [petId, setPetId] = useState("");
-  const {categoryName} = useParams()
-  let filteredPets = pets.filter(pet => pet.categoryName === categoryName);
+  const { categoryName } = useParams();
+  let filteredPets = pets.filter((pet) => pet.categoryName === categoryName);
 
   if (searchQuery !== "") {
     filteredPets = pets.filter(({ title }) => {
@@ -64,21 +61,8 @@ const NoticesCategoriesList = (searchQuery) => {
         setLoading(false);
       }
     };
-    fetchPets()
+    fetchPets();
   }, [categoryName]);
-
-
-  //==================
-  const openModal = (petId) => {
-    setOpen(true);
-    setPetId(petId);
-  };
-
-  const closeModal = () => {
-    setOpen(false);
-    setPetId("");
-  };
-  //===================
 
   return (
     <>
@@ -89,40 +73,14 @@ const NoticesCategoriesList = (searchQuery) => {
               <NoticeCategoryItem
                 key={item._id}
                 data={item}
-                onLearnMore={openModal}
+                // onLearnMore={openModal}
               />
             );
           })}
         </List>
       )}
       {error && <Error />}
-      {loading && <p>Loading...</p>}
-
-      {open && (
-        <Modal
-          aria-labelledby="transition-modal-title"
-          aria-describedby="transition-modal-description"
-          open={open}
-          onClose={closeModal}
-          closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-            timeout: 500,
-          }}
-          sx={styleBackdrop}
-        >
-          <Fade in={open}>
-            <Box sx={style}>
-              <ModalNotice
-                petId={petId}
-                onClose={closeModal}
-                // handleDeletePet={deletePet}
-                // handleChangeFavorite={changeFavorite}
-              />
-            </Box>
-          </Fade>
-        </Modal>
-      )}
+      {loading && <p>is loading...</p>}
     </>
   );
 };

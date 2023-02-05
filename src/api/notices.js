@@ -30,20 +30,25 @@ export const getAllNoticesPets = async () => {
 //   }
 // };
 
-export const fetchAdsByCategory = category => {
+export const fetchAdsByCategory = (category) => {
   return axios
-    .get('/notices/category/sell', { params: { category } })
-    .then(response => response.data);
+    .get("/notices/category/sell", { params: { category } })
+    .then((response) => response.data);
 };
 
 export const fetchFavoriteAds = () => {
-  return axios.get('/notices/favorite').then(response => {
+  return axios.get("/notices/favorite").then((response) => {
     return response.data;
   });
 };
 
 export const fetchOwnAds = () => {
-  return axios.get('/notices/own').then(response => {
+  return axios.get("/notices/own").then((response) => {
     return response.data;
   });
+};
+
+export const getPetsById = async (id) => {
+  const response = await axios.get(`/notices/notice/${id}`);
+  return response.data;
 };

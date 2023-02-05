@@ -20,9 +20,13 @@ import {
   ItemButtonNoticesDeleteSpan,
 } from "./NoticeCategoryItem.styled";
 
-export default function NoticeCategoryItem({ data }) {
+export default function NoticeCategoryItem({
+  data,
+  onDeletePets,
+  onLearnMore,
+}) {
   const {
-    id,
+    _id,
     petAvatarURL,
     favorite,
     title,
@@ -30,29 +34,26 @@ export default function NoticeCategoryItem({ data }) {
     location,
     age,
     categoryName,
-    onDeletePets,
-    onLearnMore,
   } = data;
 
   const handleOnError = (e) => {
     e.target.src =
       "https://www.kindpng.com/picc/m/22-223863_no-avatar-png-circle-transparent-png.png";
-}
+  };
 
   return (
     <>
       <ItemNoticesLi>
         <ItemNoticesImgDiv>
-        {petAvatarURL ? (
-          <ItemNoticesImg src={petAvatarURL} alt={title} />
-    
-    ) : ( 
-      <ItemNoticesImg
-      src={"https://i.ibb.co/RQ61YYb/1.jpg"}
-      alt={"No image available"}
-      onError={handleOnError}
-      />
-    )}
+          {petAvatarURL ? (
+            <ItemNoticesImg src={petAvatarURL} alt={title} />
+          ) : (
+            <ItemNoticesImg
+              src={"https://i.ibb.co/RQ61YYb/1.jpg"}
+              alt={"No image available"}
+              onError={handleOnError}
+            />
+          )}
           {/* {isLoading === 0 ? (
             <ItemNoticesImg
             src={"https://i.ibb.co/RQ61YYb/1.jpg"}
@@ -71,41 +72,43 @@ export default function NoticeCategoryItem({ data }) {
           </ItemPositionNoticesDiv>
         </ItemNoticesImgDiv>
         <ItemNoticesWrap>
-        <ItemNoticesTitle>{title}</ItemNoticesTitle>
-        <ItemNoticesUlList>
-          <ItemNoticesListLi>
-            <ItemNoticesListP>
-              Breed:<ItemNoticesSpan>{breed}</ItemNoticesSpan>
-            </ItemNoticesListP>
-          </ItemNoticesListLi>
-          <ItemNoticesListLi>
-            <ItemNoticesListP>
-              Place:<ItemNoticesSpan>{location}</ItemNoticesSpan>
-            </ItemNoticesListP>
-          </ItemNoticesListLi>
-          <ItemNoticesListLi>
-            <ItemNoticesListP>
-              Age:<ItemNoticesSpan>{age}</ItemNoticesSpan>
-            </ItemNoticesListP>
-          </ItemNoticesListLi>
-        </ItemNoticesUlList>
-        <ItemButtonNotices>
-          <ItemButtonNoticesLearnMore
-            type="submit"
-            onClick={() => onLearnMore(id)}
-          >
-            Learn more
-          </ItemButtonNoticesLearnMore>
-          {favorite ? (
-            <ItemButtonNoticesDelete
+          <ItemNoticesTitle>{title}</ItemNoticesTitle>
+          <ItemNoticesUlList>
+            <ItemNoticesListLi>
+              <ItemNoticesListP>
+                Breed:<ItemNoticesSpan>{breed}</ItemNoticesSpan>
+              </ItemNoticesListP>
+            </ItemNoticesListLi>
+            <ItemNoticesListLi>
+              <ItemNoticesListP>
+                Place:<ItemNoticesSpan>{location}</ItemNoticesSpan>
+              </ItemNoticesListP>
+            </ItemNoticesListLi>
+            <ItemNoticesListLi>
+              <ItemNoticesListP>
+                Age:<ItemNoticesSpan>{age}</ItemNoticesSpan>
+              </ItemNoticesListP>
+            </ItemNoticesListLi>
+          </ItemNoticesUlList>
+          <ItemButtonNotices>
+            <ItemButtonNoticesLearnMore
               type="submit"
-              onClick={() => onDeletePets(id)}
+              onClick={() => onLearnMore(_id)}
             >
-              <ItemButtonNoticesDeleteSpan>Delete</ItemButtonNoticesDeleteSpan>
-              <DeleteSvg />
-            </ItemButtonNoticesDelete>
-          ) : null}
-        </ItemButtonNotices>
+              Learn more
+            </ItemButtonNoticesLearnMore>
+            {favorite ? (
+              <ItemButtonNoticesDelete
+                type="submit"
+                onClick={() => onDeletePets(_id)}
+              >
+                <ItemButtonNoticesDeleteSpan>
+                  Delete
+                </ItemButtonNoticesDeleteSpan>
+                <DeleteSvg />
+              </ItemButtonNoticesDelete>
+            ) : null}
+          </ItemButtonNotices>
         </ItemNoticesWrap>
       </ItemNoticesLi>
     </>

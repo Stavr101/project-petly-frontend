@@ -21,25 +21,27 @@ import {
   ItemButtonNoticesDeleteSpan,
 } from "./NoticeCategoryItem.styled";
 
-export default function NoticeCategoryItem({ data }) {
+export default function NoticeCategoryItem({
+  data,
+  onDeletePets,
+  onLearnMore,
+}) {
   const {
-    id,
-    avatar,
+    _id,
+    petAvatarURL,
     favorite,
     title,
     breed,
     location,
     age,
     condition,
-    onDeletePets,
-    onLearnMore,
   } = data;
 
   return (
     <>
       <ItemNoticesLi>
         <ItemNoticesImgDiv>
-          <ItemNoticesImg src={avatar} alt={title} />
+          <ItemNoticesImg src={petAvatarURL} alt={title} />
           <ItemPositionNoticesDiv>
             <ItemPositionNoticesDivParagraf>
               {condition}
@@ -70,14 +72,14 @@ export default function NoticeCategoryItem({ data }) {
         <ItemButtonNotices>
           <ItemButtonNoticesLearnMore
             type="submit"
-            onClick={() => onLearnMore(id)}
+            onClick={() => onLearnMore(_id)}
           >
             Learn more
           </ItemButtonNoticesLearnMore>
           {favorite ? (
             <ItemButtonNoticesDelete
               type="submit"
-              onClick={() => onDeletePets(id)}
+              onClick={() => onDeletePets(_id)}
             >
               <ItemButtonNoticesDeleteSpan>Delete</ItemButtonNoticesDeleteSpan>
               <DeleteSvg />

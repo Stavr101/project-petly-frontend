@@ -47,11 +47,7 @@ export const fetchOwnAds = () => {
   });
 };
 
-// export const getPetsById = async (id) => {
-//   try {
-//     const { data } = await axios.get(`/notices/${id}`);
-//     return data;
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// };
+export const getPetsById = async (id) => {
+  const response = await axios.get(`/notices/notice/${id}`);
+  return response.data;
+};

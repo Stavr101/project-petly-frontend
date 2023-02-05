@@ -1,87 +1,155 @@
 import { getPetsById } from "api/notices";
+import Error from "components/Error/Error";
 import { useEffect, useState } from "react";
-import testPets from "../../components/NoticesCategoriesList/testList.json";
+import Loader from "shared/loader/Loader";
 
-export default function ModalNotice({ petId, onClose }) {
-  // const [pet, setPet] = useState({});
+import { AiFillHeart } from "react-icons/ai";
+import { VscClose } from "react-icons/vsc";
+
+import {
+  ModalNoticeAll,
+  ModalNoticeBtnDel,
+  ModalNoticeImg,
+  ModalNoticeItemParametr,
+  ModalNoticeLi,
+  ModalNoticeTitle,
+  ModalNoticeItemValue,
+  ModalNoticeWrapperImg,
+  ModalNoticeList,
+  ModalNoticeCommentsSpan,
+  ModalNoticeCommentsDiv,
+  ModalNoticeButtonsList,
+  ModalNoticeButtonsItem,
+  ModalNoticeButton,
+  ModalNoticeCategotyDiv,
+  ModalNoticeBtnLink,
+  HeartSvgSpan,
+  ModalNoticeBtnFavorite,
+  ModalNoticeBtnContact,
+  ModalNoticeWrapperContent,
+} from "./ModalNotice.styled";
+
+export default function ModalNotice({
+  petId,
+  onClose,
+  handleChangeFavorite,
+  handleDeletePet,
+}) {
+  const [pet, setPet] = useState({});
+  const [owner, setOwner] = useState({});
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const pet = testPets.find((item) => item.id === petId);
+  useEffect(() => {
+    const getPetById = async () => {
+      setLoading(true);
 
-  // useEffect(() => {
-  //   const getPetById = async () => {
-  //     setLoading(true);
-
-  //     try {
-  //       const data = await getPetsById(petId);
-  //       setPet(data);
-  //       console.log("data!!!!", data);
-  //     } catch (error) {
-  //       setError(error);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-  //   getPetById();
-  // }, [petId]);
+      try {
+        const data = await getPetsById(petId);
+        setPet(data);
+        setOwner(data.owner);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    getPetById();
+  }, [petId]);
 
   return (
-    <div onClose={onClose}>
-      <div>
-        {/* <div>
-          <img src={pet.avatar} />
-        </div> */}
-        <div>
-          <h3>{pet.title}</h3>
-          <table>
-            <tbody>
-              <tr>
-                <td>Name:</td>
-                <td>{pet.breed}</td>
-              </tr>
-              <tr>
-                <td>Birthday:</td>
-                <td>{pet.age}</td>
-              </tr>
-              <tr>
-                <td>Breed:</td>
-                <td>{pet.breed}</td>
-              </tr>
-              <tr>
-                <td>Place:</td>
-                <td>{pet.location}</td>
-              </tr>
-              {/* <tr>
-                <td>The sex:</td>
-                <td>{location}</td>
-              </tr>
-              <tr>
-                <td>Email:</td>
-                <td>{location}</td>
-              </tr>
-              <tr>
-                <td>Phone:</td>
-                <td>{location}</td>
-              </tr> */}
-            </tbody>
-          </table>
-        </div>
-      </div>
+    <>
+      <ModalNoticeAll>
+        <ModalNoticeBtnDel type="button" onClick={onClose}>
+          <VscClose style={{ width: "20px", height: "20px" }} />
+        </ModalNoticeBtnDel>
+        <ModalNoticeWrapperContent>
+          <ModalNoticeWrapperImg>
+            <ModalNoticeImg src={pet.petAvatarURL} alt={pet.title} />
+            <ModalNoticeCategotyDiv>{pet.categoryName}</ModalNoticeCategotyDiv>
+          </ModalNoticeWrapperImg>
 
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam iste
-        ullam nemo quia fuga cum aspernatur. Quod itaque qui natus mollitia vel
-        optio. Ad sapiente dicta vero. Laboriosam, blanditiis quae!
-      </div>
+          <div>
+            <ModalNoticeTitle>{pet.title}</ModalNoticeTitle>
+            <ModalNoticeList>
+              <ModalNoticeLi>
+                <ModalNoticeItemParametr>Name:</ModalNoticeItemParametr>
+                <ModalNoticeItemValue>{pet.breed}</ModalNoticeItemValue>
+              </ModalNoticeLi>
+              <ModalNoticeLi>
+                <ModalNoticeItemParametr>Birthday:</ModalNoticeItemParametr>
+                <ModalNoticeItemValue>01.01.1111</ModalNoticeItemValue>
+              </ModalNoticeLi>
+              <ModalNoticeLi>
+                <ModalNoticeItemParametr>Breed:</ModalNoticeItemParametr>
+                <ModalNoticeItemValue>{pet.breed}</ModalNoticeItemValue>
+              </ModalNoticeLi>
+              <ModalNoticeLi>
+                <ModalNoticeItemParametr>Place:</ModalNoticeItemParametr>
+                <ModalNoticeItemValue>{pet.location}</ModalNoticeItemValue>
+              </ModalNoticeLi>
+              <ModalNoticeLi>
+                <ModalNoticeItemParametr>The sex:</ModalNoticeItemParametr>
+                <ModalNoticeItemValue>boy/girl</ModalNoticeItemValue>
+              </ModalNoticeLi>
+              <ModalNoticeLi>
+                <ModalNoticeItemParametr>Email:</ModalNoticeItemParametr>
+                <ModalNoticeItemValue>{owner.email}</ModalNoticeItemValue>
+              </ModalNoticeLi>
+              <ModalNoticeLi>
+                <ModalNoticeItemParametr>Phone:</ModalNoticeItemParametr>
+                <ModalNoticeItemValue>{owner.phone}</ModalNoticeItemValue>
+              </ModalNoticeLi>
+              <ModalNoticeLi>
+                {pet.categoryName === "sell" ? (
+                  <>
+                    <ModalNoticeItemParametr>Price:</ModalNoticeItemParametr>
+                    <ModalNoticeItemValue>{pet.price} $</ModalNoticeItemValue>
+                  </>
+                ) : (
+                  ""
+                )}
+              </ModalNoticeLi>
+            </ModalNoticeList>
+          </div>
+        </ModalNoticeWrapperContent>
 
-      <div>
-        <button type="button">Add to</button>
-        <button type="button">Contact</button>
-        <button type="button" onClick={onClose}>
-          X
-        </button>
-      </div>
-    </div>
+        <ModalNoticeCommentsDiv>
+          <ModalNoticeCommentsSpan>Comments: </ModalNoticeCommentsSpan>
+          {pet.comments}
+        </ModalNoticeCommentsDiv>
+
+        <ModalNoticeButtonsList>
+          <ModalNoticeButtonsItem>
+            <ModalNoticeBtnContact type="button">
+              <ModalNoticeBtnLink href={`tel:${owner.phone}`}>
+                Contact
+              </ModalNoticeBtnLink>
+            </ModalNoticeBtnContact>
+          </ModalNoticeButtonsItem>
+
+          <ModalNoticeButtonsItem>
+            <ModalNoticeBtnFavorite
+              type="button"
+              onClick={handleChangeFavorite}
+            >
+              Add to{" "}
+              <HeartSvgSpan>
+                <AiFillHeart style={{ fill: "#f59256" }} />
+              </HeartSvgSpan>
+            </ModalNoticeBtnFavorite>
+          </ModalNoticeButtonsItem>
+
+          <ModalNoticeButtonsItem>
+            <ModalNoticeButton type="button" onClick={handleDeletePet}>
+              Delete
+            </ModalNoticeButton>
+          </ModalNoticeButtonsItem>
+        </ModalNoticeButtonsList>
+      </ModalNoticeAll>
+      {error && <Error />}
+      {loading && <Loader />}
+    </>
   );
 }

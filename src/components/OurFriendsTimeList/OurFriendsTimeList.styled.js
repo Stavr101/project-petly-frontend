@@ -11,6 +11,6 @@ export const TimeListTable = styled.table`
 
 export const TimeListRow = styled.tr`
   :not(:last-child) {
-    margin-bottom: ${(p) => p.theme.space[2]}px;
+    margin-bottom: ${(p) => p.theme.space[3]}px;
   }
 `;

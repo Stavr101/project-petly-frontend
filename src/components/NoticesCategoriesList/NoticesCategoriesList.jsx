@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import { fetchAdsByCategory } from "api/notices";
 import Error from "components/Error/Error";
 import NoticeCategoryItem from "components/NoticeCategoryItem/NoticeCategoryItem";
@@ -10,12 +11,13 @@ import { List } from "components/NoticesCategoriesList/NoticesCategoriesList.sly
 //   'for-free': 'inGoodHands',
 // };
 
-const NoticesCategoriesList = ({ query }) => {
+const NoticesCategoriesList = () => {
   const [pets, setPets] = useState([]);
+  const [favorite, setFavorice] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  let filteredPets = pets;
+  const { categoryName } = useParams();
+  let filteredPets = pets.filter((pet) => pet.categoryName === categoryName);
 
   // if (query !== "") {
   //   filteredPets = pets.filter(({ title }) => {
@@ -28,9 +30,9 @@ const NoticesCategoriesList = ({ query }) => {
       setLoading(true);
 
       try {
-        const data = await fetchAdsByCategory();
+        const data = await fetchAdsByCategory(categoryName);
+        console.log(data);
         setPets((prevPets) => [...prevPets, ...data]);
-        console.log("data", data);
       } catch (error) {
         setError(error);
       } finally {
@@ -38,7 +40,7 @@ const NoticesCategoriesList = ({ query }) => {
       }
     };
     fetchPets();
-  }, []);
+  }, [categoryName]);
 
   return (
     <>

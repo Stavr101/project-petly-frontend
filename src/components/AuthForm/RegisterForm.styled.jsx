@@ -36,7 +36,7 @@ const opacity = keyframes`
 
 export const FormWrapper = styled.div`
   /* padding: 20px; */
-  animation: ${scale} 0.8s linear forwards;
+  animation: ${scale} 0.4s linear forwards;
 
   @media screen and (min-width: 768px) {
     width: 608px;
@@ -55,7 +55,7 @@ export const FormWrapper = styled.div`
 `;
 
 export const FormEl = styled(Form)`
-  animation: ${opacity} 0.7s linear forwards;
+  animation: ${opacity} 0.6s linear forwards;
   display: flex;
   flex-direction: column;
 `;

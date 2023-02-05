@@ -1,5 +1,6 @@
 import DeleteSvg from "./NoticesDeleteSvg";
 import HeartSvg from "./NoticesHeartSvg";
+import HeartFavorite from "./NoticesHeartFavoriteSvg"
 
 import {
   ItemNoticesImgDiv,
@@ -16,7 +17,7 @@ import {
   ItemNoticesListLi,
   ItemNoticesListP,
   ItemNoticesImg,
-  ItemButtonNoticesHeartSpan,
+  ItemButtonNoticesHeartButton,
   ItemButtonNoticesDeleteSpan,
 } from "./NoticeCategoryItem.styled";
 
@@ -24,6 +25,7 @@ export default function NoticeCategoryItem({
   data,
   onDeletePets,
   onLearnMore,
+  onFavorite,
 }) {
   const {
     _id,
@@ -32,7 +34,8 @@ export default function NoticeCategoryItem({
     title,
     breed,
     location,
-    age,
+    price,
+    /* birthdate, */
     categoryName,
   } = data;
 
@@ -66,32 +69,36 @@ export default function NoticeCategoryItem({
             <ItemPositionNoticesDivParagraf>
               {categoryName}
             </ItemPositionNoticesDivParagraf>
-            <ItemButtonNoticesHeartSpan>
-              <HeartSvg />
-            </ItemButtonNoticesHeartSpan>
+            <ItemButtonNoticesHeartButton 
+            type="submit"
+            onClick={() => onFavorite(_id)}
+            >
+              {favorite? <HeartFavorite/> : <HeartSvg /> }
+            </ItemButtonNoticesHeartButton>
           </ItemPositionNoticesDiv>
         </ItemNoticesImgDiv>
         <ItemNoticesWrap>
           <ItemNoticesTitle>{title}</ItemNoticesTitle>
           <ItemNoticesUlList>
             <ItemNoticesListLi>
-              <ItemNoticesListP>
-                Breed:<ItemNoticesSpan>{breed}</ItemNoticesSpan>
-              </ItemNoticesListP>
+              <ItemNoticesListP>Breed:</ItemNoticesListP>
+              <ItemNoticesSpan>{breed}</ItemNoticesSpan>
             </ItemNoticesListLi>
             <ItemNoticesListLi>
-              <ItemNoticesListP>
-                Place:<ItemNoticesSpan>{location}</ItemNoticesSpan>
-              </ItemNoticesListP>
+              <ItemNoticesListP>Place:</ItemNoticesListP>
+              <ItemNoticesSpan>{location}</ItemNoticesSpan>
             </ItemNoticesListLi>
             <ItemNoticesListLi>
-              <ItemNoticesListP>
-                Age:<ItemNoticesSpan>{age}</ItemNoticesSpan>
-              </ItemNoticesListP>
+              <ItemNoticesListP>Age:</ItemNoticesListP>
+              <ItemNoticesSpan>one year</ItemNoticesSpan>
             </ItemNoticesListLi>
+            {categoryName === "sell" ? <ItemNoticesListLi>
+              <ItemNoticesListP>Price:</ItemNoticesListP>
+              <ItemNoticesSpan>{price}$</ItemNoticesSpan>
+            </ItemNoticesListLi> : null }
           </ItemNoticesUlList>
           <ItemButtonNotices>
-            <ItemButtonNoticesLearnMore
+          <ItemButtonNoticesLearnMore
               type="submit"
               onClick={() => onLearnMore(_id)}
             >
@@ -108,7 +115,8 @@ export default function NoticeCategoryItem({
                 <DeleteSvg />
               </ItemButtonNoticesDelete>
             ) : null}
-          </ItemButtonNotices>
+      
+            </ItemButtonNotices>
         </ItemNoticesWrap>
       </ItemNoticesLi>
     </>

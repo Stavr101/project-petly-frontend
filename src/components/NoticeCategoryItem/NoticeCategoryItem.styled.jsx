@@ -5,7 +5,7 @@ export const ItemNoticesImgDiv = styled.div`
 `;
 
 export const ItemNoticesTitle = styled.h2`
-  margin: 20px 0px 0px 20px;
+margin: 20px 0px 0px 20px;
   font-weight: 700;
   font-size: 28px;
   line-height: 38px;
@@ -57,7 +57,6 @@ export const ItemNoticesSpan = styled.span``;
 
 export const ItemNoticesLi = styled.li`
   max-width: 280px;
-  height: 580px;
   margin-top: 32px;
   margin-left: auto;
   margin-right: auto;
@@ -86,17 +85,14 @@ height: 318px;
 `;
 
 export const ItemButtonNotices = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0px 16px 12px 16px;
+  margin-top:20px;
 `;
 
 export const ItemButtonNoticesLearnMore = styled.button`
-    position: absolute;
-    bottom: 40px;
-    left: 20px;
-    right: 20px;
+position: absolute;
+bottom: 70px;
+left: 20px;
+right: 20px;
   padding: 8px 28px;
   font-weight: 500;
   color: #f59256;
@@ -108,7 +104,6 @@ export const ItemButtonNoticesLearnMore = styled.button`
   border-radius: 40px;
 
   @media only screen and (min-width: 768px) {
-    bottom: 80px;
     padding: 10px 28px;
     font-size: 20px;
     line-height: 1.2;
@@ -131,13 +126,21 @@ export const ItemButtonNoticesLearnMore = styled.button`
 `;
 
 export const ItemNoticesListLi = styled.li`
+display: flex;
+justify-content: flex-start;
+
+:not(:last-child) {
+  margin-bottom: ${(p) => p.theme.space[3]}px;
+}
+
   margin-top: 8px;
 `;
 
 export const ItemButtonNoticesDelete = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+position: absolute;
+bottom: 20px;
+left: 20px;
+right: 20px;
   color: #ff6101;
   padding: 8px 28px;
   margin-top: 12px;
@@ -152,8 +155,13 @@ export const ItemButtonNoticesDelete = styled.button`
 
   @media only screen and (min-width: 768px) {
     padding: 10px 28px;
+    bottom: 10px;
     font-size: 20px;
     line-height: 1.2;
+  }
+
+  @media only screen and (min-width: 1279px) {
+    bottom: 0px;
   }
 
   &.active {
@@ -167,23 +175,35 @@ export const ItemButtonNoticesDelete = styled.button`
   }
 `;
 export const ItemNoticesListP = styled.p`
+width: 40%;
+font-size: 16px;
+font-weight: 500;
+line-height: 22px;
+
+@media screen and (min-width: 768px) {
+  width: 30%;
+  line-height: 1.375;
+}
   font-style: normal;
-  font-weight: 500;
   font-size: 16px;
-  line-height: 22px;
   color: #111111;
 `;
 export const ItemButtonNoticesDeleteSpan = styled.span`
   margin-right: 13px;
 `;
 
-export const ItemButtonNoticesHeartSpan = styled.span`
+export const ItemButtonNoticesHeartButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  border : none;
   margin-right: 12px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(2px);
   padding: 8px;
+
+  &:hover {
+    background: #f59256;
+  }
 `;

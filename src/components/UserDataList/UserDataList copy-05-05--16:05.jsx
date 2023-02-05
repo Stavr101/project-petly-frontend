@@ -14,7 +14,7 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserData } from 'redux/users/selectors';
 import { getUserInfo } from 'redux/users/operations';
-import UserDataItem from 'components/UserDataItem/UserDataItem';
+import UserDataItem from 'components/UserDataItem/UserDataItem-ver 05.02-15:40';
 import { selectUser } from 'redux/auth/selectors';
 
 import editAvatar from 'images/UserPage/editAvatar.svg';
@@ -22,11 +22,6 @@ import editAvatar from 'images/UserPage/editAvatar.svg';
 export default function UserDataList() {
   const dataUser = useSelector(getUserData);
   const { name, email, birthday, phone, address, avatarUrl } = dataUser.user;
-  // const [editActiveBtn, setEditActiveBtn] = useState(true);
-
-  const handleChangeInput = e => {
-    console.log(e.target.value);
-  };
 
   return (
     <>
@@ -48,13 +43,7 @@ export default function UserDataList() {
         <UserInfoItem>
           <UserInfoTitle>Name:</UserInfoTitle>
           {name && (
-            <UserDataItem
-              typeInput="name"
-              nameInput="name"
-              valueUser={name}
-
-              // onEdit={newValue => onEdit(newValue)}
-            />
+            <UserDataItem type="name" nameInput="name" valueUser={name} />
           )}
         </UserInfoItem>
         <UserInfoItem>

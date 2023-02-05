@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { logOut } from 'redux/auth/operations';
-import { getUserInfo, updateUserData } from './operations';
+import { getUserInfo, updateUserData, updateUserAvatar } from './operations';
 
 const initialState = {
   user: {
@@ -9,7 +8,7 @@ const initialState = {
     phone: '',
     birthday: '',
     address: '',
-    avatarURL: '',
+    avatarUrl: '',
   },
   isLoading: false,
   error: null,
@@ -32,28 +31,30 @@ const usersSlice = createSlice({
   extraReducers: {
     [getUserInfo.pending]: isPending,
     [updateUserData.pending]: isPending,
+    [updateUserAvatar.pending]: isPending,
 
     [getUserInfo.rejected]: isRejected,
     [updateUserData.rejected]: isRejected,
+    [updateUserAvatar.rejected]: isRejected,
 
     [getUserInfo.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
       state.user = action.payload;
-      // console.log(action, 'action');
     },
     [updateUserData.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
-      const index = state.user.findIndex(item => item === action);
-      state.user.splice(index, 1, action.payload);
-    },
 
-    // [logOut.fulfilled](state) {
-    //   state.items = [];
-    //   state.error = null;
-    //   state.isLoading = false;
-    // },
+      // const index = state.user.findIndex(item => item === action.payload);
+      // state.user.splice(index, 1, action.payload);
+      state.user = action.payload;
+    },
+    [updateUserAvatar.fulfilled](state, action) {
+      state.isLoading = false;
+      state.error = null;
+      state.user = action.payload;
+    },
   },
 });
 

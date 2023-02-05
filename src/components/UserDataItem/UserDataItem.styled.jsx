@@ -59,9 +59,13 @@ export const UpdateBtn = styled.button`
     height: 32px;
     background-size: 16px;
   }
-  &:disabled {
+  /* &:disabled {
     background-color: blue;
-  }
+  } */
+`;
+
+export const PensileBtn = styled(UpdateBtn)`
+  background-image: url(${pencil});
 `;
 
 export const UpdateBtnDeactive = styled.button`

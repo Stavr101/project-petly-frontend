@@ -1,62 +1,63 @@
-import { useState } from 'react';
-
-// import { useSelector, useDispatch } from 'react-redux';
-// import { getUserData } from 'redux/user/selectors';
-// import { updateUserData } from 'redux/user/operations';
+import { avatarClasses } from '@mui/material';
+import React, { useState } from 'react';
 import {
   Input,
   UpdateBtn,
   InputWrapper,
-  UpdateBtnDeactive,
+  PensileBtn,
 } from './UserDataItem.styled';
-import { updateUserData } from 'redux/users/operations';
-import { useDispatch } from 'react-redux';
-import { getUserData } from 'redux/users/selectors';
 
-export default function UserDataItem(props) {
-  const [inputValue, setInputValue] = useState(props.valueUser);
-  const [inputName, setInputName] = useState(props.nameInput);
+export default function UserDataItem({
+  typeInput,
+  nameInput,
+  valueUser,
+  onEdit,
+}) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedValue, setEditedValue] = useState(valueUser);
 
-  const [disabled, setDisabled] = useState(true);
+  //   const handleEditButtonClick = typeInput => {
+  //     setActiveInput(typeInput);
+  //   };
 
-  const [updateInput, setUpdateInput] = useState(props.valueUser);
-  const dispatch = useDispatch();
-  // const []
-  // const [display, setDisplay] = useState(false);
+  //   const handleSaveButtonClick = () => {
+  //     setActiveInput(null);
+  //     // здесь вы можете сохранить данные, используя любые функции, необходимые для этого
+  //   };
 
-  function handleChangeInput(e) {
+  const handleEdit = e => {
     e.preventDefault();
-    setInputValue(e.target.value);
-    setInputName(e.target.name);
-  }
-  function handleSubmitInput(e) {
-    e.preventDefault();
-    dispatch(updateUserData({ inputName: inputValue }));
-    // const action = updateUserData(updateInput);
-    // dispatch(action);
+    setIsEditing(true);
+    // setActiveInput(true);
+    // handleEditButtonClick();
+  };
 
-    // setDisabled(disabled);
-  }
+  const handleSave = e => {
+    setIsEditing(false);
+    // handleSaveButtonClick();
+    // setActiveInput(false);
+    // onEdit(editedValue);
+  };
 
   return (
     <InputWrapper>
-      <Input
-        type={props.type}
-        name={inputName}
-        value={inputValue}
-        onChange={handleChangeInput}
-        // disabled={disabled}
-        // readOnly={disabled ? false : true}
-      />
-      {/* {disabled && (
-        <UpdateBtnDeactive
-          type="submit"
-          onClick={handleChangeInput}
-        ></UpdateBtnDeactive>
+      {isEditing ? (
+        <>
+          <Input
+            type={typeInput}
+            name={nameInput}
+            value={editedValue}
+            onChange={e => setEditedValue(e.target.value)}
+          />
+          <UpdateBtn onClick={handleSave}></UpdateBtn>
+        </>
+      ) : (
+        <>
+          <Input type={typeInput} name={nameInput} value={valueUser} disabled />
+          {/* <PensileBtn onClick={handleEdit}></PensileBtn> */}
+          <PensileBtn onClick={handleEdit}></PensileBtn>
+        </>
       )}
-      {!disabled && <UpdateBtn onClick={handleChangeInput}></UpdateBtn>} */}
-      <UpdateBtn type="submit" onClick={handleSubmitInput}></UpdateBtn>
-      {/* <UpdateBtn type="submit"></UpdateBtn> */}
     </InputWrapper>
   );
 }

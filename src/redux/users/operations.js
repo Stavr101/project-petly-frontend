@@ -15,11 +15,11 @@ export const getUserInfo = createAsyncThunk('user/get', async (_, thunkAPI) => {
 
 // PUT @ /userData
 export const updateUserData = createAsyncThunk(
-  'user/changeUserData',
-  async ({ _id, name, email, birthday, phone, address }, thunkAPI) => {
+  'user/updateUserData',
+  async ({ name, email, birthday, phone, address }, thunkAPI) => {
     // console.log('user data', user);
     try {
-      const response = await axios.put(`/user/${_id}`, {
+      const response = await axios.put(`/user/:userId`, {
         name,
         email,
         birthday,
@@ -33,51 +33,15 @@ export const updateUserData = createAsyncThunk(
     }
   }
 );
-// // POST @ /user   Add Pet
 
-// export const addPet = createAsyncThunk(
-//   'user/addPet',
-//   async ({ name, date, breed, avatarUrl, comment, _id, owner }, thunkAPI) => {
-//     try {
-//       const response = await axios.post('/user', {
-//         name,
-//         date,
-//         breed,
-//         avatarUrl,
-//         comment,
-//         _id,
-//         owner,
-//       });
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
-
-// // GET @ /user/pets    Get pets info
-
-// export const getPetInfo = createAsyncThunk('pets/get', async (_, thunkAPI) => {
-//   try {
-//     const res = await axios.get('/user/pets');
-
-//     return res.data;
-//   } catch (error) {
-//     return thunkAPI.rejectWithValue(error.message);
-//   }
-// });
-
-// PATCH @ /userAvatar
-// export const changeUserAvatar = createAsyncThunk(
-//   'user/avatar',
-//   async (user, thunkAPI) => {
-//     console.log('user avatar', user);
-//     try {
-//       const response = await axios.patch('/user/avatar', user);
-//       console.log('response :', response.data);
-//       return response.data;
-//     } catch (e) {
-//       return thunkAPI.rejectWithValue(e.message);
-//     }
-//   }
-// );
+export const updateUserAvatar = createAsyncThunk(
+  'users/updateAvatar',
+  async ({ avatarUrl }, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.put('/users/:userId', avatarUrl);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);

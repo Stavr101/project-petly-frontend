@@ -13,7 +13,7 @@ import {
   UserInfoItem,
   UserInfoTitle,
 } from './UserData.styled';
-import UserDataItem from 'components/UserDataItem/UserDataItem';
+import UserDataItem from 'components/UserDataItem/UserDataItem-ver 05.02-15:40';
 import { Logout } from 'components/Logout/Logout';
 import editAvatar from 'images/UserPage/editAvatar.svg';
 

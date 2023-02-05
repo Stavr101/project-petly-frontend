@@ -20,7 +20,7 @@ export default function NewsSearch({ handleChange }) {
         placeholder="Search"
         endAdornment={
           <InputAdornment position="end">
-            <SearchIcon sx={{ color: "text.primary" }} />
+            <SearchIcon sx={{ color: "text.primary", width: 24, height: 24 }} />
           </InputAdornment>
         }
         sx={{
@@ -46,9 +46,10 @@ export default function NewsSearch({ handleChange }) {
           boxShadow: "7px 4px 14px rgba(49, 21, 4, 0.07)",
           input: {
             fontWeight: 500,
-            py: 1,
+            py: 1.25,
             "&::placeholder": {
               color: "#535353",
+              opacity: 1,
             },
             color: "#535353",
           },

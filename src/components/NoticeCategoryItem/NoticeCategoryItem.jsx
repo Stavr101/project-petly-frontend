@@ -1,5 +1,3 @@
-/* import { useDispatch } from 'react-redux';
-import { deletePets } from 'api/notices'; */
 import DeleteSvg from "./NoticesDeleteSvg";
 import HeartSvg from "./NoticesHeartSvg";
 
@@ -12,6 +10,7 @@ import {
   ItemNoticesSpan,
   ItemNoticesLi,
   ItemButtonNotices,
+  ItemNoticesWrap,
   ItemButtonNoticesLearnMore,
   ItemButtonNoticesDelete,
   ItemNoticesListLi,
@@ -34,58 +33,83 @@ export default function NoticeCategoryItem({
     breed,
     location,
     age,
-    condition,
+    categoryName,
   } = data;
+
+  const handleOnError = (e) => {
+    e.target.src =
+      "https://www.kindpng.com/picc/m/22-223863_no-avatar-png-circle-transparent-png.png";
+  };
 
   return (
     <>
       <ItemNoticesLi>
         <ItemNoticesImgDiv>
-          <ItemNoticesImg src={petAvatarURL} alt={title} />
+          {petAvatarURL ? (
+            <ItemNoticesImg src={petAvatarURL} alt={title} />
+          ) : (
+            <ItemNoticesImg
+              src={"https://i.ibb.co/RQ61YYb/1.jpg"}
+              alt={"No image available"}
+              onError={handleOnError}
+            />
+          )}
+          {/* {isLoading === 0 ? (
+            <ItemNoticesImg
+            src={"https://i.ibb.co/RQ61YYb/1.jpg"}
+            alt={"No image available"}
+          />
+          ) : (
+            <ItemNoticesImg src={petAvatarURL} alt={title} />
+          )} */}
           <ItemPositionNoticesDiv>
             <ItemPositionNoticesDivParagraf>
-              {condition}
+              {categoryName}
             </ItemPositionNoticesDivParagraf>
             <ItemButtonNoticesHeartSpan>
               <HeartSvg />
             </ItemButtonNoticesHeartSpan>
           </ItemPositionNoticesDiv>
         </ItemNoticesImgDiv>
-        <ItemNoticesTitle>{title}</ItemNoticesTitle>
-        <ItemNoticesUlList>
-          <ItemNoticesListLi>
-            <ItemNoticesListP>
-              Breed:<ItemNoticesSpan>{breed}</ItemNoticesSpan>
-            </ItemNoticesListP>
-          </ItemNoticesListLi>
-          <ItemNoticesListLi>
-            <ItemNoticesListP>
-              Place:<ItemNoticesSpan>{location}</ItemNoticesSpan>
-            </ItemNoticesListP>
-          </ItemNoticesListLi>
-          <ItemNoticesListLi>
-            <ItemNoticesListP>
-              Age:<ItemNoticesSpan>{age}</ItemNoticesSpan>
-            </ItemNoticesListP>
-          </ItemNoticesListLi>
-        </ItemNoticesUlList>
-        <ItemButtonNotices>
-          <ItemButtonNoticesLearnMore
-            type="submit"
-            onClick={() => onLearnMore(_id)}
-          >
-            Learn more
-          </ItemButtonNoticesLearnMore>
-          {favorite ? (
-            <ItemButtonNoticesDelete
+        <ItemNoticesWrap>
+          <ItemNoticesTitle>{title}</ItemNoticesTitle>
+          <ItemNoticesUlList>
+            <ItemNoticesListLi>
+              <ItemNoticesListP>
+                Breed:<ItemNoticesSpan>{breed}</ItemNoticesSpan>
+              </ItemNoticesListP>
+            </ItemNoticesListLi>
+            <ItemNoticesListLi>
+              <ItemNoticesListP>
+                Place:<ItemNoticesSpan>{location}</ItemNoticesSpan>
+              </ItemNoticesListP>
+            </ItemNoticesListLi>
+            <ItemNoticesListLi>
+              <ItemNoticesListP>
+                Age:<ItemNoticesSpan>{age}</ItemNoticesSpan>
+              </ItemNoticesListP>
+            </ItemNoticesListLi>
+          </ItemNoticesUlList>
+          <ItemButtonNotices>
+            <ItemButtonNoticesLearnMore
               type="submit"
-              onClick={() => onDeletePets(_id)}
+              onClick={() => onLearnMore(_id)}
             >
-              <ItemButtonNoticesDeleteSpan>Delete</ItemButtonNoticesDeleteSpan>
-              <DeleteSvg />
-            </ItemButtonNoticesDelete>
-          ) : null}
-        </ItemButtonNotices>
+              Learn more
+            </ItemButtonNoticesLearnMore>
+            {favorite ? (
+              <ItemButtonNoticesDelete
+                type="submit"
+                onClick={() => onDeletePets(_id)}
+              >
+                <ItemButtonNoticesDeleteSpan>
+                  Delete
+                </ItemButtonNoticesDeleteSpan>
+                <DeleteSvg />
+              </ItemButtonNoticesDelete>
+            ) : null}
+          </ItemButtonNotices>
+        </ItemNoticesWrap>
       </ItemNoticesLi>
     </>
   );

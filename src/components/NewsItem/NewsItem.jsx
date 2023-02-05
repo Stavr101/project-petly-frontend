@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import EllipsisText from "react-ellipsis-text";
 
-export const NewsItem = ({ data }) => {
+export const NewsItem = ({ data, lastElementRef }) => {
   const { title, url, date, description } = data;
 
   return (
@@ -20,6 +20,7 @@ export const NewsItem = ({ data }) => {
       tablet={6}
       desktop={4}
       sx={{ display: "flex" }}
+      ref={lastElementRef}
     >
       <Card
         sx={{

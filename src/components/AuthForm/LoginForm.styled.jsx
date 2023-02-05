@@ -42,7 +42,7 @@ export const FormWrapper = styled.div`
   }
   @media screen and (min-width: 1280px) {
     padding: 60px 80px;
-    margin-top: 35px;
+    /* margin-top: 35px; */
   }
 `;
 

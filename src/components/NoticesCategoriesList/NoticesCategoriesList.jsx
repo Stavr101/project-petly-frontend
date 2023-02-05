@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import Grid from "@mui/material/Grid";
 import { fetchAdsByCategory } from "api/notices";
 import Error from "components/Error/Error";
 import NoticeCategoryItem from "components/NoticeCategoryItem/NoticeCategoryItem";
+import { List } from "components/NoticesCategoriesList/NoticesCategoriesList.slyled";
 
 // =============
 import ModalNotice from "components/ModalNotice/ModalNotice";
@@ -86,13 +86,7 @@ const NoticesCategoriesList = ({ query }) => {
   return (
     <>
       {filteredPets && (
-        <Grid
-          container
-          columnSpacing={4}
-          rowSpacing={{ mobile: 6, tablet: 7.5, desktop: 7.5 }}
-          component="ul"
-          alignItems="stretch"
-        >
+        <List>
           {filteredPets.map((item) => {
             return (
               <NoticeCategoryItem
@@ -102,7 +96,7 @@ const NoticesCategoriesList = ({ query }) => {
               />
             );
           })}
-        </Grid>
+        </List>
       )}
       {error && <Error />}
       {loading && <p>is loading...</p>}

@@ -1,10 +1,13 @@
 import styled, { keyframes } from "styled-components";
 import cross from "./ImgModalAddNotice/clarity_close-cross.png";
 import crossPhoto from "./ImgModalAddNotice/CrossForPhoto.png";
+import male from "./ImgModalAddNotice/male.png";
+import female from "./ImgModalAddNotice/female.png";
+import React, { useState } from 'react';
 
 const slideIn = keyframes`
   from {
-    transform: translateX(-100%);
+    transform: translateX(100%);
     opacity: 0;
   }
   to {
@@ -14,6 +17,68 @@ const slideIn = keyframes`
   }
 `;
 
+export const InputMaleButton = styled.button`
+background-image: url(${male});
+width: 60px;
+height:60px;
+margin-bottom: 20px;
+background-repeat:no-repeat;
+border: none;
+background-color: white;
+cursor: pointer;
+   box-shadow:  ${props => (props.isSelected ? 'inset -1px 2px 3px rgba(255, 255, 255, 0.57), inset 0px -3px 4px rgba(0, 0, 0, 0.25);' : '0px 0px 0px rgba(0, 0, 0, 0.25)')};
+ 
+ :hover {
+ 
+ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+`
+export const InputFemaleButton = styled.button`
+background-image: url(${female});
+width: 60px;
+height:60px;
+margin-bottom: 20px;
+background-repeat:no-repeat;
+border: none;
+background-color: white;
+   box-shadow:  ${props => (props.isSelected ? 'inset -1px 2px 3px rgba(255, 255, 255, 0.57), inset 0px -3px 4px rgba(0, 0, 0, 0.25);' : '0px 0px 0px rgba(0, 0, 0, 0.25)')};
+ 
+ :hover {
+ 
+ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }`
+
+export const InputContainer = styled.div`
+width: 60px;
+margin-right: 80px;
+:hover{
+    color: #F59256;;
+}
+`
+export const InputRadio= styled.input`
+width: 50px;
+height: 50px;
+opacity: 0;
+`;
+
+export const InputFemale = styled.input`
+width: 50px;
+height: 50px;
+opacity: 0;
+`;
+
+export const LabelMale = styled.label`
+
+`;
+export const LabelFemale = styled.label`
+
+`;
+
+export const SexButtons = styled.div`
+display: flex;
+margin-right: auto;
+`;
+ 
 const slideInPhoto = keyframes`
   from {
     /* transform: translateX(-50%); */
@@ -27,10 +92,7 @@ const slideInPhoto = keyframes`
 `;
 
 
-export const SexButton = styled.div`
 
-
-`;
 
 export const AddPhoto = styled.p`
 

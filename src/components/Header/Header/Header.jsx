@@ -1,10 +1,15 @@
-import React from 'react';
-import { PrimaryHeader } from './Header.styled';
+import React from "react";
+import { PrimaryHeader } from "./Header.styled";
+import Logo from "components/Logo/Logo";
+import Nav from "components/Nav/Nav";
 
-const Header = ({children}) => {
+const Header = () => {
   return (
-    <PrimaryHeader>{children}</PrimaryHeader>
-  )
-}
+    <PrimaryHeader>
+      <Logo />
+      <Nav />
+    </PrimaryHeader>
+  );
+};
 
 export default Header;

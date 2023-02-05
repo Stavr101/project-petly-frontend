@@ -2,10 +2,11 @@ import axios from "axios";
 
 axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
 
-
 export const getAllNoticesPets = async () => {
   try {
-    const { params: { category } } = await axios.get(`/notices/:categoryName`);
+    const {
+      params: { category },
+    } = await axios.get(`/notices/:categoryName`);
     return category;
   } catch (error) {
     console.log(error.message);
@@ -32,7 +33,7 @@ export const getAllNoticesPets = async () => {
 
 export const fetchAdsByCategory = (category) => {
   return axios
-    .get("/notices/category/sell", { params: { category } })
+    .get(`/notices/category/${category}`)
     .then((response) => response.data);
 };
 

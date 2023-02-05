@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useCallback } from "react";
+import { useState, useCallback} from "react";
 import debounce from "lodash.debounce";
 import { NewsList } from "components/NewsList/NewsList.jsx";
 import { Container, Typography } from "@mui/material";
@@ -19,11 +19,17 @@ export default function NewsPage() {
     <ThemeProvider theme={theme}>
       <Container
         maxWidth="desktop"
+        component="main"
         sx={{
           maxWidth: {
             mobile: 480,
             tablet: 768,
             desktop: 1280,
+          },
+          py: {
+            mobile: 0,
+            tablet: 5.62,
+            desktop: 1.87,
           },
           px: {
             mobile: 2.5,

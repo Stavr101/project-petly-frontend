@@ -1,5 +1,6 @@
 import DeleteSvg from "./NoticesDeleteSvg";
 import HeartSvg from "./NoticesHeartSvg";
+import HeartFavorite from "./NoticesHeartFavoriteSvg";
 
 import {
   ItemNoticesImgDiv,
@@ -16,7 +17,7 @@ import {
   ItemNoticesListLi,
   ItemNoticesListP,
   ItemNoticesImg,
-  ItemButtonNoticesHeartSpan,
+  ItemButtonNoticesHeartButton,
   ItemButtonNoticesDeleteSpan,
 } from "./NoticeCategoryItem.styled";
 
@@ -24,6 +25,7 @@ export default function NoticeCategoryItem({
   data,
   onDeletePets,
   onLearnMore,
+  onFavorite
 }) {
   const {
     _id,
@@ -32,7 +34,8 @@ export default function NoticeCategoryItem({
     title,
     breed,
     location,
-    age,
+    price,
+    birthdate,
     categoryName,
   } = data;
 
@@ -41,12 +44,33 @@ export default function NoticeCategoryItem({
       "https://www.kindpng.com/picc/m/22-223863_no-avatar-png-circle-transparent-png.png";
   };
 
+  const currentAge = date => {
+    if (!date) {
+      return "";
+    }
+    let today = new Date();
+    let birthDate = new Date(date);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    let m = today.getMonth() - birthDate.getMonth();
+    let d = today.getDay() - birthDate.getDay();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    if (age === 0) {
+      m = 12 + m;
+      if (d < 0 || (d === 0 && today.getDate() < birthDate.getDate())) {
+        m--;
+      }
+    }
+    return age ? age + " year" : m + " month";
+  };
+
   return (
     <>
       <ItemNoticesLi>
         <ItemNoticesImgDiv>
           {petAvatarURL ? (
-            <ItemNoticesImg src={petAvatarURL} alt={title} />
+            <ItemNoticesImg src={petAvatarURL.secure_url} alt={title} />
           ) : (
             <ItemNoticesImg
               src={"https://i.ibb.co/RQ61YYb/1.jpg"}
@@ -66,29 +90,33 @@ export default function NoticeCategoryItem({
             <ItemPositionNoticesDivParagraf>
               {categoryName}
             </ItemPositionNoticesDivParagraf>
-            <ItemButtonNoticesHeartSpan>
-              <HeartSvg />
-            </ItemButtonNoticesHeartSpan>
+            <ItemButtonNoticesHeartButton 
+            type="submit"
+            onClick={() => onFavorite(_id)}
+            >
+              {favorite? <HeartFavorite/> : <HeartSvg /> }
+            </ItemButtonNoticesHeartButton>
           </ItemPositionNoticesDiv>
         </ItemNoticesImgDiv>
         <ItemNoticesWrap>
           <ItemNoticesTitle>{title}</ItemNoticesTitle>
           <ItemNoticesUlList>
             <ItemNoticesListLi>
-              <ItemNoticesListP>
-                Breed:<ItemNoticesSpan>{breed}</ItemNoticesSpan>
-              </ItemNoticesListP>
+            <ItemNoticesListP>Breed:</ItemNoticesListP>
+              <ItemNoticesSpan>{breed}</ItemNoticesSpan>
             </ItemNoticesListLi>
             <ItemNoticesListLi>
-              <ItemNoticesListP>
-                Place:<ItemNoticesSpan>{location}</ItemNoticesSpan>
-              </ItemNoticesListP>
+            <ItemNoticesListP>Place:</ItemNoticesListP>
+              <ItemNoticesSpan>{location}</ItemNoticesSpan>
             </ItemNoticesListLi>
             <ItemNoticesListLi>
-              <ItemNoticesListP>
-                Age:<ItemNoticesSpan>{age}</ItemNoticesSpan>
-              </ItemNoticesListP>
+            <ItemNoticesListP>Age:</ItemNoticesListP>
+              <ItemNoticesSpan>{currentAge(birthdate)}</ItemNoticesSpan>
             </ItemNoticesListLi>
+            {categoryName === "sell" ? <ItemNoticesListLi>
+              <ItemNoticesListP>Price:</ItemNoticesListP>
+              <ItemNoticesSpan>{price}$</ItemNoticesSpan>
+            </ItemNoticesListLi> : null }
           </ItemNoticesUlList>
           <ItemButtonNotices>
             <ItemButtonNoticesLearnMore

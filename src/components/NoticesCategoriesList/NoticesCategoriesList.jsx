@@ -11,7 +11,6 @@ import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
-import Loader from "shared/loader/Loader";
 
 const style = {
   position: "absolute",
@@ -35,15 +34,9 @@ const styleBackdrop = {
 };
 //=================
 
-// const categoriesForBack = {
-//   sell: 'sell',
-//   'lost-found': 'lostFound',
-//   'for-free': 'inGoodHands',
-// };
-
-const NoticesCategoriesList = () => {
+const NoticesCategoriesList = (searchQuery) => {
   const [pets, setPets] = useState([]);
-  const [favorite,setFavorice] = useState([])
+  const [favorite, setFavorice] = useState([])
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [open, setOpen] = useState(false);
@@ -51,11 +44,11 @@ const NoticesCategoriesList = () => {
   const {categoryName} = useParams()
   let filteredPets = pets.filter(pet => pet.categoryName === categoryName);
 
-  // if (query !== "") {
-  //   filteredPets = pets.filter(({ title }) => {
-  //     return title.toLowerCase().includes(query.toLowerCase());
-  //   });
-  // }
+  if (searchQuery !== "") {
+    filteredPets = pets.filter(({ title }) => {
+      return title.toString().toLowerCase();
+    });
+  }
 
   useEffect(() => {
     const fetchPets = async () => {
@@ -64,7 +57,7 @@ const NoticesCategoriesList = () => {
       try {
         const data = await fetchAdsByCategory(categoryName);
         console.log(data)
-        setPets((prevPets) => [...prevPets, ...data]);
+        setPets(() => [...data]);
       } catch (error) {
         setError(error);
       } finally {

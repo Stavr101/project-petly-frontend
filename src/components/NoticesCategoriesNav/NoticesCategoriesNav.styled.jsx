@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
-export const Title = styled.nav`
+export const Title = styled.h1`
   margin-bottom: 28px;
 
   text-align: center;
@@ -29,6 +29,10 @@ export const Nav = styled.nav`
 
   @media only screen and (min-width: 1280px) {
     margin-bottom: 60px;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1279px){
+    margin-right: 100px;
   }
 `;
 

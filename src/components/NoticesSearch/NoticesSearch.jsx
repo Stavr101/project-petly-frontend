@@ -9,33 +9,32 @@ import {
 } from "components/NoticesSearch/NoticesSearch.styled";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 
-const NoticesSearch = (onSubmit) => {
-  const [query, setQuery] = useState("");
+const NoticesSearch = () => {
+  // const [query, setQuery] = useState("");
   const [filteredData, setFilteredData] = useState([]);
 
   const handleChange = (e) => {
-    setQuery(e.target.value.toLowerCase());
+    e.preventDefault();
+    // setQuery(e.target.value.toLowerCase());
     setFilteredData(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (query.trim() === "") {
       return Notify.failure("What pet do you need?", {
         position: 'center-top',
         cssAnimationStyle: 'from-right',
       });
-    }
-    onSubmit(query);
   };
 
-  const clearInput = () => {
+  const clearInput = (e) => {
+    e.preventDefault();
     setFilteredData("");
   };
 
   return (
     <Search>
-      <SearchForm onSubmit={handleSubmit}>
+      <SearchForm>
         <FormInput
           name="input"
           type="text"
@@ -46,7 +45,7 @@ const NoticesSearch = (onSubmit) => {
         />
         <FormButton type="submit">
           {filteredData.length === 0 ?
-            <IconSearch /> : <IconClose onClick={clearInput} />
+            <IconSearch onClick={handleSubmit}/> : <IconClose onClick={clearInput} />
           }
         </FormButton>
       </SearchForm>

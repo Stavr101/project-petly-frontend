@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams, useSearchParams } from "react-router-dom";
 import { fetchAdsByCategory } from "api/notices";
 import Error from "components/Error/Error";
 import NoticeCategoryItem from "components/NoticeCategoryItem/NoticeCategoryItem";
@@ -16,7 +16,9 @@ const NoticesCategoriesList = () => {
   const [favorite, setFavorice] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
   const { categoryName } = useParams();
+  const search = searchParams.get("search") ?? "";
   let filteredPets = pets.filter((pet) => pet.categoryName === categoryName);
 
   // if (query !== "") {
@@ -24,13 +26,18 @@ const NoticesCategoriesList = () => {
   //     return title.toLowerCase().includes(query.toLowerCase());
   //   });
   // }
+  useEffect(() => {
+    setPets([]);
+  }, [search, categoryName]);
+
+  console.log('search', search)
 
   useEffect(() => {
     const fetchPets = async () => {
       setLoading(true);
 
       try {
-        const data = await fetchAdsByCategory(categoryName);
+        const data = await fetchAdsByCategory(categoryName, search);
         console.log(data);
         setPets((prevPets) => [...prevPets, ...data]);
       } catch (error) {
@@ -40,7 +47,7 @@ const NoticesCategoriesList = () => {
       }
     };
     fetchPets();
-  }, [categoryName]);
+  }, [categoryName, search]);
 
   return (
     <>

@@ -94,8 +94,8 @@ function Forma({ handleClose }) {
     handleClose();
   };
 
-//   const hasFirstFormAllData = Object.values(form.firstForm).every(value => value)
-// const hasSecondFormAllData = Object.values(form.secondForm).every(value => value)
+  const hasFirstFormAllData = Object.values(form.firstForm).every(value => value)
+const hasSecondFormAllData = Object.values(form.secondForm).every(value => value)
   return (
     <>
       {formType === "firstForm" && (
@@ -139,7 +139,7 @@ function Forma({ handleClose }) {
               Close
             </Button>
             <Button type="button" onClick={() => setFormType("secondForm")}
-              // disabled={!hasFirstFormAllData}
+              disabled={!hasFirstFormAllData}
             >
               Next
             </Button>
@@ -179,7 +179,7 @@ function Forma({ handleClose }) {
               Back
             </Button>
             <Button type="submit"
-              // disabled={!hasSecondFormAllData}
+              disabled={!hasSecondFormAllData}
             >Submit</Button>
           </ButtonContainer>
         </NextFormContainer>

@@ -49,34 +49,52 @@ export default function NoticeCategoryItem({
 
   const handleOnError = (e) => {
     e.target.src =
-      "https://www.kindpng.com/picc/m/22-223863_no-avatar-png-circle-transparent-png.png";
+    "https://i.ibb.co/RQ61YYb/1.jpg";
   };
 
   const currentAge = date => {
-    if (!date) {
-      return "";
-    }
-    let today = new Date();
-    let birthDate = new Date(date);
-    let age = today.getFullYear() - birthDate.getFullYear();
-    let m = today.getMonth() - birthDate.getMonth();
-    let d = today.getDay() - birthDate.getDay();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
-    }
-    if (age === 0) {
-      m = 12 + m;
-      if (d < 0 || (d === 0 && today.getDate() < birthDate.getDate())) {
-        m--;
+    const dif = Date.now() - new Date(date);
+    const second = 1000;
+    const minute = second * 60;
+    const hour = minute * 60;
+    const day = hour * 24;
+
+    const days = Math.floor(dif / day);
+    const months = Math.floor(days / 30.4);
+    const years = months / 12;
+    const transformedYear = Number(years.toString().split('.')[0]);
+    const restDivision = years.toString().split('.')[1];
+    const transformedMonth = restDivision ? Math.floor(Number(`0.${restDivision}` * 12)) : null;
+
+    if (transformedYear > 0) {
+      if (transformedMonth) {
+        return `${transformedYear} ${
+          transformedYear === 1
+            ? 'year'
+            : 'years'
+        }`;
       }
+      return `${transformedYear} ${
+        transformedYear === 1
+          ? 'year'
+          : 'years'
+      }`;
     }
-    return age ? age + " year" : m + " month";
-  };
+
+    if (transformedMonth) {
+      return `${transformedMonth} ${
+        transformedMonth === 1
+          ? 'month'
+          : 'months'
+      }`;
+    }
+    return "< 1 month";
+  }
 
   return (
     <>
       <ItemNoticesLi>
-        <ItemNoticesImgDiv>
+        <ItemNoticesImgDiv >
           {petAvatarURL ? (
             <ItemNoticesImg src={petAvatarURL.secure_url} alt={title} />
           ) : (
@@ -86,14 +104,6 @@ export default function NoticeCategoryItem({
               onError={handleOnError}
             />
           )}
-          {/* {isLoading === 0 ? (
-            <ItemNoticesImg
-            src={"https://i.ibb.co/RQ61YYb/1.jpg"}
-            alt={"No image available"}
-          />
-          ) : (
-            <ItemNoticesImg src={petAvatarURL} alt={title} />
-          )} */}
           <ItemPositionNoticesDiv>
             <ItemPositionNoticesDivParagraf>
               {categoryName}

@@ -61,9 +61,9 @@ export default function ModalAddsPetApp() {
 
   return (
     <>
-      <EnterButton variant="contained" onClick={handleOpen}>
+      {/* <EnterButton variant="contained" onClick={handleOpen}>
         Add Pet
-      </EnterButton>
+      </EnterButton> */}
           <Modal open={modalOpen} onClose={handleClose} >
         <ModalContainer >
           <ButtonOff variant="contained" onClick={handleClose}></ButtonOff>

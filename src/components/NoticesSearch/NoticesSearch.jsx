@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import {
   Search,
   SearchForm,
@@ -10,27 +11,39 @@ import {
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 const NoticesSearch = () => {
-  // const [query, setQuery] = useState("");
-  const [filteredData, setFilteredData] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [query, setQuery] = useState("");
 
   const handleChange = (e) => {
-    e.preventDefault();
-    // setQuery(e.target.value.toLowerCase());
-    setFilteredData(e.target.value);
+    setQuery(e.target.value.toLowerCase());
+    const search = e.target.value.trim();
+    const nextParams = search !== "" ? { search } : {};
+    setSearchParams(nextParams);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-      return Notify.failure("What pet do you need?", {
-        position: 'center-top',
-        cssAnimationStyle: 'from-right',
+  const handleSearchButton = () => {
+    if (!query) {
+      return Notify.failure("Type some text to find pet", {
+        position: "center-top",
+        cssAnimationStyle: "from-right",
       });
+    }
   };
 
-  const clearInput = (e) => {
-    e.preventDefault();
-    setFilteredData("");
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log(e.target.input.value);
+  //   if (!e.target.input.value) {
+  //     return Notify.failure("Type some text to find pet", {
+  //       position: "center-top",
+  //       cssAnimationStyle: "from-right",
+  //     });
+  //   }
+  //   const search = e.target.input.value.trim();
+  //   const nextParams = search !== "" ? { search } : {};
+  //   setSearchParams(nextParams);
+  //   e.target.form.reset();
+  // };
 
   return (
     <Search>
@@ -40,13 +53,15 @@ const NoticesSearch = () => {
           type="text"
           autocomplete="off"
           placeholder="Search"
-          value={filteredData}
+          value={query}
           onChange={handleChange}
         />
-        <FormButton type="submit">
-          {filteredData.length === 0 ?
-            <IconSearch onClick={handleSubmit}/> : <IconClose onClick={clearInput} />
-          }
+        <FormButton type="button">
+          {!query ? (
+            <IconSearch onClick={handleSearchButton} />
+          ) : (
+            <IconClose onClick={() => setQuery("")} />
+          )}
         </FormButton>
       </SearchForm>
     </Search>

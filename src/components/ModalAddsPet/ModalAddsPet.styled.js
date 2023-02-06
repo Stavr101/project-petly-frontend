@@ -4,7 +4,7 @@ import crossPhoto from "./ImgModalAddsPet/CrossForPhoto.png";
 
 const slideIn = keyframes`
   from {
-    transform: translateX(100%);
+    transform: translateX(0);
     opacity: 0;
   }
   to {
@@ -76,7 +76,7 @@ export const Image = styled.img`
 width: 208px;
 height: 208px;
 border-radius: 20px;
-animation: ${slideIn} 800ms ease-out;
+animation: ${slideIn} 300ms ease-out;
  @media (min-width: 768px) {
     width: 182px;
 height: 182px;
@@ -94,7 +94,7 @@ export const ModalContainer = styled.div`
   max-width: 280px;
   /* height: 530px; */
   border-radius: 16px;
-  animation: ${slideIn} 600ms ease-out;
+  animation: ${slideIn} 300ms ease-out;
 
   @media (min-width: 768px) {
     max-width: 608px;

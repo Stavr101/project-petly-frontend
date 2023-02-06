@@ -31,9 +31,9 @@ axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
 //   }
 // };
 
-export const fetchAdsByCategory = (category) => {
+export const fetchAdsByCategory = (category, search) => {
   return axios
-    .get(`/notices/category/${category}`)
+    .get(`/notices/category/${category}?search=${search}`)
     .then((response) => response.data);
 };
 

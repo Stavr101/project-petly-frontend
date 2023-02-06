@@ -15,7 +15,7 @@ import {
   ButtonOff,
 } from './ModalAddNotice.styled';
 
-import Forma from './ModalAddNotice';
+import Forma from './ModalAddSellNotice';
 
 // const useStyles = makeStyles({
 //   root: {

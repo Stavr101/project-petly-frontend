@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams, useSearchParams } from "react-router-dom";
 import { fetchAdsByCategory } from "api/notices";
 import Error from "components/Error/Error";
 import NoticeCategoryItem from "components/NoticeCategoryItem/NoticeCategoryItem";
@@ -38,14 +38,19 @@ const NoticesCategoriesList = (searchQuery) => {
   const [favorite, setFavorice] = useState([])
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
   const { categoryName } = useParams();
+  const search = searchParams.get("search") ?? "";
   let filteredPets = pets.filter((pet) => pet.categoryName === categoryName);
 
-  if (searchQuery !== "") {
-    filteredPets = pets.filter(({ title }) => {
-      return title.toString().toLowerCase();
-    });
-  }
+  // if (query !== "") {
+  //   filteredPets = pets.filter(({ title }) => {
+  //     return title.toLowerCase().includes(query.toLowerCase());
+  //   });
+  // }
+  useEffect(() => {
+    setPets([]);
+  }, [search, categoryName]);
 
   useEffect(() => {
     const fetchPets = async () => {
@@ -62,7 +67,7 @@ const NoticesCategoriesList = (searchQuery) => {
       }
     };
     fetchPets();
-  }, [categoryName]);
+  }, [categoryName, search]);
 
   return (
     <>

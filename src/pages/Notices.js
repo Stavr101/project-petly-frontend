@@ -11,8 +11,6 @@ function NoticesPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const { categoryName } = useParams();
 
-  console.log(categoryName);
-
   return (
     <MainPageContainer>
       <Title>Find your favorite pet</Title>

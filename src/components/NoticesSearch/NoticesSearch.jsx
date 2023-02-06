@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import {
   Search,
   SearchForm,
@@ -9,45 +10,48 @@ import {
 } from "components/NoticesSearch/NoticesSearch.styled";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 
-const NoticesSearch = (onSubmit) => {
+const NoticesSearch = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState("");
-  const [filteredData, setFilteredData] = useState([]);
 
   const handleChange = (e) => {
     setQuery(e.target.value.toLowerCase());
-    setFilteredData(e.target.value);
+    const search = e.target.value.trim();
+    const nextParams = search !== "" ? { search } : {};
+    setSearchParams(nextParams);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (query.trim() === "") {
-      return Notify.failure("What pet do you need?", {
-        position: 'center-top',
-        cssAnimationStyle: 'from-right',
+  const handleSearchButton = () => {
+    if (!query) {
+      return Notify.failure("Type some text to find pet", {
+        position: "center-top",
+        cssAnimationStyle: "from-right",
       });
     }
-    onSubmit(query);
   };
 
-  const clearInput = () => {
-    setFilteredData("");
-  };
+  const handleClear = (e) => {
+    setSearchParams("")
+    setQuery("")
+  }
 
   return (
     <Search>
-      <SearchForm onSubmit={handleSubmit}>
+      <SearchForm>
         <FormInput
           name="input"
           type="text"
           autocomplete="off"
           placeholder="Search"
-          value={filteredData}
+          value={query}
           onChange={handleChange}
         />
-        <FormButton type="submit">
-          {filteredData.length === 0 ?
-            <IconSearch /> : <IconClose onClick={clearInput} />
-          }
+        <FormButton type="button">
+          {!query ? (
+            <IconSearch onClick={handleSearchButton} />
+          ) : (
+            <IconClose onClick={handleClear} />
+          )}
         </FormButton>
       </SearchForm>
     </Search>

@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import styled, { keyframes } from "styled-components";
-import male from "./ImgModalAddNotice/male.png";
-import female from "./ImgModalAddNotice/female.png";
+
 import {
   InputBox,
   InputLable,
@@ -33,60 +31,47 @@ function Forma({ closeModalPets }) {
   const [selectedRadio, setSelectedRadio] = useState('');
   const [errors, setErrors] = useState({});
   const [form, setForm] = useState({
-    firstSellForm: {
+    firstGoodHandsForm: {
       title: '',
       name: '',
       date: '',
       breed: '',
     },
-    secondSellForm: {
+    secondGoodHandsForm: {
       sex: '',
       location: '',
-      price: '',
       image: null,
       comment: '',
     },
   });
 
 
-  const [formType, setFormType] = useState('firstSellForm');
+  const [formType, setFormType] = useState('firstGoodHandsForm');
 
-  const handleFirstSellFormChange = event => {
+  const handleFirstGoodHandsFormChange = event => {
     setForm({
       ...form,
-      firstSellForm: {
-        ...form.firstSellForm,
+      firstGoodHandsForm: {
+        ...form.firstGoodHandsForm,
         [event.target.name]: event.target.value,
       },
     });
   };
 
-  const handleSellRadioChange = event => {
-    setForm({
-      ...form,
-      secondSellForm: {
-        ...form.secondSellForm,
-        sex: event.target.value
-         
-      }
-    });
-  };
-
-
-  const handleSecondSellFormChange = event => {
+  const handleSecondGoodHandsFormChange = event => {
     if (event.target.name === 'image') {
       setForm({
         ...form,
-        secondSellForm: {
-          ...form.secondSellForm,
+        secondGoodHandsForm: {
+          ...form.secondGoodHandsForm,
           [event.target.name]: URL.createObjectURL(event.target.files[0]),
         }
       });
     } else {
       setForm({
         ...form,
-        secondSellForm: {
-          ...form.secondSellForm,
+        secondGoodHandsForm: {
+          ...form.secondGoodHandsForm,
           [event.target.name]: event.target.value,
          
         },
@@ -94,28 +79,47 @@ function Forma({ closeModalPets }) {
     }
   };
 
-  const combinedSellForm = { ...form.firstSellForm, ...form.secondSellForm };
-
-  const handleSellSubmit = async event => {
-    event.preventDefault();
-    console.log(combinedSellForm);
+  const handleGoodHandsRadioChange = event => {
     setForm({
-      firstSellForm: {
+      ...form,
+      secondGoodHandsForm: {
+        ...form.secondGoodHandsForm,
+        sex: event.target.value
+         
+      }
+    });
+  };
+
+
+
+
+  const combinedGoodHandsForm = { ...form.firstGoodHandsForm, ...form.secondGoodHandsForm };
+
+
+
+  //==================================
+  const handleGoodHandsSubmit = async (event) => {
+    event.preventDefault();
+    dispatch(addPet(combinedGoodHandsForm))
+   setForm({
+      firstGoodHandsForm: {
         title: '',
         name: '',
         date: '',
         breed: '',
       },
-      secondSellForm: {
+      secondGoodHandsForm: {
          sex: '',
          location: '',
-        price: '',
         image: null,
         comment: '',
       },
     });
+    handleClose();
   };
-  
+    
+    
+     
   //+++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -123,19 +127,22 @@ function Forma({ closeModalPets }) {
     setSelectedRadio(button);
   }; 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    const hasFirstFormAllData = Object.values(form.firstForm).every(value => value)
+  const hasSecondFormAllData = Object.values(form.secondForm).every(value => value)
 // console.log(form.secondForm.sex)
   return (
     <>
-      {formType === 'firstSellForm' && (
-        <FormContainer onSubmit={handleSellSubmit}>
+      {formType === 'firstGoodHandsForm' && (
+        <FormContainer onSubmit={handleGoodHandsSubmit}>
           <AddPhoto>Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur</AddPhoto>
-          <Button type="button" onClick={() => setFormType('secondSellForm')}>
+          <Button type="button" onClick={() => setFormType('secondGoodHandsForm')}>
             lost/found
           </Button>
-          <Button type="button" onClick={() => setFormType('secondSellForm')}>
+          <Button type="button" onClick={() => setFormType('secondGoodHandsForm')}>
             in good hands
           </Button>
-          <Button type="button" onClick={() => setFormType('secondSellForm')}>
+          <Button type="button" onClick={() => setFormType('secondGoodHandsForm')}>
             sell
           </Button>
 
@@ -145,8 +152,8 @@ function Forma({ closeModalPets }) {
               type="text"
               name="title"
               pattern="/^[a-zA-Z]{2,16}$/"
-              value={form.firstSellForm.title}
-              onChange={handleFirstSellFormChange}
+              value={form.firstGoodHandsForm.title}
+              onChange={handleFirstGoodHandsFormChange}
               placeholder="Type name"
             />
             {/* {errors.name && <div>{errors.secondForm.name}</div>} */}
@@ -157,8 +164,8 @@ function Forma({ closeModalPets }) {
               type="text"
               name="name"
               pattern="/^[a-zA-Z]{2,16}$/"
-              value={form.firstSellForm.name}
-              onChange={handleFirstSellFormChange}
+              value={form.firstGoodHandsForm.name}
+              onChange={handleFirstGoodHandsFormChange}
               placeholder="Name pet"
             />
             {/* {errors.name && <div>{errors.secondForm.name}</div>} */}
@@ -168,8 +175,8 @@ function Forma({ closeModalPets }) {
             <InputField
               type="date"
               name="date"
-              value={form.firstSellForm.date}
-              onChange={handleFirstSellFormChange}
+              value={form.firstGoodHandsForm.date}
+              onChange={handleFirstGoodHandsFormChange}
             // placeholder="DD/MM/YYYY/"
             />
           </InputBox>
@@ -179,8 +186,8 @@ function Forma({ closeModalPets }) {
               type="text"
               name="breed"
               pattern="/^[a-zA-Z]{2,16}$/"
-              value={form.firstSellForm.breed}
-              onChange={handleFirstSellFormChange}
+              value={form.firstGoodHandsForm.breed}
+              onChange={handleFirstGoodHandsFormChange}
               placeholder="Breed"
             />
             {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
@@ -189,14 +196,14 @@ function Forma({ closeModalPets }) {
             <Button type="button" onClick={closeModalPets}>
               Cancel
             </Button>
-            <Button type="button" onClick={() => setFormType('secondSellForm')}>
+            <Button type="button" onClick={() => setFormType('secondGoodHandsForm')} disabled={!hasFirstFormAllData}>
               Next
             </Button>
           </ButtonContainer>
         </FormContainer>
       )}
-      {formType === 'secondSellForm' && (
-        <NextFormContainer encType="mutipart/form-data" onSubmit={handleSellSubmit}>
+      {formType === 'secondGoodHandsForm' && (
+        <NextFormContainer encType="mutipart/form-data" onSubmit={handleGoodHandsSubmit}>
           <SexButtons>
             <InputContainer>
               
@@ -204,10 +211,10 @@ function Forma({ closeModalPets }) {
         onClick={() => handleClick('Male')}>
             <InputRadio
               type="radio"
-              name="secondSellForm.sex"
+              name="secondGoodHandsForm.sex"
               value='male'
-              checked={form.secondSellForm.sex === "male"}
-              onChange={handleSellRadioChange}
+              checked={form.secondGoodHandsForm.sex === "male"}
+              onChange={handleGoodHandsRadioChange}
                 />
             </InputMaleButton>
               <LabelMale for="radio1">Male</LabelMale>
@@ -218,10 +225,10 @@ function Forma({ closeModalPets }) {
         onClick={() => handleClick('Female')}>
             <InputRadio
             type="radio"
-              name="secondSellForm.sex"
+              name="secondGoodHandsForm.sex"
               value='female'
-              checked={form.secondSellForm.sex === "female"}
-              onChange={handleSellRadioChange}
+              checked={form.secondGoodHandsForm.sex === "female"}
+              onChange={handleGoodHandsRadioChange}
               />         
               </InputFemaleButton>
               <LabelFemale for="radio1">Female</LabelFemale>
@@ -235,35 +242,24 @@ function Forma({ closeModalPets }) {
               type="text"
               name="location"
               // pattern="/^[a-zA-Z]{2,16}$/"
-              value={form.secondSellForm.location}
-              onChange={handleSecondSellFormChange}
+              value={form.secondGoodHandsForm.location}
+              onChange={handleSecondGoodHandsFormChange}
               placeholder="Location"
             />
             {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
           </InputBox>
-          <InputBox>
-            <InputLable htmlFor="price">Price<span>*</span>:</InputLable>
-            <InputField
-              type="text"
-              name="price"
-              // pattern="/^[a-zA-Z]{2,16}$/"
-              value={form.secondSellForm.price}
-              onChange={handleSecondSellFormChange}
-              placeholder="Price"
-            />
-            {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
-          </InputBox>
+          
           <InputLable htmlFor="image">Load the pet's image:</InputLable>
           <DownloadContainer>
 
-            {form.secondSellForm.image && (
-              <Image src={form.secondSellForm.image} alt="uploaded" />
+            {form.secondGoodHandsForm.image && (
+              <Image src={form.secondGoodHandsForm.image} alt="uploaded" />
             )}
             <Download
               name="image"
               type="file"
               accept="image/*"
-              onChange={handleSecondSellFormChange}
+              onChange={handleSecondGoodHandsFormChange}
             />
           </DownloadContainer>
           <InputBox>
@@ -272,18 +268,18 @@ function Forma({ closeModalPets }) {
                 name="comment"
                 type="text"
                 pattern="^[a-zA-Z0-9,.!?;:-_ ]{8,120}$"
-                value={form.secondSellForm.comment}
-                onChange={handleSecondSellFormChange}
+                value={form.secondGoodHandsForm.comment}
+                onChange={handleSecondGoodHandsFormChange}
                 placeholder="Type comments"
               />
               {/* {errors.comment && <div>{errors.secondForm.comment}</div>} */}
             </CommentsContainer>
           </InputBox>
           <ButtonContainer>
-            <Button type="button" onClick={() => setFormType('firstSellForm')}>
+            <Button type="button" onClick={() => setFormType('firstGoodHandsForm')}>
               Back
             </Button>
-            <Button type="submit">Done</Button>
+            <Button type="submit" disabled={!hasSecondFormAllData}>Done</Button>
           </ButtonContainer>
         </NextFormContainer>
       )}

@@ -15,7 +15,7 @@ export const Search = styled.div`
   }
 `;
 
-export const SearchForm = styled.form`
+export const SearchForm = styled.div`
   display: flex;
   align-items: center;
   width: 280px;

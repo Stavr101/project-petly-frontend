@@ -2,6 +2,11 @@ import styled from "styled-components";
 
 export const ItemNoticesImgDiv = styled.div`
   position: relative;
+  height: 240px;
+
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  height: 288px;
+}
 `;
 
 export const ItemNoticesTitle = styled.h2`
@@ -53,11 +58,14 @@ text-align: center;
 color: #111111;
 ` */
 
-export const ItemNoticesSpan = styled.span``;
+export const ItemNoticesSpan = styled.span`
+position: absolute;
+left: 110px;
+`;
 
 export const ItemNoticesLi = styled.li`
   max-width: 280px;
-  height: 580px;
+  /* height: 606px; */
   margin-top: 32px;
   margin-left: auto;
   margin-right: auto;
@@ -108,16 +116,11 @@ export const ItemButtonNoticesLearnMore = styled.button`
   border-radius: 40px;
 
   @media only screen and (min-width: 768px) {
-    bottom: 80px;
     padding: 10px 28px;
     font-size: 20px;
     line-height: 1.2;
   }
-
-  @media only screen and (min-width: 1279px) {
-    bottom: 40px;
-  }
-
+  
   &.active {
     color: #ffffff;
     background: #f59256;
@@ -166,7 +169,7 @@ export const ItemButtonNoticesDelete = styled.button`
     background: #f59256;
   }
 `;
-export const ItemNoticesListP = styled.p`
+export const ItemNoticesListP = styled.span`
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -177,12 +180,13 @@ export const ItemButtonNoticesDeleteSpan = styled.span`
   margin-right: 13px;
 `;
 
-export const ItemButtonNoticesHeartSpan = styled.span`
+export const ItemButtonNoticesHeartButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 12px;
   border-radius: 50%;
+  border: none;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(2px);
   padding: 8px;

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { Outlet, useParams } from "react-router-dom";
 import NoticesSearch from "components/NoticesSearch/NoticesSearch";
 import NoticesCategoriesNav from "components/NoticesCategoriesNav/NoticesCategoriesNav";
@@ -8,18 +8,17 @@ import MainPageContainer from "components/Container/MainPageContainer/MainPageCo
 import { Title } from "components/NoticesCategoriesNav/NoticesCategoriesNav.styled";
 
 function NoticesPage() {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const { categoryName } = useParams();
 
-  console.log(categoryName)
+  console.log(categoryName);
 
   return (
     <MainPageContainer>
       <Title>Find your favorite pet</Title>
-      <NoticesSearch setSearchQuery={setSearchQuery}/>
+      <NoticesSearch />
       <NoticesCategoriesNav />
-      <NoticesCategoriesList category={categoryName}
-        searchQuery={searchQuery}/>
+      <NoticesCategoriesList category={categoryName} />
       <AddNoticeButton />
       <Outlet />
     </MainPageContainer>

@@ -3,7 +3,7 @@ import cross from "./ImgModalAddNotice/clarity_close-cross.png";
 import crossPhoto from "./ImgModalAddNotice/CrossForPhoto.png";
 import male from "./ImgModalAddNotice/male.png";
 import female from "./ImgModalAddNotice/female.png";
-import React, { useState } from 'react';
+
 
 const slideIn = keyframes`
   from {

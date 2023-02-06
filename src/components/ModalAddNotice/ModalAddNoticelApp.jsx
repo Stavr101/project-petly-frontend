@@ -15,7 +15,7 @@ import {
   ButtonOff,
 } from './ModalAddNotice.styled';
 
-import Forma from './ModalAddNotice';
+import Forma from './ModalAddSellNotice';
 
 // const useStyles = makeStyles({
 //   root: {
@@ -64,7 +64,7 @@ export default function ModalAddsPetApp() {
       <EnterButton variant="contained" onClick={handleOpen}>
         Add Pet
       </EnterButton>
-          <Modal open={modalOpen} onClose={handleClose} >
+          <Modal open={modalOpen} onClose={handleClose} style={{ position: "sticky" }}>
         <ModalContainer >
           <ButtonOff variant="contained" onClick={handleClose}></ButtonOff>
           <ModalTitle>Add Pet</ModalTitle>

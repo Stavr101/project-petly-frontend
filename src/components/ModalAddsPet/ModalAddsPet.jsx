@@ -30,6 +30,7 @@ function Forma({ handleClose }) {
       breed: "",
     },
     secondForm: {
+      avatarFile: null, 
       avatarUrl: null,
       comment: "",
     },
@@ -53,8 +54,11 @@ function Forma({ handleClose }) {
         ...form,
         secondForm: {
           ...form.secondForm,
+          avatarFile: (event.target.files[0]),
           [event.target.name]: URL.createObjectURL(event.target.files[0]),
+
         },
+       
       });
     } else {
       setForm({
@@ -65,13 +69,18 @@ function Forma({ handleClose }) {
         },
       });
     }
+    
   };
 
   const combinedForm = { ...form.firstForm, ...form.secondForm };
+ 
+
+  ;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    const formDataFile = new FormData();
+    formDataFile.append('avatarFile', form.avatarFile);
     dispatch(addPet(combinedForm))
     setForm({
       firstForm: {
@@ -80,6 +89,7 @@ function Forma({ handleClose }) {
         breed: "",
       },
       secondForm: {
+        avatarFile: null,
         avatarUrl: null,
         comment: "",
       },
@@ -87,12 +97,12 @@ function Forma({ handleClose }) {
     handleClose();
   };
 
-  const hasFirstFormAllData = Object.values(form.firstForm).every(value => value)
-
+//   const hasFirstFormAllData = Object.values(form.firstForm).every(value => value)
+// const hasSecondFormAllData = Object.values(form.secondForm).every(value => value)
   return (
     <>
       {formType === "firstForm" && (
-        <FormContainer onSubmit={handleSubmit}>
+        <FormContainer onSubmit={handleSubmit} encType='multipart/form-data'>
           <InputBox>
             <InputLable htmlFor="name">Name pet</InputLable>
             <InputField
@@ -131,7 +141,9 @@ function Forma({ handleClose }) {
             <Button type="button" onClick={handleClose}>
               Close
             </Button>
-            <Button type="button" onClick={() => setFormType("secondForm")} disabled={!hasFirstFormAllData}>
+            <Button type="button" onClick={() => setFormType("secondForm")}
+              // disabled={!hasFirstFormAllData}
+            >
               Next
             </Button>
           </ButtonContainer>
@@ -149,6 +161,7 @@ function Forma({ handleClose }) {
               type="file"
               accept="image/*"
               onChange={handleSecondFormChange}
+              multiple
             />
           </DownloadContainer>
           <InputBox>
@@ -168,7 +181,9 @@ function Forma({ handleClose }) {
             <Button type="button" onClick={() => setFormType("firstForm")}>
               Back
             </Button>
-            <Button type="submit">Submit</Button>
+            <Button type="submit"
+              // disabled={!hasSecondFormAllData}
+            >Submit</Button>
           </ButtonContainer>
         </NextFormContainer>
       )}

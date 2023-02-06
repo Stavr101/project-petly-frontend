@@ -49,7 +49,7 @@ export default function ModalAddsPetApp({ onOpenModal, onCloseModal }) {
       {/* <EnterButton variant="contained" onClick={handleOpen}>
         Add Pet
       </EnterButton> */}
-      <Modal open={onOpenModal} onClose={onCloseModal}>
+      <Modal open={onOpenModal} onClose={onCloseModal} >
         <ModalContainer>
           <ButtonOff variant="contained" onClick={onCloseModal}></ButtonOff>
           <ModalTitle>Add Pet</ModalTitle>

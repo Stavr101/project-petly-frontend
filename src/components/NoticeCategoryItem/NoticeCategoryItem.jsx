@@ -23,7 +23,9 @@ import {
   ItemButtonNoticesDeleteSpan,
 } from "./NoticeCategoryItem.styled";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import ModalNotice from "components/ModalNotice/ModalNotice";
+import { selectUser } from "redux/auth/selectors";
 
 export default function NoticeCategoryItem({ data }) {
   const {
@@ -40,6 +42,8 @@ export default function NoticeCategoryItem({ data }) {
 
   // console.log(_id);
   const [open, setOpen] = useState(false);
+  const isUSer = useSelector(selectUser);
+  // const [favorite, setFavorite] = useState(false);
 
   const onLearnMoreClick = () => {
     setOpen(true);
@@ -72,12 +76,16 @@ export default function NoticeCategoryItem({ data }) {
   };
 
   async function addFavorite(_id) {
+    if (isUSer.email === null) {
+      return Notify.failure("Must be authorization");
+    }
     try {
       const res = await addPetToFavorite(_id);
+      console.log(res);
       Notify.success("Pet add to your'e favorite");
       return res;
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
     }
   }
 

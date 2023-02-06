@@ -50,16 +50,14 @@ function Forma({ handleClose }) {
   };
 
   const handleSecondFormChange = (event) => {
-    if (event.target.name === "avatarUrl") {
+    if (event.target.name === "avatarFiled") {
       setForm({
         ...form,
         secondForm: {
           ...form.secondForm,
-          avatarFile: (event.target.files[0]),
+          avatarUrl: (event.target.files[0]),
           [event.target.name]: URL.createObjectURL(event.target.files[0]),
-
         },
-       
       });
     } else {
       setForm({
@@ -154,11 +152,11 @@ function Forma({ handleClose }) {
         <NextFormContainer encType="mutipart/form-data" onSubmit={handleSubmit}>
           <AddPhoto>Add photo and some comments</AddPhoto>
           <DownloadContainer>
-            {form.secondForm.avatarUrl && (
-              <Image src={form.secondForm.avatarUrl} alt="uploaded" />
+            {form.secondForm.avatarFiled && (
+              <Image src={form.secondForm.avatarFiled} alt="uploaded" />
             )}
             <Download
-              name="avatarUrl"
+              name="avatarFiled"
               type="file"
               accept="image/*"
               onChange={handleSecondFormChange}

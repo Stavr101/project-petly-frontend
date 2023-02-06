@@ -64,7 +64,7 @@ export default function ModalAddsPetApp() {
       <EnterButton variant="contained" onClick={handleOpen}>
         Add Pet
       </EnterButton>
-          <Modal open={modalOpen} onClose={handleClose} style={{ position: "sticky" }}>
+          <Modal open={modalOpen} onClose={handleClose} >
         <ModalContainer >
           <ButtonOff variant="contained" onClick={handleClose}></ButtonOff>
           <ModalTitle>Add Pet</ModalTitle>

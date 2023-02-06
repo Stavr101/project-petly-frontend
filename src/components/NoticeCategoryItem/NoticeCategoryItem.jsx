@@ -1,6 +1,8 @@
 import DeleteSvg from "./NoticesDeleteSvg";
 import HeartSvg from "./NoticesHeartSvg";
 import HeartFavorite from "./NoticesHeartFavoriteSvg";
+import { addPetToFavorite } from "api/notices";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 import {
   ItemNoticesImgDiv,
@@ -23,12 +25,7 @@ import {
 import { useState } from "react";
 import ModalNotice from "components/ModalNotice/ModalNotice";
 
-export default function NoticeCategoryItem({
-  data,
-  onDeletePets,
-  onLearnMore,
-  onFavorite
-}) {
+export default function NoticeCategoryItem({ data }) {
   const {
     _id,
     petAvatarURL,
@@ -41,6 +38,7 @@ export default function NoticeCategoryItem({
     categoryName,
   } = data;
 
+  // console.log(_id);
   const [open, setOpen] = useState(false);
 
   const onLearnMoreClick = () => {
@@ -91,6 +89,16 @@ export default function NoticeCategoryItem({
     return "< 1 month";
   }
 
+  async function addFavorite(_id) {
+    try {
+      const res = await addPetToFavorite(_id);
+      Notify.success("Pet add to your'e favorite");
+      return res;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
   return (
     <>
       <ItemNoticesLi>
@@ -108,11 +116,11 @@ export default function NoticeCategoryItem({
             <ItemPositionNoticesDivParagraf>
               {categoryName}
             </ItemPositionNoticesDivParagraf>
-            <ItemButtonNoticesHeartButton 
-            type="submit"
-            onClick={() => onFavorite(_id)}
+            <ItemButtonNoticesHeartButton
+              type="button"
+              onClick={() => addFavorite(_id)}
             >
-              {favorite? <HeartFavorite/> : <HeartSvg /> }
+              {favorite ? <HeartFavorite /> : <HeartSvg />}
             </ItemButtonNoticesHeartButton>
           </ItemPositionNoticesDiv>
         </ItemNoticesImgDiv>
@@ -120,21 +128,23 @@ export default function NoticeCategoryItem({
           <ItemNoticesTitle>{title}</ItemNoticesTitle>
           <ItemNoticesUlList>
             <ItemNoticesListLi>
-            <ItemNoticesListP>Breed:</ItemNoticesListP>
+              <ItemNoticesListP>Breed:</ItemNoticesListP>
               <ItemNoticesSpan>{breed}</ItemNoticesSpan>
             </ItemNoticesListLi>
             <ItemNoticesListLi>
-            <ItemNoticesListP>Place:</ItemNoticesListP>
+              <ItemNoticesListP>Place:</ItemNoticesListP>
               <ItemNoticesSpan>{location}</ItemNoticesSpan>
             </ItemNoticesListLi>
             <ItemNoticesListLi>
-            <ItemNoticesListP>Age:</ItemNoticesListP>
+              <ItemNoticesListP>Age:</ItemNoticesListP>
               <ItemNoticesSpan>{currentAge(birthdate)}</ItemNoticesSpan>
             </ItemNoticesListLi>
-            {categoryName === "sell" ? <ItemNoticesListLi>
-              <ItemNoticesListP>Price:</ItemNoticesListP>
-              <ItemNoticesSpan>{price}$</ItemNoticesSpan>
-            </ItemNoticesListLi> : null }
+            {categoryName === "sell" ? (
+              <ItemNoticesListLi>
+                <ItemNoticesListP>Price:</ItemNoticesListP>
+                <ItemNoticesSpan>{price}$</ItemNoticesSpan>
+              </ItemNoticesListLi>
+            ) : null}
           </ItemNoticesUlList>
           <ItemButtonNotices>
             <ItemButtonNoticesLearnMore
@@ -147,7 +157,7 @@ export default function NoticeCategoryItem({
             {favorite ? (
               <ItemButtonNoticesDelete
                 type="submit"
-                onClick={() => onDeletePets(_id)}
+                // onClick={() => onDeletePets(_id)}
               >
                 <ItemButtonNoticesDeleteSpan>
                   Delete

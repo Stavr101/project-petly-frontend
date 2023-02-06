@@ -53,3 +53,12 @@ export const getPetsById = async (id) => {
   const response = await axios.get(`/notices/notice/${id}`);
   return response.data;
 };
+
+export async function addPetToFavorite(id) {
+  try {
+    const res = await axios.patch(`/notices/favorite/${id}`);
+    return res.data;
+  } catch (error) {
+    console.log(error.message);
+  }
+}

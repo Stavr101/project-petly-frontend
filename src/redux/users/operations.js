@@ -19,7 +19,7 @@ export const updateUserData = createAsyncThunk(
   async ({ _id, name, email, birthday, phone, address }, thunkAPI) => {
     // console.log('user data', user);
     try {
-      const response = await axios.put(`/user/${_id}`, {
+      const response = await axios.put('/user/:userId', {
         _id,
         name,
         email,

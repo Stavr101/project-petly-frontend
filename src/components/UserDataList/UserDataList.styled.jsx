@@ -78,6 +78,7 @@ export const UserInfoList = styled.ul`
   @media screen and (min-width: 768px) {
     margin-bottom: 0;
     width: 100%;
+    margin-right: 52px;
   }
   @media screen and (min-width: 1280px) {
     margin-right: 0;

@@ -26,8 +26,8 @@ const isRejected = (state, action) => {
   console.log('error');
 };
 
-const usersSlice = createSlice({
-  name: 'users',
+const userSlice = createSlice({
+  name: 'user',
   initialState,
   extraReducers: {
     [getUserInfo.pending]: isPending,
@@ -59,4 +59,4 @@ const usersSlice = createSlice({
   },
 });
 
-export const usersReducer = usersSlice.reducer;
+export const userReducer = userSlice.reducer;

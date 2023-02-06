@@ -1,5 +1,8 @@
 import DeleteSvg from "./NoticesDeleteSvg";
 import HeartSvg from "./NoticesHeartSvg";
+import HeartFavorite from "./NoticesHeartFavoriteSvg";
+import { addPetToFavorite } from "api/notices";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 import {
   ItemNoticesImgDiv,
@@ -16,13 +19,13 @@ import {
   ItemNoticesListLi,
   ItemNoticesListP,
   ItemNoticesImg,
-  ItemButtonNoticesHeartSpan,
+  ItemButtonNoticesHeartButton,
   ItemButtonNoticesDeleteSpan,
 } from "./NoticeCategoryItem.styled";
 import { useState } from "react";
 import ModalNotice from "components/ModalNotice/ModalNotice";
 
-export default function NoticeCategoryItem({ data, onDeletePets }) {
+export default function NoticeCategoryItem({ data }) {
   const {
     _id,
     petAvatarURL,
@@ -30,10 +33,12 @@ export default function NoticeCategoryItem({ data, onDeletePets }) {
     title,
     breed,
     location,
-    age,
+    price,
+    birthdate,
     categoryName,
   } = data;
 
+  // console.log(_id);
   const [open, setOpen] = useState(false);
 
   const onLearnMoreClick = () => {
@@ -42,15 +47,64 @@ export default function NoticeCategoryItem({ data, onDeletePets }) {
 
   const handleOnError = (e) => {
     e.target.src =
-      "https://www.kindpng.com/picc/m/22-223863_no-avatar-png-circle-transparent-png.png";
+    "https://i.ibb.co/RQ61YYb/1.jpg";
   };
+
+  const currentAge = date => {
+    const dif = Date.now() - new Date(date);
+    const second = 1000;
+    const minute = second * 60;
+    const hour = minute * 60;
+    const day = hour * 24;
+
+    const days = Math.floor(dif / day);
+    const months = Math.floor(days / 30.4);
+    const years = months / 12;
+    const transformedYear = Number(years.toString().split('.')[0]);
+    const restDivision = years.toString().split('.')[1];
+    const transformedMonth = restDivision ? Math.floor(Number(`0.${restDivision}` * 12)) : null;
+
+    if (transformedYear > 0) {
+      if (transformedMonth) {
+        return `${transformedYear} ${
+          transformedYear === 1
+            ? 'year'
+            : 'years'
+        }`;
+      }
+      return `${transformedYear} ${
+        transformedYear === 1
+          ? 'year'
+          : 'years'
+      }`;
+    }
+
+    if (transformedMonth) {
+      return `${transformedMonth} ${
+        transformedMonth === 1
+          ? 'month'
+          : 'months'
+      }`;
+    }
+    return "< 1 month";
+  }
+
+  async function addFavorite(_id) {
+    try {
+      const res = await addPetToFavorite(_id);
+      Notify.success("Pet add to your'e favorite");
+      return res;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 
   return (
     <>
       <ItemNoticesLi>
-        <ItemNoticesImgDiv>
+        <ItemNoticesImgDiv >
           {petAvatarURL ? (
-            <ItemNoticesImg src={petAvatarURL} alt={title} />
+            <ItemNoticesImg src={petAvatarURL.secure_url} alt={title} />
           ) : (
             <ItemNoticesImg
               src={"https://i.ibb.co/RQ61YYb/1.jpg"}
@@ -58,41 +112,39 @@ export default function NoticeCategoryItem({ data, onDeletePets }) {
               onError={handleOnError}
             />
           )}
-          {/* {isLoading === 0 ? (
-            <ItemNoticesImg
-            src={"https://i.ibb.co/RQ61YYb/1.jpg"}
-            alt={"No image available"}
-          />
-          ) : (
-            <ItemNoticesImg src={petAvatarURL} alt={title} />
-          )} */}
           <ItemPositionNoticesDiv>
             <ItemPositionNoticesDivParagraf>
               {categoryName}
             </ItemPositionNoticesDivParagraf>
-            <ItemButtonNoticesHeartSpan>
-              <HeartSvg />
-            </ItemButtonNoticesHeartSpan>
+            <ItemButtonNoticesHeartButton
+              type="button"
+              onClick={() => addFavorite(_id)}
+            >
+              {favorite ? <HeartFavorite /> : <HeartSvg />}
+            </ItemButtonNoticesHeartButton>
           </ItemPositionNoticesDiv>
         </ItemNoticesImgDiv>
         <ItemNoticesWrap>
           <ItemNoticesTitle>{title}</ItemNoticesTitle>
           <ItemNoticesUlList>
             <ItemNoticesListLi>
-              <ItemNoticesListP>
-                Breed:<ItemNoticesSpan>{breed}</ItemNoticesSpan>
-              </ItemNoticesListP>
+              <ItemNoticesListP>Breed:</ItemNoticesListP>
+              <ItemNoticesSpan>{breed}</ItemNoticesSpan>
             </ItemNoticesListLi>
             <ItemNoticesListLi>
-              <ItemNoticesListP>
-                Place:<ItemNoticesSpan>{location}</ItemNoticesSpan>
-              </ItemNoticesListP>
+              <ItemNoticesListP>Place:</ItemNoticesListP>
+              <ItemNoticesSpan>{location}</ItemNoticesSpan>
             </ItemNoticesListLi>
             <ItemNoticesListLi>
-              <ItemNoticesListP>
-                Age:<ItemNoticesSpan>{age}</ItemNoticesSpan>
-              </ItemNoticesListP>
+              <ItemNoticesListP>Age:</ItemNoticesListP>
+              <ItemNoticesSpan>{currentAge(birthdate)}</ItemNoticesSpan>
             </ItemNoticesListLi>
+            {categoryName === "sell" ? (
+              <ItemNoticesListLi>
+                <ItemNoticesListP>Price:</ItemNoticesListP>
+                <ItemNoticesSpan>{price}$</ItemNoticesSpan>
+              </ItemNoticesListLi>
+            ) : null}
           </ItemNoticesUlList>
           <ItemButtonNotices>
             <ItemButtonNoticesLearnMore
@@ -105,7 +157,7 @@ export default function NoticeCategoryItem({ data, onDeletePets }) {
             {favorite ? (
               <ItemButtonNoticesDelete
                 type="submit"
-                onClick={() => onDeletePets(_id)}
+                // onClick={() => onDeletePets(_id)}
               >
                 <ItemButtonNoticesDeleteSpan>
                   Delete

@@ -2,16 +2,16 @@ import axios from "axios";
 
 axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
 
-export const getAllNoticesPets = async () => {
-  try {
-    const {
-      params: { category },
-    } = await axios.get(`/notices/:categoryName`);
-    return category;
-  } catch (error) {
-    console.log(error.message);
-  }
-};
+// export const getAllNoticesPets = async () => {
+//   try {
+//     const {
+//       params: { category },
+//     } = await axios.get(`/notices/:categoryName`);
+//     return category;
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// };
 
 // export const getConditionPets = async (condition) => {
 //   try {
@@ -31,9 +31,9 @@ export const getAllNoticesPets = async () => {
 //   }
 // };
 
-export const fetchAdsByCategory = (category) => {
+export const fetchAdsByCategory = (category, search) => {
   return axios
-    .get(`/notices/category/${category}`)
+    .get(`/notices/category/${category}?search=${search}`)
     .then((response) => response.data);
 };
 
@@ -53,3 +53,12 @@ export const getPetsById = async (id) => {
   const response = await axios.get(`/notices/notice/${id}`);
   return response.data;
 };
+
+export async function addPetToFavorite(id) {
+  try {
+    const res = await axios.patch(`/notices/favorite/${id}`);
+    return res.data;
+  } catch (error) {
+    console.log(error.message);
+  }
+}

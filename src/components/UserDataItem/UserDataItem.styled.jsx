@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import pencil from 'images/UserPage/pencil.svg';
+import pencilDeactive from 'images/UserPage/pencilDeactive.svg';
 import btnOk from 'images/UserPage/btnOk.svg';
 
 export const InputWrapper = styled.form`
@@ -9,6 +10,7 @@ export const InputWrapper = styled.form`
 `;
 
 export const Input = styled.input`
+  overflow: visible;
   float: left;
   width: 68%;
   display: flex;
@@ -29,9 +31,9 @@ export const Input = styled.input`
   &:disabled {
     border: ${p => p.theme.borders.none};
     background-color: inherit;
-    & ~ button {
+    /* & ~ button {
       background-image: url(${pencil});
-    }
+    } */
   }
   @media screen and (min-width: 768px) {
     width: 60%;
@@ -58,4 +60,12 @@ export const UpdateBtn = styled.button`
     height: 32px;
     background-size: 16px;
   }
+`;
+
+export const PensileBtn = styled(UpdateBtn)`
+  background-image: url(${pencil});
+`;
+
+export const DeactiveBtn = styled(UpdateBtn)`
+  background-image: url(${pencilDeactive});
 `;

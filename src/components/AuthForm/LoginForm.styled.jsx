@@ -28,7 +28,7 @@ const scale = keyframes`
 
 export const FormWrapper = styled.div`
   /* padding: 0 20px; */
-  animation: ${scale} 0.8s linear forwards;
+  animation: ${scale} 0.4s linear forwards;
 
   @media screen and (min-width: 768px) {
     width: 608px;

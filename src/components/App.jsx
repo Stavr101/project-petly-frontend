@@ -1,24 +1,24 @@
-import { useEffect, lazy, Suspense } from "react";
-import { useDispatch } from "react-redux";
-import { Navigate, Outlet, Route, Routes } from "react-router-dom";
-import { SharedLayout } from "./SharedLayout/SharedLayout";
-import { GlobalStyles } from "services/GlobalStyles";
-import { PrivateRoute } from "./PrivateRoute";
-import { RestrictedRoute } from "./RestrictedRoute";
-import { refreshUser } from "redux/auth/operations";
-import { useAuth } from "hooks";
-import NotFound from "./NotFound/NotFound";
-import Loader from "shared/loader/Loader";
+import { useEffect, lazy, Suspense } from 'react';
+import { useDispatch } from 'react-redux';
+import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
+import { SharedLayout } from './SharedLayout/SharedLayout';
+import { GlobalStyles } from 'services/GlobalStyles';
+import { PrivateRoute } from './PrivateRoute';
+import { RestrictedRoute } from './RestrictedRoute';
+import { refreshUser } from 'redux/auth/operations';
+import { useAuth } from 'hooks';
+import NotFound from './NotFound/NotFound';
+import Loader from 'shared/loader/Loader';
 
-const HomePage = lazy(() => import("../pages/Home/Home"));
-const Register = lazy(() => import("../pages/Register"));
-const Login = lazy(() => import("../pages/Login"));
+const HomePage = lazy(() => import('../pages/Home/Home'));
+const Register = lazy(() => import('../pages/Register'));
+const Login = lazy(() => import('../pages/Login'));
 
-const NewsPage = lazy(() => import("../pages/News/News"));
-const NoticesPage = lazy(() => import("../pages/Notices"));
-const OurFriendsPage = lazy(() => import("../pages/OurFriends"));
+const NewsPage = lazy(() => import('../pages/News/News'));
+const NoticesPage = lazy(() => import('../pages/Notices'));
+const OurFriendsPage = lazy(() => import('../pages/OurFriends'));
 
-const UserPage = lazy(() => import("../pages/User/User"));
+const UserPage = lazy(() => import('../pages/User/User'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -75,11 +75,13 @@ export const App = () => {
             }
           />
           <Route
-            path="/user"
+            path="user"
             element={
-              <PrivateRoute redirectTo="/login" component={<UserPage />} />
+              <PrivateRoute redirectTo="/notices" component={<UserPage />} />
             }
-          />
+          >
+            <Route path=":userId" element={<UserPage />} />
+          </Route>
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

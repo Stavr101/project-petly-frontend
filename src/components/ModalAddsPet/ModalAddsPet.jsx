@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { addPet } from 'redux/pets/operations';
+
 import {
   InputBox,
   InputLable,
@@ -30,6 +31,7 @@ function Forma({ handleClose }) {
       breed: "",
     },
     secondForm: {
+      avatarFile: null, 
       avatarUrl: null,
       comment: "",
     },
@@ -48,11 +50,12 @@ function Forma({ handleClose }) {
   };
 
   const handleSecondFormChange = (event) => {
-    if (event.target.name === "avatarUrl") {
+    if (event.target.name === "avatarFile") {
       setForm({
         ...form,
         secondForm: {
           ...form.secondForm,
+          avatarUrl: (event.target.files[0]),
           [event.target.name]: URL.createObjectURL(event.target.files[0]),
         },
       });
@@ -65,13 +68,16 @@ function Forma({ handleClose }) {
         },
       });
     }
+    
   };
 
   const combinedForm = { ...form.firstForm, ...form.secondForm };
+  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    const formDataFile = new FormData();
+    formDataFile.append('avatarFile', form.avatarFile);
     dispatch(addPet(combinedForm))
     setForm({
       firstForm: {
@@ -80,6 +86,7 @@ function Forma({ handleClose }) {
         breed: "",
       },
       secondForm: {
+        avatarFile: null,
         avatarUrl: null,
         comment: "",
       },
@@ -88,11 +95,11 @@ function Forma({ handleClose }) {
   };
 
   const hasFirstFormAllData = Object.values(form.firstForm).every(value => value)
-
+const hasSecondFormAllData = Object.values(form.secondForm).every(value => value)
   return (
     <>
       {formType === "firstForm" && (
-        <FormContainer onSubmit={handleSubmit}>
+        <FormContainer onSubmit={handleSubmit} encType='multipart/form-data'>
           <InputBox>
             <InputLable htmlFor="name">Name pet</InputLable>
             <InputField
@@ -131,7 +138,9 @@ function Forma({ handleClose }) {
             <Button type="button" onClick={handleClose}>
               Close
             </Button>
-            <Button type="button" onClick={() => setFormType("secondForm")} disabled={!hasFirstFormAllData}>
+            <Button type="button" onClick={() => setFormType("secondForm")}
+              disabled={!hasFirstFormAllData}
+            >
               Next
             </Button>
           </ButtonContainer>
@@ -141,14 +150,15 @@ function Forma({ handleClose }) {
         <NextFormContainer encType="mutipart/form-data" onSubmit={handleSubmit}>
           <AddPhoto>Add photo and some comments</AddPhoto>
           <DownloadContainer>
-            {form.secondForm.avatarUrl && (
-              <Image src={form.secondForm.avatarUrl} alt="uploaded" />
+            {form.secondForm.avatarFile && (
+              <Image src={form.secondForm.avatarFile} alt="uploaded" />
             )}
             <Download
-              name="avatarUrl"
+              name="avatarFile"
               type="file"
               accept="image/*"
               onChange={handleSecondFormChange}
+              multiple
             />
           </DownloadContainer>
           <InputBox>
@@ -168,7 +178,9 @@ function Forma({ handleClose }) {
             <Button type="button" onClick={() => setFormType("firstForm")}>
               Back
             </Button>
-            <Button type="submit">Submit</Button>
+            <Button type="submit"
+              disabled={!hasSecondFormAllData}
+            >Submit</Button>
           </ButtonContainer>
         </NextFormContainer>
       )}

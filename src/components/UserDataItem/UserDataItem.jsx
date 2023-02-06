@@ -1,30 +1,77 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-// import { useSelector, useDispatch } from 'react-redux';
-// import { getUserData } from 'redux/user/selectors';
-// import { updateUserData } from 'redux/user/operations';
-import { Input, UpdateBtn, InputWrapper } from './UserDataItem.styled';
+import {
+  Input,
+  UpdateBtn,
+  InputWrapper,
+  PensileBtn,
+  DeactiveBtn,
+} from './UserDataItem.styled';
+import { updateUserData } from '../../redux/users/operations';
+import { selectUser } from 'redux/auth/selectors';
+import { useParams } from 'react-router-dom';
 
-export default function UserDataItem(props) {
-  const [disabled, setDisabled] = useState(true);
-  // const [display, setDisplay] = useState(false);
+export default function UserDataItem({
+  // typeInput,
+  nameInput,
+  valueUser,
+  activeBtn,
+  setActiveBtn,
+  userIdD,
+}) {
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
+  //   const [userInfo, setUserInfo] = useState(valueUser);
+  // const { userId } = useParams();
+  // console.log(userId, 'params');
 
-  function handleChangeInput(e) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedValue, setEditedValue] = useState(valueUser);
+
+  // let userInfo = user._id;
+  //   console.log(userInfo, 'id?????');
+
+  const handleEdit = e => {
     e.preventDefault();
-    setDisabled(!disabled);
-  }
+    setIsEditing(true);
+    setActiveBtn(false);
+  };
+
+  const handleChange = e => {
+    setEditedValue(e.target.value);
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    setActiveBtn(true);
+    setIsEditing(false);
+    dispatch(updateUserData({ userId: userIdD, nameInput: editedValue }));
+  };
 
   return (
     <InputWrapper>
-      <Input
-        type={props.type}
-        name="city"
-        // value={value}
-        onChange={event => console.log(event.target.value)}
-        disabled={disabled}
-      />
-      <UpdateBtn type="submit" onClick={handleChangeInput}></UpdateBtn>
-      {/* <UpdateBtn type="submit"></UpdateBtn> */}
+      {isEditing ? (
+        <>
+          <Input
+            // type={typeInput}
+            name={nameInput}
+            value={editedValue}
+            onChange={handleChange}
+          />
+          <UpdateBtn onClick={handleSubmit}></UpdateBtn>
+        </>
+      ) : (
+        <>
+          <Input name={nameInput} value={valueUser} disabled />
+
+          {activeBtn ? (
+            <PensileBtn onClick={handleEdit}></PensileBtn>
+          ) : (
+            <DeactiveBtn disabled></DeactiveBtn>
+          )}
+        </>
+      )}
     </InputWrapper>
   );
 }

@@ -14,7 +14,7 @@ import { authReducer } from './auth/slice';
 import { filterReducer } from './filters/filtersSlice';
 import { contactsReducer } from './contacts/slice';
 import { petsReducer } from './pets/slice';
-import { userReducer } from './user/slice';
+import { userReducer } from './users/slice';
 
 const middleware = [
   ...getDefaultMiddleware({

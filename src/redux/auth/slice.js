@@ -1,15 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { register, logIn, logOut, refreshUser, authGoogle } from "./operations";
+import { createSlice } from '@reduxjs/toolkit';
+import { register, logIn, logOut, refreshUser, authGoogle } from './operations';
 
 const initialState = {
-  user: { name: null, email: null },
+  user: { name: null, email: null, _id: '' },
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
 };
 
 const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState,
   extraReducers: {
     [register.fulfilled](state, action) {

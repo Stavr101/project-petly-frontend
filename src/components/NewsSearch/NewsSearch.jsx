@@ -1,7 +1,18 @@
+import { useSearchParams } from "react-router-dom";
 import { Input, Box, InputAdornment } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
-export default function NewsSearch({ handleChange }) {
+export default function NewsSearch() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get("query") ?? "";
+
+  const onChangeInput = ({ target }) => {
+    const query = target.value.trim();
+    const nextParams = query !== "" ? { query } : {};
+    setSearchParams(nextParams);
+  };
+
   return (
     <Box
       sx={{
@@ -14,13 +25,32 @@ export default function NewsSearch({ handleChange }) {
     >
       <Input
         name="search-news"
-        type="search"
-        onChange={handleChange}
+        type="text"
+        value={query}
+        onChange={onChangeInput}
         disableUnderline={true}
         placeholder="Search"
         endAdornment={
           <InputAdornment position="end">
-            <SearchIcon sx={{ color: "text.primary", width: 24, height: 24 }} />
+            {!query ? (
+              <SearchIcon
+                sx={{
+                  color: "text.primary",
+                  width: 24,
+                  height: 24,
+                }}
+              />
+            ) : (
+              <HighlightOffIcon
+                sx={{
+                  color: "text.primary",
+                  width: 24,
+                  height: 24,
+                  cursor: "pointer",
+                }}
+                onClick={() => setSearchParams({ query: "" })}
+              />
+            )}
           </InputAdornment>
         }
         sx={{

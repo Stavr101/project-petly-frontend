@@ -9,13 +9,13 @@ import { nanoid } from 'nanoid';
 // @emotion/styled
 
 import {
-  // EnterButton,
+  EnterButton,
   ModalContainer,
   ModalTitle,
   ButtonOff,
 } from './ModalAddNotice.styled';
 
-import Forma from './ModalAddSellNotice';
+import Forma from '../ModalAddNotice/ModalAddSellNotice';
 
 // const useStyles = makeStyles({
 //   root: {
@@ -26,11 +26,11 @@ import Forma from './ModalAddSellNotice';
 // });
 
 
-export default function ModalAddNoticelApp({ onOpenModal, onCloseModal }) {
+export default function ModalAddsPetApp() {
   const [pets, setPets] = useState(
     () => JSON.parse(window.localStorage.getItem('pets')) ?? []
   );
-  // const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   //Запис в локал сторидж
   useEffect(() => {
@@ -51,24 +51,24 @@ export default function ModalAddNoticelApp({ onOpenModal, onCloseModal }) {
     setPets(pets => [data, ...pets]);
   };
 
-  // const handleOpen = e => {
-  //   setModalOpen(true);
-  // };
-  // const handleClose = e => {
-  //   e.preventDefault();
-  //   setModalOpen(false);
-  // };
+  const handleOpen = e => {
+    setModalOpen(true);
+  };
+  const handleClose = e => {
+    e.preventDefault();
+    setModalOpen(false);
+  };
 
   return (
     <>
-      {/* <EnterButton variant="contained" onClick={handleOpen}>
+      <EnterButton variant="contained" onClick={handleOpen}>
         Add Pet
-      </EnterButton> */}
-          <Modal open={onOpenModal} onClose={onCloseModal} >
+      </EnterButton>
+          <Modal open={modalOpen} onClose={handleClose} >
         <ModalContainer >
-          <ButtonOff variant="contained" onClick={onCloseModal}></ButtonOff>
+          <ButtonOff variant="contained" onClick={handleClose}></ButtonOff>
           <ModalTitle>Add Pet</ModalTitle>
-          <Forma handleClose={onCloseModal} onSubmit={submitHandle} />
+          <Forma handleClose={handleClose} onSubmit={submitHandle} />
         </ModalContainer>
       </Modal>
     </>

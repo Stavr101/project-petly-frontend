@@ -3,11 +3,16 @@ import { theme } from "../../services/theme";
 import { styled } from "@mui/material/styles";
 // import { tooltipClasses } from "@mui/material/Tooltip";
 import { TimeListRow, TimeListTable } from "./OurFriendsTimeList.styled";
+import { useState } from "react";
 
 const WEEK = ["MN", "TU", "WE", "TH", "FR", "SA", "SU"];
 
 const LightTooltip = styled(({ className, ...props }) => (
-  <Tooltip {...props} classes={{ popper: className }} />
+  <Tooltip
+    {...props}
+    // disableTouchListener="true"
+    classes={{ popper: className }}
+  />
   // ))(() => ({
   //   [`& .${tooltipClasses.tooltip}`]: {
   //     backgroundColor: "white",
@@ -19,7 +24,7 @@ const LightTooltip = styled(({ className, ...props }) => (
   //   },
   // }));
 ))`
-  &.MuiTooltip-popper[data-popper-placement*="bottom"] {
+  &.MuiTooltip-popper[data-popper-placement="bottom"] {
     margin-top: 0;
   }
   & .MuiTooltip-tooltipPlacementBottom {
@@ -38,9 +43,17 @@ export default function OurFriendsTimeList({
   dayOfTheWeek,
   children,
 }) {
+  const [isOpenTime, setIsOpenTime] = useState(false);
+
+  const handlerOpenTime = () => {
+    setIsOpenTime((prev) => !prev);
+  };
+
   return (
     <LightTooltip
       sx={{ backgroundColor: "transparent" }}
+      open={isOpenTime}
+      onClick={handlerOpenTime}
       placement="bottom-start"
       title={
         workDays ? (

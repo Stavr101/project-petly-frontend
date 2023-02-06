@@ -126,6 +126,7 @@ export const ModalNoticeTitle = styled.h3`
   margin-bottom: 16px;
 
   @media screen and (min-width: 768px) {
+    width: 300px;
     font-size: 28px;
     line-height: 1.357;
     margin-bottom: 20px;
@@ -150,7 +151,7 @@ export const ModalNoticeItemParametr = styled.p`
   line-height: 1.357;
 
   @media screen and (min-width: 768px) {
-    width: 30%;
+    width: 120px;
 
     font-size: 16px;
     line-height: 1.375;

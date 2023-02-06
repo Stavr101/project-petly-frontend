@@ -57,7 +57,7 @@ const NoticesCategoriesList = (searchQuery) => {
       setLoading(true);
 
       try {
-        const data = await fetchAdsByCategory(categoryName);
+        const data = await fetchAdsByCategory(categoryName, search);
         console.log(data)
         setPets(() => [...data]);
       } catch (error) {

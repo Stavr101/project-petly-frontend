@@ -30,20 +30,10 @@ const NoticesSearch = () => {
     }
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log(e.target.input.value);
-  //   if (!e.target.input.value) {
-  //     return Notify.failure("Type some text to find pet", {
-  //       position: "center-top",
-  //       cssAnimationStyle: "from-right",
-  //     });
-  //   }
-  //   const search = e.target.input.value.trim();
-  //   const nextParams = search !== "" ? { search } : {};
-  //   setSearchParams(nextParams);
-  //   e.target.form.reset();
-  // };
+  const handleClear = (e) => {
+    setSearchParams("")
+    setQuery("")
+  }
 
   return (
     <Search>
@@ -60,7 +50,7 @@ const NoticesSearch = () => {
           {!query ? (
             <IconSearch onClick={handleSearchButton} />
           ) : (
-            <IconClose onClick={() => setQuery("")} />
+            <IconClose onClick={handleClear} />
           )}
         </FormButton>
       </SearchForm>

@@ -77,10 +77,24 @@ export const App = () => {
           <Route
             path="user"
             element={
-              <PrivateRoute redirectTo="/notices" component={<UserPage />} />
+              <Suspense fallback={<Loader />}>
+                <Outlet />
+              </Suspense>
             }
           >
-            <Route path=":userId" element={<UserPage />} />
+            <Route
+              index
+              element={
+                <PrivateRoute redirectTo="/notices" component={<UserPage />} />
+              }
+            />
+            <Route
+              path="userId"
+              element={
+                <PrivateRoute redirectTo="/notices" component={<UserPage />} />
+              }
+            />
+            <Route />
           </Route>
         </Route>
         <Route path="*" element={<NotFound />} />

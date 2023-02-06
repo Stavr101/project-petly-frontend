@@ -33,6 +33,11 @@ const Nav = () => {
     i18n.changeLanguage(language);
   }
 
+  const [checked, setChecked] = useState(true);
+  const changeOption = () => {
+      setChecked(!checked);
+   }
+
   return (
     <>
       {
@@ -46,8 +51,26 @@ const Nav = () => {
         </NavMenu>
           </PrimaryNav>
           <LanguageSwitch>
-            <LanguageOption label="EN" type="radio" name="language" value="en" onClick={() => changeLanguage("en")}></LanguageOption>
-            <LanguageOption label="UA" type="radio" name="language" value="uk" onClick={() => changeLanguage("uk")}></LanguageOption>
+            <LanguageOption checked={checked}
+              label="EN"
+              type="radio"
+              name="language"
+              value="en"
+              onChange={() => {
+              changeLanguage("en");
+                changeOption();
+              }}>
+              </LanguageOption>
+            <LanguageOption
+              label="UA"
+              type="radio"
+              name="language"
+              value="uk"
+              onChange={() => {
+              changeLanguage("uk");
+              changeOption();
+              }}>
+              </LanguageOption>
           </LanguageSwitch>
       <SecondaryNav>
         {isLoggedIn ? <UserNav /> : <AuthMenu> <AuthNav /> </AuthMenu>}

@@ -127,9 +127,9 @@ width: fit-content;
 export const LanguageOption = styled.input`
 appearance: none;
 cursor: pointer;
-border-radius: 20%;
+border-radius: 50%;
 border:  ${p => p.theme.borders.normal}  ${p => p.theme.colors.accent};
-padding: 5px 10px;
+padding: 10px 10px;
 background: ${p => p.theme.colors.white};
 color: ${p => p.theme.colors.black};
 font-size: 15px;

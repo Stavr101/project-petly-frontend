@@ -12,7 +12,7 @@ export const ItemNoticesImgDiv = styled.div`
 `;
 
 export const ItemNoticesTitle = styled.h2`
-  margin: 20px 0px 0px 20px;
+  margin: 20px 20px 0px 20px;
   font-weight: 700;
   font-size: 28px;
   line-height: 38px;
@@ -73,8 +73,6 @@ export const ItemNoticesLi = styled.li`
   max-width: 280px;
   /* height: 606px; */
   margin-top: 32px;
-  margin-left: auto;
-  margin-right: auto;
   background: #ffffff;
 
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);

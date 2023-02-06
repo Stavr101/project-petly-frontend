@@ -77,25 +77,9 @@ export const App = () => {
           <Route
             path="user"
             element={
-              <Suspense fallback={<Loader />}>
-                <Outlet />
-              </Suspense>
+              <PrivateRoute redirectTo="/notices" component={<UserPage />} />
             }
-          >
-            <Route
-              index
-              element={
-                <PrivateRoute redirectTo="/notices" component={<UserPage />} />
-              }
-            />
-            <Route
-              path="userId"
-              element={
-                <PrivateRoute redirectTo="/notices" component={<UserPage />} />
-              }
-            />
-            <Route />
-          </Route>
+          />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

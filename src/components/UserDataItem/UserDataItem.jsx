@@ -24,14 +24,9 @@ export default function UserDataItem({
   const user = useSelector(getUserData);
   const dispatch = useDispatch();
   //   const [userInfo, setUserInfo] = useState(valueUser);
-  // const { userId } = useParams();
-  // console.log(userId, 'params');
 
   const [isEditing, setIsEditing] = useState(false);
   const [editedValue, setEditedValue] = useState(valueUser);
-
-  // let userInfo = user._id;
-  console.log(userIdD, 'id?????');
 
   const handleEdit = e => {
     e.preventDefault();
@@ -47,7 +42,11 @@ export default function UserDataItem({
     e.preventDefault();
     setActiveBtn(true);
     setIsEditing(false);
-    dispatch(updateUserData({ nameInput: editedValue }));
+    dispatch(
+      updateUserData({
+        [nameInput]: editedValue,
+      })
+    );
   };
 
   return (

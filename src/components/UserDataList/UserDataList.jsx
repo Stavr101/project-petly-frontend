@@ -30,11 +30,9 @@ export default function UserDataList() {
   // console.log(dataUser, 'useselector');
   // const { userId } = useParams();
 
-  const [userIdD, setUserIdD] = useState(_id);
   // const { name, email, birthday, phone, address, avatarUrl } = dataUser;
 
   const dispatch = useDispatch();
-  console.log(_id, 'name');
 
   const handleAvatar = async e => {
     e.preventDefault();

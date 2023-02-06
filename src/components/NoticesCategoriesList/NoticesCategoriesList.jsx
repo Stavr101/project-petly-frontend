@@ -35,7 +35,7 @@ const styleBackdrop = {
 
 const NoticesCategoriesList = (searchQuery) => {
   const [pets, setPets] = useState([]);
-  const [favorite, setFavorice] = useState([])
+  const [favorite, setFavorice] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -43,11 +43,6 @@ const NoticesCategoriesList = (searchQuery) => {
   const search = searchParams.get("search") ?? "";
   let filteredPets = pets.filter((pet) => pet.categoryName === categoryName);
 
-  // if (query !== "") {
-  //   filteredPets = pets.filter(({ title }) => {
-  //     return title.toLowerCase().includes(query.toLowerCase());
-  //   });
-  // }
   useEffect(() => {
     setPets([]);
   }, [search, categoryName]);
@@ -58,7 +53,7 @@ const NoticesCategoriesList = (searchQuery) => {
 
       try {
         const data = await fetchAdsByCategory(categoryName, search);
-        console.log(data)
+        console.log(data);
         setPets(() => [...data]);
       } catch (error) {
         setError(error);

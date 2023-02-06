@@ -72,9 +72,7 @@ function Forma({ handleClose }) {
   };
 
   const combinedForm = { ...form.firstForm, ...form.secondForm };
- 
-
-  ;
+  
 
   const handleSubmit = async (event) => {
     event.preventDefault();

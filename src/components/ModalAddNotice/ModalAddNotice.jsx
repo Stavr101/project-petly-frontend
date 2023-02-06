@@ -1,0 +1,529 @@
+import React, { useState } from 'react';
+import { useDispatch } from "react-redux";
+import { addPet } from 'redux/pets/operations';
+
+import {
+  InputBox,
+  InputLable,
+  InputField,
+  ButtonContainer,
+  Button,
+  Comments,
+  FormContainer,
+  CommentsContainer,
+  AddPhoto,
+  Download,
+  Image,
+  InputRadio,
+  DownloadContainer,
+  NextFormContainer,
+  LabelMale,
+  LabelFemale,
+  InputContainer,
+  InputMaleButton,
+  InputFemaleButton,
+  SexButtons,
+} from './ModalAddNotice.styled';
+
+// import { AddsPetValidate } from "helpers/validationSchema/addsPetValidate";
+// Изменила функцию handleClose на closeModalPets для открытия модалки по нажатию кнопки в PetsData
+
+
+function Forma({ handleClose }) {
+  const dispatch = useDispatch();
+  const [errors, setErrors] = useState({});
+  const [selectedRadio, setSelectedRadio] = useState('');
+  
+  const [formSell, setFormSell] = useState({
+    sellFirstForm: {
+      title: '',
+      name: '',
+      date: '',
+      breed: '',
+    },
+    sellSecondForm: {
+      sex: '',
+      location: '',
+      price: '',
+      avatarUrl: null,
+      comment: '',
+    },
+  });
+  const [formFound, setFormFound] = useState({
+    foundFirstForm: {
+      title: '',
+      name: '',
+      date: '',
+      breed: '',
+    },
+    foundSecondForm: {
+      sex: '',
+      location: '',
+      avatarUrl: null,
+      comment: '',
+    },
+  });
+  
+
+  const [formType, setFormType] = useState('sellFirstForm');
+ 
+  const handleSellFirstFormChange = (event) => {
+    setFormSell({
+      ...formSell,
+      sellFirstForm: {
+        ...formSell.sellFirstForm,
+        [event.target.name]: event.target.value,
+      },
+    });
+  };
+  const handleSellSecondFormChange = event => {
+    if (event.target.name === 'avatarUrl') {
+      setFormSell({
+        ...formSell,
+        sellSecondForm: {
+          ...formSell.sellSecondForm,
+          [event.target.name]: URL.createObjectURL(event.target.files[0]),
+        }
+      });
+    } else {
+      setFormSell({
+        ...formSell,
+        sellSecondForm: {
+          ...formSell.sellSecondForm,
+          [event.target.name]: event.target.value,
+
+        },
+      });
+    }
+  };
+  const handleRadioChange = event => {
+    setFormSell({
+      ...formSell,
+      sellSecondForm: {
+        ...formSell.sellSecondForm,
+        sex: event.target.value
+
+      }
+    });
+  };
+
+  const handleFoundFirstFormChange = event => {
+    setFormFound({
+      ...formFound,
+      foundFirstForm: {
+        ...formFound.foundFirstForm,
+        [event.target.name]: event.target.value,
+      },
+    });
+  };
+  const handleFoundSecondFormChange = event => {
+    if (event.target.name === 'avatarUrl') {
+      setFormFound({
+        ...formFound,
+        foundSecondForm: {
+          ...formFound.foundSecondForm,
+          [event.target.name]: URL.createObjectURL(event.target.files[0]),
+        }
+      });
+    } else {
+      setFormFound({
+        ...formFound,
+        foundSecondForm: {
+          ...formFound.foundSecondForm,
+          [event.target.name]: event.target.value,
+         
+        },
+      });
+    }
+  };
+  const handleFoundRadioChange = event => {
+    setFormFound({
+      ...formFound,
+      foundSecondFoundForm: {
+        ...formFound.foundSecondForm,
+        sex: event.target.value
+         
+      }
+    });
+  };
+  const combinedSellForm = { ...formSell.sellFirstForm, ...formSell.sellSecondForm };
+  const combinedFoundForm = { ...formFound.foundFirstForm, ...formFound.foundSecondForm };
+  //==================================
+
+  
+  const sellHandleSubmit = async (event) => {
+    event.preventDefault();
+    
+    dispatch(addPet(combinedSellForm))
+    setFormSell({
+      sellFirstForm: {
+        title: '',
+        name: '',
+        date: '',
+        breed: '',
+      },
+      sellSecondForm: {
+        sex: '',
+        location: '',
+        price: '',
+        avatarUrl: null,
+        comment: '',
+      },
+    });
+    // handleClose();
+  };
+  
+  const handleFoundSubmit = async (event) => {
+    event.preventDefault();
+    console.log(combinedFoundForm);
+    // dispatch(addPet(combinedFoundForm))
+    setFormFound({
+      foundFirstForm: {
+        title: '',
+        name: '',
+        date: '',
+        breed: '',
+      },
+      
+      foundSecondForm: {
+         sex: '',
+         location: '',
+        avatarUrl: null,
+        comment: '',
+      },
+    });
+  };
+
+  const handleClick = button => {
+    setSelectedRadio(button);
+  };
+  //+++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  const hasSellFirstFormAllData = Object.values(formSell.sellFirstForm).every(value => value)
+  const hasSellSecondFormAllData = Object.values(formSell.sellSecondForm).every(value => value)
+
+const hasFoundFirstFormAllData = Object.values(formFound.foundFirstForm).every(value => value)
+  const hasFoundSecondFormAllData = Object.values(formFound.foundSecondForm).every(value => value)
+  // console.log(form.secondForm.sex)
+  return (
+    <>
+      {formType === 'sellFirstForm' && (
+        <FormContainer onSubmit={sellHandleSubmit}>
+          <AddPhoto>Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur</AddPhoto>
+          <Button type="button" onClick={() => setFormType('foundFirstForm')}>
+            lost/found
+          </Button>
+          <Button type="button" onClick={() => setFormType('firstGoodHandsForm')}>
+            in good hands
+          </Button>
+          <Button type="button" style = {{backgroundColor: "#F59256", color:'white'}} onClick={() => setFormType('sellFirstForm')}>
+            sell
+          </Button>
+
+          <InputBox>
+            <InputLable htmlFor="title">Title of ad <span>*</span></InputLable>
+            <InputField
+              type="text"
+              name="title"
+              pattern="/^[a-zA-Z]{2,16}$/"
+              value={formSell.sellFirstForm.title}
+              onChange={handleSellFirstFormChange}
+              placeholder="Type name"
+            />
+            {/* {errors.name && <div>{errors.secondForm.name}</div>} */}
+          </InputBox>
+          <InputBox>
+            <InputLable htmlFor="name">Name pet</InputLable>
+            <InputField
+              type="text"
+              name="name"
+              pattern="/^[a-zA-Z]{2,16}$/"
+              value={formSell.sellFirstForm.name}
+              onChange={handleSellFirstFormChange}
+              placeholder="Name pet"
+            />
+            {/* {errors.name && <div>{errors.secondForm.name}</div>} */}
+          </InputBox>
+          <InputBox>
+            <InputLable htmlFor="breed">Date of birth</InputLable>
+            <InputField
+              type="date"
+              name="date"
+              value={formSell.sellFirstForm.date}
+              onChange={handleSellFirstFormChange}
+            // placeholder="DD/MM/YYYY/"
+            />
+          </InputBox>
+          <InputBox>
+            <InputLable htmlFor="breed">Breed</InputLable>
+            <InputField
+              type="text"
+              name="breed"
+              pattern="/^[a-zA-Z]{2,16}$/"
+              value={formSell.sellFirstForm.breed}
+              onChange={handleSellFirstFormChange}
+              placeholder="Breed"
+            />
+            {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
+          </InputBox>
+          <ButtonContainer>
+            <Button type="button" onClick={handleClose }>
+              Cancel
+            </Button>
+            <Button type="button" onClick={() => setFormType('sellSecondForm')} disabled={!hasSellFirstFormAllData}>
+              Next
+            </Button>
+          </ButtonContainer>
+        </FormContainer>
+      )}
+      {formType === 'sellSecondForm' && (
+        <NextFormContainer encType="mutipart/form-data" onSubmit={sellHandleSubmit}>
+          <SexButtons>
+            <InputContainer>
+
+              <InputMaleButton isSelected={selectedRadio === 'Male'}
+                onClick={() => handleClick('Male')}>
+                <InputRadio
+                  type="radio"
+                  name="sellSecondForm.sex"
+                  value='male'
+                  checked={formSell.sellSecondForm.sex === "male"}
+                  onChange={handleRadioChange}
+                />
+              </InputMaleButton>
+              <LabelMale for="radio1">Male</LabelMale>
+            </InputContainer>
+
+            <InputContainer>
+              <InputFemaleButton isSelected={selectedRadio === 'Female'}
+                onClick={() => handleClick('Female')}>
+                <InputRadio
+                  type="radio"
+                  name="sellSecondForm.sex"
+                  value='female'
+                  checked={formSell.sellSecondForm.sex === "female"}
+                  onChange={handleRadioChange}
+                />
+              </InputFemaleButton>
+              <LabelFemale for="radio1">Female</LabelFemale>
+            </InputContainer>
+
+          </SexButtons>
+
+          <InputBox>
+            <InputLable htmlFor="location">Location<span>*</span>:</InputLable>
+            <InputField
+              type="text"
+              name="location"
+              // pattern="/^[a-zA-Z]{2,16}$/"
+              value={formSell.sellSecondForm.location}
+              
+              onChange={handleSellSecondFormChange}
+              placeholder="Location"
+            />
+            {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
+          </InputBox>
+          <InputBox>
+            <InputLable htmlFor="price">Price<span>*</span>:</InputLable>
+            <InputField
+              type="text"
+              name="price"
+              // pattern="/^[a-zA-Z]{2,16}$/"
+              value={formSell.sellSecondForm.price}
+              onChange={handleSellSecondFormChange}
+              placeholder="Price"
+            />
+            {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
+          </InputBox>
+          <InputLable htmlFor="avatarUrl">Load the pet's image:</InputLable>
+          <DownloadContainer>
+
+            {formSell.sellSecondForm.avatarUrl && (
+              <Image src={formSell.sellSecondForm.avatarUrl} alt="uploaded" />
+            )}
+            <Download
+              name="avatarUrl"
+              type="file"
+              accept="image/*"
+              onChange={handleSellSecondFormChange}
+            />
+          </DownloadContainer>
+          <InputBox>
+            <CommentsContainer>
+              <Comments
+                name="comment"
+                type="text"
+                pattern="^[a-zA-Z0-9,.!?;:-_ ]{8,120}$"
+                value={formSell.sellSecondForm.comment}
+                onChange={handleSellSecondFormChange}
+                placeholder="Type comments"
+              />
+              {/* {errors.comment && <div>{errors.secondForm.comment}</div>} */}
+            </CommentsContainer>
+          </InputBox>
+          <ButtonContainer>
+            <Button type="button" onClick={() => setFormType('sellFirstForm')}>
+              Back
+            </Button>
+            <Button type="submit" disabled={!hasSellSecondFormAllData}>Done</Button>
+          </ButtonContainer>
+        </NextFormContainer>
+      )}
+      {formType === 'foundFirstForm' && (
+        <FormContainer onSubmit={handleFoundSubmit}>
+          <AddPhoto>Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur</AddPhoto>
+          <Button type="button" style = {{backgroundColor: "#F59256", color:'white'}} onClick={() => setFormType('foundFirstForm')}>
+            lost/found
+          </Button>
+          <Button type="button" onClick={() => setFormType('goodHandsFirstForm')}>
+            in good hands
+          </Button>
+          <Button type="button" onClick={() => setFormType('sellFirstForm')}>
+            sell
+          </Button>
+
+          <InputBox>
+            <InputLable htmlFor="title">Title of ad <span>*</span></InputLable>
+            <InputField
+              type="text"
+              name="title"
+              
+              pattern="/^[a-zA-Z]{2,16}$/"
+              value={formFound.foundFirstForm.title}
+              onChange={handleFoundFirstFormChange}
+              placeholder="Type name"
+            />
+            {/* {errors.name && <div>{errors.secondForm.name}</div>} */}
+          </InputBox>
+          <InputBox>
+            <InputLable htmlFor="name">Name pet</InputLable>
+            <InputField
+              type="text"
+              name="name"
+              pattern="/^[a-zA-Z]{2,16}$/"
+              value={formFound.foundFirstForm.name}
+              onChange={handleFoundFirstFormChange}
+              placeholder="Name pet"
+            />
+            {/* {errors.name && <div>{errors.secondForm.name}</div>} */}
+          </InputBox>
+          <InputBox>
+            <InputLable htmlFor="breed">Date of birth</InputLable>
+            <InputField
+              type="date"
+              name="date"
+              value={formFound.foundFirstForm.date}
+              onChange={handleFoundFirstFormChange}
+            // placeholder="DD/MM/YYYY/"
+            />
+          </InputBox>
+          <InputBox>
+            <InputLable htmlFor="breed">Breed</InputLable>
+            <InputField
+              type="text"
+              name="breed"
+              pattern="/^[a-zA-Z]{2,16}$/"
+              value={formFound.foundFirstForm.breed}
+              onChange={handleFoundFirstFormChange}
+              placeholder="Breed"
+            />
+            {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
+          </InputBox>
+          <ButtonContainer>
+            <Button type="button" onClick={handleClose }>
+              Cancel
+            </Button>
+            <Button type="button" onClick={() => setFormType('foundSecondForm')} disabled={!hasFoundFirstFormAllData}>
+              Next
+            </Button>
+          </ButtonContainer>
+        </FormContainer>
+      )}
+      {formType === 'foundSecondForm' && (
+        <NextFormContainer encType="mutipart/form-data" onSubmit={handleFoundSubmit}>
+          <SexButtons>
+            <InputContainer>
+
+              <InputMaleButton isSelected={selectedRadio === 'Male'}
+                onClick={() => handleClick('Male')}>
+                <InputRadio
+                  type="radio"
+                  name="sellSecondForm.sex"
+                  value='male'
+                  checked={formFound.foundSecondForm.sex === "male"}
+                  onChange={handleFoundRadioChange}
+                />
+              </InputMaleButton>
+              <LabelMale for="radio1">Male</LabelMale>
+            </InputContainer>
+
+            <InputContainer>
+              <InputFemaleButton isSelected={selectedRadio === 'Female'}
+                onClick={() => handleClick('Female')}>
+                <InputRadio
+                  type="radio"
+                  name="sellSecondForm.sex"
+                  value='female'
+                  checked={formFound.foundSecondForm.sex === "female"}
+                  onChange={handleFoundRadioChange}
+                />
+              </InputFemaleButton>
+              </InputContainer>
+
+          </SexButtons>
+
+          <InputBox>
+            <InputLable htmlFor="location">Location<span>*</span>:</InputLable>
+            <InputField
+              type="text"
+              name="location"
+              // pattern="/^[a-zA-Z]{2,16}$/"
+              value={formFound.foundSecondForm.location}
+              onChange={handleFoundSecondFormChange}
+              placeholder="Location"
+            />
+            {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
+          </InputBox>
+
+          <InputLable htmlFor="image">Load the pet's image:</InputLable>
+          <DownloadContainer>
+
+            {formFound.foundSecondForm.avatarUrl && (
+              <Image src={formFound.foundSecondForm.avatarUrl} alt="uploaded" />
+            )}
+            <Download
+              name="avatarUrl"
+              type="file"
+              accept="image/*"
+              onChange={handleFoundSecondFormChange}
+            />
+          </DownloadContainer>
+          <InputBox>
+            <CommentsContainer>
+              <Comments
+                name="comment"
+                type="text"
+                pattern="^[a-zA-Z0-9,.!?;:-_ ]{8,120}$"
+                value={formFound.foundSecondForm.comment}
+                onChange={handleFoundSecondFormChange}
+                placeholder="Type comments"
+              />
+              {/* {errors.comment && <div>{errors.secondForm.comment}</div>} */}
+            </CommentsContainer>
+          </InputBox>
+          <ButtonContainer>
+            <Button type="button" onClick={() => setFormType('foundFirstForm')}>
+              Back
+            </Button>
+            <Button type="submit"
+              // disabled={!hasFoundSecondFormAllData}
+            >Done</Button>
+          </ButtonContainer>
+        </NextFormContainer>
+      )}
+   
+    </>
+  );
+}
+
+export default Forma;

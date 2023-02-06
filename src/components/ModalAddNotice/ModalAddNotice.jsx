@@ -63,7 +63,21 @@ function Forma({ handleClose }) {
       comment: '',
     },
   });
-  
+   const [formGoodHands, setFormGoodHands] = useState({
+    goodHandsFirstForm: {
+      title: '',
+      name: '',
+      date: '',
+      breed: '',
+    },
+    goodHandsSecondForm: {
+      sex: '',
+      location: '',
+      avatarUrl: null,
+      comment: '',
+    },
+  });
+
 
   const [formType, setFormType] = useState('sellFirstForm');
  
@@ -139,15 +153,57 @@ function Forma({ handleClose }) {
   const handleFoundRadioChange = event => {
     setFormFound({
       ...formFound,
-      foundSecondFoundForm: {
+      foundSecondForm: {
         ...formFound.foundSecondForm,
         sex: event.target.value
          
       }
     });
   };
+
+const handleGoodHandsFirstFormChange = event => {
+    setFormGoodHands({
+      ...formGoodHands,
+      goodHandsFirstForm: {
+        ...formGoodHands.goodHandsFirstForm,
+        [event.target.name]: event.target.value,
+      },
+    });
+  };
+  const handleGoodHandsSecondFormChange = event => {
+    if (event.target.name === 'avatarUrl') {
+      setFormGoodHands({
+        ...formGoodHands,
+        goodHandsSecondForm: {
+          ...formGoodHands.goodHandsSecondForm,
+          [event.target.name]: URL.createObjectURL(event.target.files[0]),
+        }
+      });
+    } else {
+      setFormGoodHands({
+        ...formGoodHands,
+        goodHandsSecondForm: {
+          ...formGoodHands.goodHandsSecondForm,
+          [event.target.name]: event.target.value,
+         
+        },
+      });
+    }
+  };
+  const handleGoodHandsRadioChange = event => {
+    setFormGoodHands({
+      ...formGoodHands,
+      goodHandsSecondForm: {
+        ...formGoodHands.goodHandsSecondForm,
+        sex: event.target.value
+         
+      }
+    });
+  };
+
   const combinedSellForm = { ...formSell.sellFirstForm, ...formSell.sellSecondForm };
   const combinedFoundForm = { ...formFound.foundFirstForm, ...formFound.foundSecondForm };
+  const combinedGoodHandsForm = { ...formGoodHands.goodHandsFirstForm, ...formGoodHands.goodHandsSecondForm };
   //==================================
 
   
@@ -194,6 +250,26 @@ function Forma({ handleClose }) {
     });
   };
 
+  const handleGoodHandsSubmit = async (event) => {
+    event.preventDefault();
+    console.log(combinedGoodHandsForm);
+    // dispatch(addPet(combinedGoodHandsForm))
+    setFormGoodHands({
+      goodHandsFirstForm: {
+        title: '',
+        name: '',
+        date: '',
+        breed: '',
+      },
+      
+      goodHandsSecondForm: {
+         sex: '',
+         location: '',
+        avatarUrl: null,
+        comment: '',
+      },
+    });
+  };
   const handleClick = button => {
     setSelectedRadio(button);
   };
@@ -204,6 +280,9 @@ function Forma({ handleClose }) {
 
 const hasFoundFirstFormAllData = Object.values(formFound.foundFirstForm).every(value => value)
   const hasFoundSecondFormAllData = Object.values(formFound.foundSecondForm).every(value => value)
+
+  const hasGoodHandsFirstFormAllData = Object.values(formGoodHands.goodHandsFirstForm).every(value => value)
+  const hasGoodHandsSecondFormAllData = Object.values(formGoodHands.goodHandsSecondForm).every(value => value)
   // console.log(form.secondForm.sex)
   return (
     <>
@@ -213,7 +292,7 @@ const hasFoundFirstFormAllData = Object.values(formFound.foundFirstForm).every(v
           <Button type="button" onClick={() => setFormType('foundFirstForm')}>
             lost/found
           </Button>
-          <Button type="button" onClick={() => setFormType('firstGoodHandsForm')}>
+          <Button type="button" onClick={() => setFormType('goodHandsFirstForm')}>
             in good hands
           </Button>
           <Button type="button" style = {{backgroundColor: "#F59256", color:'white'}} onClick={() => setFormType('sellFirstForm')}>
@@ -448,7 +527,7 @@ const hasFoundFirstFormAllData = Object.values(formFound.foundFirstForm).every(v
                 onClick={() => handleClick('Male')}>
                 <InputRadio
                   type="radio"
-                  name="sellSecondForm.sex"
+                  name="foundSecondForm.sex"
                   value='male'
                   checked={formFound.foundSecondForm.sex === "male"}
                   onChange={handleFoundRadioChange}
@@ -462,7 +541,7 @@ const hasFoundFirstFormAllData = Object.values(formFound.foundFirstForm).every(v
                 onClick={() => handleClick('Female')}>
                 <InputRadio
                   type="radio"
-                  name="sellSecondForm.sex"
+                  name="foundSecondForm.sex"
                   value='female'
                   checked={formFound.foundSecondForm.sex === "female"}
                   onChange={handleFoundRadioChange}
@@ -517,6 +596,157 @@ const hasFoundFirstFormAllData = Object.values(formFound.foundFirstForm).every(v
             </Button>
             <Button type="submit"
               // disabled={!hasFoundSecondFormAllData}
+            >Done</Button>
+          </ButtonContainer>
+        </NextFormContainer>
+      )}
+      {formType === 'goodHandsFirstForm' && (
+        <FormContainer onSubmit={handleGoodHandsSubmit}>
+          <AddPhoto>Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur</AddPhoto>
+          <Button type="button"  onClick={() => setFormType('foundFirstForm')}>
+            lost/found
+          </Button>
+          <Button type="button" style = {{backgroundColor: "#F59256", color:'white'}} onClick={() => setFormType('goodHandsFirstForm')}>
+            in good hands
+          </Button>
+          <Button type="button" onClick={() => setFormType('sellFirstForm')}>
+            sell
+          </Button>
+
+          <InputBox>
+            <InputLable htmlFor="title">Title of ad <span>*</span></InputLable>
+            <InputField
+              type="text"
+              name="title"
+              
+              pattern="/^[a-zA-Z]{2,16}$/"
+              value={formGoodHands.goodHandsFirstForm.title}
+              onChange={handleGoodHandsFirstFormChange}
+              placeholder="Type name"
+            />
+            {/* {errors.name && <div>{errors.secondForm.name}</div>} */}
+          </InputBox>
+          <InputBox>
+            <InputLable htmlFor="name">Name pet</InputLable>
+            <InputField
+              type="text"
+              name="name"
+              pattern="/^[a-zA-Z]{2,16}$/"
+              value={formGoodHands.goodHandsFirstForm.name}
+              onChange={handleGoodHandsFirstFormChange}
+              placeholder="Name pet"
+            />
+            {/* {errors.name && <div>{errors.secondForm.name}</div>} */}
+          </InputBox>
+          <InputBox>
+            <InputLable htmlFor="breed">Date of birth</InputLable>
+            <InputField
+              type="date"
+              name="date"
+              value={formGoodHands.goodHandsFirstForm.date}
+              onChange={handleGoodHandsFirstFormChange}
+            // placeholder="DD/MM/YYYY/"
+            />
+          </InputBox>
+          <InputBox>
+            <InputLable htmlFor="breed">Breed</InputLable>
+            <InputField
+              type="text"
+              name="breed"
+              pattern="/^[a-zA-Z]{2,16}$/"
+              value={formGoodHands.goodHandsFirstForm.breed}
+              onChange={handleGoodHandsFirstFormChange}
+              placeholder="Breed"
+            />
+            {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
+          </InputBox>
+          <ButtonContainer>
+            <Button type="button" onClick={handleClose }>
+              Cancel
+            </Button>
+            <Button type="button" onClick={() => setFormType('goodHandsSecondForm')} disabled={!hasGoodHandsFirstFormAllData}>
+              Next
+            </Button>
+          </ButtonContainer>
+        </FormContainer>
+      )}
+      {formType === 'goodHandsSecondForm' && (
+        <NextFormContainer encType="mutipart/form-data" onSubmit={handleGoodHandsSubmit}>
+          <SexButtons>
+            <InputContainer>
+
+              <InputMaleButton type='button' isSelected={selectedRadio === 'Male'}
+                onClick={() => handleClick('Male')}>
+                <InputRadio
+                  type="radio"
+                  name="goodHandsSecondForm.sex"
+                  value='male'
+                  checked={formGoodHands.goodHandsSecondForm.sex === "male"}
+                  onChange={handleGoodHandsRadioChange}
+                />
+              </InputMaleButton>
+              <LabelMale for="radio1">Male</LabelMale>
+            </InputContainer>
+
+            <InputContainer>
+              <InputFemaleButton type='button' isSelected={selectedRadio === 'Female'}
+                onClick={() => handleClick('Female')}>
+                <InputRadio
+                  type="radio"
+                  name="goodHandsSecondForm.sex"
+                  value='female'
+                  checked={formGoodHands.goodHandsSecondForm.sex === "female"}
+                  onChange={handleGoodHandsRadioChange}
+                />
+              </InputFemaleButton>
+              </InputContainer>
+
+          </SexButtons>
+          <InputBox>
+            <InputLable htmlFor="location">Location<span>*</span>:</InputLable>
+            <InputField
+              type="text"
+              name="location"
+              // pattern="/^[a-zA-Z]{2,16}$/"
+              value={formGoodHands.goodHandsSecondForm.location}
+              onChange={handleGoodHandsSecondFormChange}
+              placeholder="Location"
+            />
+            {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
+          </InputBox>
+
+          <InputLable htmlFor="image">Load the pet's image:</InputLable>
+          <DownloadContainer>
+
+            {formGoodHands.goodHandsSecondForm.avatarUrl && (
+              <Image src={formGoodHands.goodHandsSecondForm.avatarUrl} alt="uploaded" />
+            )}
+            <Download
+              name="avatarUrl"
+              type="file"
+              accept="image/*"
+              onChange={handleGoodHandsSecondFormChange}
+            />
+          </DownloadContainer>
+          <InputBox>
+            <CommentsContainer>
+              <Comments
+                name="comment"
+                type="text"
+                pattern="^[a-zA-Z0-9,.!?;:-_ ]{8,120}$"
+                value={formGoodHands.goodHandsSecondForm.comment}
+                onChange={handleGoodHandsSecondFormChange}
+                placeholder="Type comments"
+              />
+              {/* {errors.comment && <div>{errors.secondForm.comment}</div>} */}
+            </CommentsContainer>
+          </InputBox>
+          <ButtonContainer>
+            <Button type="button" onClick={() => setFormType('goodHandsFirstForm')}>
+              Back
+            </Button>
+            <Button type="submit"
+              disabled={!hasGoodHandsSecondFormAllData}
             >Done</Button>
           </ButtonContainer>
         </NextFormContainer>

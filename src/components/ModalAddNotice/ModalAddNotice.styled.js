@@ -86,7 +86,7 @@ const slideInPhoto = keyframes`
   }
   to {
   
-    transform: translateX(0);
+    /* transform: translateX(0); */
     opacity: 1;
   }
 `;

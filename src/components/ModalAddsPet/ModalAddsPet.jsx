@@ -50,7 +50,7 @@ function Forma({ handleClose }) {
   };
 
   const handleSecondFormChange = (event) => {
-    if (event.target.name === "avatarFiled") {
+    if (event.target.name === "avatarFile") {
       setForm({
         ...form,
         secondForm: {
@@ -152,11 +152,11 @@ function Forma({ handleClose }) {
         <NextFormContainer encType="mutipart/form-data" onSubmit={handleSubmit}>
           <AddPhoto>Add photo and some comments</AddPhoto>
           <DownloadContainer>
-            {form.secondForm.avatarFiled && (
-              <Image src={form.secondForm.avatarFiled} alt="uploaded" />
+            {form.secondForm.avatarFile && (
+              <Image src={form.secondForm.avatarFile} alt="uploaded" />
             )}
             <Download
-              name="avatarFiled"
+              name="avatarFile"
               type="file"
               accept="image/*"
               onChange={handleSecondFormChange}

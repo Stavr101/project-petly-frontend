@@ -77,9 +77,11 @@ export const App = () => {
           <Route
             path="user"
             element={
-              <PrivateRoute redirectTo="/login" component={<UserPage />} />
+              <PrivateRoute redirectTo="/notices" component={<UserPage />} />
             }
-          />
+          >
+            <Route path=":userId" element={<UserPage />} />
+          </Route>
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

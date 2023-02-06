@@ -10,23 +10,27 @@ import {
 } from './UserDataItem.styled';
 import { updateUserData } from '../../redux/users/operations';
 import { selectUser } from 'redux/auth/selectors';
+import { useParams } from 'react-router-dom';
 
 export default function UserDataItem({
-  typeInput,
+  // typeInput,
   nameInput,
   valueUser,
   activeBtn,
   setActiveBtn,
+  userIdD,
 }) {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   //   const [userInfo, setUserInfo] = useState(valueUser);
+  // const { userId } = useParams();
+  // console.log(userId, 'params');
 
   const [isEditing, setIsEditing] = useState(false);
-  const [editedValue, setEditedValue] = useState(valueUser || nameInput);
+  const [editedValue, setEditedValue] = useState(valueUser);
 
-  let userInfo = user._id;
-  console.log(userInfo, 'id?????');
+  // let userInfo = user._id;
+  //   console.log(userInfo, 'id?????');
 
   const handleEdit = e => {
     e.preventDefault();
@@ -42,7 +46,7 @@ export default function UserDataItem({
     e.preventDefault();
     setActiveBtn(true);
     setIsEditing(false);
-    dispatch(updateUserData({ _id: userInfo, nameInput: editedValue }));
+    dispatch(updateUserData({ userId: userIdD, nameInput: editedValue }));
   };
 
   return (
@@ -50,7 +54,7 @@ export default function UserDataItem({
       {isEditing ? (
         <>
           <Input
-            type={typeInput}
+            // type={typeInput}
             name={nameInput}
             value={editedValue}
             onChange={handleChange}
@@ -59,7 +63,7 @@ export default function UserDataItem({
         </>
       ) : (
         <>
-          <Input type={typeInput} name={nameInput} value={valueUser} disabled />
+          <Input name={nameInput} value={valueUser} disabled />
 
           {activeBtn ? (
             <PensileBtn onClick={handleEdit}></PensileBtn>

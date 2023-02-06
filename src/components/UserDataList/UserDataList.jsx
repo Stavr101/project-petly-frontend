@@ -25,10 +25,12 @@ export default function UserDataList() {
   // const dataUser = useSelector(selectUser);
   // console.log(ava, 'ava');
   // console.log(dataUser, 'useselector');
-  const { name, email, birthday, phone, address, avatarUrl } = dataUser.user;
+  const { _id, name, email, birthday, phone, address, avatarUrl } =
+    dataUser.user;
   // const { name, email, birthday, phone, address, avatarUrl } = dataUser;
 
   const dispatch = useDispatch();
+  console.log(_id, 'name');
 
   const handleAvatar = async e => {
     e.preventDefault();
@@ -58,6 +60,7 @@ export default function UserDataList() {
           <UserInfoTitle>Name:</UserInfoTitle>
           {name ? (
             <UserDataItem
+              userIdD={_id}
               typeInput="name"
               nameInput="name"
               valueUser={name}

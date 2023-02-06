@@ -38,7 +38,7 @@ export const NewsList = ({ query }) => {
   }
 
    const sorteredNews = filteredNews.sort((firstNews, secondNews) => {
-     return (dateCompare(firstNews.date, secondNews.date));
+     return dateCompare(secondNews.date, firstNews.date);
    });
 
   return (

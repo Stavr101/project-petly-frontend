@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-
+import { useDispatch } from "react-redux";
+import { addPet } from 'redux/pets/operations';
+// import { addPetFound } from 'redux/pets/operations';
+// import { addPetGoodHands } from 'redux/pets/operations';
 import {
   InputBox,
   InputLable,
@@ -30,7 +33,7 @@ import {
 function Forma({ closeModalPets }) {
   const [selectedRadio, setSelectedRadio] = useState('');
   const [errors, setErrors] = useState({});
-
+const dispatch = useDispatch();
   const [formSell, setFormSell] = useState({
     firstSellForm: {
       title: '',
@@ -107,7 +110,7 @@ function Forma({ closeModalPets }) {
     }
   };
   const handleSellRadioChange = event => {
-    setForm({
+    setFormSell({
       ...formSell,
       secondSellForm: {
         ...formSell.secondSellForm,
@@ -139,7 +142,7 @@ function Forma({ closeModalPets }) {
       setFormGoodHands({
         ...formGoodHands,
         secondGoodHandsForm: {
-          ...form.secondGoodHandsForm,
+          ...formGoodHands.secondGoodHandsForm,
           [event.target.name]: event.target.value,
          
         },
@@ -187,10 +190,10 @@ function Forma({ closeModalPets }) {
     }
   };
   const handleFoundRadioChange = event => {
-    setForm({
-      ...form,
+    setFormFound({
+      ...formFound,
       secondSFoundForm: {
-        ...form.secondFoundForm,
+        ...formFound.secondFoundForm,
         sex: event.target.value
          
       }
@@ -221,7 +224,7 @@ function Forma({ closeModalPets }) {
         comment: '',
       },
     });
-    handleClose();
+    // handleClose();
   };
   const handleGoodHandsSubmit = async (event) => {
     event.preventDefault();
@@ -240,11 +243,12 @@ function Forma({ closeModalPets }) {
         comment: '',
       },
     });
-    handleClose();
+    // handleClose();
   };
   const handleFoundSubmit = async event => {
     event.preventDefault();
     console.log(combinedFoundForm);
+    dispatch(addPet(combinedGoodHandsForm))
     setFormFound({
       firstFoundForm: {
         title: '',
@@ -297,7 +301,7 @@ function Forma({ closeModalPets }) {
               type="text"
               name="title"
               pattern="/^[a-zA-Z]{2,16}$/"
-              value={form.firstSellForm.title}
+              value={formSell.firstSellForm.title}
               onChange={handleFirstSellFormChange}
               placeholder="Type name"
             />
@@ -309,7 +313,7 @@ function Forma({ closeModalPets }) {
               type="text"
               name="name"
               pattern="/^[a-zA-Z]{2,16}$/"
-              value={form.firstSellForm.name}
+              value={formSell.firstSellForm.name}
               onChange={handleFirstSellFormChange}
               placeholder="Name pet"
             />
@@ -320,7 +324,7 @@ function Forma({ closeModalPets }) {
             <InputField
               type="date"
               name="date"
-              value={form.firstSellForm.date}
+              value={formSell.firstSellForm.date}
               onChange={handleFirstSellFormChange}
             // placeholder="DD/MM/YYYY/"
             />
@@ -331,7 +335,7 @@ function Forma({ closeModalPets }) {
               type="text"
               name="breed"
               pattern="/^[a-zA-Z]{2,16}$/"
-              value={form.firstSellForm.breed}
+              value={formSell.firstSellForm.breed}
               onChange={handleFirstSellFormChange}
               placeholder="Breed"
             />
@@ -708,7 +712,7 @@ function Forma({ closeModalPets }) {
           <InputLable htmlFor="image">Load the pet's image:</InputLable>
           <DownloadContainer>
 
-            {form.secondGoodHandsForm.image && (
+            {formGoodHands.secondGoodHandsForm.image && (
               <Image src={formGoodHands.secondGoodHandsForm.image} alt="uploaded" />
             )}
             <Download

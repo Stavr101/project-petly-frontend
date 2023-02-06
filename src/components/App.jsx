@@ -9,6 +9,7 @@ import { refreshUser } from 'redux/auth/operations';
 import { useAuth } from 'hooks';
 import NotFound from './NotFound/NotFound';
 import Loader from 'shared/loader/Loader';
+import ModalAddNoticelApp from './ModalAddNotice/ModalAddNoticelApp'
 
 const HomePage = lazy(() => import('../pages/Home/Home'));
 const Register = lazy(() => import('../pages/Register'));
@@ -31,7 +32,8 @@ export const App = () => {
   return isRefreshing ? (
     <Loader />
   ) : (
-    <>
+      <>
+        <ModalAddNoticelApp />
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<SharedLayout />}>

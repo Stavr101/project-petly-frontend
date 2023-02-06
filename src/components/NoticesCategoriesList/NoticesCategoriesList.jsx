@@ -4,16 +4,38 @@ import { fetchAdsByCategory } from "api/notices";
 import Error from "components/Error/Error";
 import NoticeCategoryItem from "components/NoticeCategoryItem/NoticeCategoryItem";
 import { List } from "components/NoticesCategoriesList/NoticesCategoriesList.slyled";
+// =============
+import ModalNotice from "components/ModalNotice/ModalNotice";
+import Backdrop from "@mui/material/Backdrop";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Fade from "@mui/material/Fade";
 
-// const categoriesForBack = {
-//   sell: 'sell',
-//   'lost-found': 'lostFound',
-//   'for-free': 'inGoodHands',
-// };
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: {
+    xs: 280,
+    md: 704,
+  },
+  height: {
+    md: 548,
+  },
+  bgcolor: "background.paper",
+  borderRadius: "20px",
+};
 
-const NoticesCategoriesList = () => {
+const styleBackdrop = {
+  background: "rgba(17, 17, 17, 0.3)",
+  backdropFilter: "blur(10px)",
+};
+//=================
+
+const NoticesCategoriesList = (searchQuery) => {
   const [pets, setPets] = useState([]);
-  const [favorite, setFavorice] = useState([]);
+  const [favorite, setFavorice] = useState([])
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -30,16 +52,14 @@ const NoticesCategoriesList = () => {
     setPets([]);
   }, [search, categoryName]);
 
-  console.log('search', search)
-
   useEffect(() => {
     const fetchPets = async () => {
       setLoading(true);
 
       try {
-        const data = await fetchAdsByCategory(categoryName, search);
-        console.log(data);
-        setPets((prevPets) => [...prevPets, ...data]);
+        const data = await fetchAdsByCategory(categoryName);
+        console.log(data)
+        setPets(() => [...data]);
       } catch (error) {
         setError(error);
       } finally {

@@ -37,12 +37,6 @@ export const fetchAdsByCategory = (category, search) => {
     .then((response) => response.data);
 };
 
-export const fetchFavoriteAds = () => {
-  return axios.get("/notices/favorite").then((response) => {
-    return response.data;
-  });
-};
-
 export const fetchOwnAds = () => {
   return axios.get("/notices/own").then((response) => {
     return response.data;
@@ -53,3 +47,30 @@ export const getPetsById = async (id) => {
   const response = await axios.get(`/notices/notice/${id}`);
   return response.data;
 };
+
+export async function addPetToFavorite(id) {
+  try {
+    const res = await axios.patch(`/notices/favorite/${id}`);
+    return res.data;
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+export async function removeFavoritePet(id) {
+  try {
+    const res = await axios.delete(`/notices/favorite/${id}`);
+    return res.data;
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+export async function fetchFavorite() {
+  try {
+    const res = await axios.get(`/notices/favorite`);
+    return res.data;
+  } catch (error) {
+    console.log(error.message);
+  }
+}

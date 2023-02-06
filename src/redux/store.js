@@ -14,7 +14,7 @@ import { authReducer } from './auth/slice';
 import { filterReducer } from './filters/filtersSlice';
 import { contactsReducer } from './contacts/slice';
 import { petsReducer } from './pets/slice';
-import { usersReducer } from './users/slice';
+import { userReducer } from './users/slice';
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -36,7 +36,7 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     contacts: contactsReducer,
     filter: filterReducer,
-    user: usersReducer,
+    user: userReducer,
     pets: petsReducer,
   },
   middleware,

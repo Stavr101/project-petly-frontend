@@ -2,7 +2,9 @@ import styled from "styled-components";
 
 export const ItemNoticesImgDiv = styled.div`
   position: relative;
-  height: 240px;
+   overflow:hidden;
+   width:100%;
+   height:288px;
 
 @media only screen and (min-width: 768px) and (max-width: 1279px) {
   height: 288px;
@@ -10,7 +12,7 @@ export const ItemNoticesImgDiv = styled.div`
 `;
 
 export const ItemNoticesTitle = styled.h2`
-  margin: 20px 0px 0px 20px;
+  margin: 20px 20px 0px 20px;
   font-weight: 700;
   font-size: 28px;
   line-height: 38px;
@@ -19,9 +21,13 @@ export const ItemNoticesTitle = styled.h2`
 `;
 
 export const ItemNoticesImg = styled.img`
-  display: block;
-  max-width: 100%;
-  height: auto;
+   position: absolute;
+   top:50%;
+   left:50%;
+   transform:translate(-50%,-50%);
+   width:336px;
+   height:288px;
+   object-fit:cover;
 `;
 export const ItemPositionNoticesDiv = styled.div`
   position: absolute;
@@ -67,8 +73,6 @@ export const ItemNoticesLi = styled.li`
   max-width: 280px;
   /* height: 606px; */
   margin-top: 32px;
-  margin-left: auto;
-  margin-right: auto;
   background: #ffffff;
 
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);

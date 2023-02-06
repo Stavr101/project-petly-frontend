@@ -1,41 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
-import { fetchAdsByCategory } from "api/notices";
+import { fetchAdsByCategory, getConditionPets, fetchOwnAds } from "api/notices";
 import Error from "components/Error/Error";
 import NoticeCategoryItem from "components/NoticeCategoryItem/NoticeCategoryItem";
 import { List } from "components/NoticesCategoriesList/NoticesCategoriesList.slyled";
-// =============
-import ModalNotice from "components/ModalNotice/ModalNotice";
-import Backdrop from "@mui/material/Backdrop";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
-import Fade from "@mui/material/Fade";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: {
-    xs: 280,
-    md: 704,
-  },
-  height: {
-    md: 548,
-  },
-  bgcolor: "background.paper",
-  borderRadius: "20px",
-};
-
-const styleBackdrop = {
-  background: "rgba(17, 17, 17, 0.3)",
-  backdropFilter: "blur(10px)",
-};
-//=================
-
-const NoticesCategoriesList = (searchQuery) => {
+const NoticesCategoriesList = () => {
   const [pets, setPets] = useState([]);
-  const [favorite, setFavorice] = useState([])
+  const [favorite, setFavorice] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -43,11 +15,6 @@ const NoticesCategoriesList = (searchQuery) => {
   const search = searchParams.get("search") ?? "";
   let filteredPets = pets.filter((pet) => pet.categoryName === categoryName);
 
-  // if (query !== "") {
-  //   filteredPets = pets.filter(({ title }) => {
-  //     return title.toLowerCase().includes(query.toLowerCase());
-  //   });
-  // }
   useEffect(() => {
     setPets([]);
   }, [search, categoryName]);
@@ -58,7 +25,7 @@ const NoticesCategoriesList = (searchQuery) => {
 
       try {
         const data = await fetchAdsByCategory(categoryName, search);
-        console.log(data)
+        console.log(data);
         setPets(() => [...data]);
       } catch (error) {
         setError(error);

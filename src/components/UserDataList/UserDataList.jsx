@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   UserInfoWrapper,
   UserInfoList,
@@ -10,23 +10,27 @@ import {
   InputEditPhoto,
   SVG,
 } from './UserDataList.styled';
-// import UserDataItem from 'components/UserDataList/UserDataList.styled';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserData } from 'redux/users/selectors';
 import { getUserInfo } from 'redux/users/operations';
 import UserDataItem from 'components/UserDataItem/UserDataItem';
-import { selectUser } from 'redux/auth/selectors';
+import { selectUser, selectIsLoggedIn } from 'redux/auth/selectors';
 import { updateUserData } from 'redux/users/operations';
 
 import editAvatar from 'images/UserPage/editAvatar.svg';
 
 export default function UserDataList() {
+  const [activeBtn, setActiveBtn] = useState(true);
   const dataUser = useSelector(getUserData);
-  const ava = useSelector(selectUser);
-  console.log(ava, 'ava');
-  console.log(dataUser, 'useselector');
-  const { name, email, birthday, phone, address, avatarUrl } = dataUser.user;
+  // const dataUser = useSelector(selectUser);
+  // console.log(ava, 'ava');
+  // console.log(dataUser, 'useselector');
+  const { _id, name, email, birthday, phone, address, avatarUrl } =
+    dataUser.user;
+  // const { name, email, birthday, phone, address, avatarUrl } = dataUser;
+
   const dispatch = useDispatch();
+  console.log(_id, 'name');
 
   const handleAvatar = async e => {
     e.preventDefault();
@@ -54,55 +58,104 @@ export default function UserDataList() {
       <UserInfoList>
         <UserInfoItem>
           <UserInfoTitle>Name:</UserInfoTitle>
-          {name && (
+          {name ? (
             <UserDataItem
+              userIdD={_id}
               typeInput="name"
               nameInput="name"
               valueUser={name}
+              activeBtn={activeBtn}
+              setActiveBtn={setActiveBtn}
 
               // onEdit={newValue => onEdit(newValue)}
+            />
+          ) : (
+            <UserDataItem
+              typeInput="name"
+              activeBtn={activeBtn}
+              setActiveBtn={setActiveBtn}
             />
           )}
         </UserInfoItem>
         <UserInfoItem>
           <UserInfoTitle>Email:</UserInfoTitle>
-          {email && (
+          {email ? (
             <UserDataItem
               typeInput="email"
               nameInput="email"
               valueUser={email}
+              activeBtn={activeBtn}
+              setActiveBtn={setActiveBtn}
+            />
+          ) : (
+            <UserDataItem
+              typeInput="email"
+              activeBtn={activeBtn}
+              setActiveBtn={setActiveBtn}
             />
           )}
         </UserInfoItem>
         <UserInfoItem>
           <UserInfoTitle>Birthday:</UserInfoTitle>
-          {birthday && (
+          {birthday ? (
             <UserDataItem
               typeInput="date"
               nameInput="birthday"
               valueUser={birthday}
+              activeBtn={activeBtn}
+              setActiveBtn={setActiveBtn}
+            />
+          ) : (
+            <UserDataItem
+              // typeInput="date"
+              activeBtn={activeBtn}
+              setActiveBtn={setActiveBtn}
             />
           )}
         </UserInfoItem>
 
         <UserInfoItem>
           <UserInfoTitle>Phone:</UserInfoTitle>
-          {phone && (
+          {/* {phone ? (
             <UserDataItem
               typeInput="phone"
               nameInput="phone"
               valueUser={phone}
+              activeBtn={activeBtn}
+              setActiveBtn={setActiveBtn}
             />
-          )}
+          ) : (
+            <UserDataItem
+              typeInput="phone"
+              activeBtn={activeBtn}
+              setActiveBtn={setActiveBtn}
+            />
+          )} */}
+          <UserDataItem
+            typeInput="phone"
+            nameInput="phone"
+            placeholder="Enter name"
+            valueUser={phone ?? ''}
+            activeBtn={activeBtn}
+            setActiveBtn={setActiveBtn}
+          />
         </UserInfoItem>
 
         <UserInfoItem>
           <UserInfoTitle>City:</UserInfoTitle>
-          {address && (
+          {address ? (
             <UserDataItem
               typeInput="text"
               nameInput="address"
               valueUser={address.split(',').splice(0, 1)}
+              activeBtn={activeBtn}
+              setActiveBtn={setActiveBtn}
+            />
+          ) : (
+            <UserDataItem
+              typeInput="text"
+              activeBtn={activeBtn}
+              setActiveBtn={setActiveBtn}
             />
           )}
         </UserInfoItem>

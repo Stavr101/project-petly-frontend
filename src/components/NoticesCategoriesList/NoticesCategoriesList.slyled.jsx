@@ -4,6 +4,7 @@ export const List = styled.ul`
 margin-bottom: 50px;
   @media only screen and (min-width: 768px) {
     display: flex;
+    justify-content: start;
     gap: 32px;
     flex-wrap: wrap;
   }

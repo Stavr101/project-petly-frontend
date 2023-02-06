@@ -95,8 +95,11 @@ export default function ModalNotice({
             ></ModalNoticeBtnDel>
             <ModalNoticeWrapperContent>
               <ModalNoticeWrapperImg>
-                {pet.petAvatarURL ? (
-                  <ModalNoticeImg src={pet.petAvatarURL} alt={pet.title} />
+                {pet.petAvatarURL.secure_url ? (
+                  <ModalNoticeImg
+                    src={pet.petAvatarURL.secure_url}
+                    alt={pet.title}
+                  />
                 ) : (
                   <ModalNoticeImg
                     src={"https://i.ibb.co/RQ61YYb/1.jpg"}
@@ -134,18 +137,21 @@ export default function ModalNotice({
                     <ModalNoticeItemParametr>The sex:</ModalNoticeItemParametr>
                     <ModalNoticeItemValue>{pet.sex}</ModalNoticeItemValue>
                   </ModalNoticeLi>
+
                   <ModalNoticeLi>
                     <ModalNoticeItemParametr>Email:</ModalNoticeItemParametr>
                     <ModalNoticeItemValue>
-                      {pet.owner?.email}
+                      {pet.owner ? pet.owner.email : ""}
                     </ModalNoticeItemValue>
                   </ModalNoticeLi>
+
                   <ModalNoticeLi>
                     <ModalNoticeItemParametr>Phone:</ModalNoticeItemParametr>
                     <ModalNoticeItemValue>
-                      {pet.owner?.phone}
+                      {pet.owner ? pet.owner?.phone : ""}
                     </ModalNoticeItemValue>
                   </ModalNoticeLi>
+
                   <ModalNoticeLi>
                     {pet.categoryName === "sell" ? (
                       <>
@@ -172,7 +178,9 @@ export default function ModalNotice({
             <ModalNoticeButtonsList>
               <ModalNoticeButtonsItem>
                 <ModalNoticeBtnContact type="button">
-                  <ModalNoticeBtnLink href={`tel:${pet.owner.phone}`}>
+                  <ModalNoticeBtnLink
+                    href={pet.owner ? `tel:${pet.owner.phone}` : "#"}
+                  >
                     Contact
                   </ModalNoticeBtnLink>
                 </ModalNoticeBtnContact>

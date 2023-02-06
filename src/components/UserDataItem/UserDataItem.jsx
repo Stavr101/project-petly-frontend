@@ -6,28 +6,47 @@ import {
   UpdateBtn,
   InputWrapper,
   PensileBtn,
+  DeactiveBtn,
 } from './UserDataItem.styled';
 import { updateUserData } from '../../redux/users/operations';
 import { selectUser } from 'redux/auth/selectors';
+import { useParams } from 'react-router-dom';
 
-export default function UserDataItem({ typeInput, nameInput, valueUser }) {
+export default function UserDataItem({
+  // typeInput,
+  nameInput,
+  valueUser,
+  activeBtn,
+  setActiveBtn,
+  userIdD,
+}) {
   const user = useSelector(selectUser);
-
   const dispatch = useDispatch();
-  const [userInfo, setUserInfo] = useState(valueUser);
+  //   const [userInfo, setUserInfo] = useState(valueUser);
+  // const { userId } = useParams();
+  // console.log(userId, 'params');
 
   const [isEditing, setIsEditing] = useState(false);
   const [editedValue, setEditedValue] = useState(valueUser);
-  const [activeBtn, setActiveBtn] = useState(true);
+
+  // let userInfo = user._id;
+  //   console.log(userInfo, 'id?????');
 
   const handleEdit = e => {
     e.preventDefault();
     setIsEditing(true);
+    setActiveBtn(false);
+  };
+
+  const handleChange = e => {
+    setEditedValue(e.target.value);
   };
 
   const handleSubmit = e => {
+    e.preventDefault();
+    setActiveBtn(true);
     setIsEditing(false);
-    dispatch(updateUserData(editedValue));
+    dispatch(updateUserData({ userId: userIdD, nameInput: editedValue }));
   };
 
   return (
@@ -35,18 +54,22 @@ export default function UserDataItem({ typeInput, nameInput, valueUser }) {
       {isEditing ? (
         <>
           <Input
-            type={typeInput}
+            // type={typeInput}
             name={nameInput}
             value={editedValue}
-            onChange={e => setEditedValue(e.target.value)}
+            onChange={handleChange}
           />
           <UpdateBtn onClick={handleSubmit}></UpdateBtn>
         </>
       ) : (
         <>
-          <Input type={typeInput} name={nameInput} value={valueUser} disabled />
-          {/* <PensileBtn onClick={handleEdit}></PensileBtn> */}
-          <PensileBtn onClick={handleEdit}></PensileBtn>
+          <Input name={nameInput} value={valueUser} disabled />
+
+          {activeBtn ? (
+            <PensileBtn onClick={handleEdit}></PensileBtn>
+          ) : (
+            <DeactiveBtn disabled></DeactiveBtn>
+          )}
         </>
       )}
     </InputWrapper>

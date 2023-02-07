@@ -37,11 +37,19 @@ export const fetchAdsByCategory = (category, search) => {
     .then((response) => response.data);
 };
 
-export const fetchOwnAds = () => {
-  return axios.get("/notices/own").then((response) => {
-    return response.data;
-  });
-};
+// export const fetchOwnAds = () => {
+//   return axios.get("/notices/own").then((response) => {
+//     return response.data;
+//   });
+// };
+export async function fetchOwnAds() {
+  try {
+    const res = await axios.get(`/notices/own`);
+    return res.data;
+  } catch (error) {
+    console.log(error.message);
+  }
+}
 
 export const getPetsById = async (id) => {
   const response = await axios.get(`/notices/notice/${id}`);

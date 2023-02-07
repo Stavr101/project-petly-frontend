@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
-import { fetchAdsByCategory, getConditionPets, fetchOwnAds } from "api/notices";
+import { useLocation, useParams, useSearchParams } from "react-router-dom";
+import {
+  fetchAdsByCategory,
+  getConditionPets,
+  fetchOwnAds,
+  fetchFavorite,
+} from "api/notices";
 import Error from "components/Error/Error";
 import NoticeCategoryItem from "components/NoticeCategoryItem/NoticeCategoryItem";
 import { List } from "components/NoticesCategoriesList/NoticesCategoriesList.slyled";
@@ -15,17 +20,35 @@ const NoticesCategoriesList = () => {
   const search = searchParams.get("search") ?? "";
   let filteredPets = pets.filter((pet) => pet.categoryName === categoryName);
 
+  const location = useLocation();
+
   useEffect(() => {
     setPets([]);
   }, [search, categoryName]);
 
   useEffect(() => {
+    if (location.pathname.includes("favorite")) {
+      const fetchFavoritePets = async () => {
+        setLoading(true);
+
+        try {
+          const data = await fetchFavorite();
+          setPets(() => [...data]);
+        } catch (error) {
+          setError(error);
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchFavoritePets();
+      return;
+    }
+
     const fetchPets = async () => {
       setLoading(true);
 
       try {
         const data = await fetchAdsByCategory(categoryName, search);
-        console.log(data);
         setPets(() => [...data]);
       } catch (error) {
         setError(error);
@@ -34,20 +57,16 @@ const NoticesCategoriesList = () => {
       }
     };
     fetchPets();
-  }, [categoryName, search]);
+  }, [categoryName, location.pathname, search]);
 
   return (
     <>
-      {filteredPets && (
+      {/* {filteredPets && ( */}
+      {pets && (
         <List>
-          {filteredPets.map((item) => {
-            return (
-              <NoticeCategoryItem
-                key={item._id}
-                data={item}
-                // onLearnMore={openModal}
-              />
-            );
+          {/* {filteredPets.map((item) => { */}
+          {pets.map((item) => {
+            return <NoticeCategoryItem key={item._id} data={item} />;
           })}
         </List>
       )}

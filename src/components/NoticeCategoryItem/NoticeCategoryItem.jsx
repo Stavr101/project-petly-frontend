@@ -42,7 +42,7 @@ export default function NoticeCategoryItem({ data }) {
 
   // console.log(_id);
   const [open, setOpen] = useState(false);
-  const isUSer = useSelector(selectUser);
+  const isUser = useSelector(selectUser);
   // const [favorite, setFavorite] = useState(false);
 
   const onLearnMoreClick = () => {
@@ -50,11 +50,10 @@ export default function NoticeCategoryItem({ data }) {
   };
 
   const handleOnError = (e) => {
-    e.target.src =
-    "https://i.ibb.co/RQ61YYb/1.jpg";
+    e.target.src = "https://i.ibb.co/RQ61YYb/1.jpg";
   };
 
-  const currentAge = date => {
+  const currentAge = (date) => {
     const dif = Date.now() - new Date(date);
     const second = 1000;
     const minute = second * 60;
@@ -64,37 +63,29 @@ export default function NoticeCategoryItem({ data }) {
     const days = Math.floor(dif / day);
     const months = Math.floor(days / 30.4);
     const years = months / 12;
-    const transformedYear = Number(years.toString().split('.')[0]);
-    const restDivision = years.toString().split('.')[1];
-    const transformedMonth = restDivision ? Math.floor(Number(`0.${restDivision}` * 12)) : null;
+    const transformedYear = Number(years.toString().split(".")[0]);
+    const restDivision = years.toString().split(".")[1];
+    const transformedMonth = restDivision
+      ? Math.floor(Number(`0.${restDivision}` * 12))
+      : null;
 
     if (transformedYear > 0) {
       if (transformedMonth) {
-        return `${transformedYear} ${
-          transformedYear === 1
-            ? 'year'
-            : 'years'
-        }`;
+        return `${transformedYear} ${transformedYear === 1 ? "year" : "years"}`;
       }
-      return `${transformedYear} ${
-        transformedYear === 1
-          ? 'year'
-          : 'years'
-      }`;
+      return `${transformedYear} ${transformedYear === 1 ? "year" : "years"}`;
     }
 
     if (transformedMonth) {
       return `${transformedMonth} ${
-        transformedMonth === 1
-          ? 'month'
-          : 'months'
+        transformedMonth === 1 ? "month" : "months"
       }`;
     }
     return "< 1 month";
-  }
+  };
 
   async function addFavorite(_id) {
-    if (isUSer.email === null) {
+    if (isUser.email === null) {
       return Notify.failure("Must be authorization");
     }
     try {
@@ -110,7 +101,7 @@ export default function NoticeCategoryItem({ data }) {
   return (
     <>
       <ItemNoticesLi>
-        <ItemNoticesImgDiv >
+        <ItemNoticesImgDiv>
           {petAvatarURL ? (
             <ItemNoticesImg src={petAvatarURL.secure_url} alt={title} />
           ) : (
@@ -154,6 +145,7 @@ export default function NoticeCategoryItem({ data }) {
               </ItemNoticesListLi>
             ) : null}
           </ItemNoticesUlList>
+
           <ItemButtonNotices>
             <ItemButtonNoticesLearnMore
               type="submit"
@@ -162,7 +154,7 @@ export default function NoticeCategoryItem({ data }) {
             >
               Learn more
             </ItemButtonNoticesLearnMore>
-            {favorite ? (
+            {/* {favorite ? (
               <ItemButtonNoticesDelete
                 type="submit"
                 // onClick={() => onDeletePets(_id)}
@@ -172,7 +164,15 @@ export default function NoticeCategoryItem({ data }) {
                 </ItemButtonNoticesDeleteSpan>
                 <DeleteSvg />
               </ItemButtonNoticesDelete>
-            ) : null}
+            ) : null} */}
+
+            <ItemButtonNoticesDelete
+              type="submit"
+              // onClick={() => onDeletePets(_id)}
+            >
+              <ItemButtonNoticesDeleteSpan>Delete</ItemButtonNoticesDeleteSpan>
+              <DeleteSvg />
+            </ItemButtonNoticesDelete>
           </ItemButtonNotices>
         </ItemNoticesWrap>
       </ItemNoticesLi>

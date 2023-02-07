@@ -79,9 +79,7 @@ export const App = () => {
             element={
               <PrivateRoute redirectTo="/notices" component={<UserPage />} />
             }
-          >
-            <Route path=":userId" element={<UserPage />} />
-          </Route>
+          />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

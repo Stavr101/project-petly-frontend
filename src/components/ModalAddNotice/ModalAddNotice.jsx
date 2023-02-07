@@ -73,6 +73,7 @@ function Forma({ handleClose }) {
     goodHandsSecondForm: {
       sex: '',
       location: '',
+      avatarFile: null,
       avatarUrl: null,
       comment: '',
     },
@@ -91,11 +92,12 @@ function Forma({ handleClose }) {
     });
   };
   const handleSellSecondFormChange = event => {
-    if (event.target.name === 'avatarUrl') {
+    if (event.target.name === 'avatarFile') {
       setFormSell({
         ...formSell,
         sellSecondForm: {
           ...formSell.sellSecondForm,
+          avatarUrl: event.target.files[0],
           [event.target.name]: URL.createObjectURL(event.target.files[0]),
         }
       });
@@ -176,6 +178,7 @@ const handleGoodHandsFirstFormChange = event => {
         ...formGoodHands,
         goodHandsSecondForm: {
           ...formGoodHands.goodHandsSecondForm,
+          avatarUrl: event.target.files[0],
           [event.target.name]: URL.createObjectURL(event.target.files[0]),
         }
       });
@@ -208,25 +211,42 @@ const handleGoodHandsFirstFormChange = event => {
 
   
   const sellHandleSubmit = async (event) => {
-    event.preventDefault();
-    
-    dispatch(addPet(combinedSellForm))
+    const combinedForm = { ...formSell.sellFirstForm, ...formSell.sellSecondForm };
+    const { title, name, date, breed, categoryName, sex, location, price, comment } = combinedForm;
+
+    const formDataFile = new FormData();
+    formDataFile.append("title", title);
+    formDataFile.append("name", name);
+    formDataFile.append("date", date);
+    formDataFile.append("breed", breed);
+    formDataFile.append("categoryName", categoryName);
+    formDataFile.append("sex", sex);
+    formDataFile.append("location", location);
+    formDataFile.append("price", price);
+    formDataFile.append("avatarUrl", event.target.elements.avatarFile.files[0]);
+    formDataFile.append("comment", comment);
+    console.log(formDataFile);
+    dispatch(addPet(formDataFile));
+
     setFormSell({
       sellFirstForm: {
         title: '',
         name: '',
         date: '',
         breed: '',
+        // categoryName: 'sell',
+        
       },
       sellSecondForm: {
         sex: '',
         location: '',
         price: '',
+        avatarFile: null,
         avatarUrl: null,
         comment: '',
       },
     });
-    // handleClose();
+    handleClose()
   };
   
   const handleFoundSubmit = async (event) => {
@@ -324,7 +344,7 @@ const hasFoundFirstFormAllData = Object.values(formFound.foundFirstForm).every(v
             {/* {errors.name && <div>{errors.secondForm.name}</div>} */}
           </InputBox>
           <InputBox>
-            <InputLable htmlFor="breed">Date of birth</InputLable>
+            <InputLable htmlFor="date">Date of birth</InputLable>
             <InputField
               type="date"
               name="date"
@@ -369,8 +389,9 @@ const hasFoundFirstFormAllData = Object.values(formFound.foundFirstForm).every(v
                   checked={formSell.sellSecondForm.sex === "male"}
                   onChange={handleRadioChange}
                 />
+                <LabelMale htmlfor="radio1">Male</LabelMale>
               </InputMaleButton>
-              <LabelMale for="radio1">Male</LabelMale>
+             
             </InputContainer>
 
             <InputContainer>
@@ -383,8 +404,9 @@ const hasFoundFirstFormAllData = Object.values(formFound.foundFirstForm).every(v
                   checked={formSell.sellSecondForm.sex === "female"}
                   onChange={handleRadioChange}
                 />
+                  <LabelFemale htmlfor="radio1">Female</LabelFemale>
               </InputFemaleButton>
-              <LabelFemale for="radio1">Female</LabelFemale>
+            
             </InputContainer>
 
           </SexButtons>
@@ -414,14 +436,14 @@ const hasFoundFirstFormAllData = Object.values(formFound.foundFirstForm).every(v
             />
             {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
           </InputBox>
-          <InputLable htmlFor="avatarUrl">Load the pet's image:</InputLable>
+          <InputLable htmlFor="avatarFile">Load the pet's image:</InputLable>
           <DownloadContainer>
 
-            {formSell.sellSecondForm.avatarUrl && (
-              <Image src={formSell.sellSecondForm.avatarUrl} alt="uploaded" />
+            {formSell.sellSecondForm.avatarFile && (
+              <Image src={formSell.sellSecondForm.avatarFile} alt="uploaded" />
             )}
             <Download
-              name="avatarUrl"
+              name="avatarFile"
               type="file"
               accept="image/*"
               onChange={handleSellSecondFormChange}
@@ -487,7 +509,7 @@ const hasFoundFirstFormAllData = Object.values(formFound.foundFirstForm).every(v
             {/* {errors.name && <div>{errors.secondForm.name}</div>} */}
           </InputBox>
           <InputBox>
-            <InputLable htmlFor="breed">Date of birth</InputLable>
+            <InputLable htmlFor="date">Date of birth</InputLable>
             <InputField
               type="date"
               name="date"
@@ -564,7 +586,7 @@ const hasFoundFirstFormAllData = Object.values(formFound.foundFirstForm).every(v
             {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
           </InputBox>
 
-          <InputLable htmlFor="image">Load the pet's image:</InputLable>
+          <InputLable htmlFor="avatarUrl">Load the pet's image:</InputLable>
           <DownloadContainer>
 
             {formFound.foundSecondForm.avatarUrl && (
@@ -639,7 +661,7 @@ const hasFoundFirstFormAllData = Object.values(formFound.foundFirstForm).every(v
             {/* {errors.name && <div>{errors.secondForm.name}</div>} */}
           </InputBox>
           <InputBox>
-            <InputLable htmlFor="breed">Date of birth</InputLable>
+            <InputLable htmlFor="date">Date of birth</InputLable>
             <InputField
               type="date"
               name="date"
@@ -715,7 +737,7 @@ const hasFoundFirstFormAllData = Object.values(formFound.foundFirstForm).every(v
             {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
           </InputBox>
 
-          <InputLable htmlFor="image">Load the pet's image:</InputLable>
+          <InputLable htmlFor="avatarUrl">Load the pet's image:</InputLable>
           <DownloadContainer>
 
             {formGoodHands.goodHandsSecondForm.avatarUrl && (

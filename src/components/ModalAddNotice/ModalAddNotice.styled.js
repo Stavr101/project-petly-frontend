@@ -20,32 +20,33 @@ const slideIn = keyframes`
 export const InputMaleButton = styled.button`
 background-image: url(${male});
 width: 60px;
-height:60px;
+height:120px;
 margin-bottom: 20px;
 background-repeat:no-repeat;
 border: none;
 background-color: white;
 cursor: pointer;
-   box-shadow:  ${props => (props.isSelected ? 'inset -1px 2px 3px rgba(255, 255, 255, 0.57), inset 0px -3px 4px rgba(0, 0, 0, 0.25);' : '0px 0px 0px rgba(0, 0, 0, 0.25)')};
+   color:  ${props => (props.isSelected ? '#F59256' : 'black')};
  
  :hover {
  
- box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+ color:  ${props => (props.isSelected ? '#F59256' : 'black')};
 }
 `
 export const InputFemaleButton = styled.button`
 background-image: url(${female});
 width: 60px;
-height:60px;
+height:120px;
 margin-bottom: 20px;
 background-repeat:no-repeat;
 border: none;
 background-color: white;
-   box-shadow:  ${props => (props.isSelected ? 'inset -1px 2px 3px rgba(255, 255, 255, 0.57), inset 0px -3px 4px rgba(0, 0, 0, 0.25);' : '0px 0px 0px rgba(0, 0, 0, 0.25)')};
+      color:  ${props => (props.isSelected ? '#F59256' : 'black')};
  
  :hover {
  
- box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+ color:  ${props => (props.isSelected ? '#F59256' : 'black')};
+
   }`
 
 export const InputContainer = styled.div`
@@ -68,10 +69,11 @@ opacity: 0;
 `;
 
 export const LabelMale = styled.label`
+font-size: 18px;
 
 `;
 export const LabelFemale = styled.label`
-
+font-size: 18px;
 `;
 
 export const SexButtons = styled.div`
@@ -163,8 +165,6 @@ height: 182px;
 `
 
 export const ModalContainer = styled.div`
- 
-
   padding: 20px;
   display: flex;
   flex-direction: column;

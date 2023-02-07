@@ -2,35 +2,6 @@ import axios from "axios";
 
 axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
 
-// export const getAllNoticesPets = async () => {
-//   try {
-//     const {
-//       params: { category },
-//     } = await axios.get(`/notices/:categoryName`);
-//     return category;
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// };
-
-// export const getConditionPets = async (condition) => {
-//   try {
-//     const { data } = await axios.get(`/notices/`, condition);
-//     return data;
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// };
-
-// export const deletePets = async (id) => {
-//   try {
-//     const { data } = await axios.delete(`/notices/${id}`);
-//     return data;
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// };
-
 export const fetchAdsByCategory = (category, search) => {
   return axios
     .get(`/notices/category/${category}?search=${search}`)
@@ -74,9 +45,18 @@ export async function removeFavoritePet(id) {
   }
 }
 
-export async function fetchFavorite() {
+export async function fetchFavorite(search) {
   try {
-    const res = await axios.get(`/notices/favorite`);
+    const res = await axios.get(`/notices/favorite?search=${search}`);
+    return res.data;
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+export async function fetchOwn(search) {
+  try {
+    const res = await axios.get(`/notices/own?search=${search}`);
     return res.data;
   } catch (error) {
     console.log(error.message);

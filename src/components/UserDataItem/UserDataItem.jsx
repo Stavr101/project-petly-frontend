@@ -14,16 +14,14 @@ import { useParams } from 'react-router-dom';
 import { getUserData } from 'redux/users/selectors';
 
 export default function UserDataItem({
-  // typeInput,
+  typeInput,
   nameInput,
   valueUser,
   activeBtn,
   setActiveBtn,
-  userIdD,
 }) {
   const user = useSelector(getUserData);
   const dispatch = useDispatch();
-  //   const [userInfo, setUserInfo] = useState(valueUser);
 
   const [isEditing, setIsEditing] = useState(false);
   const [editedValue, setEditedValue] = useState(valueUser);
@@ -54,7 +52,7 @@ export default function UserDataItem({
       {isEditing ? (
         <>
           <Input
-            // type={typeInput}
+            type={typeInput}
             name={nameInput}
             value={editedValue}
             onChange={handleChange}

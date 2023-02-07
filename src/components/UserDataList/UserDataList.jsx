@@ -12,13 +12,10 @@ import {
 } from './UserDataList.styled';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserData } from 'redux/users/selectors';
-import { getUserInfo } from 'redux/users/operations';
 import UserDataItem from 'components/UserDataItem/UserDataItem';
-import { selectUser, selectIsLoggedIn } from 'redux/auth/selectors';
 import { updateUserData } from 'redux/users/operations';
 
 import editAvatar from 'images/UserPage/editAvatar.svg';
-// import { useRout } from 'react-router-dom';
 
 export default function UserDataList() {
   const dataUser = useSelector(getUserData);
@@ -103,13 +100,13 @@ export default function UserDataList() {
             <UserDataItem
               typeInput="date"
               nameInput="birthday"
-              valueUser={birthday}
+              valueUser={birthday.split('-').reverse().join('.')}
               activeBtn={activeBtn}
               setActiveBtn={setActiveBtn}
             />
           ) : (
             <UserDataItem
-              // typeInput="date"
+              typeInput="date"
               activeBtn={activeBtn}
               setActiveBtn={setActiveBtn}
             />

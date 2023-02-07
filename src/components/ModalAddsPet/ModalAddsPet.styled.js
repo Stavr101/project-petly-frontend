@@ -42,6 +42,7 @@ export const DownloadPhoto = styled.input`
 
 export const Download = styled.input`
 opacity: 0;
+
 width: 182px;
 height: 182px;
 `
@@ -62,7 +63,8 @@ cursor: pointer;
 
   background-size: 48px 48px;
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: center;
+  
     @media (min-width: 768px) {
     width: 182px;
 height: 182px;
@@ -73,6 +75,7 @@ height: 182px;
   }
 `
 export const Image = styled.img`
+margin-bottom:-166px;
 width: 208px;
 height: 208px;
 border-radius: 20px;

@@ -99,9 +99,9 @@ background-image: url(${BgColoredMob1x});
 
 @media (min-width: 1280px) {
     background-image: url(${MainImgDesk2x}), url(${HeartImg}), url(${BgColoredDesk2x});
-    background-size: contain, 8%, 100% auto; 
+    background-size: contain, 5%, 100% auto; 
     background-position: 100% 100%, top 3% right 40%, bottom;
-    min-height: calc(100vh - 160px);
+    min-height: calc(100vh - 130px);
 }
 
 // @media screen and (min-width: 1280px),
@@ -111,6 +111,6 @@ background-image: url(${BgColoredMob1x});
 //     background-image: url(${MainImgDesk2x}), url(${HeartImg}), url(${BgColoredDesk2x});
 //     background-size: contain, 8%, 100% auto; 
 //     background-position: 100% 100%, top 5% right 40%, bottom;
-//     min-height: calc(100vh - 133px);
+//     min-height: calc(100vh - 130px);
 // }
 `

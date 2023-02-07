@@ -1,3 +1,4 @@
+import { TrySharp } from "@mui/icons-material";
 import axios from "axios";
 
 axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
@@ -54,3 +55,12 @@ export async function fetchOwn(search) {
     console.log(error.message);
   }
 }
+
+export const addPetToCategory = async (data) => {
+  try {
+    const res = await axios.post(`/notices`, data);
+    return res.data;
+  } catch (error) {
+    console.log(error.message);
+  }
+};

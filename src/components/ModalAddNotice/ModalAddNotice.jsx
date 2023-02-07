@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
-import { addPet } from 'redux/pets/operations';
+import { addPet } from 'api/pets/operations';
 
 import {
   InputBox,
@@ -47,6 +47,7 @@ function Forma({ handleClose }) {
       price: '',
       avatarUrl: null,
       comment: '',
+      categoryName:'sell'
     },
   });
   const [formFound, setFormFound] = useState({
@@ -204,7 +205,7 @@ const handleGoodHandsFirstFormChange = event => {
     });
   };
 
-  const combinedSellForm = { ...formSell.sellFirstForm, ...formSell.sellSecondForm };
+  // const combinedSellForm = { ...formSell.sellFirstForm, ...formSell.sellSecondForm };
   const combinedFoundForm = { ...formFound.foundFirstForm, ...formFound.foundSecondForm };
   const combinedGoodHandsForm = { ...formGoodHands.goodHandsFirstForm, ...formGoodHands.goodHandsSecondForm };
   //==================================
@@ -217,14 +218,14 @@ const handleGoodHandsFirstFormChange = event => {
     const formDataFile = new FormData();
     formDataFile.append("title", title);
     formDataFile.append("name", name);
-    formDataFile.append("date", date);
-    formDataFile.append("breed", breed);
-    formDataFile.append("categoryName", categoryName);
     formDataFile.append("sex", sex);
+    formDataFile.append("birthdate", date);
+    formDataFile.append("breed", breed);
+    formDataFile.append("petAvatar", event.target.elements.avatarFile.files[0]);
     formDataFile.append("location", location);
+    formDataFile.append("comments", comment);
+    formDataFile.append("categoryName", categoryName);
     formDataFile.append("price", price);
-    formDataFile.append("avatarUrl", event.target.elements.avatarFile.files[0]);
-    formDataFile.append("comment", comment);
     console.log(formDataFile);
     dispatch(addPet(formDataFile));
 
@@ -244,6 +245,7 @@ const handleGoodHandsFirstFormChange = event => {
         avatarFile: null,
         avatarUrl: null,
         comment: '',
+        categoryName:'sell',
       },
     });
     handleClose()
@@ -380,8 +382,8 @@ const hasFoundFirstFormAllData = Object.values(formFound.foundFirstForm).every(v
           <SexButtons>
             <InputContainer>
 
-              <InputMaleButton isSelected={selectedRadio === 'Male'}
-                onClick={() => handleClick('Male')}>
+              <InputMaleButton isSelected={selectedRadio === 'male'}
+                onClick={() => handleClick('male')}>
                 <InputRadio
                   type="radio"
                   name="sellSecondForm.sex"
@@ -395,8 +397,8 @@ const hasFoundFirstFormAllData = Object.values(formFound.foundFirstForm).every(v
             </InputContainer>
 
             <InputContainer>
-              <InputFemaleButton isSelected={selectedRadio === 'Female'}
-                onClick={() => handleClick('Female')}>
+              <InputFemaleButton isSelected={selectedRadio === 'female'}
+                onClick={() => handleClick('female')}>
                 <InputRadio
                   type="radio"
                   name="sellSecondForm.sex"
@@ -545,8 +547,8 @@ const hasFoundFirstFormAllData = Object.values(formFound.foundFirstForm).every(v
           <SexButtons>
             <InputContainer>
 
-              <InputMaleButton isSelected={selectedRadio === 'Male'}
-                onClick={() => handleClick('Male')}>
+              <InputMaleButton isSelected={selectedRadio === 'male'}
+                onClick={() => handleClick('male')}>
                 <InputRadio
                   type="radio"
                   name="foundSecondForm.sex"
@@ -559,8 +561,8 @@ const hasFoundFirstFormAllData = Object.values(formFound.foundFirstForm).every(v
             </InputContainer>
 
             <InputContainer>
-              <InputFemaleButton isSelected={selectedRadio === 'Female'}
-                onClick={() => handleClick('Female')}>
+              <InputFemaleButton isSelected={selectedRadio === 'female'}
+                onClick={() => handleClick('female')}>
                 <InputRadio
                   type="radio"
                   name="foundSecondForm.sex"

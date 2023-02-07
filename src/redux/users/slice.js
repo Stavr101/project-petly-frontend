@@ -17,13 +17,11 @@ const initialState = {
 
 const isPending = state => {
   state.isLoading = true;
-  console.log('pending');
 };
 
 const isRejected = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
-  console.log('error');
 };
 
 const userSlice = createSlice({
@@ -46,9 +44,6 @@ const userSlice = createSlice({
     [updateUserData.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
-
-      // const index = state.user.findIndex(item => item === action.payload);
-      // state.user.splice(index, 1, action.payload);
       state.user = action.payload;
     },
     [updateUserAvatar.fulfilled](state, action) {

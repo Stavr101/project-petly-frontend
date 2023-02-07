@@ -11,6 +11,7 @@ import {
 import { updateUserData } from '../../redux/users/operations';
 import { selectUser } from 'redux/auth/selectors';
 import { useParams } from 'react-router-dom';
+import { getUserData } from 'redux/users/selectors';
 
 export default function UserDataItem({
   // typeInput,
@@ -20,17 +21,12 @@ export default function UserDataItem({
   setActiveBtn,
   userIdD,
 }) {
-  const user = useSelector(selectUser);
+  const user = useSelector(getUserData);
   const dispatch = useDispatch();
   //   const [userInfo, setUserInfo] = useState(valueUser);
-  // const { userId } = useParams();
-  // console.log(userId, 'params');
 
   const [isEditing, setIsEditing] = useState(false);
   const [editedValue, setEditedValue] = useState(valueUser);
-
-  // let userInfo = user._id;
-  //   console.log(userInfo, 'id?????');
 
   const handleEdit = e => {
     e.preventDefault();
@@ -46,7 +42,11 @@ export default function UserDataItem({
     e.preventDefault();
     setActiveBtn(true);
     setIsEditing(false);
-    dispatch(updateUserData({ userId: userIdD, nameInput: editedValue }));
+    dispatch(
+      updateUserData({
+        [nameInput]: editedValue,
+      })
+    );
   };
 
   return (

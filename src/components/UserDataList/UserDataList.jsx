@@ -18,19 +18,21 @@ import { selectUser, selectIsLoggedIn } from 'redux/auth/selectors';
 import { updateUserData } from 'redux/users/operations';
 
 import editAvatar from 'images/UserPage/editAvatar.svg';
+// import { useRout } from 'react-router-dom';
 
 export default function UserDataList() {
-  const [activeBtn, setActiveBtn] = useState(true);
   const dataUser = useSelector(getUserData);
+  const { _id, name, email, birthday, phone, address, avatarUrl } =
+    dataUser.user;
+  const [activeBtn, setActiveBtn] = useState(true);
   // const dataUser = useSelector(selectUser);
   // console.log(ava, 'ava');
   // console.log(dataUser, 'useselector');
-  const { _id, name, email, birthday, phone, address, avatarUrl } =
-    dataUser.user;
+  // const { userId } = useParams();
+
   // const { name, email, birthday, phone, address, avatarUrl } = dataUser;
 
   const dispatch = useDispatch();
-  console.log(_id, 'name');
 
   const handleAvatar = async e => {
     e.preventDefault();
@@ -116,7 +118,7 @@ export default function UserDataList() {
 
         <UserInfoItem>
           <UserInfoTitle>Phone:</UserInfoTitle>
-          {/* {phone ? (
+          {phone ? (
             <UserDataItem
               typeInput="phone"
               nameInput="phone"
@@ -130,15 +132,7 @@ export default function UserDataList() {
               activeBtn={activeBtn}
               setActiveBtn={setActiveBtn}
             />
-          )} */}
-          <UserDataItem
-            typeInput="phone"
-            nameInput="phone"
-            placeholder="Enter name"
-            valueUser={phone ?? ''}
-            activeBtn={activeBtn}
-            setActiveBtn={setActiveBtn}
-          />
+          )}
         </UserInfoItem>
 
         <UserInfoItem>

@@ -16,18 +16,10 @@ export const getUserInfo = createAsyncThunk('user/get', async (_, thunkAPI) => {
 // PUT @ /userData
 export const updateUserData = createAsyncThunk(
   'user/updateUserData',
-  async ({ _id, name, email, birthday, phone, address }, thunkAPI) => {
+  async (user, thunkAPI) => {
     // console.log('user data', user);
     try {
-      const response = await axios.put('/user/:userId', {
-        _id,
-        name,
-        email,
-        birthday,
-        phone,
-        address,
-      });
-      console.log('response :', response.data);
+      const response = await axios.patch(`/user`, user);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

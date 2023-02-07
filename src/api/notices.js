@@ -66,9 +66,9 @@ export async function removeFavoritePet(id) {
   }
 }
 
-export async function fetchFavorite() {
+export async function fetchFavorite(search) {
   try {
-    const res = await axios.get(`/notices/favorite`);
+    const res = await axios.get(`/notices/favorite?search=${search}`);
     return res.data;
   } catch (error) {
     console.log(error.message);

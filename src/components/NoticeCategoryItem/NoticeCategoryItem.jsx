@@ -22,10 +22,13 @@ import {
   ItemButtonNoticesHeartButton,
   ItemButtonNoticesDeleteSpan,
 } from "./NoticeCategoryItem.styled";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import ModalNotice from "components/ModalNotice/ModalNotice";
 import { selectUser } from "redux/auth/selectors";
+import { getUserData } from "redux/users/selectors";
+// import { getUserInfo } from "redux/users/operations";
+import { removeFavoritePet } from "api/notices";
 
 export default function NoticeCategoryItem({ data }) {
   const {
@@ -40,9 +43,15 @@ export default function NoticeCategoryItem({ data }) {
     categoryName,
   } = data;
 
-  // console.log(_id);
   const [open, setOpen] = useState(false);
-  const isUSer = useSelector(selectUser);
+  const isUser = useSelector(selectUser);
+  const pet = useSelector(getUserData);
+  const favoritePets = pet.user.favorite;
+
+  const [isFavorite, setIsFavorite] = useState(favoritePets.includes(_id));
+  console.log(pet);
+
+  // console.log(favoritePets);
 
   const onLearnMoreClick = () => {
     setOpen(true);
@@ -82,13 +91,20 @@ export default function NoticeCategoryItem({ data }) {
     }
     return "< 1 month";
   };
+  useEffect(() => {}, []);
 
   async function addFavorite(_id) {
-    if (isUSer.email === null) {
+    if (isUser.email === null) {
       return Notify.failure("Must be authorization");
+    }
+    if (isDuplicate(_id)) {
+      setIsFavorite(false);
+      return deletePet(_id);
     }
     try {
       const res = await addPetToFavorite(_id);
+      setIsFavorite(true);
+
       console.log(res);
       Notify.success("Pet add to your'e favorite");
       return res;
@@ -97,9 +113,22 @@ export default function NoticeCategoryItem({ data }) {
     }
   }
 
+  async function deletePet(_id) {
+    try {
+      const res = await removeFavoritePet(_id);
+      return res;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  function isDuplicate(petId) {
+    return favoritePets?.find((pet) => pet === petId);
+  }
+
   return (
     <>
-      <ItemNoticesLi>
+      <ItemNoticesLi id={_id}>
         <ItemNoticesImgDiv>
           {petAvatarURL ? (
             <ItemNoticesImg src={petAvatarURL.secure_url} alt={title} />
@@ -118,7 +147,7 @@ export default function NoticeCategoryItem({ data }) {
               type="button"
               onClick={() => addFavorite(_id)}
             >
-              {favorite ? <HeartFavorite /> : <HeartSvg />}
+              {isFavorite ? <HeartFavorite /> : <HeartSvg />}
             </ItemButtonNoticesHeartButton>
           </ItemPositionNoticesDiv>
         </ItemNoticesImgDiv>
@@ -144,6 +173,7 @@ export default function NoticeCategoryItem({ data }) {
               </ItemNoticesListLi>
             ) : null}
           </ItemNoticesUlList>
+
           <ItemButtonNotices>
             <ItemButtonNoticesLearnMore
               type="submit"
@@ -152,7 +182,7 @@ export default function NoticeCategoryItem({ data }) {
             >
               Learn more
             </ItemButtonNoticesLearnMore>
-            {favorite ? (
+            {/* {favorite ? (
               <ItemButtonNoticesDelete
                 type="submit"
                 // onClick={() => onDeletePets(_id)}
@@ -162,7 +192,15 @@ export default function NoticeCategoryItem({ data }) {
                 </ItemButtonNoticesDeleteSpan>
                 <DeleteSvg />
               </ItemButtonNoticesDelete>
-            ) : null}
+            ) : null} */}
+
+            <ItemButtonNoticesDelete
+              type="submit"
+              // onClick={() => onDeletePets(_id)}
+            >
+              <ItemButtonNoticesDeleteSpan>Delete</ItemButtonNoticesDeleteSpan>
+              <DeleteSvg />
+            </ItemButtonNoticesDelete>
           </ItemButtonNotices>
         </ItemNoticesWrap>
       </ItemNoticesLi>

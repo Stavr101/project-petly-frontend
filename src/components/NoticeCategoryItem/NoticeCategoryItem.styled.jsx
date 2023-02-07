@@ -2,17 +2,20 @@ import styled from "styled-components";
 
 export const ItemNoticesImgDiv = styled.div`
   position: relative;
-   overflow:hidden;
-   width:100%;
-   height:288px;
-
-@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  overflow: hidden;
+  width: 100%;
   height: 288px;
-}
+  margin-bottom: 20px;
+
+  @media only screen and (min-width: 768px) and (max-width: 1279px) {
+    /* height: 288px; */
+  }
 `;
 
 export const ItemNoticesTitle = styled.h2`
-  margin: 20px 20px 0px 20px;
+  /* margin: 20px 20px 0px 20px; */
+  /* margin-bottom: 20px; */
+  min-height: 76px;
   font-weight: 700;
   font-size: 28px;
   line-height: 38px;
@@ -21,13 +24,13 @@ export const ItemNoticesTitle = styled.h2`
 `;
 
 export const ItemNoticesImg = styled.img`
-   position: absolute;
-   top:50%;
-   left:50%;
-   transform:translate(-50%,-50%);
-   width:336px;
-   height:288px;
-   object-fit:cover;
+  /* position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+  width: 100%;
+  height: 288px;
+  object-fit: cover;
 `;
 export const ItemPositionNoticesDiv = styled.div`
   position: absolute;
@@ -65,8 +68,8 @@ color: #111111;
 ` */
 
 export const ItemNoticesSpan = styled.span`
-position: absolute;
-left: 110px;
+  position: absolute;
+  left: 110px;
 `;
 
 export const ItemNoticesLi = styled.li`
@@ -88,28 +91,41 @@ export const ItemNoticesLi = styled.li`
   }
 `;
 export const ItemNoticesUlList = styled.ul`
-  margin-top: 20px;
-  padding: 0px 20px 0px 20px;
+  /* margin-bottom: 20px; */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  /* padding: 0px 20px 0px 20px; */
 `;
 
 export const ItemNoticesWrap = styled.div`
-position: relative;
-height: 318px;
+  position: relative;
+  min-height: 318px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; ;
 `;
 
 export const ItemButtonNotices = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0px 16px 12px 16px;
+  flex-grow: 1;
+  gap: 12px;
+  /* padding: 0px 16px 12px 16px; */
 `;
 
 export const ItemButtonNoticesLearnMore = styled.button`
-    position: absolute;
-    bottom: 40px;
-    left: 20px;
-    right: 20px;
-  padding: 8px 28px;
+  /* position: absolute; */
+  /* bottom: 40px;
+  left: 20px;
+  right: 20px; */
+  width: 100%;
+  padding: 8px 0;
   font-weight: 500;
   color: #f59256;
   font-size: 14px;
@@ -120,11 +136,11 @@ export const ItemButtonNoticesLearnMore = styled.button`
   border-radius: 40px;
 
   @media only screen and (min-width: 768px) {
-    padding: 10px 28px;
+    /* padding: 10px 28px; */
     font-size: 20px;
     line-height: 1.2;
   }
-  
+
   &.active {
     color: #ffffff;
     background: #f59256;
@@ -138,16 +154,18 @@ export const ItemButtonNoticesLearnMore = styled.button`
 `;
 
 export const ItemNoticesListLi = styled.li`
-  margin-top: 8px;
+  /* margin-top: 8px; */
 `;
 
 export const ItemButtonNoticesDelete = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  padding: 8px 0;
+  /* margin-top: 12px; */
+
   color: #ff6101;
-  padding: 8px 28px;
-  margin-top: 12px;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.35;
@@ -155,10 +173,10 @@ export const ItemButtonNoticesDelete = styled.button`
   background: #ffffff;
   border-radius: 40px;
   border: 2px solid #ff6101;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
 
   @media only screen and (min-width: 768px) {
-    padding: 10px 28px;
+    padding: 8px;
     font-size: 20px;
     line-height: 1.2;
   }

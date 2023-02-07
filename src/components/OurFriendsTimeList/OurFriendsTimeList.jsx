@@ -43,17 +43,11 @@ export default function OurFriendsTimeList({
   dayOfTheWeek,
   children,
 }) {
-  const [isOpenTime, setIsOpenTime] = useState(false);
-
-  const handlerOpenTime = () => {
-    setIsOpenTime((prev) => !prev);
-  };
-
   return (
     <LightTooltip
       sx={{ backgroundColor: "transparent" }}
-      open={isOpenTime}
-      onClick={handlerOpenTime}
+      enterTouchDelay="10"
+      disableFocusListener
       placement="bottom-start"
       title={
         workDays ? (

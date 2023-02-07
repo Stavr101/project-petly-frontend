@@ -369,8 +369,9 @@ const hasFoundFirstFormAllData = Object.values(formFound.foundFirstForm).every(v
                   checked={formSell.sellSecondForm.sex === "male"}
                   onChange={handleRadioChange}
                 />
+                <LabelMale for="radio1">Male</LabelMale>
               </InputMaleButton>
-              <LabelMale for="radio1">Male</LabelMale>
+             
             </InputContainer>
 
             <InputContainer>
@@ -383,8 +384,9 @@ const hasFoundFirstFormAllData = Object.values(formFound.foundFirstForm).every(v
                   checked={formSell.sellSecondForm.sex === "female"}
                   onChange={handleRadioChange}
                 />
+                  <LabelFemale for="radio1">Female</LabelFemale>
               </InputFemaleButton>
-              <LabelFemale for="radio1">Female</LabelFemale>
+            
             </InputContainer>
 
           </SexButtons>

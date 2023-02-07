@@ -9,23 +9,12 @@ import { getUserInfo } from 'redux/users/operations';
 import { getUserData } from 'redux/users/selectors';
 
 export default function UserData() {
-  const isLoading = useSelector(getLoading);
-  const error = useSelector(getError);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getUserInfo());
   }, [dispatch]);
 
-  // const { name } = userData;
-
-  // useEffect(() => {});
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-  //   console.log('send data', e.target.value);
-  //   // setDisabled(true);
-  // };
   return (
     <UserWrapper>
       <UserDataTitle>My information:</UserDataTitle>

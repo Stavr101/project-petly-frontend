@@ -5,14 +5,17 @@ import Error from "components/Error/Error";
 import NoticeCategoryItem from "components/NoticeCategoryItem/NoticeCategoryItem";
 import { List } from "components/NoticesCategoriesList/NoticesCategoriesList.slyled";
 import { fetchFavorite } from "api/notices";
+import { getUserInfo } from "redux/users/operations";
+import { useDispatch, useSelector } from "react-redux";
+// import { getUserData } from "redux/users/selectors";
 
 const NoticesCategoriesList = () => {
   const [pets, setPets] = useState([]);
-  // const [favorite, setFavorite] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const { categoryName } = useParams();
+  const dispatch = useDispatch();
   const location = useLocation();
   const search = searchParams.get("search") ?? "";
   let filteredPets = pets.filter((pet) => pet.categoryName === categoryName);
@@ -22,13 +25,16 @@ const NoticesCategoriesList = () => {
   }, [search, categoryName]);
 
   useEffect(() => {
+    dispatch(getUserInfo());
+  }, [dispatch]);
+
+  useEffect(() => {
     if (location.pathname.includes("favorite")) {
       const fetchFavoritePets = async () => {
         setLoading(true);
 
         try {
           const data = await fetchFavorite();
-          // setFavorite([...data, ...favorite]);
           setPets(() => [...data]);
         } catch (error) {
           setError(error);
@@ -63,13 +69,7 @@ const NoticesCategoriesList = () => {
         <List>
           {/* {filteredPets.map((item) => { */}
           {pets.map((item) => {
-            return (
-              <NoticeCategoryItem
-                key={item._id}
-                data={item}
-                // favorite={favorite}
-              />
-            );
+            return <NoticeCategoryItem key={item._id} data={item} />;
           })}
         </List>
       )}

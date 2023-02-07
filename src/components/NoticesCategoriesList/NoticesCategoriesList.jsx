@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
 import { useLocation, useParams, useSearchParams } from "react-router-dom";
+
 import { fetchAdsByCategory, fetchFavorite, fetchOwnAds } from "api/notices";
+
 import Error from "components/Error/Error";
 import NoticeCategoryItem from "components/NoticeCategoryItem/NoticeCategoryItem";
 import { List } from "components/NoticesCategoriesList/NoticesCategoriesList.slyled";
+import { getUserInfo } from "redux/users/operations";
+import { useDispatch } from "react-redux";
+// import { getUserData } from "redux/users/selectors";
 
 const NoticesCategoriesList = () => {
   const [pets, setPets] = useState([]);
@@ -11,13 +16,18 @@ const NoticesCategoriesList = () => {
   const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const { categoryName } = useParams();
+  const dispatch = useDispatch();
   const location = useLocation();
   const search = searchParams.get("search") ?? "";
-  let filteredPets = pets.filter((pet) => pet.categoryName === categoryName);
+  // let filteredPets = pets.filter((pet) => pet.categoryName === categoryName);
 
   useEffect(() => {
     setPets([]);
   }, [search, categoryName]);
+
+  useEffect(() => {
+    dispatch(getUserInfo());
+  }, [dispatch]);
 
   useEffect(() => {
     if (location.pathname.includes("favorite")) {
@@ -25,7 +35,8 @@ const NoticesCategoriesList = () => {
         setLoading(true);
 
         try {
-          const data = await fetchFavorite(search);
+          const data = await fetchFavorite();
+
           setPets(() => [...data]);
         } catch (error) {
           setError(error);
@@ -70,19 +81,14 @@ const NoticesCategoriesList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryName, location.pathname, search]);
 
-  console.log(search)
+  console.log(search);
 
   return (
     <>
       {pets && (
         <List>
           {pets.map((item) => {
-            return (
-              <NoticeCategoryItem
-                key={item._id}
-                data={item}
-              />
-            );
+            return <NoticeCategoryItem key={item._id} data={item} />;
           })}
         </List>
       )}

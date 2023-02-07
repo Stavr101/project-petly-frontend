@@ -29,12 +29,12 @@ export const updateUserData = createAsyncThunk(
 
 export const updateUserAvatar = createAsyncThunk(
   'users/updateAvatar',
-  async ({ avatarUrl }, { rejectWithValue }) => {
+  async ({ avatarUrl }, thunkAPI) => {
     try {
-      const { data } = await axios.patch('auth/avatars', avatarUrl);
+      const { data } = await axios.patch('/avatar', { avatarUrl });
       return data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

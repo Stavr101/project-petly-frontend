@@ -29,7 +29,12 @@ export default function PetsList() {
     ({ name, date, breed, avatarUrl, comment, _id }) => {
       return (
         <PetWrapper key={_id}>
-          <PetAvatar src={avatarUrl} alt={name} width="150" height="150" />
+          <PetAvatar
+            src={avatarUrl.secure_url}
+            alt={name}
+            width="150"
+            height="150"
+          />
           <PetList>
             <PetItem>
               <PetDescriptionInfo>
@@ -61,6 +66,7 @@ export default function PetsList() {
       );
     }
   );
+  // console.log(avatarUrl, 'pic');
   return isPets ? (
     <ul>{elements}</ul>
   ) : (

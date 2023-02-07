@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { useLocation, useParams, useSearchParams } from "react-router-dom";
-import { fetchAdsByCategory, getConditionPets, fetchOwnAds } from "api/notices";
+import { fetchAdsByCategory, fetchFavorite } from "api/notices";
 import Error from "components/Error/Error";
 import NoticeCategoryItem from "components/NoticeCategoryItem/NoticeCategoryItem";
 import { List } from "components/NoticesCategoriesList/NoticesCategoriesList.slyled";
-import { fetchFavorite } from "api/notices";
 
 const NoticesCategoriesList = () => {
   const [pets, setPets] = useState([]);
@@ -27,7 +26,7 @@ const NoticesCategoriesList = () => {
         setLoading(true);
 
         try {
-          const data = await fetchFavorite();
+          const data = await fetchFavorite(search);
           // setFavorite([...data, ...favorite]);
           setPets(() => [...data]);
         } catch (error) {
@@ -55,6 +54,8 @@ const NoticesCategoriesList = () => {
     fetchPets();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryName, location.pathname, search]);
+
+  console.log(search)
 
   return (
     <>

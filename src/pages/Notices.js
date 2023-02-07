@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Outlet, useParams } from "react-router-dom";
 import NoticesSearch from "components/NoticesSearch/NoticesSearch";
 import NoticesCategoriesNav from "components/NoticesCategoriesNav/NoticesCategoriesNav";
@@ -8,7 +7,6 @@ import MainPageContainer from "components/Container/MainPageContainer/MainPageCo
 import { Title } from "components/NoticesCategoriesNav/NoticesCategoriesNav.styled";
 
 function NoticesPage() {
-  const [searchQuery, setSearchQuery] = useState("");
   const { categoryName } = useParams();
 
   return (

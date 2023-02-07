@@ -12,25 +12,24 @@ import {
 } from './UserDataList.styled';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserData } from 'redux/users/selectors';
-import { getUserInfo } from 'redux/users/operations';
 import UserDataItem from 'components/UserDataItem/UserDataItem';
-import { selectUser, selectIsLoggedIn } from 'redux/auth/selectors';
 import { updateUserData } from 'redux/users/operations';
 
 import editAvatar from 'images/UserPage/editAvatar.svg';
 
 export default function UserDataList() {
-  const [activeBtn, setActiveBtn] = useState(true);
   const dataUser = useSelector(getUserData);
+  const { _id, name, email, birthday, phone, address, avatarUrl } =
+    dataUser.user;
+  const [activeBtn, setActiveBtn] = useState(true);
   // const dataUser = useSelector(selectUser);
   // console.log(ava, 'ava');
   // console.log(dataUser, 'useselector');
-  const { _id, name, email, birthday, phone, address, avatarUrl } =
-    dataUser.user;
+  // const { userId } = useParams();
+
   // const { name, email, birthday, phone, address, avatarUrl } = dataUser;
 
   const dispatch = useDispatch();
-  console.log(_id, 'name');
 
   const handleAvatar = async e => {
     e.preventDefault();
@@ -101,13 +100,13 @@ export default function UserDataList() {
             <UserDataItem
               typeInput="date"
               nameInput="birthday"
-              valueUser={birthday}
+              valueUser={birthday.split('-').reverse().join('.')}
               activeBtn={activeBtn}
               setActiveBtn={setActiveBtn}
             />
           ) : (
             <UserDataItem
-              // typeInput="date"
+              typeInput="date"
               activeBtn={activeBtn}
               setActiveBtn={setActiveBtn}
             />
@@ -116,7 +115,7 @@ export default function UserDataList() {
 
         <UserInfoItem>
           <UserInfoTitle>Phone:</UserInfoTitle>
-          {/* {phone ? (
+          {phone ? (
             <UserDataItem
               typeInput="phone"
               nameInput="phone"
@@ -130,15 +129,7 @@ export default function UserDataList() {
               activeBtn={activeBtn}
               setActiveBtn={setActiveBtn}
             />
-          )} */}
-          <UserDataItem
-            typeInput="phone"
-            nameInput="phone"
-            placeholder="Enter name"
-            valueUser={phone ?? ''}
-            activeBtn={activeBtn}
-            setActiveBtn={setActiveBtn}
-          />
+          )}
         </UserInfoItem>
 
         <UserInfoItem>

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useLocation, useParams, useSearchParams } from "react-router-dom";
-import { fetchAdsByCategory, getConditionPets, fetchOwnAds } from "api/notices";
+import { fetchAdsByCategory } from "api/notices";
 import Error from "components/Error/Error";
 import NoticeCategoryItem from "components/NoticeCategoryItem/NoticeCategoryItem";
 import { List } from "components/NoticesCategoriesList/NoticesCategoriesList.slyled";
 import { fetchFavorite } from "api/notices";
 import { getUserInfo } from "redux/users/operations";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 // import { getUserData } from "redux/users/selectors";
 
 const NoticesCategoriesList = () => {
@@ -18,7 +18,7 @@ const NoticesCategoriesList = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const search = searchParams.get("search") ?? "";
-  let filteredPets = pets.filter((pet) => pet.categoryName === categoryName);
+  // let filteredPets = pets.filter((pet) => pet.categoryName === categoryName);
 
   useEffect(() => {
     setPets([]);

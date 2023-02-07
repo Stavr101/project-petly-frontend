@@ -36,7 +36,6 @@ const NoticesCategoriesList = () => {
 
         try {
           const data = await fetchFavorite();
-
           setPets(() => [...data]);
         } catch (error) {
           setError(error);

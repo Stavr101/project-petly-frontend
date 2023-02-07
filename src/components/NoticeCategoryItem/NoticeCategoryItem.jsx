@@ -44,7 +44,7 @@ export default function NoticeCategoryItem({ data }) {
   } = data;
 
   const [open, setOpen] = useState(false);
-  const isUSer = useSelector(selectUser);
+  const isUser = useSelector(selectUser);
   const pet = useSelector(getUserData);
   const favoritePets = pet.user.favorite;
 
@@ -94,7 +94,7 @@ export default function NoticeCategoryItem({ data }) {
   useEffect(() => {}, []);
 
   async function addFavorite(_id) {
-    if (isUSer.email === null) {
+    if (isUser.email === null) {
       return Notify.failure("Must be authorization");
     }
     if (isDuplicate(_id)) {
@@ -173,6 +173,7 @@ export default function NoticeCategoryItem({ data }) {
               </ItemNoticesListLi>
             ) : null}
           </ItemNoticesUlList>
+
           <ItemButtonNotices>
             <ItemButtonNoticesLearnMore
               type="submit"
@@ -181,7 +182,7 @@ export default function NoticeCategoryItem({ data }) {
             >
               Learn more
             </ItemButtonNoticesLearnMore>
-            {favorite ? (
+            {/* {favorite ? (
               <ItemButtonNoticesDelete
                 type="submit"
                 // onClick={() => onDeletePets(_id)}
@@ -191,7 +192,15 @@ export default function NoticeCategoryItem({ data }) {
                 </ItemButtonNoticesDeleteSpan>
                 <DeleteSvg />
               </ItemButtonNoticesDelete>
-            ) : null}
+            ) : null} */}
+
+            <ItemButtonNoticesDelete
+              type="submit"
+              // onClick={() => onDeletePets(_id)}
+            >
+              <ItemButtonNoticesDeleteSpan>Delete</ItemButtonNoticesDeleteSpan>
+              <DeleteSvg />
+            </ItemButtonNoticesDelete>
           </ItemButtonNotices>
         </ItemNoticesWrap>
       </ItemNoticesLi>

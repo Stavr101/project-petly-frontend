@@ -10,6 +10,7 @@ const initialState = {
     birthday: '',
     address: '',
     avatarUrl: '',
+    favorite: '',
   },
   isLoading: false,
   error: null,

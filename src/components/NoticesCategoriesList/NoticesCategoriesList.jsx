@@ -1,20 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { useLocation, useParams, useSearchParams } from "react-router-dom";
 
 import { fetchAdsByCategory, fetchFavorite, fetchOwnAds } from "api/notices";
 
 import Error from "components/Error/Error";
-import { Typography } from "@mui/material";
+import { Typography, Box, Link } from "@mui/material";
 import NoticeCategoryItem from "components/NoticeCategoryItem/NoticeCategoryItem";
 import { List } from "components/NoticesCategoriesList/NoticesCategoriesList.slyled";
 import { getUserInfo } from "redux/users/operations";
 import { useDispatch } from "react-redux";
+import Loader from "shared/loader/Loader";
 // import { getUserData } from "redux/users/selectors";
 
 const NoticesCategoriesList = () => {
   const [pets, setPets] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [hasMore, setHasMore] = useState(false);
+  const [pageNumber, setPageNumber] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
   const { categoryName } = useParams();
   const dispatch = useDispatch();
@@ -24,6 +27,7 @@ const NoticesCategoriesList = () => {
 
   useEffect(() => {
     setPets([]);
+    setPageNumber(1);
   }, [search, categoryName]);
 
   // console.log("categoryName", categoryName);
@@ -66,13 +70,20 @@ const NoticesCategoriesList = () => {
       fetchOwnPets();
       return;
     }
+  }, [location.pathname, search]);
 
+  useEffect(() => {
     const fetchPets = async () => {
       setLoading(true);
+      setError(null);
 
       try {
-        const data = await fetchAdsByCategory(categoryName, search);
-        setPets(() => [...data]);
+        const data = await fetchAdsByCategory(categoryName, search, pageNumber);
+        setPets((prevPet) => {
+          return [...prevPet, ...data];
+        });
+        setHasMore(data.length > 0);
+        setLoading(false);
       } catch (error) {
         setError(error);
       } finally {
@@ -81,25 +92,59 @@ const NoticesCategoriesList = () => {
     };
     fetchPets();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [categoryName, location.pathname, search]);
+  }, [categoryName, search, pageNumber]);
 
-  // console.log("search", search);
+  console.log(loading, hasMore, error, pageNumber, pets);
+  const observer = useRef();
+
+  const lastNewsElementRef = useCallback(
+    (node) => {
+      if (loading) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          setPageNumber((prevPageNumber) => prevPageNumber + 1);
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [loading, hasMore]
+  );
+
+  // console.log(search);
 
   return (
     <>
-      {!pets ? (
+      {!pets && (
         <Typography variant="h5" component="p" textAlign={"center"}>
           Sorry, there are no ads
         </Typography>
-      ) : (
-        <List>
-          {pets.map((item) => {
-            return <NoticeCategoryItem key={item._id} data={item} />;
+      )}
+      {Boolean(pets.length) && (
+        <List id="top">
+          {pets.map((item, index) => {
+            if (pets.length === index + 1) {
+              return (
+                <NoticeCategoryItem
+                  key={item._id}
+                  data={item}
+                  lastNewsElementRef={lastNewsElementRef}
+                />
+              );
+            } else {
+              return <NoticeCategoryItem key={item._id} data={item} />;
+            }
           })}
         </List>
       )}
-      {error && <Error />}
-      {loading && <p>is loading...</p>}
+      {!hasMore && Boolean(pets.length) && (
+        <Box sx={{ textAlign: "center" }}>
+          <Typography sx={{ mb: 1 }}>End of content...</Typography>
+          <Link href="#top">back to top?</Link>
+        </Box>
+      )}
+      {/* {error && <Error />}
+      {loading && <Loader />} */}
     </>
   );
 };

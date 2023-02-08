@@ -37,6 +37,7 @@ function Forma({ handleClose }) {
     },
   });
 
+  const today = new Date().toISOString().substr(0, 10);
   const [formType, setFormType] = useState("firstForm");
 
   const handleFirstFormChange = (event) => {
@@ -130,9 +131,12 @@ function Forma({ handleClose }) {
             <InputField
               type="date"
               name="date"
-              value={form.firstForm.date}
+               value={form.firstForm.date}
               onChange={handleFirstFormChange}
-              // placeholder="DD/MM/YYYY/"
+              placeholder={today}
+              max={today}
+
+
             />
           </InputBox>
           <InputBox>

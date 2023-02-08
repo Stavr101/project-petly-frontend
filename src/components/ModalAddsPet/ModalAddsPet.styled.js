@@ -44,8 +44,10 @@ export const Download = styled.input`
 opacity: 0;
 width: 182px;
 height: 182px;
+
 `
 export const DownloadContainer = styled.div`
+
 width: 208px;
 height: 208px;
 border-radius: 20px;
@@ -73,6 +75,7 @@ height: 182px;
   }
 `
 export const Image = styled.img`
+margin-bottom: -165px;
 width: 208px;
 height: 208px;
 border-radius: 20px;
@@ -81,7 +84,7 @@ animation: ${slideIn} 300ms ease-out;
     width: 182px;
 height: 182px;
   }
-` 
+`
 
 export const ModalContainer = styled.div`
   padding: 20px;

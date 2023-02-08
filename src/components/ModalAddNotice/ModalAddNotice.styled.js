@@ -7,12 +7,12 @@ import female from "./ImgModalAddNotice/female.png";
 
 const slideIn = keyframes`
   from {
-    transform: translateX(100%);
+    /* transform: translateX(100%); */
     opacity: 0;
   }
   to {
   
-    transform: translateY(0);
+    /* transform: translateY(0); */
     opacity: 1;
   }
 `;
@@ -56,7 +56,7 @@ margin-right: 80px;
     color: #F59256;;
 }
 `
-export const InputRadio= styled.input`
+export const InputRadio = styled.input`
 width: 50px;
 height: 50px;
 opacity: 0;
@@ -80,7 +80,7 @@ export const SexButtons = styled.div`
 display: flex;
 margin-right: auto;
 `;
- 
+
 const slideInPhoto = keyframes`
   from {
     /* transform: translateX(-50%); */
@@ -97,16 +97,16 @@ const slideInPhoto = keyframes`
 
 
 export const AddPhoto = styled.p`
-
+font-size: 16px;
   text-align: center;
   margin-bottom: 20px;
-  font-size: 20px;
+  
   line-height: 24px;
   letter-spacing: -0.01em;
   color: #111111;
         @media (min-width: 768px) {
-    width: 300px;
-
+    width: 394px;
+font-size: 20px;
   }
 `;
 
@@ -134,7 +134,7 @@ border-radius: 20px;
 cursor: pointer;
  margin-bottom: 20px;
   padding: 0;
-  border-radius: 20px;
+ 
   border: #fdf7f2;
   outline: none;
   background: #fdf7f2;
@@ -154,10 +154,11 @@ height: 182px;
   }
 `
 export const Image = styled.img`
+margin-bottom: -166px;
 width: 208px;
 height: 208px;
 border-radius: 20px;
-animation: ${slideInPhoto} 800ms ease-out;
+animation: ${slideInPhoto} 300ms ease-out;
  @media (min-width: 768px) {
     width: 182px;
 height: 182px;
@@ -165,20 +166,35 @@ height: 182px;
 `
 
 export const ModalContainer = styled.div`
+
+/* margin-top:10px; */
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: white;
-  margin-left: auto;
+  /* margin-left: auto;
   margin-right: auto;
-  max-width: 280px;
+  max-width: 280px; */
   border-radius: 16px;
-  animation: ${slideIn} 600ms ease-out;
+  animation: ${slideIn} 300ms ease-out;
+  overflow-y: auto;
+
+  ::-webkit-scrollbar {
+    border-radius: 16px;
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  border-radius: 16px;
+  background-color: #D2691E;
+}
 
   @media (min-width: 768px) {
-    max-width: 608px;
-  margin-top:60px;
+    width: 608px;
+  /* margin-top:60px; */
   }
 `;
 
@@ -189,19 +205,23 @@ export const ModalTitle = styled.h2`
 
 export const FormContainer = styled.form`
   width: 240px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  @media (min-width: 768px) {
-    max-width: 448px;
-  }
-`;
-export const NextFormContainer = styled.form`
-  width: 240px;
+  height: 540px;
   display: flex;
   flex-direction: column;
   align-items: center;
   
+  @media (min-width: 768px) {
+    max-width: 548px;
+    height: 440px;
+  }
+`;
+export const NextFormContainer = styled.form`
+  width: 240px;
+  height: 440px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ 
   @media (min-width: 768px) {
     max-width: 448px;
   }
@@ -347,6 +367,7 @@ export const CancelButton = styled.button`
 `;
 
 export const Button = styled.button`
+padding: 10px 28px;
   width: 240px;
   height: 40px;
   border-radius: 20px;
@@ -388,7 +409,7 @@ export const NextButton = styled.button`
   }
 `;
 export const EnterButton = styled.button`
-  margin-top: 100px;
+  /* margin-top: 100px; */
   width: 240px;
   height: 40px;
   border-radius: 20px;

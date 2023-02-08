@@ -154,6 +154,7 @@ height: 182px;
   }
 `
 export const Image = styled.img`
+margin-bottom: -166px;
 width: 208px;
 height: 208px;
 border-radius: 20px;
@@ -175,6 +176,7 @@ export const ModalContainer = styled.div`
   max-width: 280px;
   border-radius: 16px;
   animation: ${slideIn} 600ms ease-out;
+  overflow-y: auto;
 
   @media (min-width: 768px) {
     max-width: 608px;
@@ -189,19 +191,22 @@ export const ModalTitle = styled.h2`
 
 export const FormContainer = styled.form`
   width: 240px;
+  height: 440px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  
   @media (min-width: 768px) {
     max-width: 448px;
   }
 `;
 export const NextFormContainer = styled.form`
   width: 240px;
+  height: 440px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+ 
   @media (min-width: 768px) {
     max-width: 448px;
   }
@@ -347,6 +352,7 @@ export const CancelButton = styled.button`
 `;
 
 export const Button = styled.button`
+padding: 10px 28px;
   width: 240px;
   height: 40px;
   border-radius: 20px;

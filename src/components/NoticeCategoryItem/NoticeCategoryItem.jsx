@@ -169,7 +169,7 @@ export default function NoticeCategoryItem({ data, lastNewsElementRef }) {
             {categoryName === "sell" ? (
               <ItemNoticesListLi>
                 <ItemNoticesListP>Price:</ItemNoticesListP>
-                <ItemNoticesSpan>{price}$</ItemNoticesSpan>
+                <ItemNoticesSpan>{price} UAH</ItemNoticesSpan>
               </ItemNoticesListLi>
             ) : null}
           </ItemNoticesUlList>

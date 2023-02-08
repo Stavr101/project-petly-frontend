@@ -26,7 +26,7 @@ const NoticesCategoriesList = () => {
     setPets([]);
   }, [search, categoryName]);
 
-  console.log("categoryName", categoryName);
+  // console.log("categoryName", categoryName);
 
   // useEffect(() => {
   //   dispatch(getUserInfo());
@@ -87,16 +87,18 @@ const NoticesCategoriesList = () => {
 
   return (
     <>
-      {!pets ? (<Typography variant="h5" component="p" textAlign={"center"}>
+      {!pets ? (
+        <Typography variant="h5" component="p" textAlign={"center"}>
           Sorry, there are no ads
-        </Typography>) : (
+        </Typography>
+      ) : (
         <List>
           {pets.map((item) => {
             return <NoticeCategoryItem key={item._id} data={item} />;
           })}
         </List>
       )}
-        {error && <Error />}
+      {error && <Error />}
       {loading && <p>is loading...</p>}
     </>
   );

@@ -3,16 +3,11 @@ import { theme } from "../../services/theme";
 import { styled } from "@mui/material/styles";
 // import { tooltipClasses } from "@mui/material/Tooltip";
 import { TimeListRow, TimeListTable } from "./OurFriendsTimeList.styled";
-import { useState } from "react";
 
 const WEEK = ["MN", "TU", "WE", "TH", "FR", "SA", "SU"];
 
 const LightTooltip = styled(({ className, ...props }) => (
-  <Tooltip
-    {...props}
-    // disableTouchListener="true"
-    classes={{ popper: className }}
-  />
+  <Tooltip {...props} classes={{ popper: className }} />
   // ))(() => ({
   //   [`& .${tooltipClasses.tooltip}`]: {
   //     backgroundColor: "white",
@@ -46,7 +41,7 @@ export default function OurFriendsTimeList({
   return (
     <LightTooltip
       sx={{ backgroundColor: "transparent" }}
-      enterTouchDelay="10"
+      enterTouchDelay={50}
       disableFocusListener
       placement="bottom-start"
       title={

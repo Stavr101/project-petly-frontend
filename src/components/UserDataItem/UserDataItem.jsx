@@ -77,7 +77,6 @@ export default function UserDataItem({
             value={editedValue}
             onChange={handleChange}
           />
-          {/* <p>{error}</p> */}
           <UpdateBtn onClick={handleSubmit}></UpdateBtn>
         </>
       ) : (

@@ -84,7 +84,7 @@ animation: ${slideIn} 300ms ease-out;
     width: 182px;
 height: 182px;
   }
-` 
+`
 
 export const ModalContainer = styled.div`
   padding: 20px;

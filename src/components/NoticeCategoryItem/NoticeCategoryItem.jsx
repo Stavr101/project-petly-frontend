@@ -128,14 +128,14 @@ export default function NoticeCategoryItem({
       return Notify.failure("Must be authorization");
     }
     try {
-      // const res = await removeFavoritePet(_id);
       await removeFavoritePet(_id);
-      // console.log("res", res);
-      if (locationFavorite.pathname.includes("favorite")) {
+      const isOnFavoritePage = locationFavorite.pathname.includes("favorite");
+
+      if (isOnFavoritePage) {
         const arrayNew = array.filter((item) => item._id !== _id);
+
         setArray(arrayNew);
       }
-      // return res;
       return setIsFavorite(false);
     } catch (error) {
       console.log(error);

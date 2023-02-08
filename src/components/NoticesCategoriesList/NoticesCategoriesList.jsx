@@ -132,7 +132,14 @@ const NoticesCategoriesList = () => {
                 />
               );
             } else {
-              return <NoticeCategoryItem key={item._id} data={item} />;
+              return (
+                <NoticeCategoryItem
+                  key={item._id}
+                  array={pets}
+                  setArray={setPets}
+                  data={item}
+                />
+              );
             }
           })}
         </List>

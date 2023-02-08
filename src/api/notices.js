@@ -49,6 +49,15 @@ export async function removeFavoritePet(id) {
   }
 }
 
+export async function removeOwnPet(id) {
+  try {
+    const res = await axios.delete(`/notices/own/${id}`);
+    return res.data;
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
 export async function fetchFavorite(search) {
   try {
     const res = await axios.get(`/notices/favorite?search=${search}`);

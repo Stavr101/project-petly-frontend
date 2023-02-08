@@ -3,9 +3,14 @@ import axios from "axios";
 
 axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
 
-export const fetchAdsByCategory = (category, search) => {
+export const fetchAdsByCategory = (category, search, pageNumber) => {
   return axios
-    .get(`/notices/category/${category}?search=${search}`)
+    .get(`/notices/category/${category}`, {
+      params: {
+        page: pageNumber,
+        search: search,
+      },
+    })
     .then((response) => response.data);
 };
 

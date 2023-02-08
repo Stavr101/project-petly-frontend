@@ -165,14 +165,14 @@ export const ItemButtonNoticesDelete = styled.button`
   padding: 8px 0;
   /* margin-top: 12px; */
 
-  color: #ff6101;
+  color: #f59256;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.35;
   letter-spacing: 0.04em;
   background: #ffffff;
   border-radius: 40px;
-  border: 2px solid #ff6101;
+  border: 2px solid #f59256;
   /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
 
   @media only screen and (min-width: 768px) {
@@ -187,10 +187,13 @@ export const ItemButtonNoticesDelete = styled.button`
   }
 
   &:hover {
-    color: #ffffff;
-    background: #f59256;
+    color: #ff6101;
+    fill: #ff6101;
+    background: #ffffff;
+    border: 2px solid #ff6101;
   }
 `;
+
 export const ItemNoticesListP = styled.span`
   font-style: normal;
   font-weight: 500;

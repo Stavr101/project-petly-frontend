@@ -297,6 +297,7 @@ function Forma({ handleClose }) {
         comment: "",
       },
     });
+     handleClose();
   };
 
   const handleGoodHandsSubmit = async (event) => {
@@ -340,7 +341,9 @@ function Forma({ handleClose }) {
         comment: "",
       },
     });
+     handleClose();
   };
+  
   const handleClick = (button) => {
     setSelectedRadio(button);
   };

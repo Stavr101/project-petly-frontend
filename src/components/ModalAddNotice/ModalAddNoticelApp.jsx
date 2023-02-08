@@ -61,14 +61,16 @@ export default function ModalAddsPetApp({ onOpenModal, onCloseModal }) {
 
   return (
     <>
-      
-            <Modal open={onOpenModal} onClose={onCloseModal } >
+
+      <Modal open={onOpenModal} onClose={onCloseModal}
+        style={{ display: "flex", justifyContent: "center", alignItems: 'center' }}>
         <ModalContainer>
-          <ButtonOff variant="contained" onClick={onCloseModal }></ButtonOff>
+          <ButtonOff variant="contained" onClick={onCloseModal}></ButtonOff>
           <ModalTitle>Add Pet</ModalTitle>
-          <Forma handleClose={onCloseModal } onSubmit={submitHandle} />
+          <Forma handleClose={onCloseModal} onSubmit={submitHandle} />
         </ModalContainer>
       </Modal>
+
     </>
   );
 }

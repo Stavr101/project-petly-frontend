@@ -132,7 +132,7 @@ function Forma({ handleClose }) {
               name="date"
               value={form.firstForm.date}
               onChange={handleFirstFormChange}
-              // placeholder="DD/MM/YYYY/"
+            // placeholder="DD/MM/YYYY/"
             />
           </InputBox>
           <InputBox>

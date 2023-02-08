@@ -189,7 +189,7 @@ export const ModalContainer = styled.div`
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
   border-radius: 16px;
-  background-color: #D2691E;
+  background-color:#f59256;
 }
 
   @media (min-width: 768px) {

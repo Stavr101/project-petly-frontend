@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   UserInfoWrapper,
   UserInfoList,
@@ -22,57 +22,45 @@ export default function UserDataList() {
   const { _id, name, email, birthday, phone, address, avatarUrl } =
     dataUser.user;
   const [activeBtn, setActiveBtn] = useState(true);
-
+  const updateBtn = useRef(null);
   const dispatch = useDispatch();
-  // //////////////////////////////////////////
-  const [form, setForm] = useState({
-    userAvatar: null,
-    avatarUrl: null,
-  });
 
-  const handleChange = e => {
-    const ava = e.target.value;
-    console.log(e.target.files[0]);
-    setForm({
-      avatarUrl: e.target.files[0],
-      [e.target.name]: URL.createObjectURL(e.target.files[0]),
-    });
-  };
-
-  const handleSubmit = async e => {
+  const [ava, setAva] = useState(null);
+  const onButtonClick = e => {
     e.preventDefault();
-    // setAvatarUrlD(e.target.files[0]);
+    updateBtn.current.click();
+  };
+  const handleChange = e => {
+    e.preventDefault();
+    const av = URL.createObjectURL(e.target.files[0]);
     const data = new FormData();
-    data.append('userAvatar', e.target.elements.userAvatar.files[0]);
-    console.log(data);
+    data.append('userAvatar', e.target.files[0]);
+    setAva(av);
     dispatch(updateUserAvatar(data));
   };
-  // ///////////////////////////////////
 
   return (
     <>
       <AvatarInfoWrapper>
-        {avatarUrl ? (
-          <AvatarImg src={avatarUrl.secure_url} alt="uploaded" />
-        ) : (
-          <AvatarImg />
-        )}
-        <form
-          id="userAvatar"
-          encType="multipart/form-data"
-          // onSubmit={handleSubmit}
-          onBlur={handleSubmit}
-        >
-          <LabelEditPhoto>
+        <form id="userAvatar" encType="multipart/form-data">
+          {/* <SVG src={editAvatar} />
+          Edit photo */}
+          <InputEditPhoto
+            type="file"
+            name="userAvatar"
+            accept=".png, .jpg, .jpeg"
+            placeholder="Edit photo"
+            onChange={handleChange}
+            ref={updateBtn}
+          />
+          {avatarUrl ? (
+            <AvatarImg src={avatarUrl.secure_url} alt="uploaded" />
+          ) : (
+            <AvatarImg src={ava} />
+          )}
+          <LabelEditPhoto type="button" onClick={onButtonClick}>
             <SVG src={editAvatar} />
             Edit photo
-            <InputEditPhoto
-              type="file"
-              name="userAvatar"
-              accept=".png, .jpg, .jpeg"
-              placeholder="Edit photo"
-              onChange={handleChange}
-            />
           </LabelEditPhoto>
         </form>
       </AvatarInfoWrapper>

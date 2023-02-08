@@ -41,11 +41,12 @@ export const AvatarImg = styled.img`
   }
 `;
 
-export const LabelEditPhoto = styled.label`
+export const LabelEditPhoto = styled.button`
   display: flex;
   justify-content: flex-end;
   line-height: 1.83;
   margin-left: auto;
+  padding: 5px;
   cursor: pointer;
   padding-right: 10px;
   font-family: ${p => p.theme.fonts.manrope};
@@ -54,6 +55,8 @@ export const LabelEditPhoto = styled.label`
   line-height: 1.83;
   align-items: center;
   letter-spacing: 0.04em;
+  border: none;
+  background-color: inherit;
   img ~ &:hover {
     transform: scale(1.1);
   }

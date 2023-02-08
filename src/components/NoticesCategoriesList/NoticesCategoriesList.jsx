@@ -94,7 +94,7 @@ const NoticesCategoriesList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryName, search, pageNumber]);
 
-  console.log(loading, hasMore, error, pageNumber, pets);
+  // console.log(loading, hasMore, error, pageNumber, pets);
   const observer = useRef();
 
   const lastNewsElementRef = useCallback(
@@ -126,6 +126,8 @@ const NoticesCategoriesList = () => {
                 <NoticeCategoryItem
                   key={item._id}
                   data={item}
+                  array={pets}
+                  setArray={setPets}
                   lastNewsElementRef={lastNewsElementRef}
                 />
               );

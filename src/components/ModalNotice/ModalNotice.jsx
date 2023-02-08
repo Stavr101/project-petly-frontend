@@ -48,13 +48,13 @@ export default function ModalNotice({
   const [error, setError] = useState(null);
 
   const { user } = useAuth();
-  console.log("user", user);
+  // console.log("user", user);
 
   // const isUser = useSelector(selectUser);
   // console.log("isUser", isUser);
   // console.log("isUser._id", isUser._id);
   // console.log("pet.owner", pet.owner);
-  console.log("pet", pet);
+  // console.log("pet", pet);
 
   useEffect(() => {
     // console.log("1");
@@ -214,7 +214,7 @@ export default function ModalNotice({
                   type="button"
                   onClick={handleChangeFavorite}
                 >
-                  {isFavorite ? "Add to " : "Remove from "}
+                  {!isFavorite ? "Add to " : "Remove from "}
                   <HeartSvgSpan>
                     <AiFillHeart style={{ fill: "#f59256" }} />
                   </HeartSvgSpan>

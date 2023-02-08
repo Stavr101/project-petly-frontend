@@ -29,8 +29,14 @@ import { selectUser } from "redux/auth/selectors";
 import { getUserData } from "redux/users/selectors";
 // import { getUserInfo } from "redux/users/operations";
 import { removeFavoritePet } from "api/notices";
+import { useLocation } from "react-router-dom";
 
-export default function NoticeCategoryItem({ data, lastNewsElementRef }) {
+export default function NoticeCategoryItem({
+  data,
+  lastNewsElementRef,
+  array,
+  setArray,
+}) {
   const {
     _id,
     petAvatarURL,
@@ -47,10 +53,15 @@ export default function NoticeCategoryItem({ data, lastNewsElementRef }) {
   const [open, setOpen] = useState(false);
   const isUser = useSelector(selectUser);
   const pet = useSelector(getUserData);
-  const favoritePets = pet.user.favorite;
+  // const favoritePets = pet.user.favorite;
   const ownPets = pet.user._id;
+  const locationFavorite = useLocation();
 
-  const [isFavorite, setIsFavorite] = useState(favoritePets.includes(_id));
+  // const [isFavorite, setIsFavorite] = useState(favoritePets.includes(_id));
+  const [isFavorite, setIsFavorite] = useState(favorite);
+
+  // console.log("favorite", favorite);
+  // console.log("data", data);
 
   const onLearnMoreClick = () => {
     setOpen(true);
@@ -96,15 +107,15 @@ export default function NoticeCategoryItem({ data, lastNewsElementRef }) {
     if (isUser.email === null) {
       return Notify.failure("Must be authorization");
     }
-    if (isDuplicate(_id)) {
-      setIsFavorite(false);
-      return deletePet(_id);
-    }
+    // if (isDuplicate(_id)) {
+    //   setIsFavorite(false);
+    //   return deletePet(_id);
+    // }
     try {
       const res = await addPetToFavorite(_id);
       setIsFavorite(true);
 
-      console.log(res);
+      // console.log(res);
       Notify.success("Pet add to your'e favorite");
       return res;
     } catch (error) {
@@ -112,18 +123,37 @@ export default function NoticeCategoryItem({ data, lastNewsElementRef }) {
     }
   }
 
-  async function deletePet(_id) {
+  async function removeFromFavorite(_id) {
+    if (isUser.email === null) {
+      return Notify.failure("Must be authorization");
+    }
     try {
-      const res = await removeFavoritePet(_id);
-      return res;
+      // const res = await removeFavoritePet(_id);
+      await removeFavoritePet(_id);
+      // console.log("res", res);
+      if (locationFavorite.pathname.includes("favorite")) {
+        const arrayNew = array.filter((item) => item._id !== _id);
+        setArray(arrayNew);
+      }
+      // return res;
+      return setIsFavorite(false);
     } catch (error) {
       console.log(error);
     }
+    setIsFavorite(false);
   }
 
-  function isDuplicate(petId) {
-    return favoritePets?.find((pet) => pet === petId);
-  }
+  const handleChangeFavorite = (id) => {
+    if (isFavorite) {
+      removeFromFavorite(id);
+    } else {
+      addFavorite(id);
+    }
+  };
+
+  // function isDuplicate(petId) {
+  //   return favoritePets?.find((pet) => pet === petId);
+  // }
 
   return (
     <>
@@ -144,7 +174,8 @@ export default function NoticeCategoryItem({ data, lastNewsElementRef }) {
             </ItemPositionNoticesDivParagraf>
             <ItemButtonNoticesHeartButton
               type="button"
-              onClick={() => addFavorite(_id)}
+              // onClick={() => addFavorite(_id)}
+              onClick={() => handleChangeFavorite(_id)}
             >
               {isFavorite ? <HeartFavorite /> : <HeartSvg />}
             </ItemButtonNoticesHeartButton>
@@ -201,7 +232,7 @@ export default function NoticeCategoryItem({ data, lastNewsElementRef }) {
           petId={_id}
           setShowModal={setOpen}
           isFavorite={isFavorite}
-          // onClickFavorite={onClickFavorite}
+          handleChangeFavorite={handleChangeFavorite}
           handleDeletePet={removeOwnPet}
         />
       )}

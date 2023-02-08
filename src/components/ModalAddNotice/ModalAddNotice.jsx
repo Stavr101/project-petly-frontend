@@ -422,7 +422,7 @@ function Forma({ handleClose }) {
             <InputField
               type="date"
               name="date"
-              value={today}
+              value={formSell.sellFirstForm.date}
               onChange={handleSellFirstFormChange}
               placeholder={today}
               max={today}
@@ -611,7 +611,7 @@ function Forma({ handleClose }) {
             <InputField
             type="date"
               name="date"
-              value={today}
+               value={formSell.sellFirstForm.date}
               onChange={handleSellFirstFormChange}
               placeholder={today}
               max={today}
@@ -786,7 +786,7 @@ function Forma({ handleClose }) {
             <InputField
              type="date"
               name="date"
-              value={today}
+               value={formSell.sellFirstForm.date}
               onChange={handleSellFirstFormChange}
               placeholder={today}
               max={today}

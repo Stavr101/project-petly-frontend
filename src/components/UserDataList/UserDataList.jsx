@@ -16,6 +16,7 @@ import UserDataItem from 'components/UserDataItem/UserDataItem';
 import { updateUserData } from 'redux/users/operations';
 
 import editAvatar from 'images/UserPage/editAvatar.svg';
+import { regExp } from 'helpers/regExp/regExp';
 
 export default function UserDataList() {
   const dataUser = useSelector(getUserData);
@@ -31,11 +32,28 @@ export default function UserDataList() {
 
   const dispatch = useDispatch();
 
+  // const handleAvatar = async e => {
+  //   e.preventDefault();
+  //   const avatar = URL.createObjectURL(e.target.files[0]);
+  //   dispatch(updateUserData({ userAvatar: avatar }));
+  //   console.log(avatar, 'avatar');
+  // };;
+  const [avatarFile, setAvatarFile] = useState(null);
+  const [avatarUrlD, setAvatarUrlD] = useState(null);
+  const handleChange = e => {
+    setAvatarUrlD(e.target.files[0]);
+  };
+
   const handleAvatar = async e => {
     e.preventDefault();
-    const avatar = URL.createObjectURL(e.target.files[0]);
-    dispatch(updateUserData({ avatarUrl: avatar }));
+    const data = new FormData();
+
+    data.append('avatarUrlD', e.target.elements.avatar.files[0]);
   };
+  // /////////
+
+  // /////
+
   return (
     <>
       <AvatarInfoWrapper>
@@ -65,8 +83,7 @@ export default function UserDataList() {
               valueUser={name}
               activeBtn={activeBtn}
               setActiveBtn={setActiveBtn}
-
-              // onEdit={newValue => onEdit(newValue)}
+              paramValid={regExp.nameRegexp}
             />
           ) : (
             <UserDataItem
@@ -85,6 +102,7 @@ export default function UserDataList() {
               valueUser={email}
               activeBtn={activeBtn}
               setActiveBtn={setActiveBtn}
+              paramValid={regExp.email}
             />
           ) : (
             <UserDataItem
@@ -103,12 +121,16 @@ export default function UserDataList() {
               valueUser={birthday.split('-').reverse().join('.')}
               activeBtn={activeBtn}
               setActiveBtn={setActiveBtn}
+              pattern={regExp.bdayRegexp}
+              min="1930-01-01"
+              max="2015-12-31"
             />
           ) : (
             <UserDataItem
               typeInput="date"
               activeBtn={activeBtn}
               setActiveBtn={setActiveBtn}
+              pattern={regExp.bdayRegexp}
             />
           )}
         </UserInfoItem>
@@ -122,6 +144,7 @@ export default function UserDataList() {
               valueUser={phone}
               activeBtn={activeBtn}
               setActiveBtn={setActiveBtn}
+              paramValid={regExp.phoneRegexpUser}
             />
           ) : (
             <UserDataItem
@@ -141,6 +164,7 @@ export default function UserDataList() {
               valueUser={address.split(',').splice(0, 1)}
               activeBtn={activeBtn}
               setActiveBtn={setActiveBtn}
+              paramValid={regExp.address}
             />
           ) : (
             <UserDataItem

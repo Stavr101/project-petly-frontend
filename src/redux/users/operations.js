@@ -31,7 +31,7 @@ export const updateUserAvatar = createAsyncThunk(
   'users/updateAvatar',
   async ({ avatarUrl }, thunkAPI) => {
     try {
-      const { data } = await axios.patch('/avatar', { avatarUrl });
+      const { data } = await axios.patch('/avatar', avatarUrl);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

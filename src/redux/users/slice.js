@@ -1,22 +1,23 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { getUserInfo, updateUserData, updateUserAvatar } from './operations';
+import { createSlice } from "@reduxjs/toolkit";
+import { getUserInfo, updateUserData, updateUserAvatar } from "./operations";
 
 const initialState = {
   user: {
-    _id: '',
-    name: '',
-    email: '',
-    phone: '',
-    birthday: '',
-    address: '',
-    avatarUrl: '',
-    favorite: '',
+
+    _id: "",
+    name: "",
+    email: "",
+    phone: "",
+    birthday: "",
+    address: "",
+    avatarUrl: "",
+    favorite: [],
   },
   isLoading: false,
   error: null,
 };
 
-const isPending = state => {
+const isPending = (state) => {
   state.isLoading = true;
 };
 
@@ -26,7 +27,7 @@ const isRejected = (state, action) => {
 };
 
 const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   extraReducers: {
     [getUserInfo.pending]: isPending,

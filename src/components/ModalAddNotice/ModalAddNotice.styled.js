@@ -20,32 +20,33 @@ const slideIn = keyframes`
 export const InputMaleButton = styled.button`
 background-image: url(${male});
 width: 60px;
-height:60px;
+height:120px;
 margin-bottom: 20px;
 background-repeat:no-repeat;
 border: none;
 background-color: white;
 cursor: pointer;
-   box-shadow:  ${props => (props.isSelected ? 'inset -1px 2px 3px rgba(255, 255, 255, 0.57), inset 0px -3px 4px rgba(0, 0, 0, 0.25);' : '0px 0px 0px rgba(0, 0, 0, 0.25)')};
+   color:  ${props => (props.isSelected ? '#F59256' : 'black')};
  
  :hover {
  
- box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+ color:  ${props => (props.isSelected ? '#F59256' : 'black')};
 }
 `
 export const InputFemaleButton = styled.button`
 background-image: url(${female});
 width: 60px;
-height:60px;
+height:120px;
 margin-bottom: 20px;
 background-repeat:no-repeat;
 border: none;
 background-color: white;
-   box-shadow:  ${props => (props.isSelected ? 'inset -1px 2px 3px rgba(255, 255, 255, 0.57), inset 0px -3px 4px rgba(0, 0, 0, 0.25);' : '0px 0px 0px rgba(0, 0, 0, 0.25)')};
+      color:  ${props => (props.isSelected ? '#F59256' : 'black')};
  
  :hover {
  
- box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+ color:  ${props => (props.isSelected ? '#F59256' : 'black')};
+
   }`
 
 export const InputContainer = styled.div`
@@ -68,10 +69,11 @@ opacity: 0;
 `;
 
 export const LabelMale = styled.label`
+font-size: 18px;
 
 `;
 export const LabelFemale = styled.label`
-
+font-size: 18px;
 `;
 
 export const SexButtons = styled.div`
@@ -152,6 +154,7 @@ height: 182px;
   }
 `
 export const Image = styled.img`
+margin-bottom: -166px;
 width: 208px;
 height: 208px;
 border-radius: 20px;
@@ -163,8 +166,6 @@ height: 182px;
 `
 
 export const ModalContainer = styled.div`
- 
-
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -175,6 +176,7 @@ export const ModalContainer = styled.div`
   max-width: 280px;
   border-radius: 16px;
   animation: ${slideIn} 600ms ease-out;
+  overflow-y: auto;
 
   @media (min-width: 768px) {
     max-width: 608px;
@@ -189,19 +191,22 @@ export const ModalTitle = styled.h2`
 
 export const FormContainer = styled.form`
   width: 240px;
+  height: 440px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  
   @media (min-width: 768px) {
     max-width: 448px;
   }
 `;
 export const NextFormContainer = styled.form`
   width: 240px;
+  height: 440px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+ 
   @media (min-width: 768px) {
     max-width: 448px;
   }
@@ -347,6 +352,7 @@ export const CancelButton = styled.button`
 `;
 
 export const Button = styled.button`
+padding: 10px 28px;
   width: 240px;
   height: 40px;
   border-radius: 20px;

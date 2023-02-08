@@ -49,7 +49,7 @@ export default function NoticeCategoryItem({ data }) {
   const favoritePets = pet.user.favorite;
 
   const [isFavorite, setIsFavorite] = useState(favoritePets.includes(_id));
-  console.log(pet);
+  // console.log(pet);
 
   // console.log(favoritePets);
 

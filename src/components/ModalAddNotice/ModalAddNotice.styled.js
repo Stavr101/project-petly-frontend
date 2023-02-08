@@ -134,7 +134,7 @@ border-radius: 20px;
 cursor: pointer;
  margin-bottom: 20px;
   padding: 0;
-  border-radius: 20px;
+ 
   border: #fdf7f2;
   outline: none;
   background: #fdf7f2;
@@ -176,7 +176,7 @@ export const ModalContainer = styled.div`
   /* margin-left: auto;
   margin-right: auto;
   max-width: 280px; */
-  border-radius: 16px;
+  /* border-radius: 16px; */
   animation: ${slideIn} 300ms ease-out;
   overflow-y: auto;
 
@@ -199,7 +199,7 @@ export const FormContainer = styled.form`
   align-items: center;
   
   @media (min-width: 768px) {
-    max-width: 448px;
+    max-width: 548px;
     height: 440px;
   }
 `;

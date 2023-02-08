@@ -57,6 +57,8 @@ export default function NoticeCategoryItem({ data }) {
     setOpen(true);
   };
 
+  const onDeletePets = () => {};
+
   const handleOnError = (e) => {
     e.target.src = "https://i.ibb.co/RQ61YYb/1.jpg";
   };
@@ -182,25 +184,25 @@ export default function NoticeCategoryItem({ data }) {
             >
               Learn more
             </ItemButtonNoticesLearnMore>
-            {/* {favorite ? (
+            {location.pathname === "own" && (
               <ItemButtonNoticesDelete
                 type="submit"
-                // onClick={() => onDeletePets(_id)}
+                onClick={() => onDeletePets(_id)}
               >
                 <ItemButtonNoticesDeleteSpan>
                   Delete
                 </ItemButtonNoticesDeleteSpan>
                 <DeleteSvg />
               </ItemButtonNoticesDelete>
-            ) : null} */}
+            )}
 
-            <ItemButtonNoticesDelete
+            {/* <ItemButtonNoticesDelete
               type="submit"
               // onClick={() => onDeletePets(_id)}
             >
               <ItemButtonNoticesDeleteSpan>Delete</ItemButtonNoticesDeleteSpan>
               <DeleteSvg />
-            </ItemButtonNoticesDelete>
+            </ItemButtonNoticesDelete> */}
           </ItemButtonNotices>
         </ItemNoticesWrap>
       </ItemNoticesLi>

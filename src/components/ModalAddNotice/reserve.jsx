@@ -32,7 +32,7 @@ import {
 
 function Forma({ closeModalPets }) {
   const [selectedRadio, setSelectedRadio] = useState('');
-  const [errors, setErrors] = useState({});
+  // const [errors, setErrors] = useState({});
 const dispatch = useDispatch();
   const [formSell, setFormSell] = useState({
     firstSellForm: {

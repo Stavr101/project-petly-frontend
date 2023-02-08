@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addPet } from "redux/pets/operations";
+// import { useDispatch } from "react-redux";
+// import { addPet } from "redux/pets/operations";
 import { addPetToCategory } from "api/notices";
 
 import {
@@ -30,8 +30,8 @@ import {
 // Изменила функцию handleClose на closeModalPets для открытия модалки по нажатию кнопки в PetsData
 
 function Forma({ handleClose }) {
-  const dispatch = useDispatch();
-  const [errors, setErrors] = useState({});
+  // const dispatch = useDispatch();
+  // const [errors, setErrors] = useState({});
   const [selectedRadio, setSelectedRadio] = useState("");
 
   const [formSell, setFormSell] = useState({
@@ -297,6 +297,7 @@ function Forma({ handleClose }) {
         comment: "",
       },
     });
+     handleClose();
   };
 
   const handleGoodHandsSubmit = async (event) => {
@@ -340,7 +341,9 @@ function Forma({ handleClose }) {
         comment: "",
       },
     });
+     handleClose();
   };
+
   const handleClick = (button) => {
     setSelectedRadio(button);
   };
@@ -560,7 +563,7 @@ function Forma({ handleClose }) {
       {formType === "foundFirstForm" && (
         <FormContainer onSubmit={handleFoundSubmit}>
           <AddPhoto>
-            Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
+            Lorem ipsum dolor sit a Lorem ipsum dolor sit amet,
             consectetur
           </AddPhoto>
           <Button

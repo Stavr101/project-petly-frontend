@@ -154,6 +154,7 @@ height: 182px;
   }
 `
 export const Image = styled.img`
+margin-bottom: -166px;
 width: 208px;
 height: 208px;
 border-radius: 20px;

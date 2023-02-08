@@ -1,7 +1,7 @@
 import DeleteSvg from "./NoticesDeleteSvg";
 import HeartSvg from "./NoticesHeartSvg";
 import HeartFavorite from "./NoticesHeartFavoriteSvg";
-import { addPetToFavorite } from "api/notices";
+import { addPetToFavorite, removeOwnPet } from "api/notices";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 import {
@@ -30,11 +30,12 @@ import { getUserData } from "redux/users/selectors";
 // import { getUserInfo } from "redux/users/operations";
 import { removeFavoritePet } from "api/notices";
 
-export default function NoticeCategoryItem({ data }) {
+export default function NoticeCategoryItem({ data, lastNewsElementRef }) {
   const {
     _id,
     petAvatarURL,
     favorite,
+    owner,
     title,
     breed,
     location,
@@ -47,18 +48,13 @@ export default function NoticeCategoryItem({ data }) {
   const isUser = useSelector(selectUser);
   const pet = useSelector(getUserData);
   const favoritePets = pet.user.favorite;
+  const ownPets = pet.user._id;
 
   const [isFavorite, setIsFavorite] = useState(favoritePets.includes(_id));
-  // console.log(pet);
 
   const onLearnMoreClick = () => {
     setOpen(true);
   };
-
-
-  const onDeletePets = () => {
-
-  }
 
   const handleOnError = (e) => {
     e.target.src = "https://i.ibb.co/RQ61YYb/1.jpg";
@@ -94,7 +90,7 @@ export default function NoticeCategoryItem({ data }) {
     }
     return "< 1 month";
   };
-  useEffect(() => {}, []);
+  // useEffect(() => {}, []);
 
   async function addFavorite(_id) {
     if (isUser.email === null) {
@@ -131,7 +127,7 @@ export default function NoticeCategoryItem({ data }) {
 
   return (
     <>
-      <ItemNoticesLi id={_id}>
+      <ItemNoticesLi id={_id} ref={lastNewsElementRef}>
         <ItemNoticesImgDiv>
           {petAvatarURL ? (
             <ItemNoticesImg src={petAvatarURL.secure_url} alt={title} />
@@ -172,7 +168,7 @@ export default function NoticeCategoryItem({ data }) {
             {categoryName === "sell" ? (
               <ItemNoticesListLi>
                 <ItemNoticesListP>Price:</ItemNoticesListP>
-                <ItemNoticesSpan>{price}$</ItemNoticesSpan>
+                <ItemNoticesSpan>{price} UAH</ItemNoticesSpan>
               </ItemNoticesListLi>
             ) : null}
           </ItemNoticesUlList>
@@ -185,10 +181,10 @@ export default function NoticeCategoryItem({ data }) {
             >
               Learn more
             </ItemButtonNoticesLearnMore>
-            {location.pathname === "own" && (
+            {owner === ownPets && (
               <ItemButtonNoticesDelete
                 type="submit"
-                onClick={() => onDeletePets(_id)}
+                onClick={() => removeOwnPet(_id)}
               >
                 <ItemButtonNoticesDeleteSpan>
                   Delete
@@ -196,18 +192,9 @@ export default function NoticeCategoryItem({ data }) {
                 <DeleteSvg />
               </ItemButtonNoticesDelete>
             )}
-
-            {/* <ItemButtonNoticesDelete
-              type="submit"
-              // onClick={() => onDeletePets(_id)}
-            >
-              <ItemButtonNoticesDeleteSpan>Delete</ItemButtonNoticesDeleteSpan>
-              <DeleteSvg />
-            </ItemButtonNoticesDelete> */}
           </ItemButtonNotices>
         </ItemNoticesWrap>
       </ItemNoticesLi>
-
       {open && (
         <ModalNotice
           petId={_id}

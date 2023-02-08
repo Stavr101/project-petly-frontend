@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addPet } from "redux/pets/operations";
+// import { useDispatch } from "react-redux";
+// import { addPet } from "redux/pets/operations";
 import { addPetToCategory } from "api/notices";
 
 import {
@@ -30,11 +30,11 @@ import {
 // Изменила функцию handleClose на closeModalPets для открытия модалки по нажатию кнопки в PetsData
 
 function Forma({ handleClose }) {
-  const dispatch = useDispatch();
-  const [errors, setErrors] = useState({});
+  // const dispatch = useDispatch();
+  // const [errors, setErrors] = useState({});
   const [selectedRadio, setSelectedRadio] = useState("");
 
-    const [formSell, setFormSell] = useState({
+  const [formSell, setFormSell] = useState({
     sellFirstForm: {
       title: "",
       name: "",
@@ -78,7 +78,8 @@ function Forma({ handleClose }) {
       comment: "",
     },
   });
-
+  const today = new Date().toISOString().substr(0, 10);
+  
   const [formType, setFormType] = useState("sellFirstForm");
 
   const handleSellFirstFormChange = (event) => {
@@ -218,8 +219,8 @@ function Forma({ handleClose }) {
     };
     const { title, name, date, breed, sex, location, price, comment } =
       combinedForm;
-    
-     console.log("sell", event);
+
+    console.log("sell", event);
 
     const formDataFile = new FormData();
     formDataFile.append("title", title);
@@ -274,7 +275,7 @@ function Forma({ handleClose }) {
     formDataFile.append("birthdate", date);
     formDataFile.append("breed", breed);
     formDataFile.append("sex", sex);
-    formDataFile.append("location", location);    
+    formDataFile.append("location", location);
     formDataFile.append("categoryName", "lost-found");
     formDataFile.append("petAvatar", event.target.elements[5].files[0]);
     formDataFile.append("comments", comment);
@@ -296,6 +297,7 @@ function Forma({ handleClose }) {
         comment: "",
       },
     });
+     handleClose();
   };
 
   const handleGoodHandsSubmit = async (event) => {
@@ -339,7 +341,9 @@ function Forma({ handleClose }) {
         comment: "",
       },
     });
+     handleClose();
   };
+  
   const handleClick = (button) => {
     setSelectedRadio(button);
   };
@@ -371,8 +375,7 @@ function Forma({ handleClose }) {
       {formType === "sellFirstForm" && (
         <FormContainer onSubmit={sellHandleSubmit}>
           <AddPhoto>
-            Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
-            consectetur
+            Lorem ipsum dolor sit amet, consectetur ipsum dolor sit amet, consectetur
           </AddPhoto>
           <Button type="button" onClick={() => setFormType("foundFirstForm")}>
             lost/found
@@ -424,7 +427,9 @@ function Forma({ handleClose }) {
               name="date"
               value={formSell.sellFirstForm.date}
               onChange={handleSellFirstFormChange}
-              // placeholder="DD/MM/YYYY/"
+              placeholder={today}
+              max={today}
+
             />
           </InputBox>
           <InputBox>
@@ -607,11 +612,12 @@ function Forma({ handleClose }) {
           <InputBox>
             <InputLable htmlFor="date">Date of birth</InputLable>
             <InputField
-              type="date"
+            type="date"
               name="date"
-              value={formFound.foundFirstForm.date}
+              value={formFound.foundFirstForm.date}            
               onChange={handleFoundFirstFormChange}
-              // placeholder="DD/MM/YYYY/"
+              placeholder={today}
+              max={today}
             />
           </InputBox>
           <InputBox>
@@ -645,7 +651,7 @@ function Forma({ handleClose }) {
           encType="mutipart/form-data"
           onSubmit={handleFoundSubmit}
         >
-           <SexButtons>
+          <SexButtons>
             <InputContainer>
               <InputMaleButton
                 isSelected={selectedRadio === "male"}
@@ -725,7 +731,7 @@ function Forma({ handleClose }) {
             </Button>
             <Button
               type="submit"
-              // disabled={!hasFoundSecondFormAllData}
+            // disabled={!hasFoundSecondFormAllData}
             >
               Done
             </Button>
@@ -781,11 +787,12 @@ function Forma({ handleClose }) {
           <InputBox>
             <InputLable htmlFor="date">Date of birth</InputLable>
             <InputField
-              type="date"
+             type="date"
               name="date"
-              value={formGoodHands.goodHandsFirstForm.date}
+               value={formGoodHands.goodHandsFirstForm.date}
               onChange={handleGoodHandsFirstFormChange}
-              // placeholder="DD/MM/YYYY/"
+              placeholder={today}
+              max={today}
             />
           </InputBox>
           <InputBox>
@@ -819,7 +826,7 @@ function Forma({ handleClose }) {
           encType="mutipart/form-data"
           onSubmit={handleGoodHandsSubmit}
         >
-           <SexButtons>
+          <SexButtons>
             <InputContainer>
               <InputMaleButton
                 isSelected={selectedRadio === "male"}
@@ -903,7 +910,7 @@ function Forma({ handleClose }) {
               Back
             </Button>
             <Button type="submit"
-              // disabled={!hasGoodHandsSecondFormAllData}
+            // disabled={!hasGoodHandsSecondFormAllData}
             >
               Done
             </Button>

@@ -1,5 +1,5 @@
 import { getPetsById } from "api/notices";
-import Error from "components/Error/Error";
+// import Error from "components/Error/Error";
 import { useEffect, useState } from "react";
 import Loader from "shared/loader/Loader";
 import moment from "moment";
@@ -27,8 +27,12 @@ import {
   ModalNoticeBtnContact,
   ModalNoticeWrapperContent,
   Overlay,
+  ModalNoticeItemValueLink,
 } from "./ModalNotice.styled";
 import { createPortal } from "react-dom";
+// import { useSelector } from "react-redux";
+// import { selectUser } from "redux/auth/selectors";
+// import { useAuth } from "hooks";
 
 const modalRoot = document.querySelector("#modal-root");
 
@@ -42,8 +46,18 @@ export default function ModalNotice({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  // const { user } = useAuth();
+  // console.log("user", user);
+
+  // const isUser = useSelector(selectUser);
+  // console.log("isUser", isUser);
+  // console.log("isUser._id", isUser._id);
+  // console.log("pet.owner", pet.owner);
+
   useEffect(() => {
+    console.log("1");
     document.body.style.overflow = "hidden";
+
     const handleKeyDown = (e) => {
       if (e.code === "Escape") setShowModal(false);
     };
@@ -53,18 +67,12 @@ export default function ModalNotice({
       document.body.style.overflow = null;
       document.removeEventListener("keydown", handleKeyDown);
     };
+
     // eslint-disable-next-line
   }, []);
 
-  const onBackdropClick = (e) => {
-    if (e.currentTarget === e.target) setShowModal(false);
-  };
-
-  const onBtnCloseClick = () => {
-    setShowModal(false);
-  };
-
   useEffect(() => {
+    console.log("2");
     const getPetById = async () => {
       setLoading(true);
 
@@ -79,6 +87,16 @@ export default function ModalNotice({
     };
     getPetById();
   }, [petId]);
+
+  console.log("COMPONENT RENDER");
+
+  const onBackdropClick = (e) => {
+    if (e.currentTarget === e.target) setShowModal(false);
+  };
+
+  const onBtnCloseClick = () => {
+    setShowModal(false);
+  };
 
   const convertBirthdate = (birthdate) => {
     return moment(birthdate).format("DD.MM.YYYY");
@@ -140,16 +158,20 @@ export default function ModalNotice({
 
                   <ModalNoticeLi>
                     <ModalNoticeItemParametr>Email:</ModalNoticeItemParametr>
-                    <ModalNoticeItemValue>
+                    <ModalNoticeItemValueLink
+                      href={`mailto:${pet.owner ? pet.owner.email : ""}`}
+                    >
                       {pet.owner ? pet.owner.email : ""}
-                    </ModalNoticeItemValue>
+                    </ModalNoticeItemValueLink>
                   </ModalNoticeLi>
 
                   <ModalNoticeLi>
                     <ModalNoticeItemParametr>Phone:</ModalNoticeItemParametr>
-                    <ModalNoticeItemValue>
+                    <ModalNoticeItemValueLink
+                      href={`tel:${pet.owner ? pet.owner?.phone : ""}`}
+                    >
                       {pet.owner ? pet.owner?.phone : ""}
-                    </ModalNoticeItemValue>
+                    </ModalNoticeItemValueLink>
                   </ModalNoticeLi>
 
                   <ModalNoticeLi>
@@ -159,7 +181,7 @@ export default function ModalNotice({
                           Price:
                         </ModalNoticeItemParametr>
                         <ModalNoticeItemValue>
-                          {pet.price} $
+                          {pet.price} UAH
                         </ModalNoticeItemValue>
                       </>
                     ) : (
@@ -185,7 +207,6 @@ export default function ModalNotice({
                   </ModalNoticeBtnLink>
                 </ModalNoticeBtnContact>
               </ModalNoticeButtonsItem>
-
               <ModalNoticeButtonsItem>
                 <ModalNoticeBtnFavorite
                   type="button"
@@ -199,9 +220,13 @@ export default function ModalNotice({
               </ModalNoticeButtonsItem>
 
               <ModalNoticeButtonsItem>
-                <ModalNoticeButton type="button" onClick={handleDeletePet}>
-                  Delete
-                </ModalNoticeButton>
+                {/* {pet.owner && pet.owner._id === isUser._id ? (
+                  <ModalNoticeButton type="button" onClick={handleDeletePet}>
+                    Delete
+                  </ModalNoticeButton>
+                ) : (
+                  ""
+                )} */}
               </ModalNoticeButtonsItem>
             </ModalNoticeButtonsList>
           </>

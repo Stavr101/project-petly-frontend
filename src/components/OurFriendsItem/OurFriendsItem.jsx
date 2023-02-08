@@ -7,6 +7,7 @@ import {
   FriendsImage,
   FriendsInfoItemLink,
   FriendsInfoItemTime,
+  FriendsTitle,
 } from "./OurFriendsItem.styled";
 import OurFriendsTimeList from "../OurFriendsTimeList/OurFriendsTimeList";
 import { getDayIndex } from "../../utils/getDayIndex";
@@ -68,9 +69,11 @@ export const OurFriendsItem = ({ data }) => {
 
   return (
     <FriendsItem>
-      <FriendsLinkTitle href={url} target="_blank" rel="noreferrer">
-        {title}
-      </FriendsLinkTitle>
+      <FriendsTitle>
+        <FriendsLinkTitle href={url} target="_blank" rel="noreferrer">
+          {title}
+        </FriendsLinkTitle>
+      </FriendsTitle>
 
       <FriendsInfoWrapper>
         {imageUrl ? (

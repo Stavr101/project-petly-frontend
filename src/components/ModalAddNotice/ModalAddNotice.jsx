@@ -78,7 +78,8 @@ function Forma({ handleClose }) {
       comment: "",
     },
   });
-
+  const today = new Date().toISOString().substr(0, 10);
+  
   const [formType, setFormType] = useState("sellFirstForm");
 
   const handleSellFirstFormChange = (event) => {
@@ -421,9 +422,11 @@ function Forma({ handleClose }) {
             <InputField
               type="date"
               name="date"
-              value={formSell.sellFirstForm.date}
+              value={today}
               onChange={handleSellFirstFormChange}
-            // placeholder="DD/MM/YYYY/"
+              placeholder={today}
+              max={today}
+
             />
           </InputBox>
           <InputBox>
@@ -606,11 +609,12 @@ function Forma({ handleClose }) {
           <InputBox>
             <InputLable htmlFor="date">Date of birth</InputLable>
             <InputField
-              type="date"
+            type="date"
               name="date"
-              value={formFound.foundFirstForm.date}
-              onChange={handleFoundFirstFormChange}
-            // placeholder="DD/MM/YYYY/"
+              value={today}
+              onChange={handleSellFirstFormChange}
+              placeholder={today}
+              max={today}
             />
           </InputBox>
           <InputBox>
@@ -780,11 +784,12 @@ function Forma({ handleClose }) {
           <InputBox>
             <InputLable htmlFor="date">Date of birth</InputLable>
             <InputField
-              type="date"
+             type="date"
               name="date"
-              value={formGoodHands.goodHandsFirstForm.date}
-              onChange={handleGoodHandsFirstFormChange}
-            // placeholder="DD/MM/YYYY/"
+              value={today}
+              onChange={handleSellFirstFormChange}
+              placeholder={today}
+              max={today}
             />
           </InputBox>
           <InputBox>

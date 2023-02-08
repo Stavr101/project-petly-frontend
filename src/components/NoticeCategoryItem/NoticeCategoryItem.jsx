@@ -30,7 +30,7 @@ import { getUserData } from "redux/users/selectors";
 // import { getUserInfo } from "redux/users/operations";
 import { removeFavoritePet } from "api/notices";
 
-export default function NoticeCategoryItem({ data }) {
+export default function NoticeCategoryItem({ data, lastNewsElementRef }) {
   const {
     _id,
     petAvatarURL,
@@ -55,10 +55,7 @@ export default function NoticeCategoryItem({ data }) {
     setOpen(true);
   };
 
-
-  const onDeletePets = () => {
-
-  }
+  const onDeletePets = () => {};
 
   const handleOnError = (e) => {
     e.target.src = "https://i.ibb.co/RQ61YYb/1.jpg";
@@ -131,7 +128,7 @@ export default function NoticeCategoryItem({ data }) {
 
   return (
     <>
-      <ItemNoticesLi id={_id}>
+      <ItemNoticesLi id={_id} ref={lastNewsElementRef}>
         <ItemNoticesImgDiv>
           {petAvatarURL ? (
             <ItemNoticesImg src={petAvatarURL.secure_url} alt={title} />

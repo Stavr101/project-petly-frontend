@@ -8,13 +8,10 @@ export const ItemNoticesImgDiv = styled.div`
   margin-bottom: 20px;
 
   @media only screen and (min-width: 768px) and (max-width: 1279px) {
-    /* height: 288px; */
   }
 `;
 
 export const ItemNoticesTitle = styled.h2`
-  /* margin: 20px 20px 0px 20px; */
-  /* margin-bottom: 20px; */
   min-height: 76px;
   font-weight: 700;
   font-size: 28px;
@@ -24,10 +21,6 @@ export const ItemNoticesTitle = styled.h2`
 `;
 
 export const ItemNoticesImg = styled.img`
-  /* position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); */
   width: 100%;
   height: 288px;
   object-fit: cover;
@@ -57,15 +50,6 @@ export const ItemPositionNoticesDivParagraf = styled.p`
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
 `;
-/* export const ItemNoticesP = styled.p`
-font-weight: 500;
-font-size: 16px;
-line-height: 22px;
-display: flex;
-align-items: center;
-text-align: center;
-color: #111111;
-` */
 
 export const ItemNoticesSpan = styled.span`
   position: absolute;
@@ -74,7 +58,6 @@ export const ItemNoticesSpan = styled.span`
 
 export const ItemNoticesLi = styled.li`
   max-width: 280px;
-  /* height: 606px; */
   margin-top: 32px;
   background: #ffffff;
 
@@ -91,12 +74,10 @@ export const ItemNoticesLi = styled.li`
   }
 `;
 export const ItemNoticesUlList = styled.ul`
-  /* margin-bottom: 20px; */
   display: flex;
   flex-direction: column;
+  min-height: 112px;
   gap: 8px;
-
-  /* padding: 0px 20px 0px 20px; */
 `;
 
 export const ItemNoticesWrap = styled.div`
@@ -113,17 +94,11 @@ export const ItemNoticesWrap = styled.div`
 export const ItemButtonNotices = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   flex-grow: 1;
   gap: 12px;
-  /* padding: 0px 16px 12px 16px; */
 `;
 
 export const ItemButtonNoticesLearnMore = styled.button`
-  /* position: absolute; */
-  /* bottom: 40px;
-  left: 20px;
-  right: 20px; */
   width: 100%;
   padding: 8px 0;
   font-weight: 500;
@@ -136,7 +111,6 @@ export const ItemButtonNoticesLearnMore = styled.button`
   border-radius: 40px;
 
   @media only screen and (min-width: 768px) {
-    /* padding: 10px 28px; */
     font-size: 20px;
     line-height: 1.2;
   }
@@ -153,9 +127,7 @@ export const ItemButtonNoticesLearnMore = styled.button`
   }
 `;
 
-export const ItemNoticesListLi = styled.li`
-  /* margin-top: 8px; */
-`;
+export const ItemNoticesListLi = styled.li``;
 
 export const ItemButtonNoticesDelete = styled.button`
   display: flex;
@@ -163,7 +135,6 @@ export const ItemButtonNoticesDelete = styled.button`
   align-items: center;
   width: 100%;
   padding: 8px 0;
-  /* margin-top: 12px; */
 
   color: #f59256;
   font-weight: 500;
@@ -173,7 +144,6 @@ export const ItemButtonNoticesDelete = styled.button`
   background: #ffffff;
   border-radius: 40px;
   border: 2px solid #f59256;
-  /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
 
   @media only screen and (min-width: 768px) {
     padding: 8px;

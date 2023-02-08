@@ -32,7 +32,7 @@ import {
 import { createPortal } from "react-dom";
 // import { useSelector } from "react-redux";
 // import { selectUser } from "redux/auth/selectors";
-// import { useAuth } from "hooks";
+import { useAuth } from "hooks";
 
 const modalRoot = document.querySelector("#modal-root");
 
@@ -41,21 +41,23 @@ export default function ModalNotice({
   setShowModal,
   handleChangeFavorite,
   handleDeletePet,
+  isFavorite,
 }) {
   const [pet, setPet] = useState(undefined);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // const { user } = useAuth();
-  // console.log("user", user);
+  const { user } = useAuth();
+  console.log("user", user);
 
   // const isUser = useSelector(selectUser);
   // console.log("isUser", isUser);
   // console.log("isUser._id", isUser._id);
   // console.log("pet.owner", pet.owner);
+  console.log("pet", pet);
 
   useEffect(() => {
-    console.log("1");
+    // console.log("1");
     document.body.style.overflow = "hidden";
 
     const handleKeyDown = (e) => {
@@ -72,7 +74,7 @@ export default function ModalNotice({
   }, []);
 
   useEffect(() => {
-    console.log("2");
+    // console.log("2");
     const getPetById = async () => {
       setLoading(true);
 
@@ -88,7 +90,7 @@ export default function ModalNotice({
     getPetById();
   }, [petId]);
 
-  console.log("COMPONENT RENDER");
+  // console.log("COMPONENT RENDER");
 
   const onBackdropClick = (e) => {
     if (e.currentTarget === e.target) setShowModal(false);
@@ -212,7 +214,7 @@ export default function ModalNotice({
                   type="button"
                   onClick={handleChangeFavorite}
                 >
-                  Add to{" "}
+                  {isFavorite ? "Add to " : "Remove from "}
                   <HeartSvgSpan>
                     <AiFillHeart style={{ fill: "#f59256" }} />
                   </HeartSvgSpan>
@@ -220,13 +222,13 @@ export default function ModalNotice({
               </ModalNoticeButtonsItem>
 
               <ModalNoticeButtonsItem>
-                {/* {pet.owner && pet.owner._id === isUser._id ? (
+                {pet.owner && pet.owner.email === user.email ? (
                   <ModalNoticeButton type="button" onClick={handleDeletePet}>
                     Delete
                   </ModalNoticeButton>
                 ) : (
                   ""
-                )} */}
+                )}
               </ModalNoticeButtonsItem>
             </ModalNoticeButtonsList>
           </>

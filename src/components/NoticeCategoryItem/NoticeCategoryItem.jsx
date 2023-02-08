@@ -185,6 +185,7 @@ export default function NoticeCategoryItem({ data, lastNewsElementRef }) {
             >
               Learn more
             </ItemButtonNoticesLearnMore>
+
             {owner === ownPets && (
               <ItemButtonNoticesDelete
                 type="submit"
@@ -203,10 +204,9 @@ export default function NoticeCategoryItem({ data, lastNewsElementRef }) {
         <ModalNotice
           petId={_id}
           setShowModal={setOpen}
-          // isFavorite={isFavorite}
+          isFavorite={isFavorite}
           // onClickFavorite={onClickFavorite}
-          // onDeleteAdClick={onDeleteAdClick}
-          // categories={categoriesForFront}
+          handleDeletePet={removeOwnPet}
         />
       )}
     </>

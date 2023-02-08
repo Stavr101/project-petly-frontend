@@ -13,7 +13,7 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserData } from 'redux/users/selectors';
 import UserDataItem from 'components/UserDataItem/UserDataItem';
-import { updateUserData } from 'redux/users/operations';
+import { updateUserAvatar, updateUserData } from 'redux/users/operations';
 
 import editAvatar from 'images/UserPage/editAvatar.svg';
 import { regExp } from 'helpers/regExp/regExp';
@@ -38,17 +38,27 @@ export default function UserDataList() {
   //   dispatch(updateUserData({ userAvatar: avatar }));
   //   console.log(avatar, 'avatar');
   // };;
-  const [avatarFile, setAvatarFile] = useState(null);
-  const [avatarUrlD, setAvatarUrlD] = useState(null);
+  // const [avatarFile, setAvatarFile] = useState(null);
+  const [form, setForm] = useState({
+    userAvatar: null,
+    avatarUrl: null,
+  });
+
   const handleChange = e => {
-    setAvatarUrlD(e.target.files[0]);
+    const ava = e.target.value;
+    setForm({
+      avatarUrl: e.target.files[0],
+      [e.target.name]: URL.createObjectURL(e.target.files[0]),
+    });
   };
 
-  const handleAvatar = async e => {
+  const handleSubmit = async e => {
     e.preventDefault();
+    // setAvatarUrlD(e.target.files[0]);
     const data = new FormData();
-
-    data.append('avatarUrlD', e.target.elements.avatar.files[0]);
+    data.append('userAvatar', e.target.elements.userAvatar.files[0]);
+    console.log(data);
+    dispatch(updateUserAvatar(data));
   };
   // /////////
 
@@ -57,17 +67,25 @@ export default function UserDataList() {
   return (
     <>
       <AvatarInfoWrapper>
-        {avatarUrl ? <AvatarImg src={avatarUrl} alt="avatar" /> : <AvatarImg />}
-        <form action="" id="avatar-add" encType="multipart/form-data">
+        {avatarUrl ? (
+          <AvatarImg src={form.userAvatar} alt="uploaded" />
+        ) : (
+          <AvatarImg />
+        )}
+        <form
+          id="userAvatar"
+          encType="multipart/form-data"
+          onSubmit={handleSubmit}
+        >
           <LabelEditPhoto>
             <SVG src={editAvatar} />
             Edit photo
             <InputEditPhoto
               type="file"
-              name="avatar"
+              name="userAvatar"
               accept=".png, .jpg, .jpeg"
               placeholder="Edit photo"
-              onChange={handleAvatar}
+              onChange={handleChange}
             />
           </LabelEditPhoto>
         </form>

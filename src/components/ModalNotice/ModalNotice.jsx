@@ -1,5 +1,5 @@
 import { getPetsById } from "api/notices";
-import Error from "components/Error/Error";
+// import Error from "components/Error/Error";
 import { useEffect, useState } from "react";
 import Loader from "shared/loader/Loader";
 import moment from "moment";

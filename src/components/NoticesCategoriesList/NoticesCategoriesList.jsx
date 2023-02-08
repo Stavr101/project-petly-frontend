@@ -3,13 +3,13 @@ import { useLocation, useParams, useSearchParams } from "react-router-dom";
 
 import { fetchAdsByCategory, fetchFavorite, fetchOwnAds } from "api/notices";
 
-import Error from "components/Error/Error";
+// import Error from "components/Error/Error";
 import { Typography, Box, Link } from "@mui/material";
 import NoticeCategoryItem from "components/NoticeCategoryItem/NoticeCategoryItem";
 import { List } from "components/NoticesCategoriesList/NoticesCategoriesList.slyled";
 import { getUserInfo } from "redux/users/operations";
 import { useDispatch } from "react-redux";
-import Loader from "shared/loader/Loader";
+// import Loader from "shared/loader/Loader";
 // import { getUserData } from "redux/users/selectors";
 
 const NoticesCategoriesList = () => {
@@ -23,7 +23,7 @@ const NoticesCategoriesList = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const search = searchParams.get("search") ?? "";
-  let filteredPets = pets.filter((pet) => pet.categoryName === categoryName);
+  // let filteredPets = pets.filter((pet) => pet.categoryName === categoryName);
 
   useEffect(() => {
     setPets([]);
@@ -109,15 +109,13 @@ const NoticesCategoriesList = () => {
     [loading, hasMore]
   );
 
-  // console.log(search);
-
   return (
     <>
-      {!pets && (
+      {/* {!pets.length && (
         <Typography variant="h5" component="p" textAlign={"center"}>
           Sorry, there are no ads
         </Typography>
-      )}
+      )} */}
       {Boolean(pets.length) && (
         <List id="top">
           {pets.map((item, index) => {

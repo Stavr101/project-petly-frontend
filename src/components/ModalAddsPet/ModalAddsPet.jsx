@@ -23,7 +23,7 @@ import * as Yup from "yup";
 // import { AddsPetValidate } from "helpers/validationSchema/addsPetValidate";
 function Forma({ handleClose }) {
   const dispatch = useDispatch();
-  const [errors, setErrors] = useState({});
+  // const [errors, setErrors] = useState({});
   const [form, setForm] = useState({
     firstForm: {
       name: "",

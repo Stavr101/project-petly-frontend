@@ -44,10 +44,6 @@ export default function NoticeCategoryItem({ data, lastNewsElementRef }) {
     categoryName,
   } = data;
 
-//   const {
-// owner
-//   } = pets;
-
   const [open, setOpen] = useState(false);
   const isUser = useSelector(selectUser);
   const pet = useSelector(getUserData);

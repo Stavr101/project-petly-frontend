@@ -113,12 +113,12 @@ const NoticesCategoriesList = () => {
 
   return (
     <>
-      {/* {!pets && (
+      {!pets && (
         <Typography variant="h5" component="p" textAlign={"center"}>
           Sorry, there are no ads
         </Typography>
-      )} */}
-      {pets.length && (
+      )}
+      {Boolean(pets.length) && (
         <List id="top">
           {pets.map((item, index) => {
             if (pets.length === index + 1) {

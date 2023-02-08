@@ -25,9 +25,11 @@ const NoticesCategoriesList = () => {
     setPets([]);
   }, [search, categoryName]);
 
-  useEffect(() => {
-    dispatch(getUserInfo());
-  }, [dispatch]);
+  console.log("categoryName", categoryName);
+
+  // useEffect(() => {
+  //   dispatch(getUserInfo());
+  // }, [dispatch]);
 
   useEffect(() => {
     if (location.pathname.includes("favorite")) {
@@ -80,7 +82,7 @@ const NoticesCategoriesList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryName, location.pathname, search]);
 
-  console.log(search);
+  // console.log("search", search);
 
   return (
     <>

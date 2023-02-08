@@ -49,9 +49,9 @@ export default function NoticeCategoryItem({ data }) {
   const favoritePets = pet.user.favorite;
 
   const [isFavorite, setIsFavorite] = useState(favoritePets.includes(_id));
-  console.log(pet);
+  // console.log("isUser", isUser);
 
-  // console.log(favoritePets);
+  // console.log("favoritePets", favoritePets);
 
   const onLearnMoreClick = () => {
     setOpen(true);
@@ -91,7 +91,7 @@ export default function NoticeCategoryItem({ data }) {
     }
     return "< 1 month";
   };
-  useEffect(() => {}, []);
+  // useEffect(() => {}, []);
 
   async function addFavorite(_id) {
     if (isUser.email === null) {

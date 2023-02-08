@@ -30,9 +30,11 @@ const NoticesCategoriesList = () => {
     setPageNumber(1);
   }, [search, categoryName]);
 
-  useEffect(() => {
-    dispatch(getUserInfo());
-  }, [dispatch]);
+  // console.log("categoryName", categoryName);
+
+  // useEffect(() => {
+  //   dispatch(getUserInfo());
+  // }, [dispatch]);
 
   useEffect(() => {
     if (location.pathname.includes("favorite")) {

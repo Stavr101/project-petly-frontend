@@ -297,6 +297,7 @@ function Forma({ handleClose }) {
         comment: "",
       },
     });
+     handleClose();
   };
 
   const handleGoodHandsSubmit = async (event) => {
@@ -340,7 +341,9 @@ function Forma({ handleClose }) {
         comment: "",
       },
     });
+     handleClose();
   };
+  
   const handleClick = (button) => {
     setSelectedRadio(button);
   };
@@ -422,7 +425,7 @@ function Forma({ handleClose }) {
             <InputField
               type="date"
               name="date"
-              value={today}
+              value={formSell.sellFirstForm.date}
               onChange={handleSellFirstFormChange}
               placeholder={today}
               max={today}
@@ -611,8 +614,8 @@ function Forma({ handleClose }) {
             <InputField
             type="date"
               name="date"
-              value={today}
-              onChange={handleSellFirstFormChange}
+              value={formFound.foundFirstForm.date}            
+              onChange={handleFoundFirstFormChange}
               placeholder={today}
               max={today}
             />
@@ -786,8 +789,8 @@ function Forma({ handleClose }) {
             <InputField
              type="date"
               name="date"
-              value={today}
-              onChange={handleSellFirstFormChange}
+               value={formGoodHands.goodHandsFirstForm.date}
+              onChange={handleGoodHandsFirstFormChange}
               placeholder={today}
               max={today}
             />

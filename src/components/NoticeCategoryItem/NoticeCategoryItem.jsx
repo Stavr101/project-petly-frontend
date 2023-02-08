@@ -90,7 +90,7 @@ export default function NoticeCategoryItem({ data, lastNewsElementRef }) {
     }
     return "< 1 month";
   };
-  useEffect(() => {}, []);
+  // useEffect(() => {}, []);
 
   async function addFavorite(_id) {
     if (isUser.email === null) {

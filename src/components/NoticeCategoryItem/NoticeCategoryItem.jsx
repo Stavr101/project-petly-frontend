@@ -44,9 +44,9 @@ export default function NoticeCategoryItem({ data, lastNewsElementRef }) {
     categoryName,
   } = data;
 
-//   const {
-// owner
-//   } = pets;
+  //   const {
+  // owner
+  //   } = pets;
 
   const [open, setOpen] = useState(false);
   const isUser = useSelector(selectUser);
@@ -94,7 +94,7 @@ export default function NoticeCategoryItem({ data, lastNewsElementRef }) {
     }
     return "< 1 month";
   };
-  useEffect(() => {}, []);
+  // useEffect(() => {}, []);
 
   async function addFavorite(_id) {
     if (isUser.email === null) {

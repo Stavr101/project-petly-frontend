@@ -343,7 +343,7 @@ function Forma({ handleClose }) {
     });
      handleClose();
   };
-  
+
   const handleClick = (button) => {
     setSelectedRadio(button);
   };
@@ -563,7 +563,7 @@ function Forma({ handleClose }) {
       {formType === "foundFirstForm" && (
         <FormContainer onSubmit={handleFoundSubmit}>
           <AddPhoto>
-            Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
+            Lorem ipsum dolor sit a Lorem ipsum dolor sit amet,
             consectetur
           </AddPhoto>
           <Button

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import userPhoto from 'images/UserPage/userPhoto.png';
+import plusUser from 'images/UserPage/plusUser.svg';
 
 export const UserInfoWrapper = styled.div`
   @media screen and (min-width: 768px) {
@@ -21,7 +21,10 @@ export const AvatarInfoWrapper = styled.div`
 `;
 
 export const AvatarImg = styled.img`
-  background-image: url(${userPhoto});
+  background-image: url(${plusUser});
+  background-color: ${p => p.theme.colors.background};
+  background-repeat: no-repeat;
+  background-position: center;
   object-fit: cover;
   border-radius: ${p => p.theme.radii.round};
   margin: auto auto 12px;

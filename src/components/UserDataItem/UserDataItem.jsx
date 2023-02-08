@@ -9,9 +9,8 @@ import {
   DeactiveBtn,
 } from './UserDataItem.styled';
 import { updateUserData } from '../../redux/users/operations';
-import { selectUser } from 'redux/auth/selectors';
-import { useParams } from 'react-router-dom';
 import { getUserData } from 'redux/users/selectors';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 export default function UserDataItem({
   typeInput,
@@ -19,12 +18,14 @@ export default function UserDataItem({
   valueUser,
   activeBtn,
   setActiveBtn,
+  paramValid,
 }) {
   const user = useSelector(getUserData);
   const dispatch = useDispatch();
 
   const [isEditing, setIsEditing] = useState(false);
   const [editedValue, setEditedValue] = useState(valueUser);
+  const [error, setError] = useState(null);
 
   const handleEdit = e => {
     e.preventDefault();
@@ -38,13 +39,32 @@ export default function UserDataItem({
 
   const handleSubmit = e => {
     e.preventDefault();
-    setActiveBtn(true);
-    setIsEditing(false);
-    dispatch(
-      updateUserData({
-        [nameInput]: editedValue,
-      })
-    );
+    const validInput = paramValid;
+
+    if (nameInput === 'birthday') {
+      setActiveBtn(true);
+      setIsEditing(false);
+      dispatch(
+        updateUserData({
+          [nameInput]: editedValue,
+        })
+      );
+    }
+    if (!validInput.test(editedValue)) {
+      setError(`Invalid ${nameInput}`);
+      Notify.warning(`Invalid ${nameInput}`);
+      console.log(editedValue);
+    } else {
+      setError(null);
+
+      setActiveBtn(true);
+      setIsEditing(false);
+      dispatch(
+        updateUserData({
+          [nameInput]: editedValue,
+        })
+      );
+    }
   };
 
   return (
@@ -57,6 +77,7 @@ export default function UserDataItem({
             value={editedValue}
             onChange={handleChange}
           />
+          {/* <p>{error}</p> */}
           <UpdateBtn onClick={handleSubmit}></UpdateBtn>
         </>
       ) : (

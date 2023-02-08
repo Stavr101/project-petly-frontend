@@ -1,7 +1,7 @@
 import DeleteSvg from "./NoticesDeleteSvg";
 import HeartSvg from "./NoticesHeartSvg";
 import HeartFavorite from "./NoticesHeartFavoriteSvg";
-import { addPetToFavorite } from "api/notices";
+import { addPetToFavorite, removeOwnPet } from "api/notices";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 import {
@@ -35,6 +35,7 @@ export default function NoticeCategoryItem({ data }) {
     _id,
     petAvatarURL,
     favorite,
+    owner,
     title,
     breed,
     location,
@@ -43,22 +44,21 @@ export default function NoticeCategoryItem({ data }) {
     categoryName,
   } = data;
 
+//   const {
+// owner
+//   } = pets;
+
   const [open, setOpen] = useState(false);
   const isUser = useSelector(selectUser);
   const pet = useSelector(getUserData);
   const favoritePets = pet.user.favorite;
+  const ownPets = pet.user._id;
 
   const [isFavorite, setIsFavorite] = useState(favoritePets.includes(_id));
-  // console.log(pet);
 
   const onLearnMoreClick = () => {
     setOpen(true);
   };
-
-
-  const onDeletePets = () => {
-
-  }
 
   const handleOnError = (e) => {
     e.target.src = "https://i.ibb.co/RQ61YYb/1.jpg";
@@ -185,10 +185,10 @@ export default function NoticeCategoryItem({ data }) {
             >
               Learn more
             </ItemButtonNoticesLearnMore>
-            {location.pathname === "own" && (
+            {owner === ownPets && (
               <ItemButtonNoticesDelete
                 type="submit"
-                onClick={() => onDeletePets(_id)}
+                onClick={() => removeOwnPet(_id)}
               >
                 <ItemButtonNoticesDeleteSpan>
                   Delete
@@ -196,18 +196,9 @@ export default function NoticeCategoryItem({ data }) {
                 <DeleteSvg />
               </ItemButtonNoticesDelete>
             )}
-
-            {/* <ItemButtonNoticesDelete
-              type="submit"
-              // onClick={() => onDeletePets(_id)}
-            >
-              <ItemButtonNoticesDeleteSpan>Delete</ItemButtonNoticesDeleteSpan>
-              <DeleteSvg />
-            </ItemButtonNoticesDelete> */}
           </ItemButtonNotices>
         </ItemNoticesWrap>
       </ItemNoticesLi>
-
       {open && (
         <ModalNotice
           petId={_id}

@@ -176,9 +176,21 @@ export const ModalContainer = styled.div`
   /* margin-left: auto;
   margin-right: auto;
   max-width: 280px; */
-  /* border-radius: 16px; */
+  border-radius: 16px;
   animation: ${slideIn} 300ms ease-out;
   overflow-y: auto;
+
+  ::-webkit-scrollbar {
+    border-radius: 16px;
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  border-radius: 16px;
+  background-color: #D2691E;
+}
 
   @media (min-width: 768px) {
     width: 608px;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addPet } from "redux/pets/operations";
+// import { useDispatch } from "react-redux";
+// import { addPet } from "redux/pets/operations";
 import { addPetToCategory } from "api/notices";
 
 import {
@@ -30,8 +30,8 @@ import {
 // Изменила функцию handleClose на closeModalPets для открытия модалки по нажатию кнопки в PetsData
 
 function Forma({ handleClose }) {
-  const dispatch = useDispatch();
-  const [errors, setErrors] = useState({});
+  // const dispatch = useDispatch();
+  // const [errors, setErrors] = useState({});
   const [selectedRadio, setSelectedRadio] = useState("");
 
   const [formSell, setFormSell] = useState({

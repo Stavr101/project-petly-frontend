@@ -34,9 +34,7 @@ function Forma({ handleClose }) {
   const [errors, setErrors] = useState({});
   const [selectedRadio, setSelectedRadio] = useState("");
 
-  console.log('selectedRadio', selectedRadio)
-
-  const [formSell, setFormSell] = useState({
+    const [formSell, setFormSell] = useState({
     sellFirstForm: {
       title: "",
       name: "",
@@ -199,18 +197,18 @@ function Forma({ handleClose }) {
     });
   };
 
-  const combinedSellForm = {
-    ...formSell.sellFirstForm,
-    ...formSell.sellSecondForm,
-  };
-  const combinedFoundForm = {
-    ...formFound.foundFirstForm,
-    ...formFound.foundSecondForm,
-  };
-  const combinedGoodHandsForm = {
-    ...formGoodHands.goodHandsFirstForm,
-    ...formGoodHands.goodHandsSecondForm,
-  };
+  // const combinedSellForm = {
+  //   ...formSell.sellFirstForm,
+  //   ...formSell.sellSecondForm,
+  // };
+  // const combinedFoundForm = {
+  //   ...formFound.foundFirstForm,
+  //   ...formFound.foundSecondForm,
+  // };
+  // const combinedGoodHandsForm = {
+  //   ...formGoodHands.goodHandsFirstForm,
+  //   ...formGoodHands.goodHandsSecondForm,
+  // };
   //==================================
 
   const sellHandleSubmit = async (event) => {
@@ -463,8 +461,8 @@ function Forma({ handleClose }) {
           <SexButtons>
             <InputContainer>
               <InputMaleButton
-                isSelected={selectedRadio === "Male"}
-                onClick={() => handleClick("Male")}
+                isSelected={selectedRadio === "male"}
+                onClick={() => handleClick("male")}
               >
                 <InputRadio
                   type="radio"
@@ -479,8 +477,8 @@ function Forma({ handleClose }) {
 
             <InputContainer>
               <InputFemaleButton
-                isSelected={selectedRadio === "Female"}
-                onClick={() => handleClick("Female")}
+                isSelected={selectedRadio === "female"}
+                onClick={() => handleClick("female")}
               >
                 <InputRadio
                   type="radio"
@@ -647,12 +645,11 @@ function Forma({ handleClose }) {
           encType="mutipart/form-data"
           onSubmit={handleFoundSubmit}
         >
-          <SexButtons>
+           <SexButtons>
             <InputContainer>
               <InputMaleButton
-                type='button'
-                isSelected={selectedRadio === "Male"}
-                onClick={() => handleClick("Male")}
+                isSelected={selectedRadio === "male"}
+                onClick={() => handleClick("male")}
               >
                 <InputRadio
                   type="radio"
@@ -661,15 +658,14 @@ function Forma({ handleClose }) {
                   checked={formFound.foundSecondForm.sex === "male"}
                   onChange={handleFoundRadioChange}
                 />
+                <LabelMale htmlfor="radio1">Male</LabelMale>
               </InputMaleButton>
-              <LabelMale htmlfor="radio1">Male</LabelMale>
             </InputContainer>
 
             <InputContainer>
               <InputFemaleButton
-                type='button'
-                isSelected={selectedRadio === "Female"}
-                onClick={() => handleClick("Female")}
+                isSelected={selectedRadio === "female"}
+                onClick={() => handleClick("female")}
               >
                 <InputRadio
                   type="radio"
@@ -678,8 +674,8 @@ function Forma({ handleClose }) {
                   checked={formFound.foundSecondForm.sex === "female"}
                   onChange={handleFoundRadioChange}
                 />
+                <LabelFemale htmlfor="radio1">Female</LabelFemale>
               </InputFemaleButton>
-              <LabelMale htmlfor="radio1">Female</LabelMale>
             </InputContainer>
           </SexButtons>
 
@@ -823,12 +819,11 @@ function Forma({ handleClose }) {
           encType="mutipart/form-data"
           onSubmit={handleGoodHandsSubmit}
         >
-          <SexButtons>
+           <SexButtons>
             <InputContainer>
               <InputMaleButton
-                type="button"
-                isSelected={selectedRadio === "Male"}
-                onClick={() => handleClick("Male")}
+                isSelected={selectedRadio === "male"}
+                onClick={() => handleClick("male")}
               >
                 <InputRadio
                   type="radio"
@@ -837,15 +832,14 @@ function Forma({ handleClose }) {
                   checked={formGoodHands.goodHandsSecondForm.sex === "male"}
                   onChange={handleGoodHandsRadioChange}
                 />
+                <LabelMale htmlfor="radio1">Male</LabelMale>
               </InputMaleButton>
-              <LabelMale htmlfor="radio1">Male</LabelMale>
             </InputContainer>
 
             <InputContainer>
               <InputFemaleButton
-                type="button"
-                isSelected={selectedRadio === "Female"}
-                onClick={() => handleClick("Female")}
+                isSelected={selectedRadio === "female"}
+                onClick={() => handleClick("female")}
               >
                 <InputRadio
                   type="radio"
@@ -854,8 +848,8 @@ function Forma({ handleClose }) {
                   checked={formGoodHands.goodHandsSecondForm.sex === "female"}
                   onChange={handleGoodHandsRadioChange}
                 />
+                <LabelFemale htmlfor="radio1">Female</LabelFemale>
               </InputFemaleButton>
-              <LabelMale htmlfor="radio1">Female</LabelMale>
             </InputContainer>
           </SexButtons>
           <InputBox>

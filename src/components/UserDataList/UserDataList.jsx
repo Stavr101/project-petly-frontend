@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   UserInfoWrapper,
   UserInfoList,
@@ -13,8 +13,7 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserData } from 'redux/users/selectors';
 import UserDataItem from 'components/UserDataItem/UserDataItem';
-import { updateUserAvatar, updateUserData } from 'redux/users/operations';
-
+import { updateUserAvatar } from 'redux/users/operations';
 import editAvatar from 'images/UserPage/editAvatar.svg';
 import { regExp } from 'helpers/regExp/regExp';
 
@@ -23,22 +22,9 @@ export default function UserDataList() {
   const { _id, name, email, birthday, phone, address, avatarUrl } =
     dataUser.user;
   const [activeBtn, setActiveBtn] = useState(true);
-  // const dataUser = useSelector(selectUser);
-  // console.log(ava, 'ava');
-  // console.log(dataUser, 'useselector');
-  // const { userId } = useParams();
-
-  // const { name, email, birthday, phone, address, avatarUrl } = dataUser;
 
   const dispatch = useDispatch();
-
-  // const handleAvatar = async e => {
-  //   e.preventDefault();
-  //   const avatar = URL.createObjectURL(e.target.files[0]);
-  //   dispatch(updateUserData({ userAvatar: avatar }));
-  //   console.log(avatar, 'avatar');
-  // };;
-  // const [avatarFile, setAvatarFile] = useState(null);
+  // //////////////////////////////////////////
   const [form, setForm] = useState({
     userAvatar: null,
     avatarUrl: null,
@@ -46,6 +32,7 @@ export default function UserDataList() {
 
   const handleChange = e => {
     const ava = e.target.value;
+    console.log(e.target.files[0]);
     setForm({
       avatarUrl: e.target.files[0],
       [e.target.name]: URL.createObjectURL(e.target.files[0]),
@@ -60,22 +47,21 @@ export default function UserDataList() {
     console.log(data);
     dispatch(updateUserAvatar(data));
   };
-  // /////////
-
-  // /////
+  // ///////////////////////////////////
 
   return (
     <>
       <AvatarInfoWrapper>
         {avatarUrl ? (
-          <AvatarImg src={form.userAvatar} alt="uploaded" />
+          <AvatarImg src={avatarUrl.secure_url} alt="uploaded" />
         ) : (
           <AvatarImg />
         )}
         <form
           id="userAvatar"
           encType="multipart/form-data"
-          onSubmit={handleSubmit}
+          // onSubmit={handleSubmit}
+          onBlur={handleSubmit}
         >
           <LabelEditPhoto>
             <SVG src={editAvatar} />

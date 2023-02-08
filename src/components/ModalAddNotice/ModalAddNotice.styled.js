@@ -7,12 +7,12 @@ import female from "./ImgModalAddNotice/female.png";
 
 const slideIn = keyframes`
   from {
-    transform: translateX(100%);
+    /* transform: translateX(100%); */
     opacity: 0;
   }
   to {
   
-    transform: translateY(0);
+    /* transform: translateY(0); */
     opacity: 1;
   }
 `;
@@ -56,7 +56,7 @@ margin-right: 80px;
     color: #F59256;;
 }
 `
-export const InputRadio= styled.input`
+export const InputRadio = styled.input`
 width: 50px;
 height: 50px;
 opacity: 0;
@@ -80,7 +80,7 @@ export const SexButtons = styled.div`
 display: flex;
 margin-right: auto;
 `;
- 
+
 const slideInPhoto = keyframes`
   from {
     /* transform: translateX(-50%); */
@@ -97,16 +97,16 @@ const slideInPhoto = keyframes`
 
 
 export const AddPhoto = styled.p`
-
+font-size: 16px;
   text-align: center;
   margin-bottom: 20px;
-  font-size: 20px;
+  
   line-height: 24px;
   letter-spacing: -0.01em;
   color: #111111;
         @media (min-width: 768px) {
-    width: 300px;
-
+    width: 394px;
+font-size: 20px;
   }
 `;
 
@@ -158,7 +158,7 @@ margin-bottom: -166px;
 width: 208px;
 height: 208px;
 border-radius: 20px;
-animation: ${slideInPhoto} 800ms ease-out;
+animation: ${slideInPhoto} 300ms ease-out;
  @media (min-width: 768px) {
     width: 182px;
 height: 182px;
@@ -166,21 +166,23 @@ height: 182px;
 `
 
 export const ModalContainer = styled.div`
+
+/* margin-top:10px; */
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: white;
-  margin-left: auto;
+  /* margin-left: auto;
   margin-right: auto;
-  max-width: 280px;
+  max-width: 280px; */
   border-radius: 16px;
-  animation: ${slideIn} 600ms ease-out;
+  animation: ${slideIn} 300ms ease-out;
   overflow-y: auto;
 
   @media (min-width: 768px) {
-    max-width: 608px;
-  margin-top:60px;
+    width: 608px;
+  /* margin-top:60px; */
   }
 `;
 
@@ -191,13 +193,14 @@ export const ModalTitle = styled.h2`
 
 export const FormContainer = styled.form`
   width: 240px;
-  height: 440px;
+  height: 540px;
   display: flex;
   flex-direction: column;
   align-items: center;
   
   @media (min-width: 768px) {
     max-width: 448px;
+    height: 440px;
   }
 `;
 export const NextFormContainer = styled.form`
@@ -394,7 +397,7 @@ export const NextButton = styled.button`
   }
 `;
 export const EnterButton = styled.button`
-  margin-top: 100px;
+  /* margin-top: 100px; */
   width: 240px;
   height: 40px;
   border-radius: 20px;

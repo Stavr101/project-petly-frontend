@@ -39,10 +39,9 @@ export const NewsList = () => {
     });
   }
 
-   const sorteredNews = filteredNews.sort((firstNews, secondNews) => {
-     return dateCompare(secondNews.date, firstNews.date);
-   });
-
+  const sorteredNews = filteredNews.sort((firstNews, secondNews) => {
+    return dateCompare(secondNews.date, firstNews.date);
+  });
 
   return (
     <>

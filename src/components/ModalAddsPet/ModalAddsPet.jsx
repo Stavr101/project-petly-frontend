@@ -131,7 +131,7 @@ function Forma({ handleClose }) {
             <InputField
               type="date"
               name="date"
-              value={today}
+               value={form.firstForm.date}
               onChange={handleFirstFormChange}
               placeholder={today}
               max={today}

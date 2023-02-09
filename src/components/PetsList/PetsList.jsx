@@ -44,7 +44,7 @@ export default function PetsList() {
             <PetItem>
               <PetDescriptionInfo>
                 <PetTitleInfo>Date of birth: </PetTitleInfo>
-                {date}
+                {date.split('-').reverse().join('.')}
               </PetDescriptionInfo>
             </PetItem>
             <PetItem>
@@ -66,7 +66,6 @@ export default function PetsList() {
       );
     }
   );
-  // console.log(avatarUrl, 'pic');
   return isPets ? (
     <ul>{elements}</ul>
   ) : (

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import {
-  UserInfoWrapper,
+  FormWrapper,
   UserInfoList,
   UserInfoItem,
   UserInfoTitle,
@@ -42,9 +42,7 @@ export default function UserDataList() {
   return (
     <>
       <AvatarInfoWrapper>
-        <form id="userAvatar" encType="multipart/form-data">
-          {/* <SVG src={editAvatar} />
-          Edit photo */}
+        <FormWrapper id="userAvatar" encType="multipart/form-data">
           <InputEditPhoto
             type="file"
             name="userAvatar"
@@ -62,7 +60,7 @@ export default function UserDataList() {
             <SVG src={editAvatar} />
             Edit photo
           </LabelEditPhoto>
-        </form>
+        </FormWrapper>
       </AvatarInfoWrapper>
       <UserInfoList>
         <UserInfoItem>

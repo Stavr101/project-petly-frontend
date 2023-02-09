@@ -19,6 +19,9 @@ export const AvatarInfoWrapper = styled.div`
     position: relative;
   }
 `;
+export const FormWrapper = styled.form`
+  margin: 0 auto;
+`;
 
 export const AvatarImg = styled.img`
   background-image: url(${plusUser});

@@ -30,7 +30,6 @@ margin-top: -8px;
 export const InputMaleButton = styled.button`
 background-image: url(${male});
 width: 60px;
-height:120px;
 margin-bottom: 20px;
 background-repeat:no-repeat;
 border: none;
@@ -46,7 +45,6 @@ cursor: pointer;
 export const InputFemaleButton = styled.button`
 background-image: url(${female});
 width: 60px;
-height:120px;
 margin-bottom: 20px;
 background-repeat:no-repeat;
 border: none;
@@ -68,21 +66,25 @@ margin-right: 80px;
 `
 export const InputRadio = styled.input`
 width: 50px;
-height: 50px;
+height: 90px;
 opacity: 0;
 `;
 
-export const InputFemale = styled.input`
-width: 50px;
-height: 50px;
-opacity: 0;
-`;
+// export const InputFemale = styled.input`
+// width: 50px;
+// height: 50px;
+// opacity: 0;
+// `;
 
 export const LabelMale = styled.label`
+display: block;
+margin-top: -35px;
 font-size: 18px;
 
 `;
 export const LabelFemale = styled.label`
+display: block;
+margin-top: -35px;
 font-size: 18px;
 `;
 
@@ -228,7 +230,8 @@ export const NextFormContainer = styled.form`
   align-items: center;
  
   @media (min-width: 768px) {
-    max-width: 448px;
+    max-width: 548px;
+    height: 440px;
   }
 `
 export const CommentsContainer = styled.div`

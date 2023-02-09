@@ -61,7 +61,7 @@ export default function NoticeCategoryItem({
   const [isFavorite, setIsFavorite] = useState(favorite);
 
   // console.log("favorite", favorite);
-  // console.log("data", data);
+  console.log("data", data);
 
   const onLearnMoreClick = () => {
     setOpen(true);

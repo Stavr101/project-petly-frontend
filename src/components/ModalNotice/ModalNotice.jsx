@@ -216,7 +216,10 @@ export default function ModalNotice({
 
               <ModalNoticeButtonsItem>
                 {pet.owner && pet.owner.email === user.email ? (
-                  <ModalNoticeButton type="button" onClick={handleDeletePet}>
+                  <ModalNoticeButton
+                    type="button"
+                    onClick={handleDeletePet(petId)}
+                  >
                     Delete
                   </ModalNoticeButton>
                 ) : (

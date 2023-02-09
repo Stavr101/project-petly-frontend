@@ -17,6 +17,16 @@ const slideIn = keyframes`
   }
 `;
 
+export const Validations = styled.p`
+color: red;
+font-size: 10px;
+opacity: 1;
+margin-top: -8px;
+  &.invalid {
+    opacity: 0;}
+
+`
+
 export const InputMaleButton = styled.button`
 background-image: url(${male});
 width: 60px;
@@ -134,7 +144,7 @@ border-radius: 20px;
 cursor: pointer;
  margin-bottom: 20px;
   padding: 0;
-  border-radius: 20px;
+ 
   border: #fdf7f2;
   outline: none;
   background: #fdf7f2;
@@ -180,6 +190,18 @@ export const ModalContainer = styled.div`
   animation: ${slideIn} 300ms ease-out;
   overflow-y: auto;
 
+  ::-webkit-scrollbar {
+    border-radius: 16px;
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  border-radius: 16px;
+  background-color:#f59256;
+}
+
   @media (min-width: 768px) {
     width: 608px;
   /* margin-top:60px; */
@@ -199,7 +221,7 @@ export const FormContainer = styled.form`
   align-items: center;
   
   @media (min-width: 768px) {
-    max-width: 448px;
+    max-width: 548px;
     height: 440px;
   }
 `;
@@ -237,7 +259,7 @@ export const InputLable = styled.label`
   font-weight: 500;
   font-size: 18px;
   line-height: 36px;
-`;
+ `;
 
 export const InputField = styled.input`
   margin-bottom: 20px;
@@ -247,8 +269,9 @@ export const InputField = styled.input`
   border-radius: 20px;
   outline: none;
   background: #fdf7f2;
+  font-size: 14px;
   border: 1px solid rgba(245, 146, 86, 0.5);
-  color: rgba(27, 27, 27, 0.6);
+  color: rgba(27, 27, 27, 0.8);
 
   @media (min-width: 768px) {
     width: 448px;
@@ -261,7 +284,7 @@ export const InputField = styled.input`
     font-family: "Manrope";
     font-weight: 400;
     font-size: 14px;
-    color: rgba(27, 27, 27, 0.6);
+    color: rgba(27, 27, 27, 0.7);
   }
 
   :hover,
@@ -279,8 +302,9 @@ export const Comments = styled.textarea`
   border-radius: 20px;
   outline: none;
   background: #fdf7f2;
+  font-size: 14px;
   border: 1px solid rgba(245, 146, 86, 0.5);
-  color: rgba(27, 27, 27, 0.6);
+  color: rgba(27, 27, 27, 0.9);
 
   @media (min-width: 768px) {
     width: 448px;
@@ -293,7 +317,7 @@ export const Comments = styled.textarea`
     font-family: "Manrope";
     font-weight: 400;
     font-size: 14px;
-    color: rgba(27, 27, 27, 0.6);
+    color: rgba(27, 27, 27, 0.7);
   }
 
   :hover,

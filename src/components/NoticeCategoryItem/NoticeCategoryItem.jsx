@@ -3,6 +3,7 @@ import HeartSvg from "./NoticesHeartSvg";
 import HeartFavorite from "./NoticesHeartFavoriteSvg";
 import { addPetToFavorite, removeOwnPet } from "api/notices";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
+import { useAuth } from 'hooks';
 
 import {
   ItemNoticesImgDiv,
@@ -22,15 +23,21 @@ import {
   ItemButtonNoticesHeartButton,
   ItemButtonNoticesDeleteSpan,
 } from "./NoticeCategoryItem.styled";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import ModalNotice from "components/ModalNotice/ModalNotice";
 import { selectUser } from "redux/auth/selectors";
 import { getUserData } from "redux/users/selectors";
 // import { getUserInfo } from "redux/users/operations";
 import { removeFavoritePet } from "api/notices";
+import { useLocation } from "react-router-dom";
 
-export default function NoticeCategoryItem({ data, lastNewsElementRef }) {
+export default function NoticeCategoryItem({
+  data,
+  lastNewsElementRef,
+  array,
+  setArray,
+}) {
   const {
     _id,
     petAvatarURL,
@@ -44,17 +51,16 @@ export default function NoticeCategoryItem({ data, lastNewsElementRef }) {
     categoryName,
   } = data;
 
-//   const {
-// owner
-//   } = pets;
-
   const [open, setOpen] = useState(false);
   const isUser = useSelector(selectUser);
   const pet = useSelector(getUserData);
-  const favoritePets = pet.user.favorite;
+  // const favoritePets = pet.user.favorite;
   const ownPets = pet.user._id;
+  const locationFavorite = useLocation();
+  const { isLoggedIn } = useAuth();
 
-  const [isFavorite, setIsFavorite] = useState(favoritePets.includes(_id));
+  // const [isFavorite, setIsFavorite] = useState(favoritePets.includes(_id));
+  const [isFavorite, setIsFavorite] = useState(favorite);
 
   const onLearnMoreClick = () => {
     setOpen(true);
@@ -94,21 +100,21 @@ export default function NoticeCategoryItem({ data, lastNewsElementRef }) {
     }
     return "< 1 month";
   };
-  useEffect(() => {}, []);
+  // useEffect(() => {}, []);
 
   async function addFavorite(_id) {
     if (isUser.email === null) {
       return Notify.failure("Must be authorization");
     }
-    if (isDuplicate(_id)) {
-      setIsFavorite(false);
-      return deletePet(_id);
-    }
+    // if (isDuplicate(_id)) {
+    //   setIsFavorite(false);
+    //   return deletePet(_id);
+    // }
     try {
       const res = await addPetToFavorite(_id);
       setIsFavorite(true);
 
-      console.log(res);
+      // console.log(res);
       Notify.success("Pet add to your'e favorite");
       return res;
     } catch (error) {
@@ -116,18 +122,37 @@ export default function NoticeCategoryItem({ data, lastNewsElementRef }) {
     }
   }
 
-  async function deletePet(_id) {
+  async function removeFromFavorite(_id) {
+    if (isUser.email === null) {
+      return Notify.failure("Must be authorization");
+    }
     try {
-      const res = await removeFavoritePet(_id);
-      return res;
+      await removeFavoritePet(_id);
+      const isOnFavoritePage = locationFavorite.pathname.includes("favorite");
+
+      if (isOnFavoritePage) {
+        const arrayNew = array.filter((item) => item._id !== _id);
+
+        setArray(arrayNew);
+      }
+      return setIsFavorite(false);
     } catch (error) {
       console.log(error);
     }
+    setIsFavorite(false);
   }
 
-  function isDuplicate(petId) {
-    return favoritePets?.find((pet) => pet === petId);
-  }
+  const handleChangeFavorite = (id) => {
+    if (isFavorite) {
+      removeFromFavorite(id);
+    } else {
+      addFavorite(id);
+    }
+  };
+
+  // function isDuplicate(petId) {
+  //   return favoritePets?.find((pet) => pet === petId);
+  // }
 
   return (
     <>
@@ -148,7 +173,8 @@ export default function NoticeCategoryItem({ data, lastNewsElementRef }) {
             </ItemPositionNoticesDivParagraf>
             <ItemButtonNoticesHeartButton
               type="button"
-              onClick={() => addFavorite(_id)}
+              // onClick={() => addFavorite(_id)}
+              onClick={() => handleChangeFavorite(_id)}
             >
               {isFavorite ? <HeartFavorite /> : <HeartSvg />}
             </ItemButtonNoticesHeartButton>
@@ -185,7 +211,8 @@ export default function NoticeCategoryItem({ data, lastNewsElementRef }) {
             >
               Learn more
             </ItemButtonNoticesLearnMore>
-            { favorite && owner ? (
+
+            {isLoggedIn && owner === ownPets && (
               <ItemButtonNoticesDelete
                 type="submit"
                 onClick={() => removeOwnPet(_id)}
@@ -203,10 +230,9 @@ export default function NoticeCategoryItem({ data, lastNewsElementRef }) {
         <ModalNotice
           petId={_id}
           setShowModal={setOpen}
-          // isFavorite={isFavorite}
-          // onClickFavorite={onClickFavorite}
-          // onDeleteAdClick={onDeleteAdClick}
-          // categories={categoriesForFront}
+          isFavorite={isFavorite}
+          handleChangeFavorite={handleChangeFavorite}
+          handleDeletePet={removeOwnPet}
         />
       )}
     </>

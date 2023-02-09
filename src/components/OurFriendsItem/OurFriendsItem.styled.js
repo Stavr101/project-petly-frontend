@@ -9,9 +9,9 @@ export const FriendsItem = styled.li`
   box-shadow: ${(p) => p.theme.shadows.card};
   transition: scale 250ms linear;
 
-  :hover {
+  /* :hover {
     scale: 1.03;
-  }
+  } */
 
   @media screen and (min-width: 768px) {
     width: 100%;
@@ -22,18 +22,27 @@ export const FriendsItem = styled.li`
   }
 `;
 
+export const FriendsTitle = styled.div`
+  text-align: center;
+  margin-bottom: 12px;
+`;
+
 export const FriendsLinkTitle = styled.a`
-  display: block;
   text-align: center;
   flex-grow: 1;
-  width: 100%;
-  margin-bottom: 12px;
 
   font-weight: ${(p) => p.theme.fontWeights.bold};
   font-size: ${(p) => p.theme.fontSizes.xs};
   line-height: 1.33;
   text-decoration: underline;
   color: ${(p) => p.theme.colors.accent};
+
+  transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+  :hover {
+    box-shadow: inset 100px 0 0 0 #f59256;
+    color: white;
+  }
 
   @media screen and (min-width: 768px) {
     margin-bottom: 16px;
@@ -44,7 +53,7 @@ export const FriendsLinkTitle = styled.a`
   @media screen and (min-width: 1280px) {
     font-size: ${(p) => p.theme.fontSizes.m};
     line-height: 1.35;
-  } ;
+  }
 `;
 
 export const FriendsInfoWrapper = styled.div`

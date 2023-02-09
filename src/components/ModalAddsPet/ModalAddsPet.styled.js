@@ -14,6 +14,14 @@ const slideIn = keyframes`
   }
 `;
 
+export const Validations = styled.p`
+color: red;
+font-size: 10px;
+opacity: 1;
+  &.invalid {
+    opacity: 0;}
+
+`
 
 export const AddPhoto = styled.p`
 
@@ -65,9 +73,9 @@ cursor: pointer;
   background-size: 48px 48px;
   background-repeat: no-repeat;
   background-position: center center;
-    @media (min-width: 768px) {
-    width: 182px;
-height: 182px;
+  @media (min-width: 768px) {
+  width: 182px;
+  height: 182px;
   }
   :hover, :active
    {
@@ -151,7 +159,7 @@ export const InputLable = styled.label`
   color: #111111;
   font-weight: 500;
   font-size: 18px;
-  line-height: 36px;
+  /* line-height: 36px; */
 `;
 
 export const InputField = styled.input`
@@ -163,7 +171,8 @@ export const InputField = styled.input`
   outline: none;
   background: #fdf7f2;
   border: 1px solid rgba(245, 146, 86, 0.5);
-  color: rgba(27, 27, 27, 0.6);
+  color: rgba(27, 27, 27, 0.8);
+ 
 
   @media (min-width: 768px) {
     width: 448px;
@@ -176,7 +185,7 @@ export const InputField = styled.input`
     font-family: "Manrope";
     font-weight: 400;
     font-size: 14px;
-    color: rgba(27, 27, 27, 0.6);
+    color: rgba(27, 27, 27, 0.7);
   }
 
   :hover,

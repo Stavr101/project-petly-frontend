@@ -1,5 +1,5 @@
 import { getPetsById } from "api/notices";
-import Error from "components/Error/Error";
+// import Error from "components/Error/Error";
 import { useEffect, useState } from "react";
 import Loader from "shared/loader/Loader";
 import moment from "moment";
@@ -27,8 +27,12 @@ import {
   ModalNoticeBtnContact,
   ModalNoticeWrapperContent,
   Overlay,
+  ModalNoticeItemValueLink,
 } from "./ModalNotice.styled";
 import { createPortal } from "react-dom";
+// import { useSelector } from "react-redux";
+// import { selectUser } from "redux/auth/selectors";
+import { useAuth } from "hooks";
 
 const modalRoot = document.querySelector("#modal-root");
 
@@ -37,13 +41,18 @@ export default function ModalNotice({
   setShowModal,
   handleChangeFavorite,
   handleDeletePet,
+  isFavorite,
 }) {
   const [pet, setPet] = useState(undefined);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const { user } = useAuth();
+
   useEffect(() => {
+    // console.log("1");
     document.body.style.overflow = "hidden";
+
     const handleKeyDown = (e) => {
       if (e.code === "Escape") setShowModal(false);
     };
@@ -53,18 +62,12 @@ export default function ModalNotice({
       document.body.style.overflow = null;
       document.removeEventListener("keydown", handleKeyDown);
     };
+
     // eslint-disable-next-line
   }, []);
 
-  const onBackdropClick = (e) => {
-    if (e.currentTarget === e.target) setShowModal(false);
-  };
-
-  const onBtnCloseClick = () => {
-    setShowModal(false);
-  };
-
   useEffect(() => {
+    // console.log("2");
     const getPetById = async () => {
       setLoading(true);
 
@@ -79,6 +82,16 @@ export default function ModalNotice({
     };
     getPetById();
   }, [petId]);
+
+  // console.log("COMPONENT RENDER");
+
+  const onBackdropClick = (e) => {
+    if (e.currentTarget === e.target) setShowModal(false);
+  };
+
+  const onBtnCloseClick = () => {
+    setShowModal(false);
+  };
 
   const convertBirthdate = (birthdate) => {
     return moment(birthdate).format("DD.MM.YYYY");
@@ -140,16 +153,20 @@ export default function ModalNotice({
 
                   <ModalNoticeLi>
                     <ModalNoticeItemParametr>Email:</ModalNoticeItemParametr>
-                    <ModalNoticeItemValue>
+                    <ModalNoticeItemValueLink
+                      href={`mailto:${pet.owner ? pet.owner.email : ""}`}
+                    >
                       {pet.owner ? pet.owner.email : ""}
-                    </ModalNoticeItemValue>
+                    </ModalNoticeItemValueLink>
                   </ModalNoticeLi>
 
                   <ModalNoticeLi>
                     <ModalNoticeItemParametr>Phone:</ModalNoticeItemParametr>
-                    <ModalNoticeItemValue>
+                    <ModalNoticeItemValueLink
+                      href={`tel:${pet.owner ? pet.owner?.phone : ""}`}
+                    >
                       {pet.owner ? pet.owner?.phone : ""}
-                    </ModalNoticeItemValue>
+                    </ModalNoticeItemValueLink>
                   </ModalNoticeLi>
 
                   <ModalNoticeLi>
@@ -159,7 +176,7 @@ export default function ModalNotice({
                           Price:
                         </ModalNoticeItemParametr>
                         <ModalNoticeItemValue>
-                          {pet.price} $
+                          {pet.price} UAH
                         </ModalNoticeItemValue>
                       </>
                     ) : (
@@ -185,13 +202,12 @@ export default function ModalNotice({
                   </ModalNoticeBtnLink>
                 </ModalNoticeBtnContact>
               </ModalNoticeButtonsItem>
-
               <ModalNoticeButtonsItem>
                 <ModalNoticeBtnFavorite
                   type="button"
-                  onClick={handleChangeFavorite}
+                  onClick={() => handleChangeFavorite(petId)}
                 >
-                  Add to{" "}
+                  {!isFavorite ? "Add to " : "Remove from "}
                   <HeartSvgSpan>
                     <AiFillHeart style={{ fill: "#f59256" }} />
                   </HeartSvgSpan>
@@ -199,9 +215,13 @@ export default function ModalNotice({
               </ModalNoticeButtonsItem>
 
               <ModalNoticeButtonsItem>
-                <ModalNoticeButton type="button" onClick={handleDeletePet}>
-                  Delete
-                </ModalNoticeButton>
+                {pet.owner && pet.owner.email === user.email ? (
+                  <ModalNoticeButton type="button" onClick={handleDeletePet}>
+                    Delete
+                  </ModalNoticeButton>
+                ) : (
+                  ""
+                )}
               </ModalNoticeButtonsItem>
             </ModalNoticeButtonsList>
           </>

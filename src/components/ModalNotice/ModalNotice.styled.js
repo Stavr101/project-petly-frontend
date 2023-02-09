@@ -170,6 +170,23 @@ export const ModalNoticeItemValue = styled.p`
   }
 `;
 
+export const ModalNoticeItemValueLink = styled.a`
+  font-size: 14px;
+  line-height: 1.357;
+  text-decoration: none;
+  color: ${(p) => p.theme.colors.text.primary};
+  font-weight: ${(p) => p.theme.fontWeights.semibold};
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    line-height: 1.375;
+  }
+
+  :hover {
+    color: ${(p) => p.theme.colors.accent};
+  }
+`;
+
 export const ModalNoticeCommentsDiv = styled.div`
   margin-bottom: 40px;
   font-size: 14px;

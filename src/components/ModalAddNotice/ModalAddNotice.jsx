@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addPet } from "redux/pets/operations";
+// import { useDispatch } from "react-redux";
+// import { addPet } from "redux/pets/operations";
 import { addPetToCategory } from "api/notices";
 
 import {
+  Validations,
   InputBox,
   InputLable,
   InputField,
@@ -30,8 +31,8 @@ import {
 // Изменила функцию handleClose на closeModalPets для открытия модалки по нажатию кнопки в PetsData
 
 function Forma({ handleClose }) {
-  const dispatch = useDispatch();
-  const [errors, setErrors] = useState({});
+  // const dispatch = useDispatch();
+  // const [errors, setErrors] = useState({});
   const [selectedRadio, setSelectedRadio] = useState("");
 
   const [formSell, setFormSell] = useState({
@@ -78,7 +79,8 @@ function Forma({ handleClose }) {
       comment: "",
     },
   });
-
+  const today = new Date().toISOString().substr(0, 10);
+  
   const [formType, setFormType] = useState("sellFirstForm");
 
   const handleSellFirstFormChange = (event) => {
@@ -296,6 +298,7 @@ function Forma({ handleClose }) {
         comment: "",
       },
     });
+     handleClose();
   };
 
   const handleGoodHandsSubmit = async (event) => {
@@ -339,7 +342,9 @@ function Forma({ handleClose }) {
         comment: "",
       },
     });
+     handleClose();
   };
+
   const handleClick = (button) => {
     setSelectedRadio(button);
   };
@@ -394,6 +399,10 @@ function Forma({ handleClose }) {
             <InputLable htmlFor="title">
               Title of ad <span>*</span>
             </InputLable>
+            <Validations
+              className={formSell.sellFirstForm.title.match(/^([a-zA-Z]{2,48})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 48 letters
+            </Validations>
             <InputField
               type="text"
               name="title"
@@ -406,6 +415,10 @@ function Forma({ handleClose }) {
           </InputBox>
           <InputBox>
             <InputLable htmlFor="name">Name pet</InputLable>
+            <Validations
+              className={formSell.sellFirstForm.name.match(/^([a-zA-Z]{2,16})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 16 letters
+            </Validations>
             <InputField
               type="text"
               name="name"
@@ -423,11 +436,17 @@ function Forma({ handleClose }) {
               name="date"
               value={formSell.sellFirstForm.date}
               onChange={handleSellFirstFormChange}
-            // placeholder="DD/MM/YYYY/"
+              placeholder={today}
+              max={today}
+
             />
           </InputBox>
           <InputBox>
             <InputLable htmlFor="breed">Breed</InputLable>
+            <Validations
+              className={formSell.sellFirstForm.breed.match(/^([a-zA-Z]{2,16})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 16 letters
+            </Validations>
             <InputField
               type="text"
               name="breed"
@@ -495,6 +514,10 @@ function Forma({ handleClose }) {
             <InputLable htmlFor="location">
               Location<span>*</span>:
             </InputLable>
+            <Validations
+              className={formSell.sellSecondForm.location.match(/^$|^[a-zA-Z\s]+,[a-zA-Z\s]+$/) ? "invalid" : ""}>
+              Please enter for exemple: Brovary, Kyiv 
+            </Validations>
             <InputField
               type="text"
               name="location"
@@ -509,6 +532,10 @@ function Forma({ handleClose }) {
             <InputLable htmlFor="price">
               Price<span>*</span>:
             </InputLable>
+               <Validations
+              className={formSell.sellSecondForm.price.match(/^(?!0)\d+$|^$/) ? "invalid" : ""}>
+              Please enter price, for exemple: 340 
+            </Validations>
             <InputField
               type="text"
               name="price"
@@ -533,6 +560,10 @@ function Forma({ handleClose }) {
           </DownloadContainer>
           <InputBox>
             <CommentsContainer>
+               <Validations
+              className={formSell.sellSecondForm.comment.match(/^(.{8,120})?$/) ? "invalid" : ""}>
+              Please enter between 8 and 120 symbols
+            </Validations>
               <Comments
                 name="comment"
                 type="text"
@@ -557,7 +588,7 @@ function Forma({ handleClose }) {
       {formType === "foundFirstForm" && (
         <FormContainer onSubmit={handleFoundSubmit}>
           <AddPhoto>
-            Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
+            Lorem ipsum dolor sit a Lorem ipsum dolor sit amet,
             consectetur
           </AddPhoto>
           <Button
@@ -581,6 +612,10 @@ function Forma({ handleClose }) {
             <InputLable htmlFor="title">
               Title of ad <span>*</span>
             </InputLable>
+             <Validations
+              className={formFound.foundFirstForm.title.match(/^([a-zA-Z]{2,48})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 48 letters
+            </Validations>
             <InputField
               type="text"
               name="title"
@@ -593,6 +628,10 @@ function Forma({ handleClose }) {
           </InputBox>
           <InputBox>
             <InputLable htmlFor="name">Name pet</InputLable>
+             <Validations
+              className={formFound.foundFirstForm.name.match(/^([a-zA-Z]{2,16})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 16 letters
+            </Validations>
             <InputField
               type="text"
               name="name"
@@ -606,15 +645,20 @@ function Forma({ handleClose }) {
           <InputBox>
             <InputLable htmlFor="date">Date of birth</InputLable>
             <InputField
-              type="date"
+            type="date"
               name="date"
-              value={formFound.foundFirstForm.date}
+              value={formFound.foundFirstForm.date}            
               onChange={handleFoundFirstFormChange}
-            // placeholder="DD/MM/YYYY/"
+              placeholder={today}
+              max={today}
             />
           </InputBox>
           <InputBox>
             <InputLable htmlFor="breed">Breed</InputLable>
+            <Validations
+              className={formFound.foundFirstForm.breed.match(/^([a-zA-Z]{2,16})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 16 letters
+            </Validations>
             <InputField
               type="text"
               name="breed"
@@ -682,6 +726,10 @@ function Forma({ handleClose }) {
             <InputLable htmlFor="location">
               Location<span>*</span>:
             </InputLable>
+            <Validations
+              className={formFound.foundSecondForm.location.match(/^$|^[a-zA-Z\s]+,[a-zA-Z\s]+$/) ? "invalid" : ""}>
+              Please enter for exemple: Brovary, Kyiv 
+            </Validations>
             <InputField
               type="text"
               name="location"
@@ -707,6 +755,10 @@ function Forma({ handleClose }) {
           </DownloadContainer>
           <InputBox>
             <CommentsContainer>
+                <Validations
+              className={formFound.foundSecondForm.comment.match(/^(.{8,120})?$/) ? "invalid" : ""}>
+              Please enter between 8 and 120 symbols
+            </Validations>
               <Comments
                 name="comment"
                 type="text"
@@ -755,6 +807,10 @@ function Forma({ handleClose }) {
             <InputLable htmlFor="title">
               Title of ad <span>*</span>
             </InputLable>
+             <Validations
+              className={formGoodHands.goodHandsFirstForm.title.match(/^([a-zA-Z]{2,48})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 48 letters
+            </Validations>
             <InputField
               type="text"
               name="title"
@@ -767,6 +823,10 @@ function Forma({ handleClose }) {
           </InputBox>
           <InputBox>
             <InputLable htmlFor="name">Name pet</InputLable>
+             <Validations
+              className={formGoodHands.goodHandsFirstForm.name.match(/^([a-zA-Z]{2,16})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 16 letters
+            </Validations>
             <InputField
               type="text"
               name="name"
@@ -780,15 +840,20 @@ function Forma({ handleClose }) {
           <InputBox>
             <InputLable htmlFor="date">Date of birth</InputLable>
             <InputField
-              type="date"
+             type="date"
               name="date"
-              value={formGoodHands.goodHandsFirstForm.date}
+               value={formGoodHands.goodHandsFirstForm.date}
               onChange={handleGoodHandsFirstFormChange}
-            // placeholder="DD/MM/YYYY/"
+              placeholder={today}
+              max={today}
             />
           </InputBox>
           <InputBox>
             <InputLable htmlFor="breed">Breed</InputLable>
+            <Validations
+              className={formGoodHands.goodHandsFirstForm.breed.match(/^([a-zA-Z]{2,16})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 16 letters
+            </Validations>
             <InputField
               type="text"
               name="breed"
@@ -855,6 +920,10 @@ function Forma({ handleClose }) {
             <InputLable htmlFor="location">
               Location<span>*</span>:
             </InputLable>
+              <Validations
+              className={formGoodHands.goodHandsSecondForm.location.match(/^$|^[a-zA-Z\s]+,[a-zA-Z\s]+$/) ? "invalid" : ""}>
+              Please enter for exemple: Brovary, Kyiv 
+            </Validations>
             <InputField
               type="text"
               name="location"
@@ -883,6 +952,10 @@ function Forma({ handleClose }) {
           </DownloadContainer>
           <InputBox>
             <CommentsContainer>
+              <Validations
+              className={formGoodHands.goodHandsSecondForm.comment.match(/^(.{8,120})?$/) ? "invalid" : ""}>
+              Please enter between 8 and 120 symbols
+            </Validations>
               <Comments
                 name="comment"
                 type="text"

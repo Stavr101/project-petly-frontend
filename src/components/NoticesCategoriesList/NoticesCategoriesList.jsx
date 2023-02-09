@@ -3,13 +3,13 @@ import { useLocation, useParams, useSearchParams } from "react-router-dom";
 
 import { fetchAdsByCategory, fetchFavorite, fetchOwnAds } from "api/notices";
 
-import Error from "components/Error/Error";
+// import Error from "components/Error/Error";
 import { Typography, Box, Link } from "@mui/material";
 import NoticeCategoryItem from "components/NoticeCategoryItem/NoticeCategoryItem";
 import { List } from "components/NoticesCategoriesList/NoticesCategoriesList.slyled";
 import { getUserInfo } from "redux/users/operations";
 import { useDispatch } from "react-redux";
-import Loader from "shared/loader/Loader";
+// import Loader from "shared/loader/Loader";
 // import { getUserData } from "redux/users/selectors";
 
 const NoticesCategoriesList = () => {
@@ -23,16 +23,18 @@ const NoticesCategoriesList = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const search = searchParams.get("search") ?? "";
-  let filteredPets = pets.filter((pet) => pet.categoryName === categoryName);
+  // let filteredPets = pets.filter((pet) => pet.categoryName === categoryName);
 
   useEffect(() => {
     setPets([]);
     setPageNumber(1);
   }, [search, categoryName]);
 
-  useEffect(() => {
-    dispatch(getUserInfo());
-  }, [dispatch]);
+  // console.log("categoryName", categoryName);
+
+  // useEffect(() => {
+  //   dispatch(getUserInfo());
+  // }, [dispatch]);
 
   useEffect(() => {
     if (location.pathname.includes("favorite")) {
@@ -92,7 +94,7 @@ const NoticesCategoriesList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryName, search, pageNumber]);
 
-  console.log(loading, hasMore, error, pageNumber, pets);
+  // console.log(loading, hasMore, error, pageNumber, pets);
   const observer = useRef();
 
   const lastNewsElementRef = useCallback(
@@ -109,16 +111,14 @@ const NoticesCategoriesList = () => {
     [loading, hasMore]
   );
 
-  // console.log(search);
-
   return (
     <>
-      {/* {!pets && (
+      {/* {!pets.length && (
         <Typography variant="h5" component="p" textAlign={"center"}>
           Sorry, there are no ads
         </Typography>
       )} */}
-      {pets.length && (
+      {Boolean(pets.length) && (
         <List id="top">
           {pets.map((item, index) => {
             if (pets.length === index + 1) {
@@ -126,11 +126,20 @@ const NoticesCategoriesList = () => {
                 <NoticeCategoryItem
                   key={item._id}
                   data={item}
+                  array={pets}
+                  setArray={setPets}
                   lastNewsElementRef={lastNewsElementRef}
                 />
               );
             } else {
-              return <NoticeCategoryItem key={item._id} data={item} />;
+              return (
+                <NoticeCategoryItem
+                  key={item._id}
+                  array={pets}
+                  setArray={setPets}
+                  data={item}
+                />
+              );
             }
           })}
         </List>

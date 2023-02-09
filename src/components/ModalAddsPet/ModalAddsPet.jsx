@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { addPet } from "redux/pets/operations";
 
 import {
+  Validations,
   InputBox,
   InputLable,
   InputField,
@@ -23,7 +24,7 @@ import * as Yup from "yup";
 // import { AddsPetValidate } from "helpers/validationSchema/addsPetValidate";
 function Forma({ handleClose }) {
   const dispatch = useDispatch();
-  const [errors, setErrors] = useState({});
+  // const [errors, setErrors] = useState({});
   const [form, setForm] = useState({
     firstForm: {
       name: "",
@@ -37,6 +38,7 @@ function Forma({ handleClose }) {
     },
   });
 
+  const today = new Date().toISOString().substr(0, 10);
   const [formType, setFormType] = useState("firstForm");
 
   const handleFirstFormChange = (event) => {
@@ -109,12 +111,19 @@ function Forma({ handleClose }) {
   const hasSecondFormAllData = Object.values(form.secondForm).every(
     (value) => value
   );
+
+
+
   return (
     <>
       {formType === "firstForm" && (
         <FormContainer onSubmit={handleSubmit} encType="multipart/form-data">
           <InputBox>
             <InputLable htmlFor="name">Name pet</InputLable>
+            <Validations
+              className={form.firstForm.name.match(/^([a-zA-Z]{2,16})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 16 letters
+            </Validations>
             <InputField
               type="text"
               name="name"
@@ -122,21 +131,30 @@ function Forma({ handleClose }) {
               value={form.firstForm.name}
               onChange={handleFirstFormChange}
               placeholder="Name pet"
+              // className={form.firstForm.name.match(/^[a-zA-Z]{2,16}$/) ? "invalid" : ""}
             />
-            {/* {errors.name && <div>{errors.secondForm.name}</div>} */}
+     
+
           </InputBox>
           <InputBox>
             <InputLable htmlFor="breed">Date of birth</InputLable>
             <InputField
               type="date"
               name="date"
-              value={form.firstForm.date}
+               value={form.firstForm.date}
               onChange={handleFirstFormChange}
-            // placeholder="DD/MM/YYYY/"
+              placeholder={today}
+              max={today}
+
+
             />
           </InputBox>
           <InputBox>
             <InputLable htmlFor="breed">Breed</InputLable>
+            <Validations
+              className={form.firstForm.breed.match(/^([a-zA-Z]{2,16})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 16 letters
+            </Validations>
             <InputField
               type="text"
               name="breed"
@@ -178,6 +196,10 @@ function Forma({ handleClose }) {
           </DownloadContainer>
           <InputBox>
             <CommentsContainer>
+               <Validations
+              className={form.secondForm.comment.match(/^(.{8,120})?$/) ? "invalid" : ""}>
+              Please enter between 8 and 120 symbols
+            </Validations>
               <Comments
                 name="comment"
                 type="text"

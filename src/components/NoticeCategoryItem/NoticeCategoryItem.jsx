@@ -185,7 +185,7 @@ export default function NoticeCategoryItem({ data, lastNewsElementRef }) {
             >
               Learn more
             </ItemButtonNoticesLearnMore>
-            {owner === ownPets && (
+            { favorite && owner ? (
               <ItemButtonNoticesDelete
                 type="submit"
                 onClick={() => removeOwnPet(_id)}
@@ -195,7 +195,7 @@ export default function NoticeCategoryItem({ data, lastNewsElementRef }) {
                 </ItemButtonNoticesDeleteSpan>
                 <DeleteSvg />
               </ItemButtonNoticesDelete>
-            )}
+            ) : null}
           </ItemButtonNotices>
         </ItemNoticesWrap>
       </ItemNoticesLi>

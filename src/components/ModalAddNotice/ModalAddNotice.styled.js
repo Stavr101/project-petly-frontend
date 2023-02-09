@@ -110,13 +110,12 @@ export const AddPhoto = styled.p`
 font-size: 16px;
   text-align: center;
   margin-bottom: 20px;
-  
   line-height: 24px;
   letter-spacing: -0.01em;
   color: #111111;
         @media (min-width: 768px) {
-    width: 394px;
-font-size: 20px;
+  width: 394px;
+  font-size: 20px;
   }
 `;
 
@@ -144,13 +143,11 @@ border-radius: 20px;
 cursor: pointer;
  margin-bottom: 20px;
   padding: 0;
- 
   border: #fdf7f2;
   outline: none;
   background: #fdf7f2;
   color: rgba(27, 27, 27, 0.6);
-
-background-image: url(${crossPhoto});
+  background-image: url(${crossPhoto});
   background-size: 48px 48px;
   background-repeat: no-repeat;
   background-position: center center;
@@ -171,21 +168,18 @@ border-radius: 20px;
 animation: ${slideInPhoto} 300ms ease-out;
  @media (min-width: 768px) {
     width: 182px;
-height: 182px;
+    height: 182px;
   }
 `
 
 export const ModalContainer = styled.div`
-
-/* margin-top:10px; */
+  width: 98%;
+  height: 98%;
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: white;
-  /* margin-left: auto;
-  margin-right: auto;
-  max-width: 280px; */
   border-radius: 16px;
   animation: ${slideIn} 300ms ease-out;
   overflow-y: auto;
@@ -204,6 +198,7 @@ export const ModalContainer = styled.div`
 
   @media (min-width: 768px) {
     width: 608px;
+    height:94%;
   /* margin-top:60px; */
   }
 `;
@@ -227,7 +222,7 @@ export const FormContainer = styled.form`
 `;
 export const NextFormContainer = styled.form`
   width: 240px;
-  height: 440px;
+  height: 540px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -237,24 +232,14 @@ export const NextFormContainer = styled.form`
   }
 `
 export const CommentsContainer = styled.div`
-/* width: 240px; */
-  /* 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  @media (min-width: 768px) {
-    max-width: 448px;
-  } */
-`
 
+`
 
 export const InputBox = styled.div`
 
 `;
 
 export const InputLable = styled.label`
-  /* font-family: "Manrope";
-  font-style: normal; */
   color: #111111;
   font-weight: 500;
   font-size: 18px;
@@ -264,7 +249,7 @@ export const InputLable = styled.label`
 export const InputField = styled.input`
   margin-bottom: 20px;
   padding: 11px 14px;
-  width: 240px;
+  min-width: 240px;
   height: 40px;
   border-radius: 20px;
   outline: none;
@@ -328,7 +313,6 @@ export const Comments = styled.textarea`
 `;
 
 export const ButtonContainer = styled.div`
-  /* display: flex; */
   margin-top: 40px;
   justify-content: space-between;
   width: 100%;

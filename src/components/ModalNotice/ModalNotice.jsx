@@ -48,13 +48,6 @@ export default function ModalNotice({
   const [error, setError] = useState(null);
 
   const { user } = useAuth();
-  // console.log("user", user);
-
-  // const isUser = useSelector(selectUser);
-  // console.log("isUser", isUser);
-  // console.log("isUser._id", isUser._id);
-  // console.log("pet.owner", pet.owner);
-  // console.log("pet", pet);
 
   useEffect(() => {
     // console.log("1");
@@ -212,7 +205,7 @@ export default function ModalNotice({
               <ModalNoticeButtonsItem>
                 <ModalNoticeBtnFavorite
                   type="button"
-                  onClick={handleChangeFavorite}
+                  onClick={() => handleChangeFavorite(petId)}
                 >
                   {!isFavorite ? "Add to " : "Remove from "}
                   <HeartSvgSpan>

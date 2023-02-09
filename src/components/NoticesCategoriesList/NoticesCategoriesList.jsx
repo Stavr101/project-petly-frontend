@@ -73,6 +73,7 @@ const NoticesCategoriesList = () => {
   }, [location.pathname, search]);
 
   useEffect(() => {
+     if (!categoryName) return 
     const fetchPets = async () => {
       setLoading(true);
       setError(null);

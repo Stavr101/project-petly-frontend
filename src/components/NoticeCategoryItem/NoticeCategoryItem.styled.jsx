@@ -185,4 +185,9 @@ export const ItemButtonNoticesHeartButton = styled.button`
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(2px);
   padding: 8px;
+  transition: all 150ms linear 0s;
+
+  :hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
 `;

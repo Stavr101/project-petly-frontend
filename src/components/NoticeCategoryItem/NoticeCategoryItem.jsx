@@ -1,7 +1,7 @@
 import DeleteSvg from "./NoticesDeleteSvg";
 import HeartSvg from "./NoticesHeartSvg";
 import HeartFavorite from "./NoticesHeartFavoriteSvg";
-import { addPetToFavorite, removeOwnPet } from "api/notices";
+import { addPetToFavorite, removeFavoritePet, removeOwnPet } from "api/notices";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { useAuth } from 'hooks';
 
@@ -25,11 +25,10 @@ import {
 } from "./NoticeCategoryItem.styled";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { useDispatch } from 'react-redux';
 import ModalNotice from "components/ModalNotice/ModalNotice";
 import { selectUser } from "redux/auth/selectors";
 import { getUserData } from "redux/users/selectors";
-// import { getUserInfo } from "redux/users/operations";
-import { removeFavoritePet } from "api/notices";
 import { useLocation } from "react-router-dom";
 
 export default function NoticeCategoryItem({
@@ -54,13 +53,20 @@ export default function NoticeCategoryItem({
   const [open, setOpen] = useState(false);
   const isUser = useSelector(selectUser);
   const pet = useSelector(getUserData);
-  // const favoritePets = pet.user.favorite;
+  const dispatch = useDispatch();
   const ownPets = pet.user._id;
+
+  console.log(pet)
+
   const locationFavorite = useLocation();
+  const locationOwn = useLocation();
   const { isLoggedIn } = useAuth();
 
-  // const [isFavorite, setIsFavorite] = useState(favoritePets.includes(_id));
+  // console.log(owner)
+  // console.log(pet)
+
   const [isFavorite, setIsFavorite] = useState(favorite);
+  const [isOwn, setIsOwn] = useState(owner);
 
   const onLearnMoreClick = () => {
     setOpen(true);
@@ -100,16 +106,11 @@ export default function NoticeCategoryItem({
     }
     return "< 1 month";
   };
-  // useEffect(() => {}, []);
 
   async function addFavorite(_id) {
     if (isUser.email === null) {
       return Notify.failure("Must be authorization");
     }
-    // if (isDuplicate(_id)) {
-    //   setIsFavorite(false);
-    //   return deletePet(_id);
-    // }
     try {
       const res = await addPetToFavorite(_id);
       setIsFavorite(true);
@@ -150,9 +151,21 @@ export default function NoticeCategoryItem({
     }
   };
 
-  // function isDuplicate(petId) {
-  //   return favoritePets?.find((pet) => pet === petId);
-  // }
+  async function removeFromOwn(_id) {
+    try {
+      await removeFavoritePet(_id);
+      const isOnOwn = isOwn;
+
+      if (isOnOwn) {
+        const arrayNew = array.filter((item) => item._id !== _id);
+        console.log(isOnOwn)
+        setArray(arrayNew);
+      }
+      return removeOwnPet(_id);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <>
@@ -215,7 +228,7 @@ export default function NoticeCategoryItem({
             {isLoggedIn && owner === ownPets && (
               <ItemButtonNoticesDelete
                 type="submit"
-                onClick={() => removeOwnPet(_id)}
+                onClick={() => removeFromOwn(_id)}
               >
                 <ItemButtonNoticesDeleteSpan>
                   Delete

@@ -3,6 +3,7 @@ import HeartSvg from "./NoticesHeartSvg";
 import HeartFavorite from "./NoticesHeartFavoriteSvg";
 import { addPetToFavorite, removeOwnPet } from "api/notices";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
+import { useAuth } from 'hooks';
 
 import {
   ItemNoticesImgDiv,
@@ -22,7 +23,7 @@ import {
   ItemButtonNoticesHeartButton,
   ItemButtonNoticesDeleteSpan,
 } from "./NoticeCategoryItem.styled";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import ModalNotice from "components/ModalNotice/ModalNotice";
 import { selectUser } from "redux/auth/selectors";
@@ -56,12 +57,10 @@ export default function NoticeCategoryItem({
   // const favoritePets = pet.user.favorite;
   const ownPets = pet.user._id;
   const locationFavorite = useLocation();
+  const { isLoggedIn } = useAuth();
 
   // const [isFavorite, setIsFavorite] = useState(favoritePets.includes(_id));
   const [isFavorite, setIsFavorite] = useState(favorite);
-
-  // console.log("favorite", favorite);
-  // console.log("data", data);
 
   const onLearnMoreClick = () => {
     setOpen(true);
@@ -213,7 +212,7 @@ export default function NoticeCategoryItem({
               Learn more
             </ItemButtonNoticesLearnMore>
 
-            {owner === ownPets && (
+            {isLoggedIn && owner === ownPets && (
               <ItemButtonNoticesDelete
                 type="submit"
                 onClick={() => removeOwnPet(_id)}

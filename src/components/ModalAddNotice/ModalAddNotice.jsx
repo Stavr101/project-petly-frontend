@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { addPetToCategory } from "api/notices";
 
 import {
+  Validations,
   InputBox,
   InputLable,
   InputField,
@@ -398,6 +399,10 @@ function Forma({ handleClose }) {
             <InputLable htmlFor="title">
               Title of ad <span>*</span>
             </InputLable>
+            <Validations
+              className={formSell.sellFirstForm.title.match(/^([a-zA-Z]{2,48})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 48 letters
+            </Validations>
             <InputField
               type="text"
               name="title"
@@ -410,6 +415,10 @@ function Forma({ handleClose }) {
           </InputBox>
           <InputBox>
             <InputLable htmlFor="name">Name pet</InputLable>
+            <Validations
+              className={formSell.sellFirstForm.name.match(/^([a-zA-Z]{2,16})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 16 letters
+            </Validations>
             <InputField
               type="text"
               name="name"
@@ -434,6 +443,10 @@ function Forma({ handleClose }) {
           </InputBox>
           <InputBox>
             <InputLable htmlFor="breed">Breed</InputLable>
+            <Validations
+              className={formSell.sellFirstForm.breed.match(/^([a-zA-Z]{2,16})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 16 letters
+            </Validations>
             <InputField
               type="text"
               name="breed"
@@ -501,6 +514,10 @@ function Forma({ handleClose }) {
             <InputLable htmlFor="location">
               Location<span>*</span>:
             </InputLable>
+            <Validations
+              className={formSell.sellSecondForm.location.match(/^$|^[a-zA-Z\s]+,[a-zA-Z\s]+$/) ? "invalid" : ""}>
+              Please enter for exemple: Brovary, Kyiv 
+            </Validations>
             <InputField
               type="text"
               name="location"
@@ -515,6 +532,10 @@ function Forma({ handleClose }) {
             <InputLable htmlFor="price">
               Price<span>*</span>:
             </InputLable>
+               <Validations
+              className={formSell.sellSecondForm.price.match(/^(?!0)\d+$|^$/) ? "invalid" : ""}>
+              Please enter price, for exemple: 340 
+            </Validations>
             <InputField
               type="text"
               name="price"
@@ -539,6 +560,10 @@ function Forma({ handleClose }) {
           </DownloadContainer>
           <InputBox>
             <CommentsContainer>
+               <Validations
+              className={formSell.sellSecondForm.comment.match(/^(.{8,120})?$/) ? "invalid" : ""}>
+              Please enter between 8 and 120 symbols
+            </Validations>
               <Comments
                 name="comment"
                 type="text"
@@ -587,6 +612,10 @@ function Forma({ handleClose }) {
             <InputLable htmlFor="title">
               Title of ad <span>*</span>
             </InputLable>
+             <Validations
+              className={formFound.foundFirstForm.title.match(/^([a-zA-Z]{2,48})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 48 letters
+            </Validations>
             <InputField
               type="text"
               name="title"
@@ -599,6 +628,10 @@ function Forma({ handleClose }) {
           </InputBox>
           <InputBox>
             <InputLable htmlFor="name">Name pet</InputLable>
+             <Validations
+              className={formFound.foundFirstForm.name.match(/^([a-zA-Z]{2,16})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 16 letters
+            </Validations>
             <InputField
               type="text"
               name="name"
@@ -622,6 +655,10 @@ function Forma({ handleClose }) {
           </InputBox>
           <InputBox>
             <InputLable htmlFor="breed">Breed</InputLable>
+            <Validations
+              className={formFound.foundFirstForm.breed.match(/^([a-zA-Z]{2,16})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 16 letters
+            </Validations>
             <InputField
               type="text"
               name="breed"
@@ -689,6 +726,10 @@ function Forma({ handleClose }) {
             <InputLable htmlFor="location">
               Location<span>*</span>:
             </InputLable>
+            <Validations
+              className={formFound.foundSecondForm.location.match(/^$|^[a-zA-Z\s]+,[a-zA-Z\s]+$/) ? "invalid" : ""}>
+              Please enter for exemple: Brovary, Kyiv 
+            </Validations>
             <InputField
               type="text"
               name="location"
@@ -714,6 +755,10 @@ function Forma({ handleClose }) {
           </DownloadContainer>
           <InputBox>
             <CommentsContainer>
+                <Validations
+              className={formFound.foundSecondForm.comment.match(/^(.{8,120})?$/) ? "invalid" : ""}>
+              Please enter between 8 and 120 symbols
+            </Validations>
               <Comments
                 name="comment"
                 type="text"
@@ -762,6 +807,10 @@ function Forma({ handleClose }) {
             <InputLable htmlFor="title">
               Title of ad <span>*</span>
             </InputLable>
+             <Validations
+              className={formGoodHands.goodHandsFirstForm.title.match(/^([a-zA-Z]{2,48})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 48 letters
+            </Validations>
             <InputField
               type="text"
               name="title"
@@ -774,6 +823,10 @@ function Forma({ handleClose }) {
           </InputBox>
           <InputBox>
             <InputLable htmlFor="name">Name pet</InputLable>
+             <Validations
+              className={formGoodHands.goodHandsFirstForm.name.match(/^([a-zA-Z]{2,16})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 16 letters
+            </Validations>
             <InputField
               type="text"
               name="name"
@@ -797,6 +850,10 @@ function Forma({ handleClose }) {
           </InputBox>
           <InputBox>
             <InputLable htmlFor="breed">Breed</InputLable>
+            <Validations
+              className={formGoodHands.goodHandsFirstForm.breed.match(/^([a-zA-Z]{2,16})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 16 letters
+            </Validations>
             <InputField
               type="text"
               name="breed"
@@ -863,6 +920,10 @@ function Forma({ handleClose }) {
             <InputLable htmlFor="location">
               Location<span>*</span>:
             </InputLable>
+              <Validations
+              className={formGoodHands.goodHandsSecondForm.location.match(/^$|^[a-zA-Z\s]+,[a-zA-Z\s]+$/) ? "invalid" : ""}>
+              Please enter for exemple: Brovary, Kyiv 
+            </Validations>
             <InputField
               type="text"
               name="location"
@@ -891,6 +952,10 @@ function Forma({ handleClose }) {
           </DownloadContainer>
           <InputBox>
             <CommentsContainer>
+              <Validations
+              className={formGoodHands.goodHandsSecondForm.comment.match(/^(.{8,120})?$/) ? "invalid" : ""}>
+              Please enter between 8 and 120 symbols
+            </Validations>
               <Comments
                 name="comment"
                 type="text"

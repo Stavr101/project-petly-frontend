@@ -17,6 +17,16 @@ const slideIn = keyframes`
   }
 `;
 
+export const Validations = styled.p`
+color: red;
+font-size: 10px;
+opacity: 1;
+margin-top: -8px;
+  &.invalid {
+    opacity: 0;}
+
+`
+
 export const InputMaleButton = styled.button`
 background-image: url(${male});
 width: 60px;
@@ -249,7 +259,7 @@ export const InputLable = styled.label`
   font-weight: 500;
   font-size: 18px;
   line-height: 36px;
-`;
+ `;
 
 export const InputField = styled.input`
   margin-bottom: 20px;
@@ -259,8 +269,9 @@ export const InputField = styled.input`
   border-radius: 20px;
   outline: none;
   background: #fdf7f2;
+  font-size: 14px;
   border: 1px solid rgba(245, 146, 86, 0.5);
-  color: rgba(27, 27, 27, 0.6);
+  color: rgba(27, 27, 27, 0.8);
 
   @media (min-width: 768px) {
     width: 448px;
@@ -273,7 +284,7 @@ export const InputField = styled.input`
     font-family: "Manrope";
     font-weight: 400;
     font-size: 14px;
-    color: rgba(27, 27, 27, 0.6);
+    color: rgba(27, 27, 27, 0.7);
   }
 
   :hover,
@@ -291,8 +302,9 @@ export const Comments = styled.textarea`
   border-radius: 20px;
   outline: none;
   background: #fdf7f2;
+  font-size: 14px;
   border: 1px solid rgba(245, 146, 86, 0.5);
-  color: rgba(27, 27, 27, 0.6);
+  color: rgba(27, 27, 27, 0.9);
 
   @media (min-width: 768px) {
     width: 448px;
@@ -305,7 +317,7 @@ export const Comments = styled.textarea`
     font-family: "Manrope";
     font-weight: 400;
     font-size: 14px;
-    color: rgba(27, 27, 27, 0.6);
+    color: rgba(27, 27, 27, 0.7);
   }
 
   :hover,

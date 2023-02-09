@@ -222,7 +222,7 @@ export default function NoticeCategoryItem({
                 </ItemButtonNoticesDeleteSpan>
                 <DeleteSvg />
               </ItemButtonNoticesDelete>
-            ) : null}
+            )}
           </ItemButtonNotices>
         </ItemNoticesWrap>
       </ItemNoticesLi>

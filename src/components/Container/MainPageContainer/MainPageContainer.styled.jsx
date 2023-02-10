@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const MainPageContainerBlock = styled.div`
-  position: relative;
   margin: 0 auto;
   max-width: 100%;
 

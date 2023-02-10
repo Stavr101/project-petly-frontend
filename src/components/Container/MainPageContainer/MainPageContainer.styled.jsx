@@ -20,4 +20,4 @@ export const MainPageContainerBlock = styled.div`
     width: 1280px;
     padding: 0 16px 16px;
   }
-`
+`;

@@ -66,6 +66,7 @@ min-height: calc(100vh - 230px);
 
 @media (min-width: 1280px) {
     background: none;
+    min-height: 0;
 }
 `
 export const SectionHero = styled.section`
@@ -86,6 +87,7 @@ background-image: url(${BgColoredMob1x});
     background-image: url(${BgColoredTab2x});
     background-position: top;
     background-size: 140%; 
+    min-height: calc(100vh - 144px);
 }
 
 // @media screen and (min-width: 768px),
@@ -99,9 +101,9 @@ background-image: url(${BgColoredMob1x});
 
 @media (min-width: 1280px) {
     background-image: url(${MainImgDesk2x}), url(${HeartImg}), url(${BgColoredDesk2x});
-    background-size: contain, 5%, 100% auto; 
-    background-position: 100% 100%, top 3% right 40%, bottom;
-    min-height: calc(100vh - 130px);
+    background-size: contain, 6%, 100% auto; 
+    background-position: 100% 100%, top 5% right 40%, bottom;
+    min-height: calc(100vh - 121px);
 }
 
 // @media screen and (min-width: 1280px),

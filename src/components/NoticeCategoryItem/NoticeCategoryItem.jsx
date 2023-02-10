@@ -3,7 +3,7 @@ import HeartSvg from "./NoticesHeartSvg";
 import HeartFavorite from "./NoticesHeartFavoriteSvg";
 import { addPetToFavorite, removeFavoritePet, removeOwnPet } from "api/notices";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
-import { useAuth } from 'hooks';
+import { useAuth } from "hooks";
 
 import {
   ItemNoticesImgDiv,
@@ -25,7 +25,7 @@ import {
 } from "./NoticeCategoryItem.styled";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import ModalNotice from "components/ModalNotice/ModalNotice";
 import { selectUser } from "redux/auth/selectors";
 import { getUserData } from "redux/users/selectors";
@@ -51,22 +51,21 @@ export default function NoticeCategoryItem({
   } = data;
 
   const [open, setOpen] = useState(false);
-  const isUser = useSelector(selectUser);
+  // const isUser = useSelector(selectUser);
   const pet = useSelector(getUserData);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const ownPets = pet.user._id;
 
-  console.log(pet)
+  // console.log(pet);
 
   const locationFavorite = useLocation();
-  const locationOwn = useLocation();
+  // const locationOwn = useLocation();
   const { isLoggedIn } = useAuth();
-
-  // console.log(owner)
-  // console.log(pet)
+  const { user } = useAuth();
 
   const [isFavorite, setIsFavorite] = useState(favorite);
-  const [isOwn, setIsOwn] = useState(owner);
+  // const [isOwn, setIsOwn] = useState(owner);
+  // console.log("owner", owner);
 
   const onLearnMoreClick = () => {
     setOpen(true);
@@ -108,14 +107,13 @@ export default function NoticeCategoryItem({
   };
 
   async function addFavorite(_id) {
-    if (isUser.email === null) {
+    if (!isLoggedIn) {
       return Notify.failure("Must be authorization");
     }
     try {
       const res = await addPetToFavorite(_id);
       setIsFavorite(true);
 
-      // console.log(res);
       Notify.success("Pet add to your'e favorite");
       return res;
     } catch (error) {
@@ -124,7 +122,7 @@ export default function NoticeCategoryItem({
   }
 
   async function removeFromFavorite(_id) {
-    if (isUser.email === null) {
+    if (!isLoggedIn) {
       return Notify.failure("Must be authorization");
     }
     try {
@@ -140,7 +138,6 @@ export default function NoticeCategoryItem({
     } catch (error) {
       console.log(error);
     }
-    setIsFavorite(false);
   }
 
   const handleChangeFavorite = (id) => {
@@ -151,17 +148,32 @@ export default function NoticeCategoryItem({
     }
   };
 
-  async function removeFromOwn(_id) {
-    try {
-      await removeFavoritePet(_id);
-      const isOnOwn = isOwn;
+  // async function removeFromOwn(_id) {
+  //   try {
+  //     // await removeFavoritePet(_id);
+  //     const isOnOwn = isOwn;
 
-      if (isOnOwn) {
+  //     if (isOnOwn) {
+  //       const arrayNew = array.filter((item) => item._id !== _id);
+  //       console.log(isOnOwn);
+  //       setArray(arrayNew);
+  //     }
+  //     return removeOwnPet(_id);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+
+  async function removeFromOwn(_id) {
+    if (!isLoggedIn) {
+      return Notify.failure("Must be authorization");
+    }
+    try {
+      if (owner === user._id) {
+        removeOwnPet(_id);
         const arrayNew = array.filter((item) => item._id !== _id);
-        console.log(isOnOwn)
         setArray(arrayNew);
       }
-      return removeOwnPet(_id);
     } catch (error) {
       console.log(error);
     }
@@ -186,7 +198,6 @@ export default function NoticeCategoryItem({
             </ItemPositionNoticesDivParagraf>
             <ItemButtonNoticesHeartButton
               type="button"
-              // onClick={() => addFavorite(_id)}
               onClick={() => handleChangeFavorite(_id)}
             >
               {isFavorite ? <HeartFavorite /> : <HeartSvg />}
@@ -219,7 +230,6 @@ export default function NoticeCategoryItem({
           <ItemButtonNotices>
             <ItemButtonNoticesLearnMore
               type="submit"
-              // onClick={() => onLearnMore(_id)}
               onClick={onLearnMoreClick}
             >
               Learn more
@@ -245,7 +255,7 @@ export default function NoticeCategoryItem({
           setShowModal={setOpen}
           isFavorite={isFavorite}
           handleChangeFavorite={handleChangeFavorite}
-          handleDeletePet={removeOwnPet}
+          handleDeletePet={removeFromOwn}
         />
       )}
     </>

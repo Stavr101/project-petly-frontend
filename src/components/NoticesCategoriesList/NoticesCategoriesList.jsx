@@ -30,8 +30,6 @@ const NoticesCategoriesList = () => {
     setPageNumber(1);
   }, [search, categoryName]);
 
-
-
   // console.log("categoryName", categoryName);
 
   useEffect(() => {
@@ -72,10 +70,8 @@ const NoticesCategoriesList = () => {
       fetchOwnPets();
       return;
     }
-  }, [location.pathname, search]);
 
-  useEffect(() => {
-     if (!categoryName) return 
+    //  if (!categoryName) return
     const fetchPets = async () => {
       setLoading(true);
       setError(null);
@@ -95,7 +91,7 @@ const NoticesCategoriesList = () => {
     };
     fetchPets();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [categoryName, search, pageNumber]);
+  }, [categoryName, search, pageNumber, location.pathname]);
 
   // console.log(loading, hasMore, error, pageNumber, pets);
   const observer = useRef();

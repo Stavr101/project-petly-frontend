@@ -4,7 +4,7 @@ import crossPhoto from "./ImgModalAddsPet/CrossForPhoto.png";
 
 const slideIn = keyframes`
   from {
-    transform: translateX(100%);
+    transform: translateX(0);
     opacity: 0;
   }
   to {
@@ -14,6 +14,14 @@ const slideIn = keyframes`
   }
 `;
 
+export const Validations = styled.p`
+color: red;
+font-size: 10px;
+opacity: 1;
+  &.invalid {
+    opacity: 0;}
+
+`
 
 export const AddPhoto = styled.p`
 
@@ -44,8 +52,10 @@ export const Download = styled.input`
 opacity: 0;
 width: 182px;
 height: 182px;
+
 `
 export const DownloadContainer = styled.div`
+
 width: 208px;
 height: 208px;
 border-radius: 20px;
@@ -63,9 +73,9 @@ cursor: pointer;
   background-size: 48px 48px;
   background-repeat: no-repeat;
   background-position: center center;
-    @media (min-width: 768px) {
-    width: 182px;
-height: 182px;
+  @media (min-width: 768px) {
+  width: 182px;
+  height: 182px;
   }
   :hover, :active
    {
@@ -73,17 +83,19 @@ height: 182px;
   }
 `
 export const Image = styled.img`
+margin-bottom: -165px;
 width: 208px;
 height: 208px;
 border-radius: 20px;
-animation: ${slideIn} 800ms ease-out;
+animation: ${slideIn} 300ms ease-out;
  @media (min-width: 768px) {
     width: 182px;
 height: 182px;
   }
-` 
+`
 
 export const ModalContainer = styled.div`
+margin-top: 60px;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -91,10 +103,9 @@ export const ModalContainer = styled.div`
   background-color: white;
   margin-left: auto;
   margin-right: auto;
-  max-width: 280px;
-  /* height: 530px; */
+  max-width: 98%;
   border-radius: 16px;
-  animation: ${slideIn} 600ms ease-out;
+  animation: ${slideIn} 300ms ease-out;
 
   @media (min-width: 768px) {
     max-width: 608px;
@@ -148,7 +159,7 @@ export const InputLable = styled.label`
   color: #111111;
   font-weight: 500;
   font-size: 18px;
-  line-height: 36px;
+  /* line-height: 36px; */
 `;
 
 export const InputField = styled.input`
@@ -160,7 +171,8 @@ export const InputField = styled.input`
   outline: none;
   background: #fdf7f2;
   border: 1px solid rgba(245, 146, 86, 0.5);
-  color: rgba(27, 27, 27, 0.6);
+  color: rgba(27, 27, 27, 0.8);
+ 
 
   @media (min-width: 768px) {
     width: 448px;
@@ -173,7 +185,7 @@ export const InputField = styled.input`
     font-family: "Manrope";
     font-weight: 400;
     font-size: 14px;
-    color: rgba(27, 27, 27, 0.6);
+    color: rgba(27, 27, 27, 0.7);
   }
 
   :hover,

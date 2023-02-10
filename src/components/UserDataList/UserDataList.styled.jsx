@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import userPhoto from 'images/UserPage/userPhoto.png';
+import plusUser from 'images/UserPage/plusUser.svg';
 
 export const UserInfoWrapper = styled.div`
   @media screen and (min-width: 768px) {
@@ -19,9 +19,15 @@ export const AvatarInfoWrapper = styled.div`
     position: relative;
   }
 `;
+export const FormWrapper = styled.form`
+  margin: 0 auto;
+`;
 
 export const AvatarImg = styled.img`
-  background-image: url(${userPhoto});
+  background-image: url(${plusUser});
+  background-color: ${p => p.theme.colors.background};
+  background-repeat: no-repeat;
+  background-position: center;
   object-fit: cover;
   border-radius: ${p => p.theme.radii.round};
   margin: auto auto 12px;
@@ -38,11 +44,12 @@ export const AvatarImg = styled.img`
   }
 `;
 
-export const LabelEditPhoto = styled.label`
+export const LabelEditPhoto = styled.button`
   display: flex;
   justify-content: flex-end;
   line-height: 1.83;
   margin-left: auto;
+  padding: 5px;
   cursor: pointer;
   padding-right: 10px;
   font-family: ${p => p.theme.fonts.manrope};
@@ -51,6 +58,8 @@ export const LabelEditPhoto = styled.label`
   line-height: 1.83;
   align-items: center;
   letter-spacing: 0.04em;
+  border: none;
+  background-color: inherit;
   img ~ &:hover {
     transform: scale(1.1);
   }
@@ -78,6 +87,7 @@ export const UserInfoList = styled.ul`
   @media screen and (min-width: 768px) {
     margin-bottom: 0;
     width: 100%;
+    margin-right: 52px;
   }
   @media screen and (min-width: 1280px) {
     margin-right: 0;

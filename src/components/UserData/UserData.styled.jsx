@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import userPhoto from 'images/UserPage/userPhoto.png';
 
 export const UserWrapper = styled.div``;
 

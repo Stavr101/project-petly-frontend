@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import {
-  UserInfoWrapper,
+  FormWrapper,
   UserInfoList,
   UserInfoItem,
   UserInfoTitle,
@@ -10,99 +10,157 @@ import {
   InputEditPhoto,
   SVG,
 } from './UserDataList.styled';
-// import UserDataItem from 'components/UserDataList/UserDataList.styled';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserData } from 'redux/users/selectors';
-import { getUserInfo } from 'redux/users/operations';
 import UserDataItem from 'components/UserDataItem/UserDataItem';
-import { selectUser } from 'redux/auth/selectors';
-import { updateUserData } from 'redux/users/operations';
-
+import { updateUserAvatar } from 'redux/users/operations';
 import editAvatar from 'images/UserPage/editAvatar.svg';
+import { regExp } from 'helpers/regExp/regExp';
 
 export default function UserDataList() {
   const dataUser = useSelector(getUserData);
-  const ava = useSelector(selectUser);
-  console.log(ava, 'ava');
-  console.log(dataUser, 'useselector');
-  const { name, email, birthday, phone, address, avatarUrl } = dataUser.user;
+  const { _id, name, email, birthday, phone, address, avatarUrl } =
+    dataUser.user;
+  const [activeBtn, setActiveBtn] = useState(true);
+  const updateBtn = useRef(null);
   const dispatch = useDispatch();
 
-  const handleAvatar = async e => {
+  const [ava, setAva] = useState(null);
+  const onButtonClick = e => {
     e.preventDefault();
-    const avatar = URL.createObjectURL(e.target.files[0]);
-    dispatch(updateUserData({ avatarUrl: avatar }));
+    updateBtn.current.click();
   };
+  const handleChange = e => {
+    e.preventDefault();
+    const av = URL.createObjectURL(e.target.files[0]);
+    const data = new FormData();
+    data.append('userAvatar', e.target.files[0]);
+    setAva(av);
+    dispatch(updateUserAvatar(data));
+  };
+
   return (
     <>
       <AvatarInfoWrapper>
-        {avatarUrl ? <AvatarImg src={avatarUrl} alt="avatar" /> : <AvatarImg />}
-        <form action="" id="avatar-add" encType="multipart/form-data">
-          <LabelEditPhoto>
+        <FormWrapper id="userAvatar" encType="multipart/form-data">
+          <InputEditPhoto
+            type="file"
+            name="userAvatar"
+            accept=".png, .jpg, .jpeg"
+            placeholder="Edit photo"
+            onChange={handleChange}
+            ref={updateBtn}
+          />
+          {avatarUrl ? (
+            <AvatarImg src={avatarUrl.secure_url} alt="uploaded" />
+          ) : (
+            <AvatarImg src={ava} />
+          )}
+          <LabelEditPhoto type="button" onClick={onButtonClick}>
             <SVG src={editAvatar} />
             Edit photo
-            <InputEditPhoto
-              type="file"
-              name="avatar"
-              accept=".png, .jpg, .jpeg"
-              placeholder="Edit photo"
-              onChange={handleAvatar}
-            />
           </LabelEditPhoto>
-        </form>
+        </FormWrapper>
       </AvatarInfoWrapper>
       <UserInfoList>
         <UserInfoItem>
           <UserInfoTitle>Name:</UserInfoTitle>
-          {name && (
+          {name ? (
             <UserDataItem
+              userIdD={_id}
               typeInput="name"
               nameInput="name"
               valueUser={name}
-
-              // onEdit={newValue => onEdit(newValue)}
+              activeBtn={activeBtn}
+              setActiveBtn={setActiveBtn}
+              paramValid={regExp.nameRegexp}
+            />
+          ) : (
+            <UserDataItem
+              typeInput="name"
+              activeBtn={activeBtn}
+              setActiveBtn={setActiveBtn}
             />
           )}
         </UserInfoItem>
         <UserInfoItem>
           <UserInfoTitle>Email:</UserInfoTitle>
-          {email && (
+          {email ? (
             <UserDataItem
               typeInput="email"
               nameInput="email"
               valueUser={email}
+              activeBtn={activeBtn}
+              setActiveBtn={setActiveBtn}
+              paramValid={regExp.email}
+            />
+          ) : (
+            <UserDataItem
+              typeInput="email"
+              activeBtn={activeBtn}
+              setActiveBtn={setActiveBtn}
             />
           )}
         </UserInfoItem>
         <UserInfoItem>
           <UserInfoTitle>Birthday:</UserInfoTitle>
-          {birthday && (
+          {birthday ? (
             <UserDataItem
               typeInput="date"
               nameInput="birthday"
-              valueUser={birthday}
+              valueUser={birthday.split('-').reverse().join('.')}
+              activeBtn={activeBtn}
+              setActiveBtn={setActiveBtn}
+              pattern={regExp.bdayRegexp}
+              min="1930-01-01"
+              max="2015-12-31"
+            />
+          ) : (
+            <UserDataItem
+              typeInput="date"
+              activeBtn={activeBtn}
+              setActiveBtn={setActiveBtn}
+              pattern={regExp.bdayRegexp}
             />
           )}
         </UserInfoItem>
 
         <UserInfoItem>
           <UserInfoTitle>Phone:</UserInfoTitle>
-          {phone && (
+          {phone ? (
             <UserDataItem
               typeInput="phone"
               nameInput="phone"
               valueUser={phone}
+              activeBtn={activeBtn}
+              setActiveBtn={setActiveBtn}
+              paramValid={regExp.phoneRegexpUser}
+            />
+          ) : (
+            <UserDataItem
+              typeInput="phone"
+              activeBtn={activeBtn}
+              setActiveBtn={setActiveBtn}
             />
           )}
         </UserInfoItem>
 
         <UserInfoItem>
           <UserInfoTitle>City:</UserInfoTitle>
-          {address && (
+          {address ? (
             <UserDataItem
               typeInput="text"
               nameInput="address"
               valueUser={address.split(',').splice(0, 1)}
+              activeBtn={activeBtn}
+              setActiveBtn={setActiveBtn}
+              paramValid={regExp.address}
+            />
+          ) : (
+            <UserDataItem
+              typeInput="text"
+              activeBtn={activeBtn}
+              setActiveBtn={setActiveBtn}
             />
           )}
         </UserInfoItem>

@@ -1,33 +1,33 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { getUserInfo, updateUserData, updateUserAvatar } from './operations';
+import { createSlice } from "@reduxjs/toolkit";
+import { getUserInfo, updateUserData, updateUserAvatar } from "./operations";
 
 const initialState = {
   user: {
-    _id: '',
-    name: '',
-    email: '',
-    phone: '',
-    birthday: '',
-    address: '',
-    avatarUrl: '',
+
+    _id: "",
+    name: "",
+    email: "",
+    phone: "",
+    birthday: "",
+    address: "",
+    avatarUrl: "",
+    favorite: [],
   },
   isLoading: false,
   error: null,
 };
 
-const isPending = state => {
+const isPending = (state) => {
   state.isLoading = true;
-  console.log('pending');
 };
 
 const isRejected = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
-  console.log('error');
 };
 
-const usersSlice = createSlice({
-  name: 'users',
+const userSlice = createSlice({
+  name: "user",
   initialState,
   extraReducers: {
     [getUserInfo.pending]: isPending,
@@ -46,9 +46,6 @@ const usersSlice = createSlice({
     [updateUserData.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
-
-      // const index = state.user.findIndex(item => item === action.payload);
-      // state.user.splice(index, 1, action.payload);
       state.user = action.payload;
     },
     [updateUserAvatar.fulfilled](state, action) {
@@ -59,4 +56,4 @@ const usersSlice = createSlice({
   },
 });
 
-export const usersReducer = usersSlice.reducer;
+export const userReducer = userSlice.reducer;

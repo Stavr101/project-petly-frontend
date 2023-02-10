@@ -18,6 +18,6 @@ export const MainPageContainerBlock = styled.div`
 
   @media (min-width: 1280px) {
     width: 1280px;
-    padding: 0 16px;
+    padding: 0 16px 16px;
   }
-`
+`;

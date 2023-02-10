@@ -1,5 +1,5 @@
 import { getPetsById } from "api/notices";
-import Error from "components/Error/Error";
+// import Error from "components/Error/Error";
 import { useEffect, useState } from "react";
 import Loader from "shared/loader/Loader";
 import moment from "moment";
@@ -27,8 +27,10 @@ import {
   ModalNoticeBtnContact,
   ModalNoticeWrapperContent,
   Overlay,
+  ModalNoticeItemValueLink,
 } from "./ModalNotice.styled";
 import { createPortal } from "react-dom";
+import { useAuth } from "hooks";
 
 const modalRoot = document.querySelector("#modal-root");
 
@@ -37,13 +39,17 @@ export default function ModalNotice({
   setShowModal,
   handleChangeFavorite,
   handleDeletePet,
+  isFavorite,
 }) {
   const [pet, setPet] = useState(undefined);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const { user } = useAuth();
+
   useEffect(() => {
     document.body.style.overflow = "hidden";
+
     const handleKeyDown = (e) => {
       if (e.code === "Escape") setShowModal(false);
     };
@@ -53,16 +59,9 @@ export default function ModalNotice({
       document.body.style.overflow = null;
       document.removeEventListener("keydown", handleKeyDown);
     };
+
     // eslint-disable-next-line
   }, []);
-
-  const onBackdropClick = (e) => {
-    if (e.currentTarget === e.target) setShowModal(false);
-  };
-
-  const onBtnCloseClick = () => {
-    setShowModal(false);
-  };
 
   useEffect(() => {
     const getPetById = async () => {
@@ -80,6 +79,14 @@ export default function ModalNotice({
     getPetById();
   }, [petId]);
 
+  const onBackdropClick = (e) => {
+    if (e.currentTarget === e.target) setShowModal(false);
+  };
+
+  const onBtnCloseClick = () => {
+    setShowModal(false);
+  };
+
   const convertBirthdate = (birthdate) => {
     return moment(birthdate).format("DD.MM.YYYY");
   };
@@ -95,8 +102,11 @@ export default function ModalNotice({
             ></ModalNoticeBtnDel>
             <ModalNoticeWrapperContent>
               <ModalNoticeWrapperImg>
-                {pet.petAvatarURL ? (
-                  <ModalNoticeImg src={pet.petAvatarURL} alt={pet.title} />
+                {pet.petAvatarURL.secure_url ? (
+                  <ModalNoticeImg
+                    src={pet.petAvatarURL.secure_url}
+                    alt={pet.title}
+                  />
                 ) : (
                   <ModalNoticeImg
                     src={"https://i.ibb.co/RQ61YYb/1.jpg"}
@@ -134,18 +144,25 @@ export default function ModalNotice({
                     <ModalNoticeItemParametr>The sex:</ModalNoticeItemParametr>
                     <ModalNoticeItemValue>{pet.sex}</ModalNoticeItemValue>
                   </ModalNoticeLi>
+
                   <ModalNoticeLi>
                     <ModalNoticeItemParametr>Email:</ModalNoticeItemParametr>
-                    <ModalNoticeItemValue>
-                      {pet.owner?.email}
-                    </ModalNoticeItemValue>
+                    <ModalNoticeItemValueLink
+                      href={`mailto:${pet.owner ? pet.owner.email : ""}`}
+                    >
+                      {pet.owner ? pet.owner.email : ""}
+                    </ModalNoticeItemValueLink>
                   </ModalNoticeLi>
+
                   <ModalNoticeLi>
                     <ModalNoticeItemParametr>Phone:</ModalNoticeItemParametr>
-                    <ModalNoticeItemValue>
-                      {pet.owner?.phone}
-                    </ModalNoticeItemValue>
+                    <ModalNoticeItemValueLink
+                      href={`tel:${pet.owner ? pet.owner?.phone : ""}`}
+                    >
+                      {pet.owner ? pet.owner?.phone : ""}
+                    </ModalNoticeItemValueLink>
                   </ModalNoticeLi>
+
                   <ModalNoticeLi>
                     {pet.categoryName === "sell" ? (
                       <>
@@ -153,7 +170,7 @@ export default function ModalNotice({
                           Price:
                         </ModalNoticeItemParametr>
                         <ModalNoticeItemValue>
-                          {pet.price} $
+                          {pet.price} UAH
                         </ModalNoticeItemValue>
                       </>
                     ) : (
@@ -172,18 +189,19 @@ export default function ModalNotice({
             <ModalNoticeButtonsList>
               <ModalNoticeButtonsItem>
                 <ModalNoticeBtnContact type="button">
-                  <ModalNoticeBtnLink href={`tel:${pet.owner.phone}`}>
+                  <ModalNoticeBtnLink
+                    href={pet.owner ? `tel:${pet.owner.phone}` : "#"}
+                  >
                     Contact
                   </ModalNoticeBtnLink>
                 </ModalNoticeBtnContact>
               </ModalNoticeButtonsItem>
-
               <ModalNoticeButtonsItem>
                 <ModalNoticeBtnFavorite
                   type="button"
-                  onClick={handleChangeFavorite}
+                  onClick={() => handleChangeFavorite(petId)}
                 >
-                  Add to{" "}
+                  {!isFavorite ? "Add to " : "Remove from "}
                   <HeartSvgSpan>
                     <AiFillHeart style={{ fill: "#f59256" }} />
                   </HeartSvgSpan>
@@ -191,9 +209,16 @@ export default function ModalNotice({
               </ModalNoticeButtonsItem>
 
               <ModalNoticeButtonsItem>
-                <ModalNoticeButton type="button" onClick={handleDeletePet}>
-                  Delete
-                </ModalNoticeButton>
+                {pet.owner && pet.owner._id === user._id ? (
+                  <ModalNoticeButton
+                    type="button"
+                    onClick={() => handleDeletePet(petId)}
+                  >
+                    Delete
+                  </ModalNoticeButton>
+                ) : (
+                  ""
+                )}
               </ModalNoticeButtonsItem>
             </ModalNoticeButtonsList>
           </>

@@ -3,49 +3,58 @@ import cross from "./ImgModalAddNotice/clarity_close-cross.png";
 import crossPhoto from "./ImgModalAddNotice/CrossForPhoto.png";
 import male from "./ImgModalAddNotice/male.png";
 import female from "./ImgModalAddNotice/female.png";
-import React, { useState } from 'react';
+
 
 const slideIn = keyframes`
   from {
-    transform: translateX(100%);
+    /* transform: translateX(100%); */
     opacity: 0;
   }
   to {
   
-    transform: translateY(0);
+    /* transform: translateY(0); */
     opacity: 1;
   }
 `;
 
+export const Validations = styled.p`
+color: red;
+font-size: 10px;
+opacity: 1;
+margin-top: -8px;
+  &.invalid {
+    opacity: 0;}
+
+`
+
 export const InputMaleButton = styled.button`
 background-image: url(${male});
 width: 60px;
-height:60px;
 margin-bottom: 20px;
 background-repeat:no-repeat;
 border: none;
 background-color: white;
 cursor: pointer;
-   box-shadow:  ${props => (props.isSelected ? 'inset -1px 2px 3px rgba(255, 255, 255, 0.57), inset 0px -3px 4px rgba(0, 0, 0, 0.25);' : '0px 0px 0px rgba(0, 0, 0, 0.25)')};
+   color:  ${props => (props.isSelected ? '#F59256' : 'black')};
  
  :hover {
  
- box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+ color:  ${props => (props.isSelected ? '#F59256' : 'black')};
 }
 `
 export const InputFemaleButton = styled.button`
 background-image: url(${female});
 width: 60px;
-height:60px;
 margin-bottom: 20px;
 background-repeat:no-repeat;
 border: none;
 background-color: white;
-   box-shadow:  ${props => (props.isSelected ? 'inset -1px 2px 3px rgba(255, 255, 255, 0.57), inset 0px -3px 4px rgba(0, 0, 0, 0.25);' : '0px 0px 0px rgba(0, 0, 0, 0.25)')};
+      color:  ${props => (props.isSelected ? '#F59256' : 'black')};
  
  :hover {
  
- box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+ color:  ${props => (props.isSelected ? '#F59256' : 'black')};
+
   }`
 
 export const InputContainer = styled.div`
@@ -55,30 +64,35 @@ margin-right: 80px;
     color: #F59256;;
 }
 `
-export const InputRadio= styled.input`
+export const InputRadio = styled.input`
 width: 50px;
-height: 50px;
+height: 90px;
 opacity: 0;
 `;
 
-export const InputFemale = styled.input`
-width: 50px;
-height: 50px;
-opacity: 0;
-`;
+// export const InputFemale = styled.input`
+// width: 50px;
+// height: 50px;
+// opacity: 0;
+// `;
 
 export const LabelMale = styled.label`
+display: block;
+margin-top: -35px;
+font-size: 18px;
 
 `;
 export const LabelFemale = styled.label`
-
+display: block;
+margin-top: -35px;
+font-size: 18px;
 `;
 
 export const SexButtons = styled.div`
 display: flex;
 margin-right: auto;
 `;
- 
+
 const slideInPhoto = keyframes`
   from {
     /* transform: translateX(-50%); */
@@ -86,7 +100,7 @@ const slideInPhoto = keyframes`
   }
   to {
   
-    transform: translateX(0);
+    /* transform: translateX(0); */
     opacity: 1;
   }
 `;
@@ -95,16 +109,15 @@ const slideInPhoto = keyframes`
 
 
 export const AddPhoto = styled.p`
-
+font-size: 16px;
   text-align: center;
   margin-bottom: 20px;
-  font-size: 20px;
   line-height: 24px;
   letter-spacing: -0.01em;
   color: #111111;
         @media (min-width: 768px) {
-    width: 300px;
-
+  width: 394px;
+  font-size: 20px;
   }
 `;
 
@@ -132,13 +145,11 @@ border-radius: 20px;
 cursor: pointer;
  margin-bottom: 20px;
   padding: 0;
-  border-radius: 20px;
   border: #fdf7f2;
   outline: none;
   background: #fdf7f2;
   color: rgba(27, 27, 27, 0.6);
-
-background-image: url(${crossPhoto});
+  background-image: url(${crossPhoto});
   background-size: 48px 48px;
   background-repeat: no-repeat;
   background-position: center center;
@@ -152,33 +163,45 @@ height: 182px;
   }
 `
 export const Image = styled.img`
+margin-bottom: -166px;
 width: 208px;
 height: 208px;
 border-radius: 20px;
-animation: ${slideInPhoto} 800ms ease-out;
+animation: ${slideInPhoto} 300ms ease-out;
  @media (min-width: 768px) {
     width: 182px;
-height: 182px;
+    height: 182px;
   }
 `
 
 export const ModalContainer = styled.div`
- 
-
+  width: 98%;
+  height: 98%;
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: white;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 280px;
   border-radius: 16px;
-  animation: ${slideIn} 600ms ease-out;
+  animation: ${slideIn} 300ms ease-out;
+  overflow-y: auto;
+
+  ::-webkit-scrollbar {
+    border-radius: 16px;
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  border-radius: 16px;
+  background-color:#f59256;
+}
 
   @media (min-width: 768px) {
-    max-width: 608px;
-  margin-top:60px;
+    width: 608px;
+    height:94%;
+  /* margin-top:60px; */
   }
 `;
 
@@ -189,58 +212,54 @@ export const ModalTitle = styled.h2`
 
 export const FormContainer = styled.form`
   width: 240px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  @media (min-width: 768px) {
-    max-width: 448px;
-  }
-`;
-export const NextFormContainer = styled.form`
-  width: 240px;
+  height: 540px;
   display: flex;
   flex-direction: column;
   align-items: center;
   
   @media (min-width: 768px) {
-    max-width: 448px;
+    max-width: 548px;
+    height: 440px;
   }
-`
-export const CommentsContainer = styled.div`
-/* width: 240px; */
-  /* 
+`;
+export const NextFormContainer = styled.form`
+  width: 240px;
+  height: 540px;
   display: flex;
   flex-direction: column;
   align-items: center;
+ 
   @media (min-width: 768px) {
-    max-width: 448px;
-  } */
+    max-width: 548px;
+    height: 440px;
+  }
 `
+export const CommentsContainer = styled.div`
 
+`
 
 export const InputBox = styled.div`
 
 `;
 
 export const InputLable = styled.label`
-  /* font-family: "Manrope";
-  font-style: normal; */
   color: #111111;
   font-weight: 500;
   font-size: 18px;
   line-height: 36px;
-`;
+ `;
 
 export const InputField = styled.input`
   margin-bottom: 20px;
   padding: 11px 14px;
-  width: 240px;
+  min-width: 240px;
   height: 40px;
   border-radius: 20px;
   outline: none;
   background: #fdf7f2;
+  font-size: 14px;
   border: 1px solid rgba(245, 146, 86, 0.5);
-  color: rgba(27, 27, 27, 0.6);
+  color: rgba(27, 27, 27, 0.8);
 
   @media (min-width: 768px) {
     width: 448px;
@@ -253,7 +272,7 @@ export const InputField = styled.input`
     font-family: "Manrope";
     font-weight: 400;
     font-size: 14px;
-    color: rgba(27, 27, 27, 0.6);
+    color: rgba(27, 27, 27, 0.7);
   }
 
   :hover,
@@ -271,8 +290,9 @@ export const Comments = styled.textarea`
   border-radius: 20px;
   outline: none;
   background: #fdf7f2;
+  font-size: 14px;
   border: 1px solid rgba(245, 146, 86, 0.5);
-  color: rgba(27, 27, 27, 0.6);
+  color: rgba(27, 27, 27, 0.9);
 
   @media (min-width: 768px) {
     width: 448px;
@@ -285,7 +305,7 @@ export const Comments = styled.textarea`
     font-family: "Manrope";
     font-weight: 400;
     font-size: 14px;
-    color: rgba(27, 27, 27, 0.6);
+    color: rgba(27, 27, 27, 0.7);
   }
 
   :hover,
@@ -296,7 +316,6 @@ export const Comments = styled.textarea`
 `;
 
 export const ButtonContainer = styled.div`
-  /* display: flex; */
   margin-top: 40px;
   justify-content: space-between;
   width: 100%;
@@ -347,6 +366,7 @@ export const CancelButton = styled.button`
 `;
 
 export const Button = styled.button`
+padding: 10px 28px;
   width: 240px;
   height: 40px;
   border-radius: 20px;
@@ -388,7 +408,7 @@ export const NextButton = styled.button`
   }
 `;
 export const EnterButton = styled.button`
-  margin-top: 100px;
+  /* margin-top: 100px; */
   width: 240px;
   height: 40px;
   border-radius: 20px;

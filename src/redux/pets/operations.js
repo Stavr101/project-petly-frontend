@@ -10,12 +10,12 @@ export const addPet = createAsyncThunk(
   "user/addPet",
   async (formData, thunkAPI) => {
     try {
-      const payload = {
-        ...formData,
-        date: dayjs(formData.date).format("DD-MM-YYYY")
-      };
-      console.log(payload);
-      const response = await axios.post("/user", payload);
+      // const payload = {
+      //   ...formData,
+      //   date: dayjs(formData.date).format("DD-MM-YYYY")
+      // };
+      console.log(formData);
+      const response = await axios.post("/user", formData);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

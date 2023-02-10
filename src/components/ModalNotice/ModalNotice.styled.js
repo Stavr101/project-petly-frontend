@@ -126,6 +126,7 @@ export const ModalNoticeTitle = styled.h3`
   margin-bottom: 16px;
 
   @media screen and (min-width: 768px) {
+    width: 300px;
     font-size: 28px;
     line-height: 1.357;
     margin-bottom: 20px;
@@ -150,7 +151,7 @@ export const ModalNoticeItemParametr = styled.p`
   line-height: 1.357;
 
   @media screen and (min-width: 768px) {
-    width: 30%;
+    width: 120px;
 
     font-size: 16px;
     line-height: 1.375;
@@ -166,6 +167,23 @@ export const ModalNoticeItemValue = styled.p`
   @media screen and (min-width: 768px) {
     font-size: 16px;
     line-height: 1.375;
+  }
+`;
+
+export const ModalNoticeItemValueLink = styled.a`
+  font-size: 14px;
+  line-height: 1.357;
+  text-decoration: none;
+  color: ${(p) => p.theme.colors.text.primary};
+  font-weight: ${(p) => p.theme.fontWeights.semibold};
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    line-height: 1.375;
+  }
+
+  :hover {
+    color: ${(p) => p.theme.colors.accent};
   }
 `;
 

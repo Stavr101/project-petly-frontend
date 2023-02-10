@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Modal } from '@mui/material';
+import { Modal, TabScrollButton } from '@mui/material';
 import { nanoid } from 'nanoid';
 
 import {
@@ -49,7 +49,7 @@ export default function ModalAddsPetApp({ onOpenModal, onCloseModal }) {
       {/* <EnterButton variant="contained" onClick={handleOpen}>
         Add Pet
       </EnterButton> */}
-      <Modal open={onOpenModal} onClose={onCloseModal}>
+      <Modal open={onOpenModal} onClose={onCloseModal} >
         <ModalContainer>
           <ButtonOff variant="contained" onClick={onCloseModal}></ButtonOff>
           <ModalTitle>Add Pet</ModalTitle>

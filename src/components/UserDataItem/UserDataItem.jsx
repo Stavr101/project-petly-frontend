@@ -6,28 +6,65 @@ import {
   UpdateBtn,
   InputWrapper,
   PensileBtn,
+  DeactiveBtn,
 } from './UserDataItem.styled';
 import { updateUserData } from '../../redux/users/operations';
-import { selectUser } from 'redux/auth/selectors';
+import { getUserData } from 'redux/users/selectors';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-export default function UserDataItem({ typeInput, nameInput, valueUser }) {
-  const user = useSelector(selectUser);
-
+export default function UserDataItem({
+  typeInput,
+  nameInput,
+  valueUser,
+  activeBtn,
+  setActiveBtn,
+  paramValid,
+}) {
+  const user = useSelector(getUserData);
   const dispatch = useDispatch();
-  const [userInfo, setUserInfo] = useState(valueUser);
 
   const [isEditing, setIsEditing] = useState(false);
   const [editedValue, setEditedValue] = useState(valueUser);
-  const [activeBtn, setActiveBtn] = useState(true);
+  const [error, setError] = useState(null);
 
   const handleEdit = e => {
     e.preventDefault();
     setIsEditing(true);
+    setActiveBtn(false);
+  };
+
+  const handleChange = e => {
+    setEditedValue(e.target.value);
   };
 
   const handleSubmit = e => {
-    setIsEditing(false);
-    dispatch(updateUserData(editedValue));
+    e.preventDefault();
+    const validInput = paramValid;
+
+    if (nameInput === 'birthday') {
+      setActiveBtn(true);
+      setIsEditing(false);
+      dispatch(
+        updateUserData({
+          [nameInput]: editedValue,
+        })
+      );
+    }
+    if (!validInput.test(editedValue)) {
+      setError(`Invalid ${nameInput}`);
+      Notify.warning(`Invalid ${nameInput}`);
+      console.log(editedValue);
+    } else {
+      setError(null);
+
+      setActiveBtn(true);
+      setIsEditing(false);
+      dispatch(
+        updateUserData({
+          [nameInput]: editedValue,
+        })
+      );
+    }
   };
 
   return (
@@ -38,15 +75,19 @@ export default function UserDataItem({ typeInput, nameInput, valueUser }) {
             type={typeInput}
             name={nameInput}
             value={editedValue}
-            onChange={e => setEditedValue(e.target.value)}
+            onChange={handleChange}
           />
           <UpdateBtn onClick={handleSubmit}></UpdateBtn>
         </>
       ) : (
         <>
-          <Input type={typeInput} name={nameInput} value={valueUser} disabled />
-          {/* <PensileBtn onClick={handleEdit}></PensileBtn> */}
-          <PensileBtn onClick={handleEdit}></PensileBtn>
+          <Input name={nameInput} value={valueUser} disabled />
+
+          {activeBtn ? (
+            <PensileBtn onClick={handleEdit}></PensileBtn>
+          ) : (
+            <DeactiveBtn disabled></DeactiveBtn>
+          )}
         </>
       )}
     </InputWrapper>

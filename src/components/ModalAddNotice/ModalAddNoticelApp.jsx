@@ -9,7 +9,7 @@ import { nanoid } from 'nanoid';
 // @emotion/styled
 
 import {
-  // EnterButton,
+  EnterButton,
   ModalContainer,
   ModalTitle,
   ButtonOff,
@@ -26,7 +26,7 @@ import Forma from './ModalAddNotice';
 // });
 
 
-export default function ModalAddNoticelApp({ onOpenModal, onCloseModal }) {
+export default function ModalAddsPetApp({ onOpenModal, onCloseModal }) {
   const [pets, setPets] = useState(
     () => JSON.parse(window.localStorage.getItem('pets')) ?? []
   );
@@ -51,26 +51,26 @@ export default function ModalAddNoticelApp({ onOpenModal, onCloseModal }) {
     setPets(pets => [data, ...pets]);
   };
 
-  // const handleOpen = e => {
+  // const onOpenModal = (e) => {
   //   setModalOpen(true);
   // };
-  // const handleClose = e => {
+  // const handleClose = (e) => {
   //   e.preventDefault();
   //   setModalOpen(false);
   // };
 
   return (
     <>
-      {/* <EnterButton variant="contained" onClick={handleOpen}>
-        Add Pet
-      </EnterButton> */}
-          <Modal open={onOpenModal} onClose={onCloseModal} >
-        <ModalContainer >
+
+      <Modal open={onOpenModal} onClose={onCloseModal}
+        style={{ display: "flex", justifyContent: "center", alignItems: 'center' }}>
+        <ModalContainer>
           <ButtonOff variant="contained" onClick={onCloseModal}></ButtonOff>
           <ModalTitle>Add Pet</ModalTitle>
           <Forma handleClose={onCloseModal} onSubmit={submitHandle} />
         </ModalContainer>
       </Modal>
+
     </>
   );
 }

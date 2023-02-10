@@ -19,7 +19,7 @@ const LightTooltip = styled(({ className, ...props }) => (
   //   },
   // }));
 ))`
-  &.MuiTooltip-popper[data-popper-placement*="bottom"] {
+  &.MuiTooltip-popper[data-popper-placement="bottom"] {
     margin-top: 0;
   }
   & .MuiTooltip-tooltipPlacementBottom {
@@ -41,6 +41,8 @@ export default function OurFriendsTimeList({
   return (
     <LightTooltip
       sx={{ backgroundColor: "transparent" }}
+      enterTouchDelay={50}
+      disableFocusListener
       placement="bottom-start"
       title={
         workDays ? (

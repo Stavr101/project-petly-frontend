@@ -1,50 +1,28 @@
+// import { TrySharp } from "@mui/icons-material";
 import axios from "axios";
 
 axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
 
-export const getAllNoticesPets = async () => {
-  try {
-    const {
-      params: { category },
-    } = await axios.get(`/notices/:categoryName`);
-    return category;
-  } catch (error) {
-    console.log(error.message);
-  }
-};
-
-// export const getConditionPets = async (condition) => {
-//   try {
-//     const { data } = await axios.get(`/notices/`, condition);
-//     return data;
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// };
-
-// export const deletePets = async (id) => {
-//   try {
-//     const { data } = await axios.delete(`/notices/${id}`);
-//     return data;
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// };
-
-export const fetchAdsByCategory = (category) => {
+export const fetchAdsByCategory = (category, search, pageNumber) => {
+ 
   return axios
-    .get(`/notices/category/${category}`)
+    .get(`/notices/category/${category}`, {
+      params: {
+        page: pageNumber,
+        search: search,
+      },
+    })
     .then((response) => response.data);
 };
 
-export const fetchFavoriteAds = () => {
-  return axios.get("/notices/favorite").then((response) => {
+export const fetchFavoriteAds = (search) => {
+  return axios.get(`/notices/favorite?search=${search}`).then((response) => {
     return response.data;
   });
 };
 
-export const fetchOwnAds = () => {
-  return axios.get("/notices/own").then((response) => {
+export const fetchOwnAds = (search) => {
+  return axios.get(`/notices/own?search=${search}`).then((response) => {
     return response.data;
   });
 };
@@ -52,4 +30,58 @@ export const fetchOwnAds = () => {
 export const getPetsById = async (id) => {
   const response = await axios.get(`/notices/notice/${id}`);
   return response.data;
+};
+
+export async function addPetToFavorite(id) {
+  try {
+    const res = await axios.patch(`/notices/favorite/${id}`);
+    return res.data;
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+export async function removeFavoritePet(id) {
+  try {
+    const res = await axios.delete(`/notices/favorite/${id}`);
+    return res.data;
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+export async function removeOwnPet(id) {
+  try {
+    const res = await axios.delete(`/notices/own/${id}`);
+    return res.data;
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+export async function fetchFavorite(search) {
+  try {
+    const res = await axios.get(`/notices/favorite?search=${search}`);
+    return res.data;
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+export async function fetchOwn(search) {
+  try {
+    const res = await axios.get(`/notices/own?search=${search}`);
+    return res.data;
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+export const addPetToCategory = async (data) => {
+  try {
+    const res = await axios.post(`/notices`, data);
+    return res.data;
+  } catch (error) {
+    console.log(error.message);
+  }
 };

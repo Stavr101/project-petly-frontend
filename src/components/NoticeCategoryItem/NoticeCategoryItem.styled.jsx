@@ -2,10 +2,17 @@ import styled from "styled-components";
 
 export const ItemNoticesImgDiv = styled.div`
   position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 288px;
+  margin-bottom: 20px;
+
+  @media only screen and (min-width: 768px) and (max-width: 1279px) {
+  }
 `;
 
 export const ItemNoticesTitle = styled.h2`
-  margin: 20px 0px 0px 20px;
+  min-height: 76px;
   font-weight: 700;
   font-size: 28px;
   line-height: 38px;
@@ -14,9 +21,13 @@ export const ItemNoticesTitle = styled.h2`
 `;
 
 export const ItemNoticesImg = styled.img`
-  display: block;
-  max-width: 100%;
-  height: auto;
+  width: 100%;
+  height: 288px;
+  object-fit: cover;
+
+  @media only screen and (max-width: 767px) {
+    width: 280px;
+  }
 `;
 export const ItemPositionNoticesDiv = styled.div`
   position: absolute;
@@ -43,24 +54,15 @@ export const ItemPositionNoticesDivParagraf = styled.p`
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
 `;
-/* export const ItemNoticesP = styled.p`
-font-weight: 500;
-font-size: 16px;
-line-height: 22px;
-display: flex;
-align-items: center;
-text-align: center;
-color: #111111;
-` */
 
-export const ItemNoticesSpan = styled.span``;
+export const ItemNoticesSpan = styled.span`
+  position: absolute;
+  left: 110px;
+`;
 
 export const ItemNoticesLi = styled.li`
   max-width: 280px;
-  height: 580px;
   margin-top: 32px;
-  margin-left: auto;
-  margin-right: auto;
   background: #ffffff;
 
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
@@ -76,28 +78,33 @@ export const ItemNoticesLi = styled.li`
   }
 `;
 export const ItemNoticesUlList = styled.ul`
-  margin-top: 20px;
-  padding: 0px 20px 0px 20px;
+  display: flex;
+  flex-direction: column;
+  min-height: 112px;
+  gap: 8px;
 `;
 
 export const ItemNoticesWrap = styled.div`
-position: relative;
-height: 318px;
+  position: relative;
+  min-height: 318px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; ;
 `;
 
 export const ItemButtonNotices = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 0px 16px 12px 16px;
+  flex-grow: 1;
+  gap: 12px;
 `;
 
 export const ItemButtonNoticesLearnMore = styled.button`
-    position: absolute;
-    bottom: 40px;
-    left: 20px;
-    right: 20px;
-  padding: 8px 28px;
+  width: 100%;
+  padding: 8px 0;
   font-weight: 500;
   color: #f59256;
   font-size: 14px;
@@ -108,14 +115,8 @@ export const ItemButtonNoticesLearnMore = styled.button`
   border-radius: 40px;
 
   @media only screen and (min-width: 768px) {
-    bottom: 80px;
-    padding: 10px 28px;
     font-size: 20px;
     line-height: 1.2;
-  }
-
-  @media only screen and (min-width: 1279px) {
-    bottom: 40px;
   }
 
   &.active {
@@ -130,28 +131,26 @@ export const ItemButtonNoticesLearnMore = styled.button`
   }
 `;
 
-export const ItemNoticesListLi = styled.li`
-  margin-top: 8px;
-`;
+export const ItemNoticesListLi = styled.li``;
 
 export const ItemButtonNoticesDelete = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #ff6101;
-  padding: 8px 28px;
-  margin-top: 12px;
+  width: 100%;
+  padding: 8px 0;
+
+  color: #f59256;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.35;
   letter-spacing: 0.04em;
   background: #ffffff;
   border-radius: 40px;
-  border: 2px solid #ff6101;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: 2px solid #f59256;
 
   @media only screen and (min-width: 768px) {
-    padding: 10px 28px;
+    padding: 8px;
     font-size: 20px;
     line-height: 1.2;
   }
@@ -162,11 +161,14 @@ export const ItemButtonNoticesDelete = styled.button`
   }
 
   &:hover {
-    color: #ffffff;
-    background: #f59256;
+    color: #ff6101;
+    fill: #ff6101;
+    background: #ffffff;
+    border: 2px solid #ff6101;
   }
 `;
-export const ItemNoticesListP = styled.p`
+
+export const ItemNoticesListP = styled.span`
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -177,13 +179,19 @@ export const ItemButtonNoticesDeleteSpan = styled.span`
   margin-right: 13px;
 `;
 
-export const ItemButtonNoticesHeartSpan = styled.span`
+export const ItemButtonNoticesHeartButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 12px;
   border-radius: 50%;
+  border: none;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(2px);
   padding: 8px;
+  transition: all 150ms linear 0s;
+
+  :hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
 `;

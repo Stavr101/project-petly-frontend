@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
-import styled, { keyframes } from "styled-components";
-import male from "./ImgModalAddNotice/male.png";
-import female from "./ImgModalAddNotice/female.png";
+import React, { useState } from "react";
+// import { useDispatch } from "react-redux";
+// import { addPet } from "redux/pets/operations";
+import { addPetToCategory } from "api/notices";
+
 import {
+  Validations,
   InputBox,
   InputLable,
   InputField,
@@ -22,268 +24,960 @@ import {
   InputContainer,
   InputMaleButton,
   InputFemaleButton,
-    SexButtons,
-} from './ModalAddNotice.styled';
-
-import * as Yup from 'yup';
+  SexButtons,
+} from "./ModalAddNotice.styled";
 
 // import { AddsPetValidate } from "helpers/validationSchema/addsPetValidate";
 // Изменила функцию handleClose на closeModalPets для открытия модалки по нажатию кнопки в PetsData
-function Forma({ closeModalPets }) {
-  const [selectedRadio, setSelectedRadio] = useState('');
-  const [errors, setErrors] = useState({});
-  const [form, setForm] = useState({
-    firstSellForm: {
-      title: '',
-      name: '',
-      date: '',
-      breed: '',
+
+function Forma({ handleClose }) {
+  // const dispatch = useDispatch();
+  // const [errors, setErrors] = useState({});
+  const [selectedRadio, setSelectedRadio] = useState("");
+
+  const [formSell, setFormSell] = useState({
+    sellFirstForm: {
+      title: "",
+      name: "",
+      date: "",
+      breed: "",
     },
-    secondSellForm: {
-      sex: '',
-      location: '',
-      price: '',
-      image: null,
-      comment: '',
+    sellSecondForm: {
+      sex: "",
+      location: "",
+      price: "",
+      avatarUrl: null,
+      comment: "",
     },
   });
+  const [formFound, setFormFound] = useState({
+    foundFirstForm: {
+      title: "",
+      name: "",
+      date: "",
+      breed: "",
+    },
+    foundSecondForm: {
+      sex: "",
+      location: "",
+      avatarUrl: null,
+      comment: "",
+    },
+  });
+  const [formGoodHands, setFormGoodHands] = useState({
+    goodHandsFirstForm: {
+      title: "",
+      name: "",
+      date: "",
+      breed: "",
+    },
+    goodHandsSecondForm: {
+      sex: "",
+      location: "",
+      avatarFile: null,
+      avatarUrl: null,
+      comment: "",
+    },
+  });
+  const today = new Date().toISOString().substr(0, 10);
 
+  const [formType, setFormType] = useState("sellFirstForm");
 
-  const [formType, setFormType] = useState('firstSellForm');
-
-  const handleFirstSellFormChange = event => {
-    setForm({
-      ...form,
-      firstSellForm: {
-        ...form.firstSellForm,
+  const handleSellFirstFormChange = (event) => {
+    setFormSell({
+      ...formSell,
+      sellFirstForm: {
+        ...formSell.sellFirstForm,
         [event.target.name]: event.target.value,
       },
     });
   };
-
-  const handleSellRadioChange = event => {
-    setForm({
-      ...form,
-      secondSellForm: {
-        ...form.secondSellForm,
-        sex: event.target.value
-         
-      }
-    });
-  };
-
-
-  const handleSecondSellFormChange = event => {
-    if (event.target.name === 'image') {
-      setForm({
-        ...form,
-        secondSellForm: {
-          ...form.secondSellForm,
+  const handleSellSecondFormChange = (event) => {
+    if (event.target.name === "avatarFile") {
+      setFormSell({
+        ...formSell,
+        sellSecondForm: {
+          ...formSell.sellSecondForm,
+          avatarUrl: event.target.files[0],
           [event.target.name]: URL.createObjectURL(event.target.files[0]),
-        }
+        },
       });
     } else {
-      setForm({
-        ...form,
-        secondSellForm: {
-          ...form.secondSellForm,
+      setFormSell({
+        ...formSell,
+        sellSecondForm: {
+          ...formSell.sellSecondForm,
           [event.target.name]: event.target.value,
-         
         },
       });
     }
   };
-
-  const combinedSellForm = { ...form.firstSellForm, ...form.secondSellForm };
-
-  const handleSellSubmit = async event => {
-    event.preventDefault();
-    console.log(combinedSellForm);
-    setForm({
-      firstSellForm: {
-        title: '',
-        name: '',
-        date: '',
-        breed: '',
-      },
-      secondSellForm: {
-         sex: '',
-         location: '',
-        price: '',
-        image: null,
-        comment: '',
+  const handleRadioChange = (event) => {
+    setFormSell({
+      ...formSell,
+      sellSecondForm: {
+        ...formSell.sellSecondForm,
+        sex: event.target.value,
       },
     });
   };
-  
-  //+++++++++++++++++++++++++++++++++++++++++++++++++
 
+  const handleFoundFirstFormChange = (event) => {
+    setFormFound({
+      ...formFound,
+      foundFirstForm: {
+        ...formFound.foundFirstForm,
+        [event.target.name]: event.target.value,
+      },
+    });
+  };
+  const handleFoundSecondFormChange = (event) => {
+    if (event.target.name === "avatarUrl") {
+      setFormFound({
+        ...formFound,
+        foundSecondForm: {
+          ...formFound.foundSecondForm,
+          [event.target.name]: URL.createObjectURL(event.target.files[0]),
+        },
+      });
+    } else {
+      setFormFound({
+        ...formFound,
+        foundSecondForm: {
+          ...formFound.foundSecondForm,
+          [event.target.name]: event.target.value,
+        },
+      });
+    }
+  };
+  const handleFoundRadioChange = (event) => {
+    setFormFound({
+      ...formFound,
+      foundSecondForm: {
+        ...formFound.foundSecondForm,
+        sex: event.target.value,
+      },
+    });
+  };
 
-  const handleClick = button => {
+  const handleGoodHandsFirstFormChange = (event) => {
+    setFormGoodHands({
+      ...formGoodHands,
+      goodHandsFirstForm: {
+        ...formGoodHands.goodHandsFirstForm,
+        [event.target.name]: event.target.value,
+      },
+    });
+  };
+  const handleGoodHandsSecondFormChange = (event) => {
+    if (event.target.name === "avatarUrl") {
+      setFormGoodHands({
+        ...formGoodHands,
+        goodHandsSecondForm: {
+          ...formGoodHands.goodHandsSecondForm,
+          avatarUrl: event.target.files[0],
+          [event.target.name]: URL.createObjectURL(event.target.files[0]),
+        },
+      });
+    } else {
+      setFormGoodHands({
+        ...formGoodHands,
+        goodHandsSecondForm: {
+          ...formGoodHands.goodHandsSecondForm,
+          [event.target.name]: event.target.value,
+        },
+      });
+    }
+  };
+  const handleGoodHandsRadioChange = (event) => {
+    setFormGoodHands({
+      ...formGoodHands,
+      goodHandsSecondForm: {
+        ...formGoodHands.goodHandsSecondForm,
+        sex: event.target.value,
+      },
+    });
+  };
+
+  // const combinedSellForm = {
+  //   ...formSell.sellFirstForm,
+  //   ...formSell.sellSecondForm,
+  // };
+  // const combinedFoundForm = {
+  //   ...formFound.foundFirstForm,
+  //   ...formFound.foundSecondForm,
+  // };
+  // const combinedGoodHandsForm = {
+  //   ...formGoodHands.goodHandsFirstForm,
+  //   ...formGoodHands.goodHandsSecondForm,
+  // };
+  //==================================
+
+  const sellHandleSubmit = async (event) => {
+    const combinedForm = {
+      ...formSell.sellFirstForm,
+      ...formSell.sellSecondForm,
+    };
+    const { title, name, date, breed, sex, location, price, comment } =
+      combinedForm;
+
+    console.log("sell", event);
+
+    const formDataFile = new FormData();
+    formDataFile.append("title", title);
+    formDataFile.append("name", name);
+    formDataFile.append("birthdate", date);
+    formDataFile.append("breed", breed);
+    formDataFile.append("sex", sex);
+    formDataFile.append("location", location);
+    formDataFile.append("price", price);
+    formDataFile.append("categoryName", "sell");
+    formDataFile.append("petAvatar", event.target.elements.avatarFile.files[0]);
+    formDataFile.append("comments", comment);
+
+    addPetToCategory(formDataFile);
+
+    setFormSell({
+      sellFirstForm: {
+        title: "",
+        name: "",
+        date: "",
+        breed: "",
+        // categoryName: 'sell',
+      },
+      sellSecondForm: {
+        sex: "",
+        location: "",
+        price: "",
+        avatarFile: null,
+        avatarUrl: null,
+        comment: "",
+      },
+    });
+    handleClose();
+  };
+
+  const handleFoundSubmit = async (event) => {
+    event.preventDefault();
+    const combinedForm = {
+      ...formFound.foundFirstForm,
+      ...formFound.foundSecondForm,
+    };
+
+    const { title, name, date, breed, sex, location, comment } =
+      combinedForm;
+    console.log(combinedForm);
+
+    // console.log("lost-form", event.target.elements[5].files[0]);
+
+    const formDataFile = new FormData();
+    formDataFile.append("title", title);
+    formDataFile.append("name", name);
+    formDataFile.append("birthdate", date);
+    formDataFile.append("breed", breed);
+    formDataFile.append("sex", sex);
+    formDataFile.append("location", location);
+    formDataFile.append("categoryName", "lost-found");
+    formDataFile.append("petAvatar", event.target.elements[5].files[0]);
+    formDataFile.append("comments", comment);
+
+    addPetToCategory(formDataFile);
+
+    setFormFound({
+      foundFirstForm: {
+        title: "",
+        name: "",
+        date: "",
+        breed: "",
+      },
+
+      foundSecondForm: {
+        sex: "",
+        location: "",
+        avatarUrl: null,
+        comment: "",
+      },
+    });
+    handleClose();
+  };
+
+  const handleGoodHandsSubmit = async (event) => {
+    event.preventDefault();
+    const combinedForm = {
+      ...formGoodHands.goodHandsFirstForm,
+      ...formGoodHands.goodHandsSecondForm,
+    };
+
+    const { title, name, date, breed, sex, location, comment } = combinedForm;
+
+    console.log(combinedForm)
+
+    console.log("good-hands", event.target.elements[5].files[0]);
+
+    const formDataFile = new FormData();
+    formDataFile.append("title", title);
+    formDataFile.append("name", name);
+    formDataFile.append("birthdate", date);
+    formDataFile.append("breed", breed);
+    formDataFile.append("sex", sex);
+    formDataFile.append("location", location);
+    formDataFile.append("categoryName", "for-free");
+    formDataFile.append("petAvatar", event.target.elements[5].files[0]);
+    formDataFile.append("comments", comment);
+
+    addPetToCategory(formDataFile);
+
+    setFormGoodHands({
+      goodHandsFirstForm: {
+        title: "",
+        name: "",
+        date: "",
+        breed: "",
+      },
+
+      goodHandsSecondForm: {
+        sex: "",
+        location: "",
+        avatarUrl: null,
+        comment: "",
+      },
+    });
+    handleClose();
+  };
+
+  const handleClick = (button) => {
     setSelectedRadio(button);
-  }; 
-//+++++++++++++++++++++++++++++++++++++++++++++++++++
-// console.log(form.secondForm.sex)
+  };
+  //+++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  const hasSellFirstFormAllData = Object.values(formSell.sellFirstForm).every(
+    (value) => value
+  );
+  const hasSellSecondFormAllData = Object.values(formSell.sellSecondForm).every(
+    (value) => value
+  );
+
+  const hasFoundFirstFormAllData = Object.values(
+    formFound.foundFirstForm
+  ).every((value) => value);
+  const hasFoundSecondFormAllData = Object.values(
+    formFound.foundSecondForm
+  ).every((value) => value);
+
+  const hasGoodHandsFirstFormAllData = Object.values(
+    formGoodHands.goodHandsFirstForm
+  ).every((value) => value);
+  const hasGoodHandsSecondFormAllData = Object.values(
+    formGoodHands.goodHandsSecondForm
+  ).every((value) => value);
+  // console.log(form.secondForm.sex)
   return (
     <>
-      {formType === 'firstSellForm' && (
-        <FormContainer onSubmit={handleSellSubmit}>
-          <AddPhoto>Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur</AddPhoto>
-          <Button type="button" onClick={() => setFormType('secondSellForm')}>
+      {formType === "sellFirstForm" && (
+        <FormContainer onSubmit={sellHandleSubmit}>
+          <AddPhoto>
+            Lorem ipsum dolor sit amet, consectetur ipsum dolor sit amet, consectetur
+          </AddPhoto>
+          <Button type="button" onClick={() => setFormType("foundFirstForm")}>
             lost/found
           </Button>
-          <Button type="button" onClick={() => setFormType('secondSellForm')}>
+          <Button
+            type="button"
+            onClick={() => setFormType("goodHandsFirstForm")}
+          >
             in good hands
           </Button>
-          <Button type="button" onClick={() => setFormType('secondSellForm')}>
+          <Button
+            type="button"
+            style={{ backgroundColor: "#F59256", color: "white" }}
+            onClick={() => setFormType("sellFirstForm")}
+          >
             sell
           </Button>
-
           <InputBox>
-            <InputLable htmlFor="title">Title of ad <span>*</span></InputLable>
+            <InputLable htmlFor="title">
+              Title of ad <span>*</span>
+            </InputLable>
+            <Validations
+              className={formSell.sellFirstForm.title.match(/^([a-zA-Z\s-]{2,48})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 48 letters
+            </Validations>
             <InputField
               type="text"
               name="title"
-              pattern="/^[a-zA-Z]{2,16}$/"
-              value={form.firstSellForm.title}
-              onChange={handleFirstSellFormChange}
+              pattern="/^([a-zA-Z\s-]{2,148})?$/"
+              value={formSell.sellFirstForm.title}
+              onChange={handleSellFirstFormChange}
               placeholder="Type name"
             />
             {/* {errors.name && <div>{errors.secondForm.name}</div>} */}
           </InputBox>
           <InputBox>
             <InputLable htmlFor="name">Name pet</InputLable>
+            <Validations
+              className={formSell.sellFirstForm.name.match(/^([a-zA-Z\s-]{2,16})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 16 letters
+            </Validations>
             <InputField
               type="text"
               name="name"
-              pattern="/^[a-zA-Z]{2,16}$/"
-              value={form.firstSellForm.name}
-              onChange={handleFirstSellFormChange}
+              pattern="/^([a-zA-Z\s-]{2,16})?$/"
+              value={formSell.sellFirstForm.name}
+              onChange={handleSellFirstFormChange}
               placeholder="Name pet"
             />
             {/* {errors.name && <div>{errors.secondForm.name}</div>} */}
           </InputBox>
           <InputBox>
-            <InputLable htmlFor="breed">Date of birth</InputLable>
+            <InputLable htmlFor="date">Date of birth</InputLable>
             <InputField
               type="date"
               name="date"
-              value={form.firstSellForm.date}
-              onChange={handleFirstSellFormChange}
-            // placeholder="DD/MM/YYYY/"
+              value={formSell.sellFirstForm.date}
+              onChange={handleSellFirstFormChange}
+              placeholder={today}
+              max={today}
+
             />
           </InputBox>
           <InputBox>
             <InputLable htmlFor="breed">Breed</InputLable>
+            <Validations
+              className={formSell.sellFirstForm.breed.match(/^([a-zA-Z\s-]{2,16})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 16 letters
+            </Validations>
             <InputField
               type="text"
               name="breed"
-              pattern="/^[a-zA-Z]{2,16}$/"
-              value={form.firstSellForm.breed}
-              onChange={handleFirstSellFormChange}
+              pattern="/^([a-zA-Z\s-]{2,16})?$/"
+              value={formSell.sellFirstForm.breed}
+              onChange={handleSellFirstFormChange}
               placeholder="Breed"
             />
             {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
           </InputBox>
           <ButtonContainer>
-            <Button type="button" onClick={closeModalPets}>
+            <Button type="button" onClick={handleClose}>
               Cancel
             </Button>
-            <Button type="button" onClick={() => setFormType('secondSellForm')}>
+            <Button
+              type="button"
+              onClick={() => setFormType("sellSecondForm")}
+              disabled={!hasSellFirstFormAllData}
+            >
               Next
             </Button>
           </ButtonContainer>
         </FormContainer>
       )}
-      {formType === 'secondSellForm' && (
-        <NextFormContainer encType="mutipart/form-data" onSubmit={handleSellSubmit}>
+      {formType === "sellSecondForm" && (
+        <NextFormContainer
+          encType="mutipart/form-data"
+          onSubmit={sellHandleSubmit}
+        >
           <SexButtons>
             <InputContainer>
-              
-             <InputMaleButton isSelected={selectedRadio === 'Male'}
-        onClick={() => handleClick('Male')}>
-            <InputRadio
-              type="radio"
-              name="secondSellForm.sex"
-              value='male'
-              checked={form.secondSellForm.sex === "male"}
-              onChange={handleSellRadioChange}
+              <InputMaleButton
+                isSelected={formSell.sellSecondForm.sex === "male"}
+                onClick={() => handleClick("male")}
+              >
+                <InputRadio
+                  type="radio"
+                  name="sellSecondForm.sex"
+                  value="male"
+                  checked={formSell.sellSecondForm.sex === "male"}
+                  onChange={handleRadioChange}
                 />
-            </InputMaleButton>
-              <LabelMale for="radio1">Male</LabelMale>
+                <LabelMale htmlfor="radio1">Male</LabelMale>
+              </InputMaleButton>
             </InputContainer>
 
             <InputContainer>
-            <InputFemaleButton isSelected={selectedRadio === 'Female'}
-        onClick={() => handleClick('Female')}>
-            <InputRadio
-            type="radio"
-              name="secondSellForm.sex"
-              value='female'
-              checked={form.secondSellForm.sex === "female"}
-              onChange={handleSellRadioChange}
-              />         
+              <InputFemaleButton
+                isSelected={formSell.sellSecondForm.sex === "female"}
+                onClick={() => handleClick("female")}
+              >
+                <InputRadio
+                  type="radio"
+                  name="sellSecondForm.sex"
+                  value="female"
+                  checked={formSell.sellSecondForm.sex === "female"}
+                  onChange={handleRadioChange}
+                />
+                <LabelFemale htmlfor="radio1">Female</LabelFemale>
               </InputFemaleButton>
-              <LabelFemale for="radio1">Female</LabelFemale>
             </InputContainer>
-
           </SexButtons>
 
           <InputBox>
-            <InputLable htmlFor="location">Location<span>*</span>:</InputLable>
+            <InputLable htmlFor="location">
+              Location<span>*</span>:
+            </InputLable>
+            <Validations
+              className={formSell.sellSecondForm.location.match(/^$|^[a-zA-Z\s]+,[a-zA-Z\s]+$/) ? "invalid" : ""}>
+              Please enter for exemple: Brovary, Kyiv
+            </Validations>
             <InputField
               type="text"
               name="location"
               // pattern="/^[a-zA-Z]{2,16}$/"
-              value={form.secondSellForm.location}
-              onChange={handleSecondSellFormChange}
+              value={formSell.sellSecondForm.location}
+              onChange={handleSellSecondFormChange}
               placeholder="Location"
             />
             {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
           </InputBox>
           <InputBox>
-            <InputLable htmlFor="price">Price<span>*</span>:</InputLable>
+            <InputLable htmlFor="price">
+              Price<span>*</span>:
+            </InputLable>
+            <Validations
+              className={formSell.sellSecondForm.price.match(/^(?!0)\d+$|^$/) ? "invalid" : ""}>
+              Please enter price, for exemple: 340
+            </Validations>
             <InputField
               type="text"
               name="price"
               // pattern="/^[a-zA-Z]{2,16}$/"
-              value={form.secondSellForm.price}
-              onChange={handleSecondSellFormChange}
+              value={formSell.sellSecondForm.price}
+              onChange={handleSellSecondFormChange}
               placeholder="Price"
             />
             {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
           </InputBox>
-          <InputLable htmlFor="image">Load the pet's image:</InputLable>
+          <InputLable htmlFor="avatarFile">Load the pet's image:</InputLable>
           <DownloadContainer>
-
-            {form.secondSellForm.image && (
-              <Image src={form.secondSellForm.image} alt="uploaded" />
+            {formSell.sellSecondForm.avatarFile && (
+              <Image src={formSell.sellSecondForm.avatarFile} alt="uploaded" />
             )}
             <Download
-              name="image"
+              name="avatarFile"
               type="file"
               accept="image/*"
-              onChange={handleSecondSellFormChange}
+              onChange={handleSellSecondFormChange}
             />
           </DownloadContainer>
           <InputBox>
             <CommentsContainer>
+              <Validations
+                className={formSell.sellSecondForm.comment.match(/^(.{8,120})?$/) ? "invalid" : ""}>
+                Please enter between 8 and 120 symbols
+              </Validations>
               <Comments
                 name="comment"
                 type="text"
                 pattern="^[a-zA-Z0-9,.!?;:-_ ]{8,120}$"
-                value={form.secondSellForm.comment}
-                onChange={handleSecondSellFormChange}
+                value={formSell.sellSecondForm.comment}
+                onChange={handleSellSecondFormChange}
                 placeholder="Type comments"
               />
               {/* {errors.comment && <div>{errors.secondForm.comment}</div>} */}
             </CommentsContainer>
           </InputBox>
           <ButtonContainer>
-            <Button type="button" onClick={() => setFormType('firstSellForm')}>
+            <Button type="button" onClick={() => setFormType("sellFirstForm")}>
               Back
             </Button>
-            <Button type="submit">Done</Button>
+            <Button type="submit" disabled={!hasSellSecondFormAllData}>
+              Done
+            </Button>
+          </ButtonContainer>
+        </NextFormContainer>
+      )}
+      {formType === "foundFirstForm" && (
+        <FormContainer onSubmit={handleFoundSubmit}>
+          <AddPhoto>
+            Lorem ipsum dolor sit a Lorem ipsum dolor sit amet,
+            consectetur
+          </AddPhoto>
+          <Button
+            type="button"
+            style={{ backgroundColor: "#F59256", color: "white" }}
+            onClick={() => setFormType("foundFirstForm")}
+          >
+            lost/found
+          </Button>
+          <Button
+            type="button"
+            onClick={() => setFormType("goodHandsFirstForm")}
+          >
+            in good hands
+          </Button>
+          <Button type="button" onClick={() => setFormType("sellFirstForm")}>
+            sell
+          </Button>
+
+          <InputBox>
+            <InputLable htmlFor="title">
+              Title of ad <span>*</span>
+            </InputLable>
+            <Validations
+              className={formFound.foundFirstForm.title.match(/^([a-zA-Z\s-]{2,48})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 48 letters
+            </Validations>
+            <InputField
+              type="text"
+              name="title"
+              pattern="/^([a-zA-Z\s-]{2,48})?$/"
+              value={formFound.foundFirstForm.title}
+              onChange={handleFoundFirstFormChange}
+              placeholder="Type name"
+            />
+            {/* {errors.name && <div>{errors.secondForm.name}</div>} */}
+          </InputBox>
+          <InputBox>
+            <InputLable htmlFor="name">Name pet</InputLable>
+            <Validations
+              className={formFound.foundFirstForm.name.match(/^([a-zA-Z\s-]{2,16})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 16 letters
+            </Validations>
+            <InputField
+              type="text"
+              name="name"
+              pattern="/^([a-zA-Z\s-]{2,16})?$/"
+              value={formFound.foundFirstForm.name}
+              onChange={handleFoundFirstFormChange}
+              placeholder="Name pet"
+            />
+            {/* {errors.name && <div>{errors.secondForm.name}</div>} */}
+          </InputBox>
+          <InputBox>
+            <InputLable htmlFor="date">Date of birth</InputLable>
+            <InputField
+              type="date"
+              name="date"
+              value={formFound.foundFirstForm.date}
+              onChange={handleFoundFirstFormChange}
+              placeholder={today}
+              max={today}
+            />
+          </InputBox>
+          <InputBox>
+            <InputLable htmlFor="breed">Breed</InputLable>
+            <Validations
+              className={formFound.foundFirstForm.breed.match(/^([a-zA-Z\s-]{2,16})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 16 letters
+            </Validations>
+            <InputField
+              type="text"
+              name="breed"
+              pattern="/^([a-zA-Z\s-]{2,16})?$/"
+              value={formFound.foundFirstForm.breed}
+              onChange={handleFoundFirstFormChange}
+              placeholder="Breed"
+            />
+            {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
+          </InputBox>
+          <ButtonContainer>
+            <Button type="button" onClick={handleClose}>
+              Cancel
+            </Button>
+            <Button
+              type="button"
+              onClick={() => setFormType("foundSecondForm")}
+              disabled={!hasFoundFirstFormAllData}
+            >
+              Next
+            </Button>
+          </ButtonContainer>
+        </FormContainer>
+      )}
+      {formType === "foundSecondForm" && (
+        <NextFormContainer
+          encType="mutipart/form-data"
+          onSubmit={handleFoundSubmit}
+        >
+          <SexButtons>
+            <InputContainer>
+              <InputMaleButton
+                isSelected={formFound.foundSecondForm.sex === "male"}
+                onClick={() => handleClick("male")}
+              >
+                <InputRadio
+                  type="radio"
+                  name="foundSecondForm.sex"
+                  value="male"
+                  checked={formFound.foundSecondForm.sex === "male"}
+                  onChange={handleFoundRadioChange}
+                />
+                <LabelMale htmlfor="radio1">Male</LabelMale>
+              </InputMaleButton>
+            </InputContainer>
+
+            <InputContainer>
+              <InputFemaleButton
+                isSelected={formFound.foundSecondForm.sex === "female"}
+                onClick={() => handleClick("female")}
+              >
+                <InputRadio
+                  type="radio"
+                  name="foundSecondForm.sex"
+                  value="female"
+                  checked={formFound.foundSecondForm.sex === "female"}
+                  onChange={handleFoundRadioChange}
+                />
+                <LabelFemale htmlfor="radio1">Female</LabelFemale>
+              </InputFemaleButton>
+            </InputContainer>
+          </SexButtons>
+
+          <InputBox>
+            <InputLable htmlFor="location">
+              Location<span>*</span>:
+            </InputLable>
+            <Validations
+              className={formFound.foundSecondForm.location.match(/^$|^[a-zA-Z\s]+,[a-zA-Z\s]+$/) ? "invalid" : ""}>
+              Please enter for exemple: Brovary, Kyiv
+            </Validations>
+            <InputField
+              type="text"
+              name="location"
+              // pattern="/^[a-zA-Z]{2,16}$/"
+              value={formFound.foundSecondForm.location}
+              onChange={handleFoundSecondFormChange}
+              placeholder="Location"
+            />
+            {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
+          </InputBox>
+
+          <InputLable htmlFor="avatarUrl">Load the pet's image:</InputLable>
+          <DownloadContainer>
+            {formFound.foundSecondForm.avatarUrl && (
+              <Image src={formFound.foundSecondForm.avatarUrl} alt="uploaded" />
+            )}
+            <Download
+              name="avatarUrl"
+              type="file"
+              accept="image/*"
+              onChange={handleFoundSecondFormChange}
+            />
+          </DownloadContainer>
+          <InputBox>
+            <CommentsContainer>
+              <Validations
+                className={formFound.foundSecondForm.comment.match(/^(.{8,120})?$/) ? "invalid" : ""}>
+                Please enter between 8 and 120 symbols
+              </Validations>
+              <Comments
+                name="comment"
+                type="text"
+                pattern="^[a-zA-Z0-9,.!?;:-_ ]{8,120}$"
+                value={formFound.foundSecondForm.comment}
+                onChange={handleFoundSecondFormChange}
+                placeholder="Type comments"
+              />
+              {/* {errors.comment && <div>{errors.secondForm.comment}</div>} */}
+            </CommentsContainer>
+          </InputBox>
+          <ButtonContainer>
+            <Button type="button" onClick={() => setFormType("foundFirstForm")}>
+              Back
+            </Button>
+            <Button
+              type="submit"
+            // disabled={!hasFoundSecondFormAllData}
+            >
+              Done
+            </Button>
+          </ButtonContainer>
+        </NextFormContainer>
+      )}
+      {formType === "goodHandsFirstForm" && (
+        <FormContainer onSubmit={handleGoodHandsSubmit}>
+          <AddPhoto>
+            Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
+            consectetur
+          </AddPhoto>
+          <Button type="button" onClick={() => setFormType("foundFirstForm")}>
+            lost/found
+          </Button>
+          <Button
+            type="button"
+            style={{ backgroundColor: "#F59256", color: "white" }}
+            onClick={() => setFormType("goodHandsFirstForm")}
+          >
+            in good hands
+          </Button>
+          <Button type="button" onClick={() => setFormType("sellFirstForm")}>
+            sell
+          </Button>
+
+          <InputBox>
+            <InputLable htmlFor="title">
+              Title of ad <span>*</span>
+            </InputLable>
+            <Validations
+              className={formGoodHands.goodHandsFirstForm.title.match(/^([a-zA-Z\s-]{2,48})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 48 letters
+            </Validations>
+            <InputField
+              type="text"
+              name="title"
+              pattern="/^([a-zA-Z\s-]){2,48}?$/"
+              value={formGoodHands.goodHandsFirstForm.title}
+              onChange={handleGoodHandsFirstFormChange}
+              placeholder="Type name"
+            />
+            {/* {errors.name && <div>{errors.secondForm.name}</div>} */}
+          </InputBox>
+          <InputBox>
+            <InputLable htmlFor="name">Name pet</InputLable>
+            <Validations
+              className={formGoodHands.goodHandsFirstForm.name.match(/^([a-zA-Z\s-]{2,16})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 16 letters
+            </Validations>
+            <InputField
+              type="text"
+              name="name"
+              pattern="/^([a-zA-Z\s-]{2,16})?$/"
+              value={formGoodHands.goodHandsFirstForm.name}
+              onChange={handleGoodHandsFirstFormChange}
+              placeholder="Name pet"
+            />
+            {/* {errors.name && <div>{errors.secondForm.name}</div>} */}
+          </InputBox>
+          <InputBox>
+            <InputLable htmlFor="date">Date of birth</InputLable>
+            <InputField
+              type="date"
+              name="date"
+              value={formGoodHands.goodHandsFirstForm.date}
+              onChange={handleGoodHandsFirstFormChange}
+              placeholder={today}
+              max={today}
+            />
+          </InputBox>
+          <InputBox>
+            <InputLable htmlFor="breed">Breed</InputLable>
+            <Validations
+              className={formGoodHands.goodHandsFirstForm.breed.match(/^([a-zA-Z\s-]{2,16})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 16 letters
+            </Validations>
+            <InputField
+              type="text"
+              name="breed"
+              pattern="/^([a-zA-Z\s-]{2,16})?$/"
+              value={formGoodHands.goodHandsFirstForm.breed}
+              onChange={handleGoodHandsFirstFormChange}
+              placeholder="Breed"
+            />
+            {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
+          </InputBox>
+          <ButtonContainer>
+            <Button type="button" onClick={handleClose}>
+              Cancel
+            </Button>
+            <Button
+              type="button"
+              onClick={() => setFormType("goodHandsSecondForm")}
+              disabled={!hasGoodHandsFirstFormAllData}
+            >
+              Next
+            </Button>
+          </ButtonContainer>
+        </FormContainer>
+      )}
+      {formType === "goodHandsSecondForm" && (
+        <NextFormContainer
+          encType="mutipart/form-data"
+          onSubmit={handleGoodHandsSubmit}
+        >
+          <SexButtons>
+            <InputContainer>
+              <InputMaleButton
+                isSelected={formGoodHands.goodHandsSecondForm.sex === "male"}
+                onClick={() => handleClick("male")}
+              >
+                <InputRadio
+                  type="radio"
+                  name="goodHandsSecondForm.sex"
+                  value="male"
+                  checked={formGoodHands.goodHandsSecondForm.sex === "male"}
+                  onChange={handleGoodHandsRadioChange}
+                />
+                <LabelMale htmlfor="radio1">Male</LabelMale>
+              </InputMaleButton>
+            </InputContainer>
+
+            <InputContainer>
+              <InputFemaleButton
+                isSelected={formGoodHands.goodHandsSecondForm.sex === "female"}
+                onClick={() => handleClick("female")}
+              >
+                <InputRadio
+                  type="radio"
+                  name="goodHandsSecondForm.sex"
+                  value="female"
+                  checked={formGoodHands.goodHandsSecondForm.sex === "female"}
+                  onChange={handleGoodHandsRadioChange}
+                />
+                <LabelFemale htmlfor="radio1">Female</LabelFemale>
+              </InputFemaleButton>
+            </InputContainer>
+          </SexButtons>
+          <InputBox>
+            <InputLable htmlFor="location">
+              Location<span>*</span>:
+            </InputLable>
+            <Validations
+              className={formGoodHands.goodHandsSecondForm.location.match(/^$|^[a-zA-Z\s]+,[a-zA-Z\s]+$/) ? "invalid" : ""}>
+              Please enter for exemple: Brovary, Kyiv
+            </Validations>
+            <InputField
+              type="text"
+              name="location"
+              // pattern="/^[a-zA-Z]{2,16}$/"
+              value={formGoodHands.goodHandsSecondForm.location}
+              onChange={handleGoodHandsSecondFormChange}
+              placeholder="Location"
+            />
+            {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
+          </InputBox>
+
+          <InputLable htmlFor="avatarUrl">Load the pet's image:</InputLable>
+          <DownloadContainer>
+            {formGoodHands.goodHandsSecondForm.avatarUrl && (
+              <Image
+                src={formGoodHands.goodHandsSecondForm.avatarUrl}
+                alt="uploaded"
+              />
+            )}
+            <Download
+              name="avatarUrl"
+              type="file"
+              accept="image/*"
+              onChange={handleGoodHandsSecondFormChange}
+            />
+          </DownloadContainer>
+          <InputBox>
+            <CommentsContainer>
+              <Validations
+                className={formGoodHands.goodHandsSecondForm.comment.match(/^(.{8,120})?$/) ? "invalid" : ""}>
+                Please enter between 8 and 120 symbols
+              </Validations>
+              <Comments
+                name="comment"
+                type="text"
+                pattern="^[a-zA-Z0-9,.!?;:-_ ]{8,120}$"
+                value={formGoodHands.goodHandsSecondForm.comment}
+                onChange={handleGoodHandsSecondFormChange}
+                placeholder="Type comments"
+              />
+              {/* {errors.comment && <div>{errors.secondForm.comment}</div>} */}
+            </CommentsContainer>
+          </InputBox>
+          <ButtonContainer>
+            <Button
+              type="button"
+              onClick={() => setFormType("goodHandsFirstForm")}
+            >
+              Back
+            </Button>
+            <Button type="submit"
+            // disabled={!hasGoodHandsSecondFormAllData}
+            >
+              Done
+            </Button>
           </ButtonContainer>
         </NextFormContainer>
       )}

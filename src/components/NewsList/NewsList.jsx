@@ -1,4 +1,5 @@
 import { useState, useRef, useCallback } from "react";
+import { useSearchParams } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import { NewsItem } from "../NewsItem/NewsItem";
 import Error from "components/Error/Error";
@@ -7,8 +8,10 @@ import { useSearchNews } from "hooks";
 import { Typography, Link, Box } from "@mui/material";
 import { dateCompare } from "utils/dateCompare";
 
-export const NewsList = ({ query }) => {
+export const NewsList = () => {
   const [pageNumber, setPageNumber] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get("query") ?? "";
 
   const { loading, error, news, hasMore } = useSearchNews(pageNumber);
 
@@ -31,15 +34,14 @@ export const NewsList = ({ query }) => {
   let filteredNews = news;
 
   if (query !== "") {
-     filteredNews = news?.filter(({ title }) => {
+    filteredNews = news?.filter(({ title }) => {
       return title.toLowerCase().includes(query.toLowerCase());
     });
-   
   }
 
-   const sorteredNews = filteredNews.sort((firstNews, secondNews) => {
-     return (dateCompare(firstNews.date, secondNews.date));
-   });
+  const sorteredNews = filteredNews.sort((firstNews, secondNews) => {
+    return dateCompare(secondNews.date, firstNews.date);
+  });
 
   return (
     <>

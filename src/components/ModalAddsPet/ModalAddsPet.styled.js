@@ -95,6 +95,7 @@ height: 182px;
 `
 
 export const ModalContainer = styled.div`
+margin-top: 60px;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -102,8 +103,7 @@ export const ModalContainer = styled.div`
   background-color: white;
   margin-left: auto;
   margin-right: auto;
-  max-width: 280px;
-  /* height: 530px; */
+  max-width: 98%;
   border-radius: 16px;
   animation: ${slideIn} 300ms ease-out;
 

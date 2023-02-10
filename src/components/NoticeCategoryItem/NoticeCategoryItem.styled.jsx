@@ -24,6 +24,10 @@ export const ItemNoticesImg = styled.img`
   width: 100%;
   height: 288px;
   object-fit: cover;
+
+  @media only screen and (max-width: 767px) {
+    width: 280px;
+  }
 `;
 export const ItemPositionNoticesDiv = styled.div`
   position: absolute;

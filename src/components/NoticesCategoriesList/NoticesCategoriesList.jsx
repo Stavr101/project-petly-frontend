@@ -32,9 +32,9 @@ const NoticesCategoriesList = () => {
 
   // console.log("categoryName", categoryName);
 
-  // useEffect(() => {
-  //   dispatch(getUserInfo());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getUserInfo());
+  }, [dispatch]);
 
   useEffect(() => {
     if (location.pathname.includes("favorite")) {
@@ -71,6 +71,7 @@ const NoticesCategoriesList = () => {
       return;
     }
 
+    //  if (!categoryName) return
     const fetchPets = async () => {
       setLoading(true);
       setError(null);

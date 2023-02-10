@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, TabScrollButton } from '@mui/material';
+import { Modal } from '@mui/material';
 import { nanoid } from 'nanoid';
-
 import {
-  // EnterButton,
   ModalContainer,
   ModalTitle,
   ButtonOff,
 } from './ModalAddsPet.styled';
-
 import Forma from './ModalAddsPet';
+
 
 export default function ModalAddsPetApp({ onOpenModal, onCloseModal }) {
   const [pets, setPets] = useState(
     () => JSON.parse(window.localStorage.getItem('pets')) ?? []
   );
-  // const [modalOpen, setModalOpen] = useState(true);
 
   //Запис в локал сторидж
   useEffect(() => {
@@ -36,19 +33,9 @@ export default function ModalAddsPetApp({ onOpenModal, onCloseModal }) {
     setPets(pets => [data, ...pets]);
   };
 
-  // const handleOpen = e => {
-  //   setModalOpen(true);
-  // };
-  // const handleClose = e => {
-  //   e.preventDefault();
-  //   setModalOpen(false);
-  // };
 
   return (
     <>
-      {/* <EnterButton variant="contained" onClick={handleOpen}>
-        Add Pet
-      </EnterButton> */}
       <Modal open={onOpenModal} onClose={onCloseModal} >
         <ModalContainer>
           <ButtonOff variant="contained" onClick={onCloseModal}></ButtonOff>

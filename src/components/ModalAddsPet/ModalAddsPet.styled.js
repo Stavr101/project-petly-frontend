@@ -8,32 +8,30 @@ const slideIn = keyframes`
     opacity: 0;
   }
   to {
-  
+
     transform: translateX(0);
     opacity: 1;
   }
 `;
 
 export const Validations = styled.p`
-color: red;
-font-size: 10px;
-opacity: 1;
+  color: red;
+  font-size: 10px;
+  opacity: 1;
   &.invalid {
-    opacity: 0;}
-
-`
+    opacity: 0;
+  }
+`;
 
 export const AddPhoto = styled.p`
-
   text-align: center;
   margin-bottom: 20px;
   font-size: 20px;
   line-height: 24px;
   letter-spacing: -0.01em;
   color: #111111;
-        @media (min-width: 768px) {
+  @media (min-width: 768px) {
     width: 300px;
-
   }
 `;
 
@@ -46,56 +44,53 @@ export const DownloadPhoto = styled.input`
     background-color: blue;
     border-radius: 4px;
     cursor: pointer;
-  }`
+  }
+`;
 
 export const Download = styled.input`
-opacity: 0;
-width: 182px;
-height: 182px;
-
-`
+  opacity: 0;
+  width: 182px;
+  height: 182px;
+`;
 export const DownloadContainer = styled.div`
-
-width: 208px;
-height: 208px;
-border-radius: 20px;
-cursor: pointer;
- margin-bottom: 20px;
+  width: 208px;
+  height: 208px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-bottom: 20px;
   padding: 0;
   border-radius: 20px;
   border: #fdf7f2;
   outline: none;
-  
   background: #fdf7f2;
   color: rgba(27, 27, 27, 0.6);
-   background-image: url(${crossPhoto});
-
+  background-image: url(${crossPhoto});
   background-size: 48px 48px;
   background-repeat: no-repeat;
   background-position: center center;
   @media (min-width: 768px) {
-  width: 182px;
-  height: 182px;
-  }
-  :hover, :active
-   {
-        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  }
-`
-export const Image = styled.img`
-margin-bottom: -165px;
-width: 208px;
-height: 208px;
-border-radius: 20px;
-animation: ${slideIn} 300ms ease-out;
- @media (min-width: 768px) {
     width: 182px;
-height: 182px;
+    height: 182px;
   }
-`
+  :hover,
+  :active {
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  }
+`;
+export const Image = styled.img`
+  margin-bottom: -165px;
+  width: 208px;
+  height: 208px;
+  border-radius: 20px;
+  animation: ${slideIn} 300ms ease-out;
+  @media (min-width: 768px) {
+    width: 182px;
+    height: 182px;
+  }
+`;
 
 export const ModalContainer = styled.div`
-margin-top: 60px;
+  margin-top: 60px;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -109,7 +104,7 @@ margin-top: 60px;
 
   @media (min-width: 768px) {
     max-width: 608px;
-     margin-top:30px;
+    margin-top: 30px;
   }
 `;
 
@@ -132,34 +127,21 @@ export const NextFormContainer = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+
   @media (min-width: 768px) {
     max-width: 448px;
   }
-`
+`;
 export const CommentsContainer = styled.div`
-/* width: 240px; */
-  /* 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  @media (min-width: 768px) {
-    max-width: 448px;
-  } */
-`
-
-
-export const InputBox = styled.div`
 
 `;
 
+export const InputBox = styled.div``;
+
 export const InputLable = styled.label`
-  /* font-family: "Manrope";
-  font-style: normal; */
   color: #111111;
   font-weight: 500;
   font-size: 18px;
-  /* line-height: 36px; */
 `;
 
 export const InputField = styled.input`
@@ -172,7 +154,6 @@ export const InputField = styled.input`
   background: #fdf7f2;
   border: 1px solid rgba(245, 146, 86, 0.5);
   color: rgba(27, 27, 27, 0.8);
- 
 
   @media (min-width: 768px) {
     width: 448px;
@@ -228,13 +209,12 @@ export const Comments = styled.textarea`
 `;
 
 export const ButtonContainer = styled.div`
-  /* display: flex; */
   margin-top: 40px;
   justify-content: space-between;
   width: 100%;
   margin-top: 20px;
   @media (min-width: 768px) {
-     display: flex;
+    display: flex;
     width: 380px;
   }
 `;
@@ -250,8 +230,8 @@ export const ButtonOff = styled.button`
   background-size: 28px 28px;
   background-repeat: no-repeat;
   background-position: center center;
-  :hover, :active
-   {
+  :hover,
+  :active {
     background-size: 30px 30px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   }
@@ -265,7 +245,8 @@ export const CancelButton = styled.button`
   margin-bottom: 20px;
   border: 2px solid #f59256;
   background-color: white;
-  :hover,:active {
+  :hover,
+  :active {
     background-color: #f59256;
     color: white;
     outline: none;
@@ -286,7 +267,8 @@ export const Button = styled.button`
   margin-bottom: 12px;
   border: 2px solid #f59256;
   background-color: white;
-  :hover, :active {
+  :hover,
+  :active {
     background-color: #f59256;
     color: white;
     outline: none;
@@ -307,7 +289,8 @@ export const NextButton = styled.button`
   margin-bottom: 12px;
   border: 2px solid #f59256;
   background-color: white;
-  :hover, :active {
+  :hover,
+  :active {
     background-color: #f59256;
     color: white;
     outline: none;

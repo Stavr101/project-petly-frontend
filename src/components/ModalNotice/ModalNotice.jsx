@@ -30,8 +30,6 @@ import {
   ModalNoticeItemValueLink,
 } from "./ModalNotice.styled";
 import { createPortal } from "react-dom";
-// import { useSelector } from "react-redux";
-// import { selectUser } from "redux/auth/selectors";
 import { useAuth } from "hooks";
 
 const modalRoot = document.querySelector("#modal-root");
@@ -50,7 +48,6 @@ export default function ModalNotice({
   const { user } = useAuth();
 
   useEffect(() => {
-    // console.log("1");
     document.body.style.overflow = "hidden";
 
     const handleKeyDown = (e) => {
@@ -67,7 +64,6 @@ export default function ModalNotice({
   }, []);
 
   useEffect(() => {
-    // console.log("2");
     const getPetById = async () => {
       setLoading(true);
 
@@ -82,8 +78,6 @@ export default function ModalNotice({
     };
     getPetById();
   }, [petId]);
-
-  // console.log("COMPONENT RENDER");
 
   const onBackdropClick = (e) => {
     if (e.currentTarget === e.target) setShowModal(false);
@@ -215,7 +209,7 @@ export default function ModalNotice({
               </ModalNoticeButtonsItem>
 
               <ModalNoticeButtonsItem>
-                {pet.owner && pet.owner.email === user.email ? (
+                {pet.owner && pet.owner._id === user._id ? (
                   <ModalNoticeButton
                     type="button"
                     onClick={handleDeletePet(petId)}

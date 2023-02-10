@@ -62,9 +62,6 @@ export default function NoticeCategoryItem({
   // const [isFavorite, setIsFavorite] = useState(favoritePets.includes(_id));
   const [isFavorite, setIsFavorite] = useState(favorite);
 
-  // console.log("favorite", favorite);
-  console.log("data", data);
-
   const onLearnMoreClick = () => {
     setOpen(true);
   };
@@ -103,21 +100,15 @@ export default function NoticeCategoryItem({
     }
     return "< 1 month";
   };
-  // useEffect(() => {}, []);
 
   async function addFavorite(_id) {
-    if (isUser.email === null) {
+    if (!isLoggedIn) {
       return Notify.failure("Must be authorization");
     }
-    // if (isDuplicate(_id)) {
-    //   setIsFavorite(false);
-    //   return deletePet(_id);
-    // }
     try {
       const res = await addPetToFavorite(_id);
       setIsFavorite(true);
 
-      // console.log(res);
       Notify.success("Pet add to your'e favorite");
       return res;
     } catch (error) {
@@ -126,7 +117,7 @@ export default function NoticeCategoryItem({
   }
 
   async function removeFromFavorite(_id) {
-    if (isUser.email === null) {
+    if (!isLoggedIn) {
       return Notify.failure("Must be authorization");
     }
     try {
@@ -142,7 +133,6 @@ export default function NoticeCategoryItem({
     } catch (error) {
       console.log(error);
     }
-    setIsFavorite(false);
   }
 
   const handleChangeFavorite = (id) => {
@@ -152,10 +142,6 @@ export default function NoticeCategoryItem({
       addFavorite(id);
     }
   };
-
-  // function isDuplicate(petId) {
-  //   return favoritePets?.find((pet) => pet === petId);
-  // }
 
   return (
     <>
@@ -176,7 +162,6 @@ export default function NoticeCategoryItem({
             </ItemPositionNoticesDivParagraf>
             <ItemButtonNoticesHeartButton
               type="button"
-              // onClick={() => addFavorite(_id)}
               onClick={() => handleChangeFavorite(_id)}
             >
               {isFavorite ? <HeartFavorite /> : <HeartSvg />}
@@ -209,7 +194,6 @@ export default function NoticeCategoryItem({
           <ItemButtonNotices>
             <ItemButtonNoticesLearnMore
               type="submit"
-              // onClick={() => onLearnMore(_id)}
               onClick={onLearnMoreClick}
             >
               Learn more

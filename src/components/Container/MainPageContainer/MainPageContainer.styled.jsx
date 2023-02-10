@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const MainPageContainerBlock = styled.div`
+  position: relative;
   margin: 0 auto;
   max-width: 100%;
 
@@ -19,4 +20,4 @@ export const MainPageContainerBlock = styled.div`
     width: 1280px;
     padding: 0 16px 16px;
   }
-`
+`;

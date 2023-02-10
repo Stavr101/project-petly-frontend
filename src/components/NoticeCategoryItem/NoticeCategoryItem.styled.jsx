@@ -98,6 +98,7 @@ export const ItemNoticesWrap = styled.div`
 export const ItemButtonNotices = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   flex-grow: 1;
   gap: 12px;
 `;

@@ -28,6 +28,8 @@ import {
   ItemButtonNoticesDeleteSpan,
 } from "./NoticeCategoryItem.styled";
 
+import { useTranslation } from 'react-i18next';
+
 export default function NoticeCategoryItem({
   data,
   lastNewsElementRef,
@@ -46,6 +48,8 @@ export default function NoticeCategoryItem({
     birthdate,
     categoryName,
   } = data;
+
+  const { t } = useTranslation();
 
   const locationFavorite = useLocation();
   const { isLoggedIn } = useAuth();
@@ -118,7 +122,7 @@ export default function NoticeCategoryItem({
 
   async function removeFromOwn(_id) {
     if (!isLoggedIn) {
-      return Notify.failure("Must be authorization");
+      return Notify.failure("You must be authorized");
     }
     try {
       if (owner === user._id) {
@@ -164,20 +168,20 @@ export default function NoticeCategoryItem({
           <ItemNoticesTitle>{title}</ItemNoticesTitle>
           <ItemNoticesUlList>
             <li>
-              <ItemNoticesListP>Breed:</ItemNoticesListP>
+              <ItemNoticesListP>{t("notices.breed")}</ItemNoticesListP>
               <ItemNoticesSpan>{breed}</ItemNoticesSpan>
             </li>
             <li>
-              <ItemNoticesListP>Place:</ItemNoticesListP>
+              <ItemNoticesListP>{t("notices.place")}</ItemNoticesListP>
               <ItemNoticesSpan>{location}</ItemNoticesSpan>
             </li>
             <li>
-              <ItemNoticesListP>Age:</ItemNoticesListP>
+              <ItemNoticesListP>{t("notices.age")}</ItemNoticesListP>
               <ItemNoticesSpan>{currentAge(birthdate)}</ItemNoticesSpan>
             </li>
             {categoryName === "sell" ? (
               <ItemNoticesListLi>
-                <ItemNoticesListP>Price:</ItemNoticesListP>
+                <ItemNoticesListP>{t("notices.price")}</ItemNoticesListP>
                 <ItemNoticesSpan>{price} UAH</ItemNoticesSpan>
               </ItemNoticesListLi>
             ) : null}
@@ -188,7 +192,7 @@ export default function NoticeCategoryItem({
               type="submit"
               onClick={onLearnMoreClick}
             >
-              Learn more
+              {t("notices.more")}
             </ItemButtonNoticesLearnMore>
 
             {isLoggedIn && owner === user._id ? (
@@ -197,7 +201,7 @@ export default function NoticeCategoryItem({
                 onClick={() => removeFromOwn(_id)}
               >
                 <ItemButtonNoticesDeleteSpan>
-                  Delete
+                  {t("notices.del")}
                 </ItemButtonNoticesDeleteSpan>
                 <DeleteSvg />
               </ItemButtonNoticesDelete>

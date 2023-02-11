@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Modal from '@mui/material/Modal';
 // import { makeStyles } from '@material-ui/core/styles';
 import { nanoid } from 'nanoid';
+import { useTranslation } from 'react-i18next';
 
 // npm install
 // @mui/material
@@ -27,6 +28,7 @@ import Forma from './ModalAddNotice';
 
 
 export default function ModalAddsPetApp({ onOpenModal, onCloseModal }) {
+  const { t } = useTranslation();
   const [pets, setPets] = useState(
     () => JSON.parse(window.localStorage.getItem('pets')) ?? []
   );
@@ -66,7 +68,7 @@ export default function ModalAddsPetApp({ onOpenModal, onCloseModal }) {
         style={{ display: "flex", justifyContent: "center", alignItems: 'center' }}>
         <ModalContainer>
           <ButtonOff variant="contained" onClick={onCloseModal}></ButtonOff>
-          <ModalTitle>Add Pet</ModalTitle>
+          <ModalTitle>{t("notices.add")}</ModalTitle>
           <Forma handleClose={onCloseModal} onSubmit={submitHandle} />
         </ModalContainer>
       </Modal>

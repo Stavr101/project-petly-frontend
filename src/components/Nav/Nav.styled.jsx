@@ -49,6 +49,7 @@ export const NavLink = styled(Link)`
 
   &.active {
     color: ${p => p.theme.colors.accent};
+    font-weight: ${(p) => p.theme.fontWeights.bold};
     text-decoration-line: underline;
     transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
     transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);

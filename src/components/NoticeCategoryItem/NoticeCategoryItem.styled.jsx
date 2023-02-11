@@ -79,7 +79,6 @@ export const ItemNoticesUlList = styled.ul`
   display: flex;
   flex-direction: column;
   min-height: 112px;
-  margin-bottom: 20px;
   gap: 8px;
 `;
 

@@ -16,6 +16,7 @@ import UserDataItem from 'components/UserDataItem/UserDataItem';
 import { updateUserAvatar } from 'redux/users/operations';
 import editAvatar from 'images/UserPage/editAvatar.svg';
 import { regExp } from 'helpers/regExp/regExp';
+import { useTranslation } from 'react-i18next';
 
 export default function UserDataList() {
   const dataUser = useSelector(getUserData);
@@ -39,6 +40,8 @@ export default function UserDataList() {
     dispatch(updateUserAvatar(data));
   };
 
+  const { t } = useTranslation();
+
   return (
     <>
       <AvatarInfoWrapper>
@@ -58,13 +61,13 @@ export default function UserDataList() {
           )}
           <LabelEditPhoto type="button" onClick={onButtonClick}>
             <SVG src={editAvatar} />
-            Edit photo
+            {t("user.edit")}
           </LabelEditPhoto>
         </FormWrapper>
       </AvatarInfoWrapper>
       <UserInfoList>
         <UserInfoItem>
-          <UserInfoTitle>Name:</UserInfoTitle>
+          <UserInfoTitle>{t("user.name")}</UserInfoTitle>
           {name ? (
             <UserDataItem
               userIdD={_id}
@@ -103,7 +106,7 @@ export default function UserDataList() {
           )}
         </UserInfoItem>
         <UserInfoItem>
-          <UserInfoTitle>Birthday:</UserInfoTitle>
+          <UserInfoTitle>{t("user.birthday")}</UserInfoTitle>
           {birthday ? (
             <UserDataItem
               typeInput="date"
@@ -126,7 +129,7 @@ export default function UserDataList() {
         </UserInfoItem>
 
         <UserInfoItem>
-          <UserInfoTitle>Phone:</UserInfoTitle>
+          <UserInfoTitle>{t("user.phone")}</UserInfoTitle>
           {phone ? (
             <UserDataItem
               typeInput="phone"
@@ -146,7 +149,7 @@ export default function UserDataList() {
         </UserInfoItem>
 
         <UserInfoItem>
-          <UserInfoTitle>City:</UserInfoTitle>
+          <UserInfoTitle>{t("user.city")}</UserInfoTitle>
           {address ? (
             <UserDataItem
               typeInput="text"

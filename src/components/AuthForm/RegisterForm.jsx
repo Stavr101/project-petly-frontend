@@ -20,7 +20,6 @@ import authOperation from "redux/auth/operations";
 import { useDispatch } from "react-redux";
 import { ImEye, ImEyeBlocked } from "react-icons/im";
 import AuthContainer from "components/Container/AuthContainer/AuthContainer";
-import { MainPageContainerBlock } from "components/Container/MainPageContainer/MainPageContainer.styled";
 import Loader from "shared/loader/Loader";
 import { useTranslation } from 'react-i18next';
 
@@ -75,20 +74,9 @@ export default function RegisterForm() {
 
   const { t } = useTranslation();
 
-  // async function authGoogle() {
-  //   try {
-  //     const res = await dispatch(authOperation.authGoogle());
-  //     console.log(res);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
   return (
-    <>
       <AuthContainer>
         {!loading ? (
-          <MainPageContainerBlock>
             <FormWrapper>
               <FormTitle>{t("registration.registration")}</FormTitle>
               <Formik
@@ -227,21 +215,13 @@ export default function RegisterForm() {
                   </>
                 )}
               </Formik>
-              {/* <button type="button" onClick={authGoogle}>
-          google
-        </button> */}
               <Text>
                 {t("registration.have")} <LinkAuth to="/login">{t("registration.login")}</LinkAuth>
               </Text>
             </FormWrapper>
-          </MainPageContainerBlock>
         ) : (
           <Loader />
         )}
       </AuthContainer>
-
-      {/* <div style={{ marginTop: "40px" }}>avgaew</div>
-      <div>eragreg</div> */}
-    </>
   );
 }

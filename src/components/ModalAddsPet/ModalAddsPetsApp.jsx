@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, TabScrollButton } from '@mui/material';
 import { nanoid } from 'nanoid';
+import { useTranslation } from 'react-i18next';
 
 import {
   // EnterButton,
@@ -44,6 +45,8 @@ export default function ModalAddsPetApp({ onOpenModal, onCloseModal }) {
   //   setModalOpen(false);
   // };
 
+  const { t } = useTranslation();
+
   return (
     <>
       {/* <EnterButton variant="contained" onClick={handleOpen}>
@@ -52,7 +55,7 @@ export default function ModalAddsPetApp({ onOpenModal, onCloseModal }) {
       <Modal open={onOpenModal} onClose={onCloseModal} >
         <ModalContainer>
           <ButtonOff variant="contained" onClick={onCloseModal}></ButtonOff>
-          <ModalTitle>Add Pet</ModalTitle>
+          <ModalTitle>{t("notices.add")}</ModalTitle>
           <Forma handleClose={onCloseModal} onSubmit={submitHandle} />
         </ModalContainer>
       </Modal>

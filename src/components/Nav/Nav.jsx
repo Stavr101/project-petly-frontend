@@ -8,11 +8,10 @@ import {
   MobileContainer,
   TabletContainer,
   StyledBurger,
-  LanguageSwitch,
-  LanguageOption
 } from "./Nav.styled";
 import AuthNav from 'components/AuthNav/AuthNav';
 import UserNav from 'components/UserNav/UserNav';
+import LanguageSwitch from 'components/LanguageSwitch/LanguageSwitch';
 import { useAuth } from 'hooks';
 import { useMediaQuery } from 'react-responsive';
 import Modal from "components/ModalMenu/Modal/Modal";
@@ -28,15 +27,7 @@ const Nav = () => {
 
   const [showModal, setShowModal] = useState(false);
 
-  const { t, i18n } = useTranslation();
-  const changeLanguage = (language) => {
-    i18n.changeLanguage(language);
-  }
-
-  const [checked, setChecked] = useState(true);
-  const changeOption = () => {
-      setChecked(!checked);
-   }
+  const { t } = useTranslation();
 
   return (
     <>
@@ -50,28 +41,6 @@ const Nav = () => {
           <NavLink to="/friends">{t("main.friends")}</NavLink>
         </NavMenu>
           </PrimaryNav>
-          <LanguageSwitch>
-            <LanguageOption checked={checked}
-              label="EN"
-              type="radio"
-              name="language"
-              value="en"
-              onChange={() => {
-              changeLanguage("en");
-                changeOption();
-              }}>
-              </LanguageOption>
-            <LanguageOption
-              label="UA"
-              type="radio"
-              name="language"
-              value="uk"
-              onChange={() => {
-              changeLanguage("uk");
-              changeOption();
-              }}>
-              </LanguageOption>
-          </LanguageSwitch>
       <SecondaryNav>
         {isLoggedIn ? <UserNav /> : <AuthMenu> <AuthNav /> </AuthMenu>}
       </SecondaryNav>
@@ -103,6 +72,7 @@ const Nav = () => {
         </TabletContainer>
       </Modal>}
       
+        <LanguageSwitch/>
         <StyledBurger aria-label='menu' open={showModal} onClick={() => {
           setShowModal(current => !current);
           setShowModal(!showModal);

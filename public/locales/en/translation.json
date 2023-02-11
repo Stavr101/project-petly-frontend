@@ -32,13 +32,64 @@
     "news": {
         "news": "News",
         "search": "Search",
-        "more": "Read more"
+        "more": "Read more",
+        "end": "End of content...",
+        "totop": "back to top?"
     },
 
     "friends": {
         "friends": "Our friends",
-        "time": "Time",
-        "address": "Address",
-        "phone": "Phone"
+        "time": "Time:",
+        "address": "Address:",
+        "phone": "Phone:",
+        "monday": "MN", 
+        "tuesday": "TU", 
+        "wednesday": "WE", 
+        "thursday": "TH", 
+        "friday": "FR", 
+        "saturday": "SA", 
+        "sunday": "SU"
+    },
+
+    "notices": {
+        "header": "Find your favorite pet",
+        "sell": "Sell",
+        "lost": "Lost/found",
+        "free": "In good hands",
+        "fav": "Favorite",
+        "own" : "My ads",
+        "add": "Add pet",
+        "more": "Learn more",
+        "del": "Delete",
+        "breed": "Breed:",
+        "place": "Place:",
+        "age": "Age:",
+        "price": "Price:",
+        "name": "Name:",
+        "birthday": "Birthday:",
+        "sex": "The sex:",
+        "phone": "Phone:",
+        "comm": "Comments:",
+        "month": "month",
+        "months": "months",
+        "year": "year",
+        "years": "years",
+        "less": "< 1 month",
+        "contact": "Contact",
+        "addto": "Add to",
+        "remove": "Remove from"
+    },
+
+    "modal": {
+        "name": "Name pet",
+        "breed": "Breed:",
+        "birth": "Date of birth",
+        "check": "Please enter between 2 and 16 letters",
+        "commentcheck": "Please enter between 8 and 120 symbols",
+        "photo": "Add photo and some comments"
+    },
+    
+    "user": {
+
     }
 }

@@ -30,6 +30,7 @@ import ModalNotice from "components/ModalNotice/ModalNotice";
 import { selectUser } from "redux/auth/selectors";
 import { getUserData } from "redux/users/selectors";
 import { useLocation } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 export default function NoticeCategoryItem({
   data,
@@ -49,6 +50,8 @@ export default function NoticeCategoryItem({
     birthdate,
     categoryName,
   } = data;
+
+  const { t } = useTranslation();
 
   const [open, setOpen] = useState(false);
   // const isUser = useSelector(selectUser);
@@ -93,22 +96,22 @@ export default function NoticeCategoryItem({
 
     if (transformedYear > 0) {
       if (transformedMonth) {
-        return `${transformedYear} ${transformedYear === 1 ? "year" : "years"}`;
+        return `${transformedYear} ${transformedYear === 1 ? t("notices.year") : t("notices.years")}`;
       }
-      return `${transformedYear} ${transformedYear === 1 ? "year" : "years"}`;
+      return `${transformedYear} ${transformedYear === 1 ? t("notices.year") : t("notices.years")}}`;
     }
 
     if (transformedMonth) {
       return `${transformedMonth} ${
-        transformedMonth === 1 ? "month" : "months"
+        transformedMonth === 1 ? t("notices.month") : t("notices.months")
       }`;
     }
-    return "< 1 month";
+    return t("notices.less");
   };
 
   async function addFavorite(_id) {
     if (!isLoggedIn) {
-      return Notify.failure("Must be authorization");
+      return Notify.failure("You must be authorized");
     }
     try {
       const res = await addPetToFavorite(_id);
@@ -123,7 +126,7 @@ export default function NoticeCategoryItem({
 
   async function removeFromFavorite(_id) {
     if (!isLoggedIn) {
-      return Notify.failure("Must be authorization");
+      return Notify.failure("You must be authorized");
     }
     try {
       await removeFavoritePet(_id);
@@ -166,7 +169,7 @@ export default function NoticeCategoryItem({
 
   async function removeFromOwn(_id) {
     if (!isLoggedIn) {
-      return Notify.failure("Must be authorization");
+      return Notify.failure("You must be authorized");
     }
     try {
       if (owner === user._id) {
@@ -208,20 +211,20 @@ export default function NoticeCategoryItem({
           <ItemNoticesTitle>{title}</ItemNoticesTitle>
           <ItemNoticesUlList>
             <ItemNoticesListLi>
-              <ItemNoticesListP>Breed:</ItemNoticesListP>
+              <ItemNoticesListP>{t("notices.breed")}</ItemNoticesListP>
               <ItemNoticesSpan>{breed}</ItemNoticesSpan>
             </ItemNoticesListLi>
             <ItemNoticesListLi>
-              <ItemNoticesListP>Place:</ItemNoticesListP>
+              <ItemNoticesListP>{t("notices.place")}</ItemNoticesListP>
               <ItemNoticesSpan>{location}</ItemNoticesSpan>
             </ItemNoticesListLi>
             <ItemNoticesListLi>
-              <ItemNoticesListP>Age:</ItemNoticesListP>
+              <ItemNoticesListP>{t("notices.age")}</ItemNoticesListP>
               <ItemNoticesSpan>{currentAge(birthdate)}</ItemNoticesSpan>
             </ItemNoticesListLi>
             {categoryName === "sell" ? (
               <ItemNoticesListLi>
-                <ItemNoticesListP>Price:</ItemNoticesListP>
+                <ItemNoticesListP>{t("notices.price")}</ItemNoticesListP>
                 <ItemNoticesSpan>{price} UAH</ItemNoticesSpan>
               </ItemNoticesListLi>
             ) : null}
@@ -232,7 +235,7 @@ export default function NoticeCategoryItem({
               type="submit"
               onClick={onLearnMoreClick}
             >
-              Learn more
+              {t("notices.more")}
             </ItemButtonNoticesLearnMore>
 
             {isLoggedIn && owner === ownPets && (
@@ -241,7 +244,7 @@ export default function NoticeCategoryItem({
                 onClick={() => removeFromOwn(_id)}
               >
                 <ItemButtonNoticesDeleteSpan>
-                  Delete
+                  {t("notices.del")}
                 </ItemButtonNoticesDeleteSpan>
                 <DeleteSvg />
               </ItemButtonNoticesDelete>

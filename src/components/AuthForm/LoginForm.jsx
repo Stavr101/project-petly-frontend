@@ -21,6 +21,7 @@ import { useState } from "react";
 import AuthContainer from "components/Container/AuthContainer/AuthContainer";
 import { MainPageContainerBlock } from "components/Container/MainPageContainer/MainPageContainer.styled";
 import Loader from "shared/loader/Loader";
+import { useTranslation } from 'react-i18next';
 
 export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -45,12 +46,14 @@ export default function RegisterForm() {
     setShowPassword((prev) => !prev);
   }
 
+  const { t } = useTranslation();
+
   return (
     <AuthContainer>
       <MainPageContainerBlock>
         {!loading ? (
           <FormWrapper>
-            <FormTitle>Login</FormTitle>
+            <FormTitle>{t("login.login")}</FormTitle>
             <Formik
               initialValues={{
                 email: "",
@@ -78,7 +81,7 @@ export default function RegisterForm() {
                     <InputField
                       type={showPassword ? "text" : "password"}
                       name="password"
-                      placeholder="Password"
+                      placeholder={t("login.password")}
                       value={values.password}
                       onChange={handleChange}
                     />
@@ -90,13 +93,13 @@ export default function RegisterForm() {
                       {!showPassword ? <ImEye /> : <ImEyeBlocked />}
                     </EyePassword>
                   </Wrapper>
-                  <BtnForm type="submit">Login</BtnForm>
+                  <BtnForm type="submit">{t("login.login")}</BtnForm>
                 </FormEl>
               )}
             </Formik>
             <Text>
-              Don't have an account?{" "}
-              <LinkAuth to="/register">Register</LinkAuth>
+              {t("login.noacc")}{" "}
+              <LinkAuth to="/register">{t("login.register")}</LinkAuth>
             </Text>
           </FormWrapper>
         ) : (

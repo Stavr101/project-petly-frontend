@@ -9,6 +9,7 @@ import NoticeCategoryItem from "components/NoticeCategoryItem/NoticeCategoryItem
 import { List } from "components/NoticesCategoriesList/NoticesCategoriesList.slyled";
 import { getUserInfo } from "redux/users/operations";
 import { useDispatch } from "react-redux";
+import { useTranslation } from 'react-i18next';
 // import Loader from "shared/loader/Loader";
 // import { getUserData } from "redux/users/selectors";
 
@@ -110,6 +111,8 @@ const NoticesCategoriesList = () => {
     [loading, hasMore]
   );
 
+  const { t } = useTranslation();
+
   return (
     <>
       {/* {!pets.length && (
@@ -145,8 +148,8 @@ const NoticesCategoriesList = () => {
       )}
       {!hasMore && Boolean(pets.length) && (
         <Box sx={{ textAlign: "center" }}>
-          <Typography sx={{ mb: 1 }}>End of content...</Typography>
-          <Link href="#top">back to top?</Link>
+          <Typography sx={{ mb: 1 }}>{t("news.end")}</Typography>
+          <Link href="#top">{t("news.totop")}</Link>
         </Box>
       )}
       {/* {error && <Error />}

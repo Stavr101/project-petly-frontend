@@ -168,15 +168,15 @@ export default function NoticeCategoryItem({
           <ItemNoticesTitle>{title}</ItemNoticesTitle>
           <ItemNoticesUlList>
             <li>
-              <ItemNoticesListP>Breed:</ItemNoticesListP>
+              <ItemNoticesListP>{t("notices.breed")}</ItemNoticesListP>
               <ItemNoticesSpan>{breed}</ItemNoticesSpan>
             </li>
             <li>
-              <ItemNoticesListP>Place:</ItemNoticesListP>
+              <ItemNoticesListP>{t("notices.place")}</ItemNoticesListP>
               <ItemNoticesSpan>{location}</ItemNoticesSpan>
             </li>
             <li>
-              <ItemNoticesListP>Age:</ItemNoticesListP>
+              <ItemNoticesListP>{t("notices.age")}</ItemNoticesListP>
               <ItemNoticesSpan>{currentAge(birthdate)}</ItemNoticesSpan>
             </li>
             {categoryName === "sell" ? (

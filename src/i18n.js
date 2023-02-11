@@ -8,7 +8,6 @@ i18next
     .use(LanguageDetector)
     .use(initReactI18next)
     .init({
-        
         fallbackLng: "en",
         whitelist: ["en", "uk"],
         debug: false,
@@ -20,5 +19,5 @@ i18next
         interpolation: {
             escapeValue: false
         },
-    
+
     });

@@ -8,9 +8,12 @@ import {
   Grid,
 } from "@mui/material";
 import EllipsisText from "react-ellipsis-text";
+import { useTranslation } from 'react-i18next';
 
 export const NewsItem = ({ data, lastElementRef }) => {
   const { title, url, date, description } = data;
+
+  const { t } = useTranslation();
 
   return (
     <Grid
@@ -70,7 +73,7 @@ export const NewsItem = ({ data, lastElementRef }) => {
           </Typography>
           <CardActions>
             <Link href={url} target="_blank" rel="noreferrer noopener">
-              Read more
+              {t("news.more")}
             </Link>
           </CardActions>
         </Box>

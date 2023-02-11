@@ -15,6 +15,7 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
+import { useTranslation } from 'react-i18next';
 
 export default function PetsList({ dataPets }) {
   // const petsData = useSelector(getPets);
@@ -38,6 +39,8 @@ export default function PetsList({ dataPets }) {
     // dispatch(getPetInfo());
   };
 
+  const { t } = useTranslation();
+
   const elements = dataPets.map(
     ({ name, date, breed, avatarUrl, comment, _id }) => {
       return (
@@ -51,24 +54,24 @@ export default function PetsList({ dataPets }) {
           <PetList>
             <PetItem>
               <PetDescriptionInfo>
-                <PetTitleInfo>Name: </PetTitleInfo> {name}
+                <PetTitleInfo>{t("user.petname")} </PetTitleInfo> {name}
               </PetDescriptionInfo>
             </PetItem>
             <PetItem>
               <PetDescriptionInfo>
-                <PetTitleInfo>Date of birth: </PetTitleInfo>
+                <PetTitleInfo>{t("user.petbirth")} </PetTitleInfo>
                 {date.split('-').reverse().join('.')}
               </PetDescriptionInfo>
             </PetItem>
             <PetItem>
               <PetDescriptionInfo>
-                <PetTitleInfo>Breed: </PetTitleInfo>
+                <PetTitleInfo>{t("user.petbreed")} </PetTitleInfo>
                 {breed}
               </PetDescriptionInfo>
             </PetItem>
             <PetItem>
               <PetDescriptionInfo>
-                <PetTitleInfo>Comments: </PetTitleInfo>
+                <PetTitleInfo>{t("user.petcomm")} </PetTitleInfo>
                 {comment}
               </PetDescriptionInfo>
             </PetItem>
@@ -80,7 +83,7 @@ export default function PetsList({ dataPets }) {
             aria-labelledby="alert-dialog-title"
           >
             <DialogTitle id="alert-dialog-title">
-              {'You want remove this pet?'}
+              {t("user.removeconf")}
             </DialogTitle>
             <DialogActions>
               <Button
@@ -89,7 +92,7 @@ export default function PetsList({ dataPets }) {
                   color: '#F59256',
                 }}
               >
-                NO
+                {t("user.no")}
               </Button>
               <Button
                 onClick={() => removePet(_id)}
@@ -98,7 +101,7 @@ export default function PetsList({ dataPets }) {
                   color: '#F59256',
                 }}
               >
-                YES
+                {t("user.yes")}
               </Button>
             </DialogActions>
           </Dialog>

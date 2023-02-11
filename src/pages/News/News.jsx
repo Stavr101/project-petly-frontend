@@ -6,6 +6,7 @@ import { Container, Typography } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "./News.styled.js";
 import NewsSearch from "components/NewsSearch/NewsSearch.jsx";
+import { useTranslation } from 'react-i18next';
 
 export default function NewsPage() {
   const [query, setQuery] = useState("");
@@ -14,6 +15,8 @@ export default function NewsPage() {
     setQuery(event.target.value);
   };
   const debouncedChangeHandler = useCallback(debounce(handleChange, 300), []);
+
+  const { t } = useTranslation();
 
   return (
     <ThemeProvider theme={theme}>
@@ -49,7 +52,7 @@ export default function NewsPage() {
             },
           }}
         >
-          News
+          {t("news.news")}
         </Typography>
         <NewsSearch handleChange={debouncedChangeHandler} />
         <NewsList query={query} />

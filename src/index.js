@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { App } from "components/App";
 import { BrowserRouter } from "react-router-dom";
@@ -7,11 +7,14 @@ import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
 import { store, persistor } from "./redux/store";
 import { theme } from "./services/theme";
+import Loader from "shared/loader/Loader";
 import "modern-normalize";
 import "./index.css";
+import "./i18n.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   // <React.StrictMode>
+  <Suspense fallback={<Loader />}>
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
       <BrowserRouter basename="/">
@@ -20,29 +23,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         </ThemeProvider>
       </BrowserRouter>
     </PersistGate>
-  </Provider>
+    </Provider>
+    </Suspense>
   // </React.StrictMode>
 );
-
-// import React from 'react';
-// import ReactDOM from 'react-dom/client';
-// import { App } from 'components/App';
-// import './index.css';
-// import { Provider } from 'react-redux';
-// import { BrowserRouter } from 'react-router-dom';
-// import { PersistGate } from 'redux-persist/integration/react';
-// import { store, persistor } from './redux/store';
-// import 'modern-normalize';
-// import './index.css';
-
-// ReactDOM.createRoot(document.getElementById('root')).render(
-//   <React.StrictMode>
-//     <Provider store={store}>
-//       <PersistGate loading={null} persistor={persistor}>
-//         <BrowserRouter>
-//           <App />
-//         </BrowserRouter>
-//       </PersistGate>
-//     </Provider>
-//   </React.StrictMode>
-// );

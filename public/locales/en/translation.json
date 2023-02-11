@@ -1,0 +1,159 @@
+{
+    "main": {
+        "news": "News",
+        "find": "Find pet",
+        "friends": "Our friends",
+        "welcome": "Take good care of your small pets",
+        "login": "Login",
+        "register": "Registration"
+    },
+
+    "registration": {
+        "registration": "Registration",
+        "password": "Password",
+        "confirm": "Confirm Password",
+        "name": "Name",
+        "city": "City, region",
+        "phone": "Mobile phone",
+        "have": "Already have an account?",
+        "login": "Login",
+        "register": "Register",
+        "next": "Next",
+        "back": "Back"
+    },
+    
+    "login": {
+        "login": "Login",
+        "password": "Password",
+        "register": "Register",
+        "noacc": "Don't have an account?"
+    },
+
+    "news": {
+        "news": "News",
+        "search": "Search",
+        "more": "Read more",
+        "end": "End of content...",
+        "totop": "back to top?"
+    },
+
+    "friends": {
+        "friends": "Our friends",
+        "time": "Time:",
+        "address": "Address:",
+        "phone": "Phone:",
+        "monday": "MN", 
+        "tuesday": "TU", 
+        "wednesday": "WE", 
+        "thursday": "TH", 
+        "friday": "FR", 
+        "saturday": "SA", 
+        "sunday": "SU"
+    },
+
+    "notices": {
+        "header": "Find your favorite pet",
+        "sell": "sell",
+        "lost": "lost/found",
+        "free": "in good hands",
+        "fav": "favorite",
+        "own" : "my ads",
+        "add": "Add pet",
+        "more": "Learn more",
+        "del": "Delete",
+        "breed": "Breed:",
+        "place": "Place:",
+        "age": "Age:",
+        "price": "Price:",
+        "name": "Name:",
+        "birthday": "Birthday:",
+        "sex": "The sex:",
+        "phone": "Phone:",
+        "comm": "Comments:",
+        "month": "month",
+        "months": "months",
+        "year": "year",
+        "years": "years",
+        "less": "< 1 month",
+        "contact": "Contact",
+        "addto": "Add to",
+        "remove": "Remove from"
+    },
+
+    "modal": {
+        "info": "Enter data about the pet. Fill in all required fields.",
+        "name": "Name pet",
+        "namepl": "Type pet name",
+        "breed": "Breed",
+        "breedpl": "Type breed",
+        "birth": "Date of birth",
+        "check": "Please enter between 2 and 16 letters",
+        "commentcheck": "Please enter between 8 and 120 symbols",
+        "photo": "Add photo and some comments",
+        "sell": "sell",
+        "lost": "lost/found",
+        "free": "in good hands",
+        "title": "Title of ad",
+        "titlepl": "Type name",
+        "canc": "Cancel",
+        "next": "Next",
+        "sex": "The sex:",
+        "m": "Male",
+        "f": "Female",
+        "location": "Location",
+        "locationpl": "Type location",
+        "price": "Price",
+        "pricepl": "Type price",
+        "img": "Load the pet’s image:",
+        "comm": "Type comments",
+        "back": "Back",
+        "done": "Done",
+        "close": "Close"
+    },
+    
+    "user": {
+        "info": "My information:",
+        "pets": "My pets",
+        "nopets": "You don't have any animals added yet. If you want to add your pet, click button Add pet.",
+        "edit": "Edit photo",
+        "name": "Name:",
+        "birthday": "Birthday:",
+        "phone": "Phone:",
+        "city": "City:",
+        "logout": "Logout",
+        "petname": "Name:",
+        "petbirth": "Date of birth:",
+        "petbreed": "Breed:",
+        "petcomm": "Comments:",
+        "yes": "YES",
+        "no": "NO",
+        "removeconf": "Do you want to remove this pet?",
+        "logoutconf": "Do you want to logout?"
+    },
+
+    "usermodal": {
+        "add": "Add pet",
+        "name": "Name pet",
+        "namepl": "Type pet name",
+        "breed": "Breed",
+        "breedpl": "Type breed",
+        "birth": "Date of birth",
+        "canc": "Cancel",
+        "next": "Next",
+        "back": "Back",
+        "done": "Done",
+        "addphoto": "Add photo"
+    },
+
+    "error": {
+        "message": "Something went wrong..."
+    },
+
+    "notification": {
+    "notAuthorized": "You must be authorized"
+    },
+
+    "validation": {
+
+    }
+}

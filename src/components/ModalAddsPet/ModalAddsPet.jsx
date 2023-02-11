@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addPet } from "redux/pets/operations";
+import { useTranslation } from 'react-i18next';
 
 import {
   Validations,
@@ -20,6 +21,7 @@ import {
 } from "./ModalAddsPet.styled";
 
 function Forma({ handleClose }) {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [form, setForm] = useState({
     firstForm: {
@@ -109,7 +111,7 @@ function Forma({ handleClose }) {
       {formType === "firstForm" && (
         <FormContainer onSubmit={handleSubmit} encType="multipart/form-data">
           <InputBox>
-            <InputLable htmlFor="name">Name pet</InputLable>
+            <InputLable htmlFor="name">{t("modal.name")}</InputLable>
             <Validations
               className={form.firstForm.name.match(/^([a-zA-Z\s-]{2,16})?$/) ? "invalid" : ""}>
               Please enter between 2 and 16 letters
@@ -120,11 +122,11 @@ function Forma({ handleClose }) {
               pattern="/^([a-zA-Z\s-]{2,16})?$/"
               value={form.firstForm.name}
               onChange={handleFirstFormChange}
-              placeholder="Name pet"
+              placeholder={t("modal.namepl")}
             />
           </InputBox>
           <InputBox>
-            <InputLable htmlFor="breed">Date of birth</InputLable>
+            <InputLable htmlFor="breed">{t("modal.birth")}</InputLable>
             <InputField
               type="date"
               name="date"
@@ -137,7 +139,7 @@ function Forma({ handleClose }) {
             />
           </InputBox>
           <InputBox>
-            <InputLable htmlFor="breed">Breed</InputLable>
+            <InputLable htmlFor="breed">{t("modal.breed")}</InputLable>
             <Validations
               className={form.firstForm.breed.match(/^([a-zA-Z\s-]{2,16})?$/) ? "invalid" : ""}>
               Please enter between 2 and 16 letters
@@ -148,27 +150,27 @@ function Forma({ handleClose }) {
               pattern="/^([a-zA-Z\s-]{2,16})?$/"
               value={form.firstForm.breed}
               onChange={handleFirstFormChange}
-              placeholder="Breed"
+              placeholder={t("modal.breedpl")}
             />
             {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
           </InputBox>
           <ButtonContainer>
             <Button type="button" onClick={handleClose}>
-              Close
+              {t("modal.close")}
             </Button>
             <Button
               type="button"
               onClick={() => setFormType("secondForm")}
               disabled={!hasFirstFormAllData}
             >
-              Next
+              {t("modal.next")}
             </Button>
           </ButtonContainer>
         </FormContainer>
       )}
       {formType === "secondForm" && (
         <NextFormContainer encType="mutipart/form-data" onSubmit={handleSubmit}>
-          <AddPhoto>Add photo and some comments</AddPhoto>
+          <AddPhoto>{t("modal.photo")}</AddPhoto>
           <DownloadContainer>
             {form.secondForm.avatarFile && (
               <Image src={form.secondForm.avatarFile} alt="uploaded" />
@@ -193,16 +195,16 @@ function Forma({ handleClose }) {
                 pattern="^[a-zA-Z0-9,.!?;:-_ ]{8,120}$"
                 value={form.secondForm.comment}
                 onChange={handleSecondFormChange}
-                placeholder="Type comments"
+                placeholder={t("modal.comm")}
               />
             </CommentsContainer>
           </InputBox>
           <ButtonContainer>
             <Button type="button" onClick={() => setFormType("firstForm")}>
-              Back
+              {t("modal.back")}
             </Button>
             <Button type="submit" disabled={!hasSecondFormAllData}>
-              Submit
+              {t("modal.done")}
             </Button>
           </ButtonContainer>
         </NextFormContainer>

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Modal } from '@mui/material';
 import { nanoid } from 'nanoid';
+import { useTranslation } from 'react-i18next';
+
 import {
   ModalContainer,
   ModalTitle,
@@ -34,12 +36,14 @@ export default function ModalAddsPetApp({ onOpenModal, onCloseModal }) {
   };
 
 
+  const { t } = useTranslation();
+
   return (
     <>
       <Modal open={onOpenModal} onClose={onCloseModal} >
         <ModalContainer>
           <ButtonOff variant="contained" onClick={onCloseModal}></ButtonOff>
-          <ModalTitle>Add Pet</ModalTitle>
+          <ModalTitle>{t("notices.add")}</ModalTitle>
           <Forma handleClose={onCloseModal} onSubmit={submitHandle} />
         </ModalContainer>
       </Modal>

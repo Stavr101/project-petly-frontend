@@ -21,6 +21,7 @@ import { useDispatch } from "react-redux";
 import { ImEye, ImEyeBlocked } from "react-icons/im";
 import AuthContainer from "components/Container/AuthContainer/AuthContainer";
 import Loader from "shared/loader/Loader";
+import { useTranslation } from 'react-i18next';
 
 export default function RegisterForm() {
   const [currentPage, setCurrentPage] = useState(false);
@@ -71,11 +72,13 @@ export default function RegisterForm() {
     setCurrentPage(false);
   }
 
+  const { t } = useTranslation();
+
   return (
     <AuthContainer>
       {!loading ? (
         <FormWrapper>
-          <FormTitle>Registration</FormTitle>
+          <FormTitle>{t("registration.registration")}</FormTitle>
           <Formik
             initialValues={{
               email: "",
@@ -114,7 +117,7 @@ export default function RegisterForm() {
                       <InputField
                         type={showPassword ? "text" : "password"}
                         name="password"
-                        placeholder="Password"
+                        placeholder={t("registration.password")}
                         value={values.password}
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -131,7 +134,7 @@ export default function RegisterForm() {
                       <InputField
                         type={showConfirmPassword ? "text" : "password"}
                         name="confirmPassword"
-                        placeholder="Confirm Password"
+                        placeholder={t("registration.confirm")}
                         value={values.confirmPassword}
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -148,7 +151,7 @@ export default function RegisterForm() {
                       </EyePassword>
                     </Wrapper>
                     <BtnForm type="submit" onClick={handleSubmit}>
-                      Next
+                      {t("registration.next")}
                     </BtnForm>
                   </FormEl>
                 )}
@@ -158,7 +161,7 @@ export default function RegisterForm() {
                       <InputField
                         type="text"
                         name="name"
-                        placeholder="Name"
+                        placeholder={t("registration.name")}
                         value={values.name}
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -171,7 +174,7 @@ export default function RegisterForm() {
                     <Wrapper>
                       <InputField
                         name="address"
-                        placeholder="Address"
+                        placeholder={t("registration.city")}
                         value={values.address}
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -184,7 +187,7 @@ export default function RegisterForm() {
                     <Wrapper>
                       <InputField
                         name="phone"
-                        placeholder="Phone"
+                        placeholder={t("registration.phone")}
                         value={values.phone}
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -195,10 +198,10 @@ export default function RegisterForm() {
                       />
                     </Wrapper>
                     <BtnFormRegister type="submit" onClick={onHandleSubmit}>
-                      Register
+                      {t("registration.register")}
                     </BtnFormRegister>
                     <BtnFormBack type="button" onClick={prevPage}>
-                      Back
+                      {t("registration.back")}
                     </BtnFormBack>
                   </FormEl>
                 )}
@@ -206,7 +209,7 @@ export default function RegisterForm() {
             )}
           </Formik>
           <Text>
-            Already have an account? <LinkAuth to="/login">Login</LinkAuth>
+            {t("registration.have")} <LinkAuth to="/login">{t("registration.login")}</LinkAuth>
           </Text>
         </FormWrapper>
       ) : (

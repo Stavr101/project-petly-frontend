@@ -22,7 +22,6 @@ export default function UserDataItem({
 }) {
   const user = useSelector(getUserData);
   const dispatch = useDispatch();
-
   const [isEditing, setIsEditing] = useState(false);
   const [editedValue, setEditedValue] = useState(valueUser);
   const [error, setError] = useState(null);
@@ -39,6 +38,12 @@ export default function UserDataItem({
 
   const handleSubmit = e => {
     e.preventDefault();
+    if (valueUser === e.target.value) {
+      setActiveBtn(true);
+      setIsEditing(false);
+      return;
+    }
+
     const validInput = paramValid;
 
     if (nameInput === 'birthday') {
@@ -53,7 +58,6 @@ export default function UserDataItem({
     if (!validInput.test(editedValue)) {
       setError(`Invalid ${nameInput}`);
       Notify.warning(`Invalid ${nameInput}`);
-      console.log(editedValue);
     } else {
       setError(null);
 

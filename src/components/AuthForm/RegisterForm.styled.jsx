@@ -35,22 +35,22 @@ const opacity = keyframes`
 `;
 
 export const FormWrapper = styled.div`
-  /* padding: 20px; */
   animation: ${scale} 0.4s linear forwards;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 280px;
 
   @media screen and (min-width: 768px) {
     width: 608px;
-    /* height: 517px; */
-    margin: 0 auto;
     padding: 60px 80px 40px 80px;
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: 40px;
-    /* margin-top: 170px; */
     background-color: ${(p) => p.theme.colors.white};
   }
   @media screen and (min-width: 1280px) {
     padding: 60px 80px;
-    /* margin-top: 57px; */
   }
 `;
 

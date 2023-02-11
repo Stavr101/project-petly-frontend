@@ -56,6 +56,7 @@ export const FormEl = styled(Form)`
 `;
 
 export const InputField = styled(Field)`
+  outline: none;
   width: 100%;
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
@@ -105,8 +106,13 @@ export const Wrapper = styled.div`
 
 export const EyePassword = styled.button`
   position: absolute;
-  top: 25%;
-  right: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
   background-color: transparent;
   border: none;
   color: rgba(27, 27, 27, 0.6);

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getPetInfo } from 'redux/pets/operations';
-import { getLoading, getError } from 'redux/pets/selectors';
+import { getLoading, getError, getPets } from 'redux/pets/selectors';
 import ModalAddsPetApp from 'components/ModalAddsPet/ModalAddsPetsApp';
-
+import UserLoader from 'shared/userLoader/Loader';
 import PetsList from 'components/PetsList/PetsList';
 import {
   PetsWrapper,
@@ -13,14 +13,20 @@ import {
   AddPetTitleBtn,
   AddPetBtn,
 } from './PetsData.styled';
-import Loader from 'shared/loader/Loader';
 
 export default function PetsData() {
   const isLoading = useSelector(getLoading);
   const error = useSelector(getError);
   const [isOpen, setIsOpen] = useState(false);
-
+  const [pets, setPets] = useState([]);
+  const petA = useSelector(getPets);
+  // console.log(pets);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setPets(petA);
+  });
+
   useEffect(() => {
     dispatch(getPetInfo());
   }, [dispatch]);
@@ -40,7 +46,11 @@ export default function PetsData() {
           onCloseModal={() => setIsOpen(false)}
         />
       ) : null}
-      {isLoading && !error ? <Loader /> : <PetsList />}
+      {isLoading && !error ? (
+        <UserLoader />
+      ) : (
+        <PetsList array={pets} setArray={setPets} />
+      )}
     </PetsWrapper>
   );
 }

@@ -109,6 +109,7 @@ export const FriendsInfoList = styled.ul`
 
 export const FriendsInfoItemTime = styled.li`
   cursor: ${(props) => (props.shouldHighlight ? "pointer" : "inherit")};
+
   :hover {
     color: ${(props) =>
       props.shouldHighlight ? props.theme.colors.accent : "inherit"};

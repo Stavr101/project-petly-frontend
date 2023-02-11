@@ -224,6 +224,10 @@ export const ModalNoticeButton = styled.button`
   height: 40px;
   padding: 0;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   background-color: transparent;
   border-radius: 40px;
   border: 2px solid #f59256;
@@ -242,12 +246,6 @@ export const ModalNoticeButton = styled.button`
 export const ModalNoticeBtnContact = styled(ModalNoticeButton)`
   color: ${(p) => p.theme.colors.white};
   background-color: ${(p) => p.theme.colors.accent};
-`;
-
-export const ModalNoticeBtnFavorite = styled(ModalNoticeButton)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 export const ModalNoticeBtnLink = styled.a`

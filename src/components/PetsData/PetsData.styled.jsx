@@ -74,3 +74,25 @@ export const AddPetBtn = styled.button`
     transform: scale(1.1);
   }
 `;
+
+export const NonPetWrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: ${p => p.theme.colors.white};
+  border-radius: 20px;
+  font-size: ${p => p.theme.fontSizes.m};
+  box-shadow: ${p => p.theme.shadows.modal};
+  @media screen and (min-width: 768px) {
+    position: relative;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-bottom: 22px;
+  }
+  @media screen and (min-width: 1280px) {
+  }
+`;

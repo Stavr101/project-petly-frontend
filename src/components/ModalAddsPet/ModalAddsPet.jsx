@@ -122,7 +122,7 @@ function Forma({ handleClose }) {
               pattern="/^([a-zA-Z\s-]{2,16})?$/"
               value={form.firstForm.name}
               onChange={handleFirstFormChange}
-              placeholder="Name pet"
+              placeholder={t("modal.namepl")}
             />
           </InputBox>
           <InputBox>
@@ -150,7 +150,7 @@ function Forma({ handleClose }) {
               pattern="/^([a-zA-Z\s-]{2,16})?$/"
               value={form.firstForm.breed}
               onChange={handleFirstFormChange}
-              placeholder="Breed"
+              placeholder={t("modal.breedpl")}
             />
             {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
           </InputBox>

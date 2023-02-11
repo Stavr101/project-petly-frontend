@@ -14,8 +14,7 @@ i18next
         debug: false,
     
         detection: {
-            order: ["localStorage", "cookie"],
-            cache: ["cookie"]
+            order: ["localStorage", "cookie"]
         },
 
         interpolation: {

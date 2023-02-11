@@ -7,6 +7,7 @@ import { addPetToFavorite, removeFavoritePet, removeOwnPet } from "api/notices";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { useAuth } from "hooks";
 import ModalNotice from "components/ModalNotice/ModalNotice";
+import { currentAge } from "utils/currentAge";
 
 import {
   ItemNoticesImgDiv,
@@ -63,37 +64,6 @@ export default function NoticeCategoryItem({
 
   const handleOnError = (e) => {
     e.target.src = "https://i.ibb.co/RQ61YYb/1.jpg";
-  };
-
-  const currentAge = (date) => {
-    const dif = Date.now() - new Date(date);
-    const second = 1000;
-    const minute = second * 60;
-    const hour = minute * 60;
-    const day = hour * 24;
-
-    const days = Math.floor(dif / day);
-    const months = Math.floor(days / 30.4);
-    const years = months / 12;
-    const transformedYear = Number(years.toString().split(".")[0]);
-    const restDivision = years.toString().split(".")[1];
-    const transformedMonth = restDivision
-      ? Math.floor(Number(`0.${restDivision}` * 12))
-      : null;
-
-    if (transformedYear > 0) {
-      if (transformedMonth) {
-        return `${transformedYear} ${transformedYear === 1 ? t("notices.year") : t("notices.years")}`;
-      }
-      return `${transformedYear} ${transformedYear === 1 ? t("notices.year") : t("notices.years")}}`;
-    }
-
-    if (transformedMonth) {
-      return `${transformedMonth} ${
-        transformedMonth === 1 ? t("notices.month") : t("notices.months")
-      }`;
-    }
-    return t("notices.less");
   };
 
   async function addFavorite(_id) {

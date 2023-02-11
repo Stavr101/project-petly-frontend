@@ -47,6 +47,8 @@ export default function ModalNotice({
 
   const { user } = useAuth();
 
+  console.log("pet", pet);
+
   useEffect(() => {
     document.body.style.overflow = "hidden";
 
@@ -124,7 +126,7 @@ export default function ModalNotice({
                 <ModalNoticeList>
                   <ModalNoticeLi>
                     <ModalNoticeItemParametr>Name:</ModalNoticeItemParametr>
-                    <ModalNoticeItemValue>{pet.breed}</ModalNoticeItemValue>
+                    <ModalNoticeItemValue>{pet.name}</ModalNoticeItemValue>
                   </ModalNoticeLi>
                   <ModalNoticeLi>
                     <ModalNoticeItemParametr>Birthday:</ModalNoticeItemParametr>

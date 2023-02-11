@@ -167,18 +167,18 @@ export default function NoticeCategoryItem({
         <ItemNoticesWrap>
           <ItemNoticesTitle>{title}</ItemNoticesTitle>
           <ItemNoticesUlList>
-            <ItemNoticesListLi>
-              <ItemNoticesListP>{t("notices.breed")}</ItemNoticesListP>
+            <li>
+              <ItemNoticesListP>Breed:</ItemNoticesListP>
               <ItemNoticesSpan>{breed}</ItemNoticesSpan>
-            </ItemNoticesListLi>
-            <ItemNoticesListLi>
-              <ItemNoticesListP>{t("notices.place")}</ItemNoticesListP>
+            </li>
+            <li>
+              <ItemNoticesListP>Place:</ItemNoticesListP>
               <ItemNoticesSpan>{location}</ItemNoticesSpan>
-            </ItemNoticesListLi>
-            <ItemNoticesListLi>
-              <ItemNoticesListP>{t("notices.age")}</ItemNoticesListP>
+            </li>
+            <li>
+              <ItemNoticesListP>Age:</ItemNoticesListP>
               <ItemNoticesSpan>{currentAge(birthdate)}</ItemNoticesSpan>
-            </ItemNoticesListLi>
+            </li>
             {categoryName === "sell" ? (
               <ItemNoticesListLi>
                 <ItemNoticesListP>{t("notices.price")}</ItemNoticesListP>

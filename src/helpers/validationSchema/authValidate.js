@@ -8,7 +8,7 @@ const RegisterSchemaFirstPage = Yup.object().shape({
   password: Yup.string()
     .min(7, "Min length 7 symbols")
     .max(32, "Too Long!")
-    // .matches(regExp.pwd, "Spaces should not be")
+    .matches(regExp.pwd, "Spaces should not be")
     .required("Password is a required field"),
   confirmPassword: Yup.string()
     .oneOf([Yup.ref("password"), null], "Passwords must match")
@@ -32,7 +32,7 @@ const LoginSchema = Yup.object().shape({
   password: Yup.string()
     .min(7, "Min length 7 symbols")
     .max(32, "Too Long!")
-    // .matches(regExp.pwd, "Spaces should not be")
+    .matches(regExp.pwd, "Spaces should not be")
     .required("Password is a required field"),
 });
 

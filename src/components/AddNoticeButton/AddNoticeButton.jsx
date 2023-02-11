@@ -9,6 +9,7 @@ import {
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { useAuth } from 'hooks';
 import ModalAddNoticelApp from 'components/ModalAddNotice/ModalAddNoticelApp';
+import { useTranslation } from 'react-i18next';
 
 export default function AddNoticeButton() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,10 +27,12 @@ export default function AddNoticeButton() {
   }
   }
 
+  const { t } = useTranslation();
+
   return (
     <>
       <Wrap>
-        <Text>Add pet</Text>
+        <Text>{t("notices.add")}</Text>
         <Button onClick={handleClick}>
           <Icon />
           <Cont>Add pet</Cont>

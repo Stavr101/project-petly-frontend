@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import UserDataList from '../UserDataList/UserDataList';
 // import { getLoading, getError } from 'redux/users/selectors';
 import { getUserInfo } from 'redux/users/operations';
+import { useTranslation } from 'react-i18next';
 // import { getUserData } from 'redux/users/selectors';
 
 export default function UserData() {
@@ -15,9 +16,11 @@ export default function UserData() {
     dispatch(getUserInfo());
   }, [dispatch]);
 
+  const { t } = useTranslation();
+
   return (
     <UserWrapper>
-      <UserDataTitle>My information:</UserDataTitle>
+      <UserDataTitle>{t("user.info")}</UserDataTitle>
       <UserDataWrapper>
         <UserDataList />
         <Logout />

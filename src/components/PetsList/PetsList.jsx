@@ -11,6 +11,7 @@ import {
   PetDescriptionInfo,
   DeleteBtn,
 } from './PetsList.styled';
+import { useTranslation } from 'react-i18next';
 
 export default function PetsList() {
   const petsData = useSelector(getPets);
@@ -25,6 +26,8 @@ export default function PetsList() {
     dispatch(action);
   };
 
+  const { t } = useTranslation();
+
   const elements = petsData.map(
     ({ name, date, breed, avatarUrl, comment, _id }) => {
       return (
@@ -38,24 +41,24 @@ export default function PetsList() {
           <PetList>
             <PetItem>
               <PetDescriptionInfo>
-                <PetTitleInfo>Name: </PetTitleInfo> {name}
+                <PetTitleInfo>{t("user.petname")} </PetTitleInfo> {name}
               </PetDescriptionInfo>
             </PetItem>
             <PetItem>
               <PetDescriptionInfo>
-                <PetTitleInfo>Date of birth: </PetTitleInfo>
+                <PetTitleInfo>{t("user.petbirth")} </PetTitleInfo>
                 {date.split('-').reverse().join('.')}
               </PetDescriptionInfo>
             </PetItem>
             <PetItem>
               <PetDescriptionInfo>
-                <PetTitleInfo>Breed: </PetTitleInfo>
+                <PetTitleInfo>{t("user.petbreed")} </PetTitleInfo>
                 {breed}
               </PetDescriptionInfo>
             </PetItem>
             <PetItem>
               <PetDescriptionInfo>
-                <PetTitleInfo>Comments: </PetTitleInfo>
+                <PetTitleInfo>{t("user.petcomm")} </PetTitleInfo>
                 {comment}
               </PetDescriptionInfo>
             </PetItem>
@@ -71,8 +74,7 @@ export default function PetsList() {
   ) : (
     <PetWrapper>
       <p>
-        You don't have any animals added yet. If you want to add your pet, click
-        button "Add pets"
+        {t("user.nopets")}
       </p>
     </PetWrapper>
   );

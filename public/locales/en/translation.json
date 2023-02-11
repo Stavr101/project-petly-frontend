@@ -53,11 +53,11 @@
 
     "notices": {
         "header": "Find your favorite pet",
-        "sell": "Sell",
-        "lost": "Lost/found",
-        "free": "In good hands",
-        "fav": "Favorite",
-        "own" : "My ads",
+        "sell": "sell",
+        "lost": "lost/found",
+        "free": "in good hands",
+        "fav": "favorite",
+        "own" : "my ads",
         "add": "Add pet",
         "more": "Learn more",
         "del": "Delete",
@@ -81,15 +81,66 @@
     },
 
     "modal": {
+        "info": "Enter data about the pet. Fill in all required fields.",
         "name": "Name pet",
-        "breed": "Breed:",
+        "namepl": "Type pet name",
+        "breed": "Breed",
+        "breedpl": "Type breed",
         "birth": "Date of birth",
         "check": "Please enter between 2 and 16 letters",
         "commentcheck": "Please enter between 8 and 120 symbols",
-        "photo": "Add photo and some comments"
+        "photo": "Add photo and some comments",
+        "sell": "sell",
+        "lost": "lost/found",
+        "free": "in good hands",
+        "title": "Title of ad",
+        "titlepl": "Type name",
+        "canc": "Cancel",
+        "next": "Next",
+        "sex": "The sex:",
+        "m": "Male",
+        "f": "Female",
+        "location": "Location",
+        "locationpl": "Type location",
+        "price": "Price",
+        "pricepl": "Type price",
+        "img": "Load the pet’s image:",
+        "comm": "Type comments",
+        "back": "Back",
+        "done": "Done"
     },
     
     "user": {
+        "info": "My information:",
+        "pets": "My pets",
+        "nopets": "You don't have any animals added yet. If you want to add your pet, click button Add pet.",
+        "edit": "Edit photo",
+        "name": "Name:",
+        "birthday": "Birthday:",
+        "phone": "Phone:",
+        "city": "City:",
+        "logout": "Logout",
+        "petname": "Name:",
+        "petbirth": "Date of birth:",
+        "petbreed": "Breed:",
+        "petcomm": "Comments:"
+    },
 
+    "usermodal": {
+        "add": "Add pet",
+        "name": "Name pet",
+        "namepl": "Type pet name",
+        "breed": "Breed",
+        "breedpl": "Type breed",
+        "birth": "Date of birth",
+        "canc": "Cancel",
+        "next": "Next",
+        "back": "Back",
+        "done": "Done",
+        "addphoto": "Add photo"
+    },
+
+    "error": {
+        "message": "Something went wrong..."
     }
 }

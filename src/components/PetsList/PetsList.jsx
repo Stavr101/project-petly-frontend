@@ -16,8 +16,8 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 
-export default function PetsList({ array, setArray }) {
-  const petsData = useSelector(getPets);
+export default function PetsList({ dataPets }) {
+  // const petsData = useSelector(getPets);
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
 
@@ -29,19 +29,16 @@ export default function PetsList({ array, setArray }) {
     setOpen(false);
   };
 
-  const isPets = Boolean(petsData.length);
+  const isPets = Boolean(dataPets.length);
 
-  const removePet = id => {
-    const action = deletePet(id);
-    // console.log(id);
+  const removePet = _id => {
+    const action = deletePet(_id);
     dispatch(action);
-    const arrayNew = array.filter(item => item.id !== id);
 
-    setArray(arrayNew);
     // dispatch(getPetInfo());
   };
 
-  const elements = petsData.map(
+  const elements = dataPets.map(
     ({ name, date, breed, avatarUrl, comment, _id }) => {
       return (
         <PetWrapper key={_id}>
@@ -95,7 +92,7 @@ export default function PetsList({ array, setArray }) {
                 NO
               </Button>
               <Button
-                onSubmit={removePet(_id)}
+                onClick={() => removePet(_id)}
                 autoFocus
                 style={{
                   color: '#F59256',
@@ -109,14 +106,15 @@ export default function PetsList({ array, setArray }) {
       );
     }
   );
-  return isPets ? (
-    <ul>{elements}</ul>
-  ) : (
-    <PetWrapper>
-      <p>
-        You don't have any animals added yet. If you want to add your pet, click
-        button "Add pets"
-      </p>
-    </PetWrapper>
-  );
+  // return isPets ? (
+  //   <ul>{elements}</ul>
+  // ) : (
+  //   <PetWrapper>
+  //     <p>
+  //       You don't have any animals added yet. If you want to add your pet, click
+  //       button "Add pets"
+  //     </p>
+  //   </PetWrapper>
+  // );
+  return <ul>{elements}</ul>;
 }

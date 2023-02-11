@@ -12,20 +12,19 @@ import {
   PetBtnWrapper,
   AddPetTitleBtn,
   AddPetBtn,
+  NonPetWrapper,
 } from './PetsData.styled';
+import { PetList } from 'components/PetsList/PetsList.styled';
 
 export default function PetsData() {
   const isLoading = useSelector(getLoading);
   const error = useSelector(getError);
-  const [isOpen, setIsOpen] = useState(false);
-  const [pets, setPets] = useState([]);
-  const petA = useSelector(getPets);
-  // console.log(pets);
-  const dispatch = useDispatch();
+  const petsData = useSelector(getPets);
+  const isPets = Boolean(petsData.length);
 
-  useEffect(() => {
-    setPets(petA);
-  });
+  const [isOpen, setIsOpen] = useState(false);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getPetInfo());
@@ -46,11 +45,17 @@ export default function PetsData() {
           onCloseModal={() => setIsOpen(false)}
         />
       ) : null}
-      {isLoading && !error ? (
-        <UserLoader />
+      {isPets ? (
+        <PetList />
       ) : (
-        <PetsList array={pets} setArray={setPets} />
+        <NonPetWrapper>
+          <p>
+            You don't have any animals added yet. If you want to add your pet,
+            click button "Add pets"
+          </p>
+        </NonPetWrapper>
       )}
+      {isLoading && !error ? <UserLoader /> : <PetsList dataPets={petsData} />}
     </PetsWrapper>
   );
 }

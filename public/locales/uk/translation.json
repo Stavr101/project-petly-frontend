@@ -133,5 +133,13 @@
 
     "error": {
         "message": "Щось пішло не так..."
+    },
+
+    "notification": {
+    "notAuthorized": "Необхідна авторизація"
+    },
+
+    "validation": {
+
     }
 }

@@ -21,7 +21,7 @@ import { useDispatch } from "react-redux";
 import { ImEye, ImEyeBlocked } from "react-icons/im";
 import AuthContainer from "components/Container/AuthContainer/AuthContainer";
 import Loader from "shared/loader/Loader";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 export default function RegisterForm() {
   const [currentPage, setCurrentPage] = useState(false);
@@ -101,6 +101,7 @@ export default function RegisterForm() {
                   <FormEl>
                     <Wrapper>
                       <InputField
+                        autoFocus
                         name="email"
                         type="email"
                         placeholder="Email"
@@ -209,7 +210,8 @@ export default function RegisterForm() {
             )}
           </Formik>
           <Text>
-            {t("registration.have")} <LinkAuth to="/login">{t("registration.login")}</LinkAuth>
+            {t("registration.have")}{" "}
+            <LinkAuth to="/login">{t("registration.login")}</LinkAuth>
           </Text>
         </FormWrapper>
       ) : (

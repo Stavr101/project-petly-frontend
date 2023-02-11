@@ -79,7 +79,7 @@ export default function PetsList({ dataPets }) {
           <DeleteBtn variant="outlined" onClick={handleClickOpen}></DeleteBtn>
           <Dialog
             open={open}
-            onClose={handleClose}
+            // onClose={handleClose}
             aria-labelledby="alert-dialog-title"
           >
             <DialogTitle id="alert-dialog-title">

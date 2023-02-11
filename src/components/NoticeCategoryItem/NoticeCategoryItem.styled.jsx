@@ -6,9 +6,6 @@ export const ItemNoticesImgDiv = styled.div`
   width: 100%;
   height: 288px;
   margin-bottom: 20px;
-
-  @media only screen and (min-width: 768px) and (max-width: 1279px) {
-  }
 `;
 
 export const ItemNoticesTitle = styled.h2`
@@ -94,7 +91,6 @@ export const ItemNoticesWrap = styled.div`
   padding-bottom: 12px;
   display: flex;
   flex-direction: column;
-  /* gap: 20px; */
 `;
 
 export const ItemButtonNotices = styled.div`
@@ -134,7 +130,9 @@ export const ItemButtonNoticesLearnMore = styled.button`
   }
 `;
 
-export const ItemNoticesListLi = styled.li``;
+export const ItemNoticesListLi = styled.li`
+  margin-bottom: 20px;
+`;
 
 export const ItemButtonNoticesDelete = styled.button`
   display: flex;

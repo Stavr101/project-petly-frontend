@@ -163,18 +163,18 @@ export default function NoticeCategoryItem({
         <ItemNoticesWrap>
           <ItemNoticesTitle>{title}</ItemNoticesTitle>
           <ItemNoticesUlList>
-            <ItemNoticesListLi>
+            <li>
               <ItemNoticesListP>Breed:</ItemNoticesListP>
               <ItemNoticesSpan>{breed}</ItemNoticesSpan>
-            </ItemNoticesListLi>
-            <ItemNoticesListLi>
+            </li>
+            <li>
               <ItemNoticesListP>Place:</ItemNoticesListP>
               <ItemNoticesSpan>{location}</ItemNoticesSpan>
-            </ItemNoticesListLi>
-            <ItemNoticesListLi>
+            </li>
+            <li>
               <ItemNoticesListP>Age:</ItemNoticesListP>
               <ItemNoticesSpan>{currentAge(birthdate)}</ItemNoticesSpan>
-            </ItemNoticesListLi>
+            </li>
             {categoryName === "sell" ? (
               <ItemNoticesListLi>
                 <ItemNoticesListP>Price:</ItemNoticesListP>

@@ -128,10 +128,8 @@ export default function ModalNotice({
                 <ModalNoticeTitle>{pet.title}</ModalNoticeTitle>
                 <ModalNoticeList>
                   <ModalNoticeLi>
-                    <ModalNoticeItemParametr>Name:</ModalNoticeItemParametr>
-                    <ModalNoticeItemValue>{pet.name}</ModalNoticeItemValue>
                     <ModalNoticeItemParametr>{t("notices.name")}</ModalNoticeItemParametr>
-                    <ModalNoticeItemValue>{pet.breed}</ModalNoticeItemValue>
+                    <ModalNoticeItemValue>{pet.name}</ModalNoticeItemValue>
                   </ModalNoticeLi>
                   <ModalNoticeLi>
                     <ModalNoticeItemParametr>{t("notices.birthday")}</ModalNoticeItemParametr>

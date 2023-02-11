@@ -538,10 +538,10 @@ function Forma({ handleClose }) {
           </InputBox>
           <ButtonContainer>
             <Button type="button" onClick={() => setFormType("sellFirstForm")}>
-              Back
+              {t("modal.back")}
             </Button>
             <Button type="submit" disabled={!hasSellSecondFormAllData}>
-              Done
+              {t("modal.done")}
             </Button>
           </ButtonContainer>
         </NextFormContainer>

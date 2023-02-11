@@ -27,14 +27,14 @@ export const Logout = () => {
     <>
       <LogOutButton variant="outlined" onClick={handleClickOpen}>
         <SVG src={logoutSvg} />
-        Log Out
+        {t("user.logout")}
       </LogOutButton>
       <Dialog
         open={open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
       >
-        <DialogTitle id="alert-dialog-title">{'You want logout?'}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{t("user.logoutconf")}</DialogTitle>
         <DialogActions>
           <Button
             onClick={handleClose}
@@ -42,7 +42,7 @@ export const Logout = () => {
               color: '#F59256',
             }}
           >
-            NO
+            {t("user.no")}
           </Button>
           <Button
             onClick={() => dispatch(logOut())}
@@ -51,14 +51,10 @@ export const Logout = () => {
               color: '#F59256',
             }}
           >
-            YES
+            {t("user.yes")}
           </Button>
         </DialogActions>
       </Dialog>
     </>
-    <LogOutButton type="button" onClick={() => dispatch(logOut())}>
-      <SVG src={logoutSvg} />
-      {t("user.logout")}
-    </LogOutButton>
   );
 };

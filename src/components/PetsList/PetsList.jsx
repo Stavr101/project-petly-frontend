@@ -83,7 +83,7 @@ export default function PetsList({ dataPets }) {
             aria-labelledby="alert-dialog-title"
           >
             <DialogTitle id="alert-dialog-title">
-              {'You want remove this pet?'}
+              {t("user.removeconf")}
             </DialogTitle>
             <DialogActions>
               <Button
@@ -92,7 +92,7 @@ export default function PetsList({ dataPets }) {
                   color: '#F59256',
                 }}
               >
-                NO
+                {t("user.no")}
               </Button>
               <Button
                 onClick={() => removePet(_id)}
@@ -101,7 +101,7 @@ export default function PetsList({ dataPets }) {
                   color: '#F59256',
                 }}
               >
-                YES
+                {t("user.yes")}
               </Button>
             </DialogActions>
           </Dialog>

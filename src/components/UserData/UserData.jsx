@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 import UserDataList from '../UserDataList/UserDataList';
 import { getUserInfo } from 'redux/users/operations';
 import { useTranslation } from 'react-i18next';
-// import { getUserData } from 'redux/users/selectors';
 
 export default function UserData() {
   const dispatch = useDispatch();

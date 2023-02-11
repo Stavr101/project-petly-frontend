@@ -107,7 +107,8 @@
         "img": "Load the pet’s image:",
         "comm": "Type comments",
         "back": "Back",
-        "done": "Done"
+        "done": "Done",
+        "close": "Close"
     },
     
     "user": {
@@ -123,7 +124,11 @@
         "petname": "Name:",
         "petbirth": "Date of birth:",
         "petbreed": "Breed:",
-        "petcomm": "Comments:"
+        "petcomm": "Comments:",
+        "yes": "YES",
+        "no": "NO",
+        "removeconf": "Do you want to remove this pet?",
+        "logoutconf": "Do you want to logout?"
     },
 
     "usermodal": {

@@ -53,8 +53,7 @@ export default function PetsData() {
       ) : (
         <NonPetWrapper>
           <p>
-            You don't have any animals added yet. If you want to add your pet,
-            click button "Add pets"
+            {t("user.nopets")}
           </p>
         </NonPetWrapper>
       )}

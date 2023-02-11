@@ -8,7 +8,6 @@ import { addPetToFavorite, removeFavoritePet, removeOwnPet } from "api/notices";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { useAuth } from "hooks";
 import ModalNotice from "components/ModalNotice/ModalNotice";
-import { currentAge } from "utils/currentAge";
 
 import {
   ItemNoticesImgDiv,
@@ -28,13 +27,7 @@ import {
   ItemButtonNoticesHeartButton,
   ItemButtonNoticesDeleteSpan,
 } from "./NoticeCategoryItem.styled";
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import ModalNotice from "components/ModalNotice/ModalNotice";
-import { selectUser } from "redux/auth/selectors";
-import { getUserData } from "redux/users/selectors";
-import { useLocation } from "react-router-dom";
+
 import { useTranslation } from 'react-i18next';
 
 export default function NoticeCategoryItem({
@@ -57,14 +50,6 @@ export default function NoticeCategoryItem({
   } = data;
 
   const { t } = useTranslation();
-
-  const [open, setOpen] = useState(false);
-  // const isUser = useSelector(selectUser);
-  const pet = useSelector(getUserData);
-  // const dispatch = useDispatch();
-  const ownPets = pet.user._id;
-
-  // console.log(pet);
 
   const locationFavorite = useLocation();
   const { isLoggedIn } = useAuth();

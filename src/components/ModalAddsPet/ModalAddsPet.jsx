@@ -19,12 +19,8 @@ import {
   NextFormContainer,
 } from "./ModalAddsPet.styled";
 
-import * as Yup from "yup";
-
-// import { AddsPetValidate } from "helpers/validationSchema/addsPetValidate";
 function Forma({ handleClose }) {
   const dispatch = useDispatch();
-  // const [errors, setErrors] = useState({});
   const [form, setForm] = useState({
     firstForm: {
       name: "",
@@ -72,14 +68,10 @@ function Forma({ handleClose }) {
     }
   };
 
-  // const combinedForm = { ...form.firstForm, ...form.secondForm };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // console.log("in form event", event.target.elements.avatarFile.files[0]);
     const combinedForm = { ...form.firstForm, ...form.secondForm };
     const { name, breed, date, comment } = combinedForm;
-
     const formDataFile = new FormData();
     formDataFile.append("avatarUrl", event.target.elements.avatarFile.files[0]);
     formDataFile.append("name", name);
@@ -112,8 +104,6 @@ function Forma({ handleClose }) {
     (value) => value
   );
 
-
-
   return (
     <>
       {formType === "firstForm" && (
@@ -121,27 +111,24 @@ function Forma({ handleClose }) {
           <InputBox>
             <InputLable htmlFor="name">Name pet</InputLable>
             <Validations
-              className={form.firstForm.name.match(/^([a-zA-Z]{2,16})?$/) ? "invalid" : ""}>
+              className={form.firstForm.name.match(/^([a-zA-Z\s-]{2,16})?$/) ? "invalid" : ""}>
               Please enter between 2 and 16 letters
             </Validations>
             <InputField
               type="text"
               name="name"
-              pattern="/^[a-zA-Z]{2,16}$/"
+              pattern="/^([a-zA-Z\s-]{2,16})?$/"
               value={form.firstForm.name}
               onChange={handleFirstFormChange}
               placeholder="Name pet"
-              // className={form.firstForm.name.match(/^[a-zA-Z]{2,16}$/) ? "invalid" : ""}
             />
-     
-
           </InputBox>
           <InputBox>
             <InputLable htmlFor="breed">Date of birth</InputLable>
             <InputField
               type="date"
               name="date"
-               value={form.firstForm.date}
+              value={form.firstForm.date}
               onChange={handleFirstFormChange}
               placeholder={today}
               max={today}
@@ -152,13 +139,13 @@ function Forma({ handleClose }) {
           <InputBox>
             <InputLable htmlFor="breed">Breed</InputLable>
             <Validations
-              className={form.firstForm.breed.match(/^([a-zA-Z]{2,16})?$/) ? "invalid" : ""}>
+              className={form.firstForm.breed.match(/^([a-zA-Z\s-]{2,16})?$/) ? "invalid" : ""}>
               Please enter between 2 and 16 letters
             </Validations>
             <InputField
               type="text"
               name="breed"
-              pattern="/^[a-zA-Z]{2,16}$/"
+              pattern="/^([a-zA-Z\s-]{2,16})?$/"
               value={form.firstForm.breed}
               onChange={handleFirstFormChange}
               placeholder="Breed"
@@ -196,10 +183,10 @@ function Forma({ handleClose }) {
           </DownloadContainer>
           <InputBox>
             <CommentsContainer>
-               <Validations
-              className={form.secondForm.comment.match(/^(.{8,120})?$/) ? "invalid" : ""}>
-              Please enter between 8 and 120 symbols
-            </Validations>
+              <Validations
+                className={form.secondForm.comment.match(/^(.{8,120})?$/) ? "invalid" : ""}>
+                Please enter between 8 and 120 symbols
+              </Validations>
               <Comments
                 name="comment"
                 type="text"
@@ -208,7 +195,6 @@ function Forma({ handleClose }) {
                 onChange={handleSecondFormChange}
                 placeholder="Type comments"
               />
-              {/* {errors.comment && <div>{errors.secondForm.comment}</div>} */}
             </CommentsContainer>
           </InputBox>
           <ButtonContainer>
@@ -224,5 +210,4 @@ function Forma({ handleClose }) {
     </>
   );
 }
-
 export default Forma;

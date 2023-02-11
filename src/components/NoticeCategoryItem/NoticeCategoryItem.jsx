@@ -1,9 +1,14 @@
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
+
 import DeleteSvg from "./NoticesDeleteSvg";
 import HeartSvg from "./NoticesHeartSvg";
 import HeartFavorite from "./NoticesHeartFavoriteSvg";
 import { addPetToFavorite, removeFavoritePet, removeOwnPet } from "api/notices";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { useAuth } from "hooks";
+import ModalNotice from "components/ModalNotice/ModalNotice";
+import { currentAge } from "utils/currentAge";
 
 import {
   ItemNoticesImgDiv,
@@ -62,13 +67,11 @@ export default function NoticeCategoryItem({
   // console.log(pet);
 
   const locationFavorite = useLocation();
-  // const locationOwn = useLocation();
   const { isLoggedIn } = useAuth();
   const { user } = useAuth();
 
+  const [open, setOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(favorite);
-  // const [isOwn, setIsOwn] = useState(owner);
-  // console.log("owner", owner);
 
   const onLearnMoreClick = () => {
     setOpen(true);
@@ -151,22 +154,6 @@ export default function NoticeCategoryItem({
     }
   };
 
-  // async function removeFromOwn(_id) {
-  //   try {
-  //     // await removeFavoritePet(_id);
-  //     const isOnOwn = isOwn;
-
-  //     if (isOnOwn) {
-  //       const arrayNew = array.filter((item) => item._id !== _id);
-  //       console.log(isOnOwn);
-  //       setArray(arrayNew);
-  //     }
-  //     return removeOwnPet(_id);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
   async function removeFromOwn(_id) {
     if (!isLoggedIn) {
       return Notify.failure("You must be authorized");
@@ -238,7 +225,7 @@ export default function NoticeCategoryItem({
               {t("notices.more")}
             </ItemButtonNoticesLearnMore>
 
-            {isLoggedIn && owner === ownPets && (
+            {isLoggedIn && owner === user._id ? (
               <ItemButtonNoticesDelete
                 type="submit"
                 onClick={() => removeFromOwn(_id)}
@@ -248,6 +235,8 @@ export default function NoticeCategoryItem({
                 </ItemButtonNoticesDeleteSpan>
                 <DeleteSvg />
               </ItemButtonNoticesDelete>
+            ) : (
+              ""
             )}
           </ItemButtonNotices>
         </ItemNoticesWrap>

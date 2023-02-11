@@ -27,8 +27,12 @@ const scale = keyframes`
 `;
 
 export const FormWrapper = styled.div`
-  /* padding: 0 20px; */
   animation: ${scale} 0.4s linear forwards;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 280px;
 
   @media screen and (min-width: 768px) {
     width: 608px;

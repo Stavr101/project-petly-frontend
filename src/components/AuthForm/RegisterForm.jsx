@@ -75,153 +75,146 @@ export default function RegisterForm() {
   const { t } = useTranslation();
 
   return (
-      <AuthContainer>
-        {!loading ? (
-            <FormWrapper>
-              <FormTitle>{t("registration.registration")}</FormTitle>
-              <Formik
-                initialValues={{
-                  email: "",
-                  password: "",
-                  confirmPassword: "",
-                  name: "",
-                  address: "",
-                  phone: "",
-                }}
-                validationSchema={
-                  !currentPage
-                    ? authValidate.RegisterSchemaFirstPage
-                    : authValidate.RegisterSchemaSecondPage
-                }
-                onSubmit={currentPage ? onHandleSubmit : onNext}
-              >
-                {({ handleChange, handleSubmit, values, handleBlur }) => (
-                  <>
-                    {!currentPage && (
-                      <FormEl>
-                        <Wrapper>
-                          <InputField
-                            name="email"
-                            type="email"
-                            placeholder="Email"
-                            value={values.email}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                          />
-                          <ErrorMessage
-                            name="email"
-                            render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
-                          />
-                        </Wrapper>
-                        <Wrapper>
-                          <InputField
-                            type={showPassword ? "text" : "password"}
-                            name="password"
-                            placeholder={t("registration.password")}
-                            value={values.password}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                          />
-                          <ErrorMessage
-                            name="password"
-                            render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
-                          />
-                          <EyePassword
-                            type="button"
-                            onClick={toggleShowPassword}
-                          >
-                            {!showPassword ? <ImEye /> : <ImEyeBlocked />}
-                          </EyePassword>
-                        </Wrapper>
-                        <Wrapper>
-                          <InputField
-                            type={showConfirmPassword ? "text" : "password"}
-                            name="confirmPassword"
-                            placeholder={t("registration.confirm")}
-                            value={values.confirmPassword}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                          />
-                          <ErrorMessage
-                            name="confirmPassword"
-                            render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
-                          />
-                          <EyePassword
-                            type="button"
-                            onClick={toggleConfirmShowPassword}
-                          >
-                            {!showConfirmPassword ? (
-                              <ImEye />
-                            ) : (
-                              <ImEyeBlocked />
-                            )}
-                          </EyePassword>
-                        </Wrapper>
-                        <BtnForm type="submit" onClick={handleSubmit}>
-                          {t("registration.next")}
-                        </BtnForm>
-                      </FormEl>
-                    )}
-                    {currentPage && (
-                      <FormEl>
-                        <Wrapper>
-                          <InputField
-                            type="text"
-                            name="name"
-                            placeholder={t("registration.name")}
-                            value={values.name}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                          />
-                          <ErrorMessage
-                            name="name"
-                            render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
-                          />
-                        </Wrapper>
-                        <Wrapper>
-                          <InputField
-                            name="address"
-                            placeholder={t("registration.city")}
-                            value={values.address}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                          />
-                          <ErrorMessage
-                            name="address"
-                            render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
-                          />
-                        </Wrapper>
-                        <Wrapper>
-                          <InputField
-                            name="phone"
-                            placeholder={t("registration.phone")}
-                            value={values.phone}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                          />
-                          <ErrorMessage
-                            name="phone"
-                            render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
-                          />
-                        </Wrapper>
-                        <BtnFormRegister type="submit" onClick={onHandleSubmit}>
-                          {t("registration.register")}
-                        </BtnFormRegister>
-                        <BtnFormBack type="button" onClick={prevPage}>
-                          {t("registration.back")}
-                        </BtnFormBack>
-                      </FormEl>
-                    )}
-                  </>
+    <AuthContainer>
+      {!loading ? (
+        <FormWrapper>
+          <FormTitle>Registration</FormTitle>
+          <Formik
+            initialValues={{
+              email: "",
+              password: "",
+              confirmPassword: "",
+              name: "",
+              address: "",
+              phone: "",
+            }}
+            validationSchema={
+              !currentPage
+                ? authValidate.RegisterSchemaFirstPage
+                : authValidate.RegisterSchemaSecondPage
+            }
+            onSubmit={currentPage ? onHandleSubmit : onNext}
+          >
+            {({ handleChange, handleSubmit, values, handleBlur }) => (
+              <>
+                {!currentPage && (
+                  <FormEl>
+                    <Wrapper>
+                      <InputField
+                        name="email"
+                        type="email"
+                        placeholder="Email"
+                        value={values.email}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      />
+                      <ErrorMessage
+                        name="email"
+                        render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
+                      />
+                    </Wrapper>
+                    <Wrapper>
+                      <InputField
+                        type={showPassword ? "text" : "password"}
+                        name="password"
+                        placeholder="Password"
+                        value={values.password}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      />
+                      <ErrorMessage
+                        name="password"
+                        render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
+                      />
+                      <EyePassword type="button" onClick={toggleShowPassword}>
+                        {!showPassword ? <ImEye /> : <ImEyeBlocked />}
+                      </EyePassword>
+                    </Wrapper>
+                    <Wrapper>
+                      <InputField
+                        type={showConfirmPassword ? "text" : "password"}
+                        name="confirmPassword"
+                        placeholder="Confirm Password"
+                        value={values.confirmPassword}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      />
+                      <ErrorMessage
+                        name="confirmPassword"
+                        render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
+                      />
+                      <EyePassword
+                        type="button"
+                        onClick={toggleConfirmShowPassword}
+                      >
+                        {!showConfirmPassword ? <ImEye /> : <ImEyeBlocked />}
+                      </EyePassword>
+                    </Wrapper>
+                    <BtnForm type="submit" onClick={handleSubmit}>
+                      Next
+                    </BtnForm>
+                  </FormEl>
                 )}
-              </Formik>
-              <Text>
-                {t("registration.have")} <LinkAuth to="/login">{t("registration.login")}</LinkAuth>
-              </Text>
-            </FormWrapper>
-        ) : (
-          <Loader />
-        )}
-      </AuthContainer>
+                {currentPage && (
+                  <FormEl>
+                    <Wrapper>
+                      <InputField
+                        type="text"
+                        name="name"
+                        placeholder="Name"
+                        value={values.name}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      />
+                      <ErrorMessage
+                        name="name"
+                        render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
+                      />
+                    </Wrapper>
+                    <Wrapper>
+                      <InputField
+                        name="address"
+                        placeholder="Address"
+                        value={values.address}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      />
+                      <ErrorMessage
+                        name="address"
+                        render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
+                      />
+                    </Wrapper>
+                    <Wrapper>
+                      <InputField
+                        name="phone"
+                        placeholder="Phone"
+                        value={values.phone}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      />
+                      <ErrorMessage
+                        name="phone"
+                        render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
+                      />
+                    </Wrapper>
+                    <BtnFormRegister type="submit" onClick={onHandleSubmit}>
+                      Register
+                    </BtnFormRegister>
+                    <BtnFormBack type="button" onClick={prevPage}>
+                      Back
+                    </BtnFormBack>
+                  </FormEl>
+                )}
+              </>
+            )}
+          </Formik>
+          <Text>
+            Already have an account? <LinkAuth to="/login">Login</LinkAuth>
+          </Text>
+        </FormWrapper>
+      ) : (
+        <Loader />
+      )}
+    </AuthContainer>
   );
 }

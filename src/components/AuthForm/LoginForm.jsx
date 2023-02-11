@@ -19,7 +19,6 @@ import authOperation from "redux/auth/operations";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import AuthContainer from "components/Container/AuthContainer/AuthContainer";
-import { MainPageContainerBlock } from "components/Container/MainPageContainer/MainPageContainer.styled";
 import Loader from "shared/loader/Loader";
 import { useTranslation } from 'react-i18next';
 
@@ -50,62 +49,59 @@ export default function RegisterForm() {
 
   return (
     <AuthContainer>
-      <MainPageContainerBlock>
-        {!loading ? (
-          <FormWrapper>
-            <FormTitle>{t("login.login")}</FormTitle>
-            <Formik
-              initialValues={{
-                email: "",
-                password: "",
-              }}
-              validationSchema={authValidate.LoginSchema}
-              onSubmit={onHandleSubmit}
-            >
-              {({ handleChange, values }) => (
-                <FormEl>
-                  <Wrapper>
-                    <InputField
-                      name="email"
-                      type="email"
-                      placeholder="Email"
-                      value={values.email}
-                      onChange={handleChange}
-                    />
-                    <ErrorMessage
-                      name="email"
-                      render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
-                    />
-                  </Wrapper>
-                  <Wrapper>
-                    <InputField
-                      type={showPassword ? "text" : "password"}
-                      name="password"
-                      placeholder={t("login.password")}
-                      value={values.password}
-                      onChange={handleChange}
-                    />
-                    <ErrorMessage
-                      name="password"
-                      render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
-                    />
-                    <EyePassword type="button" onClick={toggleShowPassword}>
-                      {!showPassword ? <ImEye /> : <ImEyeBlocked />}
-                    </EyePassword>
-                  </Wrapper>
-                  <BtnForm type="submit">{t("login.login")}</BtnForm>
-                </FormEl>
-              )}
-            </Formik>
-            <Text>
-              {t("login.noacc")}{" "}
-              <LinkAuth to="/register">{t("login.register")}</LinkAuth>
-            </Text>
-          </FormWrapper>
-        ) : (
-          <Loader />
-        )}
-      </MainPageContainerBlock>
+      {!loading ? (
+        <FormWrapper>
+          <FormTitle>Login</FormTitle>
+          <Formik
+            initialValues={{
+              email: "",
+              password: "",
+            }}
+            validationSchema={authValidate.LoginSchema}
+            onSubmit={onHandleSubmit}
+          >
+            {({ handleChange, values }) => (
+              <FormEl>
+                <Wrapper>
+                  <InputField
+                    name="email"
+                    type="email"
+                    placeholder="Email"
+                    value={values.email}
+                    onChange={handleChange}
+                  />
+                  <ErrorMessage
+                    name="email"
+                    render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
+                  />
+                </Wrapper>
+                <Wrapper>
+                  <InputField
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    placeholder="Password"
+                    value={values.password}
+                    onChange={handleChange}
+                  />
+                  <ErrorMessage
+                    name="password"
+                    render={(msg) => <ErrorMsg>{msg}</ErrorMsg>}
+                  />
+                  <EyePassword type="button" onClick={toggleShowPassword}>
+                    {!showPassword ? <ImEye /> : <ImEyeBlocked />}
+                  </EyePassword>
+                </Wrapper>
+                <BtnForm type="submit">Login</BtnForm>
+              </FormEl>
+            )}
+          </Formik>
+          <Text>
+            Don't have an account? <LinkAuth to="/register">Register</LinkAuth>
+          </Text>
+        </FormWrapper>
+      ) : (
+        <Loader />
+      )}
     </AuthContainer>
   );
 }

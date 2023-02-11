@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-// import { useDispatch } from "react-redux";
-// import { addPet } from "redux/pets/operations";
 import { addPetToCategory } from "api/notices";
 import { useTranslation } from 'react-i18next';
 import {
@@ -27,8 +25,6 @@ import {
   SexButtons,
 } from "./ModalAddNotice.styled";
 
-// import { AddsPetValidate } from "helpers/validationSchema/addsPetValidate";
-// Изменила функцию handleClose на closeModalPets для открытия модалки по нажатию кнопки в PetsData
 
 function Forma({ handleClose }) {
   const { t } = useTranslation();
@@ -200,19 +196,6 @@ function Forma({ handleClose }) {
     });
   };
 
-  // const combinedSellForm = {
-  //   ...formSell.sellFirstForm,
-  //   ...formSell.sellSecondForm,
-  // };
-  // const combinedFoundForm = {
-  //   ...formFound.foundFirstForm,
-  //   ...formFound.foundSecondForm,
-  // };
-  // const combinedGoodHandsForm = {
-  //   ...formGoodHands.goodHandsFirstForm,
-  //   ...formGoodHands.goodHandsSecondForm,
-  // };
-  //==================================
 
   const sellHandleSubmit = async (event) => {
     const combinedForm = {
@@ -244,7 +227,6 @@ function Forma({ handleClose }) {
         name: "",
         date: "",
         breed: "",
-        // categoryName: 'sell',
       },
       sellSecondForm: {
         sex: "",
@@ -268,8 +250,6 @@ function Forma({ handleClose }) {
     const { title, name, date, breed, sex, location, comment } =
       combinedForm;
     console.log(combinedForm);
-
-    // console.log("lost-form", event.target.elements[5].files[0]);
 
     const formDataFile = new FormData();
     formDataFile.append("title", title);
@@ -311,10 +291,6 @@ function Forma({ handleClose }) {
 
     const { title, name, date, breed, sex, location, comment } = combinedForm;
 
-    console.log(combinedForm)
-
-    console.log("good-hands", event.target.elements[5].files[0]);
-
     const formDataFile = new FormData();
     formDataFile.append("title", title);
     formDataFile.append("name", name);
@@ -349,7 +325,6 @@ function Forma({ handleClose }) {
   const handleClick = (button) => {
     setSelectedRadio(button);
   };
-  //+++++++++++++++++++++++++++++++++++++++++++++++++++
 
   const hasSellFirstFormAllData = Object.values(formSell.sellFirstForm).every(
     (value) => value
@@ -358,20 +333,18 @@ function Forma({ handleClose }) {
     (value) => value
   );
 
-  const hasFoundFirstFormAllData = Object.values(
-    formFound.foundFirstForm
-  ).every((value) => value);
-  const hasFoundSecondFormAllData = Object.values(
-    formFound.foundSecondForm
-  ).every((value) => value);
+  const hasFoundFirstFormAllData = Object.values(formFound.foundFirstForm).every(
+    (value) => value
+  );
+  const hasFoundSecondFormAllData = Object.values(formFound.foundSecondForm).every(
+    (value) => value);
 
-  const hasGoodHandsFirstFormAllData = Object.values(
-    formGoodHands.goodHandsFirstForm
-  ).every((value) => value);
-  const hasGoodHandsSecondFormAllData = Object.values(
-    formGoodHands.goodHandsSecondForm
-  ).every((value) => value);
-  // console.log(form.secondForm.sex)
+  const hasGoodHandsFirstFormAllData = Object.values(formGoodHands.goodHandsFirstForm).every(
+    (value) => value);
+  
+  const hasGoodHandsSecondFormAllData = Object.values(formGoodHands.goodHandsSecondForm).every(
+    (value) => value);
+  
   return (
     <>
       {formType === "sellFirstForm" && (
@@ -406,12 +379,10 @@ function Forma({ handleClose }) {
             <InputField
               type="text"
               name="title"
-              pattern="/^([a-zA-Z\s-]{2,148})?$/"
               value={formSell.sellFirstForm.title}
               onChange={handleSellFirstFormChange}
               placeholder={t("modal.titlepl")}
             />
-            {/* {errors.name && <div>{errors.secondForm.name}</div>} */}
           </InputBox>
           <InputBox>
             <InputLable htmlFor="name">{t("modal.name")}</InputLable>
@@ -422,12 +393,10 @@ function Forma({ handleClose }) {
             <InputField
               type="text"
               name="name"
-              pattern="/^([a-zA-Z\s-]{2,16})?$/"
               value={formSell.sellFirstForm.name}
               onChange={handleSellFirstFormChange}
               placeholder={t("modal.namepl")}
             />
-            {/* {errors.name && <div>{errors.secondForm.name}</div>} */}
           </InputBox>
           <InputBox>
             <InputLable htmlFor="date">{t("modal.birth")}</InputLable>
@@ -450,12 +419,10 @@ function Forma({ handleClose }) {
             <InputField
               type="text"
               name="breed"
-              pattern="/^([a-zA-Z\s-]{2,16})?$/"
               value={formSell.sellFirstForm.breed}
               onChange={handleSellFirstFormChange}
               placeholder={t("modal.breedpl")}
             />
-            {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
           </InputBox>
           <ButtonContainer>
             <Button type="button" onClick={handleClose}>
@@ -521,12 +488,10 @@ function Forma({ handleClose }) {
             <InputField
               type="text"
               name="location"
-              // pattern="/^[a-zA-Z]{2,16}$/"
               value={formSell.sellSecondForm.location}
               onChange={handleSellSecondFormChange}
               placeholder={t("modal.locationpl")}
             />
-            {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
           </InputBox>
           <InputBox>
             <InputLable htmlFor="price">
@@ -539,12 +504,10 @@ function Forma({ handleClose }) {
             <InputField
               type="text"
               name="price"
-              // pattern="/^[a-zA-Z]{2,16}$/"
               value={formSell.sellSecondForm.price}
               onChange={handleSellSecondFormChange}
               placeholder={t("modal.pricepl")}
             />
-            {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
           </InputBox>
           <InputLable htmlFor="avatarFile">{t("modal.img")}</InputLable>
           <DownloadContainer>
@@ -567,12 +530,10 @@ function Forma({ handleClose }) {
               <Comments
                 name="comment"
                 type="text"
-                pattern="^[a-zA-Z0-9,.!?;:-_ ]{8,120}$"
                 value={formSell.sellSecondForm.comment}
                 onChange={handleSellSecondFormChange}
                 placeholder={t("modal.comm")}
               />
-              {/* {errors.comment && <div>{errors.secondForm.comment}</div>} */}
             </CommentsContainer>
           </InputBox>
           <ButtonContainer>
@@ -619,12 +580,10 @@ function Forma({ handleClose }) {
             <InputField
               type="text"
               name="title"
-              pattern="/^([a-zA-Z\s-]{2,48})?$/"
               value={formFound.foundFirstForm.title}
               onChange={handleFoundFirstFormChange}
               placeholder="Type name"
             />
-            {/* {errors.name && <div>{errors.secondForm.name}</div>} */}
           </InputBox>
           <InputBox>
             <InputLable htmlFor="name">Name pet</InputLable>
@@ -635,12 +594,10 @@ function Forma({ handleClose }) {
             <InputField
               type="text"
               name="name"
-              pattern="/^([a-zA-Z\s-]{2,16})?$/"
               value={formFound.foundFirstForm.name}
               onChange={handleFoundFirstFormChange}
               placeholder="Name pet"
             />
-            {/* {errors.name && <div>{errors.secondForm.name}</div>} */}
           </InputBox>
           <InputBox>
             <InputLable htmlFor="date">Date of birth</InputLable>
@@ -662,12 +619,10 @@ function Forma({ handleClose }) {
             <InputField
               type="text"
               name="breed"
-              pattern="/^([a-zA-Z\s-]{2,16})?$/"
               value={formFound.foundFirstForm.breed}
               onChange={handleFoundFirstFormChange}
               placeholder="Breed"
             />
-            {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
           </InputBox>
           <ButtonContainer>
             <Button type="button" onClick={handleClose}>
@@ -733,12 +688,10 @@ function Forma({ handleClose }) {
             <InputField
               type="text"
               name="location"
-              // pattern="/^[a-zA-Z]{2,16}$/"
               value={formFound.foundSecondForm.location}
               onChange={handleFoundSecondFormChange}
               placeholder="Location"
             />
-            {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
           </InputBox>
 
           <InputLable htmlFor="avatarUrl">Load the pet's image:</InputLable>
@@ -762,12 +715,11 @@ function Forma({ handleClose }) {
               <Comments
                 name="comment"
                 type="text"
-                pattern="^[a-zA-Z0-9,.!?;:-_ ]{8,120}$"
                 value={formFound.foundSecondForm.comment}
                 onChange={handleFoundSecondFormChange}
                 placeholder="Type comments"
               />
-              {/* {errors.comment && <div>{errors.secondForm.comment}</div>} */}
+             
             </CommentsContainer>
           </InputBox>
           <ButtonContainer>
@@ -776,7 +728,7 @@ function Forma({ handleClose }) {
             </Button>
             <Button
               type="submit"
-            // disabled={!hasFoundSecondFormAllData}
+            disabled={!hasFoundSecondFormAllData}
             >
               Done
             </Button>
@@ -814,12 +766,10 @@ function Forma({ handleClose }) {
             <InputField
               type="text"
               name="title"
-              pattern="/^([a-zA-Z\s-]){2,48}?$/"
               value={formGoodHands.goodHandsFirstForm.title}
               onChange={handleGoodHandsFirstFormChange}
               placeholder="Type name"
             />
-            {/* {errors.name && <div>{errors.secondForm.name}</div>} */}
           </InputBox>
           <InputBox>
             <InputLable htmlFor="name">Name pet</InputLable>
@@ -830,12 +780,10 @@ function Forma({ handleClose }) {
             <InputField
               type="text"
               name="name"
-              pattern="/^([a-zA-Z\s-]{2,16})?$/"
               value={formGoodHands.goodHandsFirstForm.name}
               onChange={handleGoodHandsFirstFormChange}
               placeholder="Name pet"
             />
-            {/* {errors.name && <div>{errors.secondForm.name}</div>} */}
           </InputBox>
           <InputBox>
             <InputLable htmlFor="date">Date of birth</InputLable>
@@ -857,12 +805,11 @@ function Forma({ handleClose }) {
             <InputField
               type="text"
               name="breed"
-              pattern="/^([a-zA-Z\s-]{2,16})?$/"
               value={formGoodHands.goodHandsFirstForm.breed}
               onChange={handleGoodHandsFirstFormChange}
               placeholder="Breed"
             />
-            {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
+          
           </InputBox>
           <ButtonContainer>
             <Button type="button" onClick={handleClose}>
@@ -899,7 +846,6 @@ function Forma({ handleClose }) {
                 <LabelMale htmlfor="radio1">Male</LabelMale>
               </InputMaleButton>
             </InputContainer>
-
             <InputContainer>
               <InputFemaleButton
                 isSelected={formGoodHands.goodHandsSecondForm.sex === "female"}
@@ -927,12 +873,10 @@ function Forma({ handleClose }) {
             <InputField
               type="text"
               name="location"
-              // pattern="/^[a-zA-Z]{2,16}$/"
               value={formGoodHands.goodHandsSecondForm.location}
               onChange={handleGoodHandsSecondFormChange}
               placeholder="Location"
             />
-            {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
           </InputBox>
 
           <InputLable htmlFor="avatarUrl">Load the pet's image:</InputLable>
@@ -959,12 +903,10 @@ function Forma({ handleClose }) {
               <Comments
                 name="comment"
                 type="text"
-                pattern="^[a-zA-Z0-9,.!?;:-_ ]{8,120}$"
                 value={formGoodHands.goodHandsSecondForm.comment}
                 onChange={handleGoodHandsSecondFormChange}
                 placeholder="Type comments"
               />
-              {/* {errors.comment && <div>{errors.secondForm.comment}</div>} */}
             </CommentsContainer>
           </InputBox>
           <ButtonContainer>
@@ -974,7 +916,8 @@ function Forma({ handleClose }) {
             >
               Back
             </Button>
-            <Button type="submit"
+            <Button
+            type="submit"
             // disabled={!hasGoodHandsSecondFormAllData}
             >
               Done

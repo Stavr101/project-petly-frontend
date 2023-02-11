@@ -31,8 +31,6 @@ const NoticesCategoriesList = () => {
     setPageNumber(1);
   }, [search, categoryName]);
 
-  // console.log("categoryName", categoryName);
-
   useEffect(() => {
     dispatch(getUserInfo());
   }, [dispatch]);
@@ -72,7 +70,6 @@ const NoticesCategoriesList = () => {
       return;
     }
 
-    //  if (!categoryName) return
     const fetchPets = async () => {
       setLoading(true);
       setError(null);
@@ -83,7 +80,6 @@ const NoticesCategoriesList = () => {
           return [...prevPet, ...data];
         });
         setHasMore(data.length > 0);
-        setLoading(false);
       } catch (error) {
         setError(error);
       } finally {
@@ -94,7 +90,6 @@ const NoticesCategoriesList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryName, search, pageNumber, location.pathname]);
 
-  // console.log(loading, hasMore, error, pageNumber, pets);
   const observer = useRef();
 
   const lastNewsElementRef = useCallback(

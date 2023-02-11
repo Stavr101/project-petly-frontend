@@ -40,7 +40,7 @@ const petsSlice = createSlice({
       store.error = null;
 
       const index = store.items.findIndex(
-        contact => contact.id === action.payload.id
+        user => user.id === action.payload.id
       );
       store.items.splice(index, 1);
     },

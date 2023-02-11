@@ -18,6 +18,7 @@ export const ItemNoticesTitle = styled.h2`
   line-height: 38px;
   letter-spacing: -0.01em;
   color: #111111;
+  margin-bottom: 20px;
 `;
 
 export const ItemNoticesImg = styled.img`
@@ -92,12 +93,13 @@ export const ItemNoticesWrap = styled.div`
   padding-bottom: 12px;
   display: flex;
   flex-direction: column;
-  gap: 20px; ;
+  /* gap: 20px; */
 `;
 
 export const ItemButtonNotices = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   flex-grow: 1;
   gap: 12px;
 `;

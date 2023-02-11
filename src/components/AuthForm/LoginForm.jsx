@@ -20,7 +20,7 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import AuthContainer from "components/Container/AuthContainer/AuthContainer";
 import Loader from "shared/loader/Loader";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -32,7 +32,7 @@ export default function RegisterForm() {
     try {
       const res = await dispatch(authOperation.logIn(data));
       if (res.payload === 401) {
-        return Notify.failure("Must be authorization");
+        return Notify.failure("Email or password wrong");
       }
     } catch (error) {
       console.log(error);
@@ -64,6 +64,7 @@ export default function RegisterForm() {
               <FormEl>
                 <Wrapper>
                   <InputField
+                    autoFocus
                     name="email"
                     type="email"
                     placeholder="Email"
@@ -96,7 +97,8 @@ export default function RegisterForm() {
             )}
           </Formik>
           <Text>
-            {t("login.noacc")} <LinkAuth to="/register">{t("login.register")}</LinkAuth>
+            {t("login.noacc")}{" "}
+            <LinkAuth to="/register">{t("login.register")}</LinkAuth>
           </Text>
         </FormWrapper>
       ) : (

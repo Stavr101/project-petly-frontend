@@ -4,6 +4,7 @@ import { getPetInfo } from 'redux/pets/operations';
 import { getLoading, getError, getPets } from 'redux/pets/selectors';
 import ModalAddsPetApp from 'components/ModalAddsPet/ModalAddsPetsApp';
 import UserLoader from 'shared/userLoader/Loader';
+import { useTranslation } from 'react-i18next';
 import PetsList from 'components/PetsList/PetsList';
 import {
   PetsWrapper,
@@ -30,12 +31,14 @@ export default function PetsData() {
     dispatch(getPetInfo());
   }, [dispatch]);
 
+  const { t } = useTranslation();
+
   return (
     <PetsWrapper>
       <PetsTitleWrapper>
-        <UserPetsTitle>My pets:</UserPetsTitle>
+        <UserPetsTitle>{t("user.pets")}</UserPetsTitle>
         <PetBtnWrapper>
-          <AddPetTitleBtn>Add pet</AddPetTitleBtn>
+          <AddPetTitleBtn>{t("notices.add")}</AddPetTitleBtn>
           <AddPetBtn onClick={() => setIsOpen(true)} />
         </PetBtnWrapper>
       </PetsTitleWrapper>
@@ -50,8 +53,7 @@ export default function PetsData() {
       ) : (
         <NonPetWrapper>
           <p>
-            You don't have any animals added yet. If you want to add your pet,
-            click button "Add pets"
+            {t("user.nopets")}
           </p>
         </NonPetWrapper>
       )}

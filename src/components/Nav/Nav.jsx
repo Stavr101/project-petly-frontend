@@ -1,10 +1,21 @@
 import React, { useState } from 'react';
-import { PrimaryNav, SecondaryNav, NavLink, NavMenu, AuthMenu, MobileContainer, TabletContainer, StyledBurger } from "./Nav.styled";
+import {
+  PrimaryNav,
+  SecondaryNav,
+  NavLink,
+  NavMenu,
+  AuthMenu,
+  MobileContainer,
+  TabletContainer,
+  StyledBurger,
+} from "./Nav.styled";
 import AuthNav from 'components/AuthNav/AuthNav';
 import UserNav from 'components/UserNav/UserNav';
+import LanguageSwitch from 'components/LanguageSwitch/LanguageSwitch';
 import { useAuth } from 'hooks';
 import { useMediaQuery } from 'react-responsive';
 import Modal from "components/ModalMenu/Modal/Modal";
+import { useTranslation } from 'react-i18next';
 
 const Nav = () => {
 
@@ -16,6 +27,8 @@ const Nav = () => {
 
   const [showModal, setShowModal] = useState(false);
 
+  const { t } = useTranslation();
+
   return (
     <>
       {
@@ -23,11 +36,11 @@ const Nav = () => {
     <>
         <PrimaryNav>
         <NavMenu>
-          <NavLink to="/news">News</NavLink>
-          <NavLink to="/notices">Find pet</NavLink>
-          <NavLink to="/friends">Our friends</NavLink>
+          <NavLink to="/news">{t("main.news")}</NavLink>
+          <NavLink to="/notices">{t("main.find")}</NavLink>
+          <NavLink to="/friends">{t("main.friends")}</NavLink>
         </NavMenu>
-      </PrimaryNav>
+          </PrimaryNav>
       <SecondaryNav>
         {isLoggedIn ? <UserNav /> : <AuthMenu> <AuthNav /> </AuthMenu>}
       </SecondaryNav>
@@ -39,25 +52,27 @@ const Nav = () => {
           <SecondaryNav>{isLoggedIn ? <UserNav /> : <AuthMenu> <AuthNav /> </AuthMenu>}</SecondaryNav>
           <PrimaryNav>
             <NavMenu>
-              <NavLink to="/news">News</NavLink>
-              <NavLink to="/notices">Find pet</NavLink>
-              <NavLink to="/friends">Our friends</NavLink>
+              <NavLink to="/news">{t("main.news")}</NavLink>
+              <NavLink to="/notices">{t("main.find")}</NavLink>
+              <NavLink to="/friends">{t("main.friends")}</NavLink>
             </NavMenu>
           </PrimaryNav>
         </MobileContainer>
       </Modal>}
 
-      {isTablet && <SecondaryNav>{isLoggedIn ? <UserNav /> : <AuthMenu> <AuthNav /> </AuthMenu>}</SecondaryNav>}
+      {isTablet &&
+        <SecondaryNav>{isLoggedIn ? <UserNav /> : <AuthMenu> <AuthNav /> </AuthMenu>}</SecondaryNav>}
       {isTablet && showModal && <Modal onClose={setShowModal}>
         <TabletContainer>
           <NavMenu>
-            <NavLink to="/news">News</NavLink>
-            <NavLink to="/notices">Find pet</NavLink>
-            <NavLink to="/friends">Our friends</NavLink>
+            <NavLink to="/news">{t("main.news")}</NavLink>
+            <NavLink to="/notices">{t("main.find")}</NavLink>
+            <NavLink to="/friends">{t("main.friends")}</NavLink>
           </NavMenu>
         </TabletContainer>
       </Modal>}
       
+        <LanguageSwitch/>
         <StyledBurger aria-label='menu' open={showModal} onClick={() => {
           setShowModal(current => !current);
           setShowModal(!showModal);

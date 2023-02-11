@@ -5,13 +5,15 @@ import NoticesCategoriesList from "components/NoticesCategoriesList/NoticesCateg
 import AddNoticeButton from "components/AddNoticeButton/AddNoticeButton";
 import MainPageContainer from "components/Container/MainPageContainer/MainPageContainer";
 import { Title } from "components/NoticesCategoriesNav/NoticesCategoriesNav.styled";
+import { useTranslation } from 'react-i18next';
 
 function NoticesPage() {
   const { categoryName } = useParams();
+  const { t } = useTranslation();
 
   return (
     <MainPageContainer>
-      <Title>Find your favorite pet</Title>
+      <Title>{t("notices.header")}</Title>
       <NoticesSearch />
       <NoticesCategoriesNav />
       <NoticesCategoriesList category={categoryName} />

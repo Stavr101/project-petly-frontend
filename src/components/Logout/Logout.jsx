@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logOut } from 'redux/auth/operations';
 import logoutSvg from 'images/UserPage/logoutSvg.svg';
+import { useTranslation } from 'react-i18next';
 import { LogOutButton, SVG } from './Logout.styled';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -20,18 +21,20 @@ export const Logout = () => {
     setOpen(false);
   };
 
+  const { t } = useTranslation();
+
   return (
     <>
       <LogOutButton variant="outlined" onClick={handleClickOpen}>
         <SVG src={logoutSvg} />
-        Log Out
+        {t("user.logout")}
       </LogOutButton>
       <Dialog
         open={open}
-        onClose={handleClose}
+        // onClose={handleClose}
         aria-labelledby="alert-dialog-title"
       >
-        <DialogTitle id="alert-dialog-title">{'You want logout?'}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{t("user.logoutconf")}</DialogTitle>
         <DialogActions>
           <Button
             onClick={handleClose}
@@ -39,7 +42,7 @@ export const Logout = () => {
               color: '#F59256',
             }}
           >
-            NO
+            {t("user.no")}
           </Button>
           <Button
             onClick={() => dispatch(logOut())}
@@ -48,7 +51,7 @@ export const Logout = () => {
               color: '#F59256',
             }}
           >
-            YES
+            {t("user.yes")}
           </Button>
         </DialogActions>
       </Dialog>

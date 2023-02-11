@@ -2,6 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import { Input, Box, InputAdornment } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import { useTranslation } from 'react-i18next';
 
 export default function NewsSearch() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -12,6 +13,8 @@ export default function NewsSearch() {
     const nextParams = query !== "" ? { query } : {};
     setSearchParams(nextParams);
   };
+
+  const { t } = useTranslation();
 
   return (
     <Box
@@ -29,7 +32,7 @@ export default function NewsSearch() {
         value={query}
         onChange={onChangeInput}
         disableUnderline={true}
-        placeholder="Search"
+        placeholder={t("news.search")}
         endAdornment={
           <InputAdornment position="end">
             {!query ? (

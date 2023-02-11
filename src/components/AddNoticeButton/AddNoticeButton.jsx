@@ -9,6 +9,7 @@ import {
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { useAuth } from "hooks";
 import ModalAddNoticelApp from "components/ModalAddNotice/ModalAddNoticelApp";
+import { useTranslation } from 'react-i18next';
 
 export default function AddNoticeButton() {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +21,7 @@ export default function AddNoticeButton() {
       //   position: "center-top",
       //   cssAnimationStyle: "from-right",
       // });
-      Notify.failure("Must be authorization", {
+      Notify.failure(t("notification.notAuthorized"), {
         timeout: 1500,
       });
     } else {
@@ -28,10 +29,12 @@ export default function AddNoticeButton() {
     }
   };
 
+  const { t } = useTranslation();
+
   return (
     <>
       <Wrap>
-        <Text>Add pet</Text>
+        <Text>{t("notices.add")}</Text>
         <Button onClick={handleClick}>
           <Icon />
           <Cont>Add pet</Cont>

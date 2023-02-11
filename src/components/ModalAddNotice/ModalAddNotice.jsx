@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { addPetToCategory } from "api/notices";
-
+import { useTranslation } from 'react-i18next';
 import {
   Validations,
   InputBox,
@@ -27,6 +27,9 @@ import {
 
 
 function Forma({ handleClose }) {
+  const { t } = useTranslation();
+  // const dispatch = useDispatch();
+  // const [errors, setErrors] = useState({});
   const [selectedRadio, setSelectedRadio] = useState("");
 
   const [formSell, setFormSell] = useState({
@@ -347,42 +350,42 @@ function Forma({ handleClose }) {
       {formType === "sellFirstForm" && (
         <FormContainer onSubmit={sellHandleSubmit}>
           <AddPhoto>
-            Lorem ipsum dolor sit amet, consectetur ipsum dolor sit amet, consectetur
+            {t("modal.info")}
           </AddPhoto>
           <Button type="button" onClick={() => setFormType("foundFirstForm")}>
-            lost/found
+            {t("modal.lost")}
           </Button>
           <Button
             type="button"
             onClick={() => setFormType("goodHandsFirstForm")}
           >
-            in good hands
+            {t("modal.free")}
           </Button>
           <Button
             type="button"
             style={{ backgroundColor: "#F59256", color: "white" }}
             onClick={() => setFormType("sellFirstForm")}
           >
-            sell
+            {t("modal.sell")}
           </Button>
           <InputBox>
             <InputLable htmlFor="title">
-              Title of ad <span>*</span>
+              {t("modal.title")} <span>*</span>
             </InputLable>
             <Validations
               className={formSell.sellFirstForm.title.match(/^([a-zA-Z\s-]{2,48})?$/) ? "invalid" : ""}>
-              Please enter between 2 and 48 letters
+              {t("modal.check")}
             </Validations>
             <InputField
               type="text"
               name="title"
               value={formSell.sellFirstForm.title}
               onChange={handleSellFirstFormChange}
-              placeholder="Type name"
+              placeholder={t("modal.titlepl")}
             />
           </InputBox>
           <InputBox>
-            <InputLable htmlFor="name">Name pet</InputLable>
+            <InputLable htmlFor="name">{t("modal.name")}</InputLable>
             <Validations
               className={formSell.sellFirstForm.name.match(/^([a-zA-Z\s-]{2,16})?$/) ? "invalid" : ""}>
               Please enter between 2 and 16 letters
@@ -392,11 +395,11 @@ function Forma({ handleClose }) {
               name="name"
               value={formSell.sellFirstForm.name}
               onChange={handleSellFirstFormChange}
-              placeholder="Name pet"
+              placeholder={t("modal.namepl")}
             />
           </InputBox>
           <InputBox>
-            <InputLable htmlFor="date">Date of birth</InputLable>
+            <InputLable htmlFor="date">{t("modal.birth")}</InputLable>
             <InputField
               type="date"
               name="date"
@@ -408,7 +411,7 @@ function Forma({ handleClose }) {
             />
           </InputBox>
           <InputBox>
-            <InputLable htmlFor="breed">Breed</InputLable>
+            <InputLable htmlFor="breed">{t("modal.breed")}</InputLable>
             <Validations
               className={formSell.sellFirstForm.breed.match(/^([a-zA-Z\s-]{2,16})?$/) ? "invalid" : ""}>
               Please enter between 2 and 16 letters
@@ -418,19 +421,19 @@ function Forma({ handleClose }) {
               name="breed"
               value={formSell.sellFirstForm.breed}
               onChange={handleSellFirstFormChange}
-              placeholder="Breed"
+              placeholder={t("modal.breedpl")}
             />
           </InputBox>
           <ButtonContainer>
             <Button type="button" onClick={handleClose}>
-              Cancel
+              {t("modal.canc")}
             </Button>
             <Button
               type="button"
               onClick={() => setFormType("sellSecondForm")}
               disabled={!hasSellFirstFormAllData}
             >
-              Next
+              {t("modal.next")}
             </Button>
           </ButtonContainer>
         </FormContainer>
@@ -453,7 +456,7 @@ function Forma({ handleClose }) {
                   checked={formSell.sellSecondForm.sex === "male"}
                   onChange={handleRadioChange}
                 />
-                <LabelMale htmlfor="radio1">Male</LabelMale>
+                <LabelMale htmlfor="radio1">{t("modal.m")}</LabelMale>
               </InputMaleButton>
             </InputContainer>
 
@@ -469,14 +472,14 @@ function Forma({ handleClose }) {
                   checked={formSell.sellSecondForm.sex === "female"}
                   onChange={handleRadioChange}
                 />
-                <LabelFemale htmlfor="radio1">Female</LabelFemale>
+                <LabelFemale htmlfor="radio1">{t("modal.f")}</LabelFemale>
               </InputFemaleButton>
             </InputContainer>
           </SexButtons>
 
           <InputBox>
             <InputLable htmlFor="location">
-              Location<span>*</span>:
+              {t("modal.location")}<span>*</span>:
             </InputLable>
             <Validations
               className={formSell.sellSecondForm.location.match(/^$|^[a-zA-Z\s]+,[a-zA-Z\s]+$/) ? "invalid" : ""}>
@@ -487,12 +490,12 @@ function Forma({ handleClose }) {
               name="location"
               value={formSell.sellSecondForm.location}
               onChange={handleSellSecondFormChange}
-              placeholder="Location"
+              placeholder={t("modal.locationpl")}
             />
           </InputBox>
           <InputBox>
             <InputLable htmlFor="price">
-              Price<span>*</span>:
+              {t("modal.price")}<span>*</span>:
             </InputLable>
             <Validations
               className={formSell.sellSecondForm.price.match(/^(?!0)\d+$|^$/) ? "invalid" : ""}>
@@ -503,10 +506,10 @@ function Forma({ handleClose }) {
               name="price"
               value={formSell.sellSecondForm.price}
               onChange={handleSellSecondFormChange}
-              placeholder="Price"
+              placeholder={t("modal.pricepl")}
             />
           </InputBox>
-          <InputLable htmlFor="avatarFile">Load the pet's image:</InputLable>
+          <InputLable htmlFor="avatarFile">{t("modal.img")}</InputLable>
           <DownloadContainer>
             {formSell.sellSecondForm.avatarFile && (
               <Image src={formSell.sellSecondForm.avatarFile} alt="uploaded" />
@@ -529,16 +532,16 @@ function Forma({ handleClose }) {
                 type="text"
                 value={formSell.sellSecondForm.comment}
                 onChange={handleSellSecondFormChange}
-                placeholder="Type comments"
+                placeholder={t("modal.comm")}
               />
             </CommentsContainer>
           </InputBox>
           <ButtonContainer>
             <Button type="button" onClick={() => setFormType("sellFirstForm")}>
-              Back
+              {t("modal.back")}
             </Button>
             <Button type="submit" disabled={!hasSellSecondFormAllData}>
-              Done
+              {t("modal.done")}
             </Button>
           </ButtonContainer>
         </NextFormContainer>

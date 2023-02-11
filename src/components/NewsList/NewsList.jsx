@@ -7,6 +7,7 @@ import Loader from "shared/loader/Loader";
 import { useSearchNews } from "hooks";
 import { Typography, Link, Box } from "@mui/material";
 import { dateCompare } from "utils/dateCompare";
+import { useTranslation } from 'react-i18next';
 
 export const NewsList = () => {
   const [pageNumber, setPageNumber] = useState(1);
@@ -43,6 +44,8 @@ export const NewsList = () => {
     return dateCompare(secondNews.date, firstNews.date);
   });
 
+  const { t } = useTranslation();
+
   return (
     <>
       {Boolean(sorteredNews.length) && !loading && (
@@ -71,8 +74,8 @@ export const NewsList = () => {
       )}
       {!hasMore && Boolean(sorteredNews.length) && (
         <Box sx={{ textAlign: "center" }}>
-          <Typography sx={{ mb: 1 }}>End of content...</Typography>
-          <Link href="#top">back to top?</Link>
+          <Typography sx={{ mb: 1 }}>{t("news.end")}</Typography>
+          <Link href="#top">{t("news.totop")}</Link>
         </Box>
       )}
       {error && <Error />}

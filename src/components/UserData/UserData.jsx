@@ -4,6 +4,7 @@ import { Logout } from 'components/Logout/Logout';
 import { useDispatch } from 'react-redux';
 import UserDataList from '../UserDataList/UserDataList';
 import { getUserInfo } from 'redux/users/operations';
+import { useTranslation } from 'react-i18next';
 
 export default function UserData() {
   const dispatch = useDispatch();
@@ -12,9 +13,11 @@ export default function UserData() {
     dispatch(getUserInfo());
   }, [dispatch]);
 
+  const { t } = useTranslation();
+
   return (
     <UserWrapper>
-      <UserDataTitle>My information:</UserDataTitle>
+      <UserDataTitle>{t("user.info")}</UserDataTitle>
       <UserDataWrapper>
         <UserDataList />
         <Logout />

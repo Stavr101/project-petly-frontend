@@ -9,6 +9,7 @@ import {
   FormInput,
 } from "components/NoticesSearch/NoticesSearch.styled";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
+import { useTranslation } from 'react-i18next';
 
 const NoticesSearch = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -35,6 +36,8 @@ const NoticesSearch = () => {
     setQuery("")
   }
 
+  const { t } = useTranslation();
+
   return (
     <Search>
       <SearchForm>
@@ -42,7 +45,7 @@ const NoticesSearch = () => {
           name="input"
           type="text"
           autocomplete="off"
-          placeholder="Search"
+          placeholder={t("news.search")}
           value={query}
           onChange={handleChange}
         />

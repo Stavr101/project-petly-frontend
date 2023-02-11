@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-
 import DeleteSvg from "./NoticesDeleteSvg";
 import HeartSvg from "./NoticesHeartSvg";
 import HeartFavorite from "./NoticesHeartFavoriteSvg";
@@ -99,13 +98,20 @@ export default function NoticeCategoryItem({
 
   async function addFavorite(_id) {
     if (!isLoggedIn) {
-      return Notify.failure("You must be authorized");
+      return (
+        Notify.failure("Must be authorization"),
+        {
+          timeout: 1500,
+        }
+      );
     }
     try {
       const res = await addPetToFavorite(_id);
       setIsFavorite(true);
 
-      Notify.success("Pet add to your'e favorite");
+      Notify.success("Pet add to your'e favorite", {
+        timeout: 1500,
+      });
       return res;
     } catch (error) {
       console.log(error);
@@ -114,7 +120,9 @@ export default function NoticeCategoryItem({
 
   async function removeFromFavorite(_id) {
     if (!isLoggedIn) {
-      return Notify.failure("You must be authorized");
+      return Notify.failure("Must be authorization", {
+        timeout: 1500,
+      });
     }
     try {
       await removeFavoritePet(_id);
@@ -125,6 +133,9 @@ export default function NoticeCategoryItem({
 
         setArray(arrayNew);
       }
+      Notify.warning("You removed a pet from favorite", {
+        timeout: 1500,
+      });
       return setIsFavorite(false);
     } catch (error) {
       console.log(error);
@@ -148,6 +159,10 @@ export default function NoticeCategoryItem({
         removeOwnPet(_id);
         const arrayNew = array.filter((item) => item._id !== _id);
         setArray(arrayNew);
+
+        Notify.warning("Your pet has been deleted", {
+          timeout: 1500,
+        });
       }
     } catch (error) {
       console.log(error);

@@ -1,5 +1,4 @@
 import { getPetsById } from "api/notices";
-// import Error from "components/Error/Error";
 import { useEffect, useState } from "react";
 import Loader from "shared/loader/Loader";
 import moment from "moment";
@@ -42,13 +41,10 @@ export default function ModalNotice({
   handleDeletePet,
   isFavorite,
 }) {
-  const [pet, setPet] = useState(undefined);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
   const { user } = useAuth();
 
-  console.log("pet", pet);
+  const [pet, setPet] = useState(undefined);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -74,7 +70,7 @@ export default function ModalNotice({
         const data = await getPetsById(petId);
         setPet(data);
       } catch (error) {
-        setError(error);
+        console.log(error);
       } finally {
         setLoading(false);
       }

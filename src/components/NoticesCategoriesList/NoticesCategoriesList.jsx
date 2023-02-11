@@ -3,10 +3,14 @@ import { useLocation, useParams, useSearchParams } from "react-router-dom";
 
 import { fetchAdsByCategory, fetchFavorite, fetchOwnAds } from "api/notices";
 
-// import Error from "components/Error/Error";
 import { Typography, Box, Link } from "@mui/material";
 import NoticeCategoryItem from "components/NoticeCategoryItem/NoticeCategoryItem";
 import { List } from "components/NoticesCategoriesList/NoticesCategoriesList.slyled";
+// import { getUserInfo } from "redux/users/operations";
+// import { useDispatch } from "react-redux";
+
+import Loader from "shared/loader/Loader";
+import Error from "components/Error/Error";
 import { getUserInfo } from "redux/users/operations";
 import { useDispatch } from "react-redux";
 import { useTranslation } from 'react-i18next';
@@ -21,19 +25,18 @@ const NoticesCategoriesList = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
   const { categoryName } = useParams();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const location = useLocation();
   const search = searchParams.get("search") ?? "";
-  // let filteredPets = pets.filter((pet) => pet.categoryName === categoryName);
 
   useEffect(() => {
     setPets([]);
     setPageNumber(1);
   }, [search, categoryName]);
 
-  useEffect(() => {
-    dispatch(getUserInfo());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getUserInfo());
+  // }, [dispatch]);
 
   useEffect(() => {
     if (location.pathname.includes("favorite")) {
@@ -147,8 +150,8 @@ const NoticesCategoriesList = () => {
           <Link href="#top">{t("news.totop")}</Link>
         </Box>
       )}
-      {/* {error && <Error />}
-      {loading && <Loader />} */}
+      {error && <Error />}
+      {loading && <Loader />}
     </>
   );
 };

@@ -90,21 +90,36 @@ export const Image = styled.img`
 `;
 
 export const ModalContainer = styled.div`
-  margin-top: 60px;
+ position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 98%;
+  max-height: 98%;
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: white;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 98%;
   border-radius: 16px;
-  animation: ${slideIn} 300ms ease-out;
+  // animation: ${slideIn} 300ms ease-out;
+  overflow-y: auto;
+
+  ::-webkit-scrollbar {
+    border-radius: 16px;
+    width: 10px;
+    background-color: #f5f5f5;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    border-radius: 16px;
+    background-color: #f59256;
+  }
 
   @media (min-width: 768px) {
     max-width: 608px;
-    margin-top: 30px;
+ 
   }
 `;
 
@@ -223,7 +238,7 @@ export const ButtonOff = styled.button`
   border-radius: 50%;
   border: none;
   width: 34px;
-  height: 34px;
+  min-height: 34px;
   margin-left: auto;
   background-color: #fdf7f2;
   background-image: url(${cross});

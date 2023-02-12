@@ -163,7 +163,7 @@ export const Image = styled.img`
 
 export const ModalContainer = styled.div`
   width: 98%;
-  height: 98%;
+  /* height: 98%; */
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -187,7 +187,7 @@ export const ModalContainer = styled.div`
 
   @media (min-width: 768px) {
     width: 608px;
-    /* height: 94%; */
+    max-height: 813px;
   }
 `;
 
@@ -198,13 +198,13 @@ export const ModalTitle = styled.h2`
 
 export const FormContainer = styled.form`
   width: 240px;
-  height: 540px;
+  max-height: 540px;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   @media (min-width: 768px) {
-    max-width: 548px;
+    width: 448px;
     height: 440px;
   }
 `;
@@ -312,7 +312,7 @@ export const ButtonOff = styled.button`
   border-radius: 50%;
   border: none;
   width: 34px;
-  height: 34px;
+  min-height: 34px;
   margin-left: auto;
   background-color: #fdf7f2;
   background-image: url(${cross});
@@ -346,6 +346,45 @@ export const CancelButton = styled.button`
     height: 48px;
   }
 `;
+
+export const ButtonTypeContainer = styled.button`
+border: 0;
+padding: 0;
+background-color: white;
+  @media (min-width: 768px) {
+    display: flex;
+  width: 328px;
+  margin-right: auto;
+  }
+
+`
+
+export const ButtonType = styled.button`
+  white-space: nowrap;
+  width: 240px;
+  height: 40px;
+  padding: 10px 28px;
+  border-radius: 20px;
+  margin-right: auto;
+  margin-bottom: 12px;
+  border: 2px solid #f59256;
+  background-color: white;
+
+  :hover,
+  :active {
+    background-color: #f59256;
+    color: white;
+    outline: none;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  }
+  @media (min-width: 768px) {
+    width: auto;
+    /* margin-right: 20px; */
+    /* height: 48px; */
+  }
+`
+
+
 
 export const Button = styled.button`
   padding: 10px 28px;

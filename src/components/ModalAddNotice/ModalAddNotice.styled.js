@@ -164,6 +164,7 @@ export const Image = styled.img`
 export const ModalContainer = styled.div`
   width: 98%;
   height: 98%;
+  
   padding: 20px;
   display: flex;
   flex-direction: column;

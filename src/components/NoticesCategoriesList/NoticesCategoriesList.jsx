@@ -6,8 +6,6 @@ import { fetchAdsByCategory, fetchFavorite, fetchOwnAds } from "api/notices";
 import { Typography, Box, Link } from "@mui/material";
 import NoticeCategoryItem from "components/NoticeCategoryItem/NoticeCategoryItem";
 import { List } from "components/NoticesCategoriesList/NoticesCategoriesList.slyled";
-// import { getUserInfo } from "redux/users/operations";
-// import { useDispatch } from "react-redux";
 
 import Error from "components/Error/Error";
 import { useTranslation } from "react-i18next";
@@ -20,7 +18,6 @@ const NoticesCategoriesList = ({ pets, setPets }) => {
   const [pageNumber, setPageNumber] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
   const { categoryName } = useParams();
-  // const dispatch = useDispatch();
   const location = useLocation();
   const search = searchParams.get("search") ?? "";
 
@@ -28,10 +25,6 @@ const NoticesCategoriesList = ({ pets, setPets }) => {
     setPets([]);
     setPageNumber(1);
   }, [search, categoryName]);
-
-  // useEffect(() => {
-  //   dispatch(getUserInfo());
-  // }, [dispatch]);
 
   useEffect(() => {
     if (location.pathname.includes("favorite")) {
@@ -108,9 +101,9 @@ const NoticesCategoriesList = ({ pets, setPets }) => {
 
   return (
     <>
-      {!pets.length && !loading && (
-        <Typography variant="h5" component="p" textAlign={"center"}>
-          {t("notification.noAdsFound")}
+     {!pets.length && !loading && !error && (
+        <Typography variant="h4" component="p" textAlign={"center"} sx={{mt:15}}>
+          Sorry, there are no ads
         </Typography>
       )}
       {Boolean(pets.length) && (

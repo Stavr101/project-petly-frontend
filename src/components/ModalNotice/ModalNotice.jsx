@@ -5,7 +5,7 @@ import moment from "moment";
 import { AiFillHeart } from "react-icons/ai";
 import { useTranslation } from "react-i18next";
 
-import {
+import Overlay, {
   ModalNoticeAll,
   ModalNoticeBtnDel,
   ModalNoticeImg,
@@ -25,7 +25,6 @@ import {
   HeartSvgSpan,
   ModalNoticeBtnContact,
   ModalNoticeWrapperContent,
-  Overlay,
   ModalNoticeItemValueLink,
 } from "./ModalNotice.styled";
 import { createPortal } from "react-dom";

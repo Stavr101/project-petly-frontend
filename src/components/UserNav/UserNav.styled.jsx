@@ -15,4 +15,11 @@ letter-spacing: 0.04em;
 font-family: ${p => p.theme.fonts.manrope};
 font-size: 16px;
 line-height: 1.375;
+transition: font-weight 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+
+&:hover {
+font-weight: ${(p) => p.theme.fontWeights.bold};
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
 `

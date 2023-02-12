@@ -87,9 +87,7 @@
         "breed": "Порода",
         "breedpl": "Введіть породу",
         "birth": "Дата народження",
-        "check": "Please enter between 2 and 16 letters",
-        "commentcheck": "Please enter between 8 and 120 symbols",
-        "photo": "Add photo and some comments",
+        "photo": "Додати фото",
         "sell": "продаж",
         "lost": "загублені",
         "free": "у добрі руки",
@@ -127,8 +125,8 @@
         "petcomm": "Коментарі:",
         "yes": "ТАК",
         "no": "НІ",
-        "removeconf": "Хочете видалити даного улюбленця?",
-        "logoutconf": "Дісно хочете вийти?"
+        "removeconf": "Хочете видалити цього улюбленця?",
+        "logoutconf": "Дійсно хочете вийти?"
     },
 
     "error": {
@@ -136,10 +134,14 @@
     },
 
     "notification": {
-    "notAuthorized": "Необхідна авторизація"
+        "notAuthorized": "Необхідна авторизація",
+        "wrongLogin": "Email або пароль неправильний"
     },
 
     "validation": {
-
+        "requiredEmail": "Email є обов'язковим полем для заповнення",
+        "requiredPass": "Пароль є обов'язковим полем для заповнення",
+        "checkModal": "Введіть будь ласка від 2 до 16 літер",
+        "commentcheckModal": "Поле коментаря повинно містити від 8 до 120 символів"
     }
 }

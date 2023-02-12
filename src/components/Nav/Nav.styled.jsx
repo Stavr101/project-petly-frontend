@@ -34,8 +34,7 @@ export const NavLink = styled(Link)`
   margin-left: auto;
   margin-right: auto;
   margin-top: 40px;
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @media (min-width: 768px) {
     font-size: ${p => p.theme.fontSizes.xl};
@@ -47,12 +46,14 @@ export const NavLink = styled(Link)`
     font-size: ${p => p.theme.fontSizes.m};
   }
 
+  &:hover {
+    color: ${p => p.theme.colors.accent};
+  }
+
   &.active {
     color: ${p => p.theme.colors.accent};
     font-weight: ${(p) => p.theme.fontWeights.bold};
     text-decoration-line: underline;
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 `;
 export const NavMenu = styled.div`

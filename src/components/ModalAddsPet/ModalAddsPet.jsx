@@ -186,7 +186,7 @@ function Forma({ handleClose }) {
             <CommentsContainer>
               <Validations
                 className={form.secondForm.comment.match(/^(.{8,120})?$/) ? "invalid" : ""}>
-                Please enter between 8 and 120 symbols
+               {t("validation.commentcheckModal")}
               </Validations>
               <Comments
                 name="comment"

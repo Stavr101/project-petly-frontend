@@ -58,6 +58,12 @@ export default function NoticeCategoryItem({
   const [open, setOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(favorite);
 
+  const categoriesForFront = {
+    sell: t('notices.sell'),
+   'lost-found': t('notices.lost'),
+   'for-free': t('notices.free'),
+  };
+
   const onLearnMoreClick = () => {
     setOpen(true);
   };
@@ -154,7 +160,7 @@ export default function NoticeCategoryItem({
           )}
           <ItemPositionNoticesDiv>
             <ItemPositionNoticesDivParagraf>
-              {categoryName}
+              {categoriesForFront[categoryName]}
             </ItemPositionNoticesDivParagraf>
             <ItemButtonNoticesHeartButton
               type="button"

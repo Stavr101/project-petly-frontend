@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { addPetToCategory } from "api/notices";
 import { useTranslation } from 'react-i18next';
 import {
+  ButtonType,
+  ButtonTypeContainer,
   Validations,
   InputBox,
   InputLable,
@@ -349,22 +351,25 @@ function Forma({ handleClose }) {
           <AddPhoto>
             {t("modal.info")}
           </AddPhoto>
-          <Button type="button" onClick={() => setFormType("foundFirstForm")}>
+          <ButtonTypeContainer>
+          <ButtonType type="button" onClick={() => setFormType("foundFirstForm")}>
             {t("modal.lost")}
-          </Button>
-          <Button
+          </ButtonType>
+          <ButtonType
             type="button"
             onClick={() => setFormType("goodHandsFirstForm")}
           >
             {t("modal.free")}
-          </Button>
-          <Button
+            </ButtonType>
+            </ButtonTypeContainer>
+          <ButtonType
             type="button"
             style={{ backgroundColor: "#F59256", color: "white" }}
             onClick={() => setFormType("sellFirstForm")}
           >
             {t("modal.sell")}
-          </Button>
+            </ButtonType>
+            
           <InputBox>
             <InputLable htmlFor="title">
               {t("modal.title")} <span>*</span>
@@ -549,22 +554,24 @@ function Forma({ handleClose }) {
             Lorem ipsum dolor sit a Lorem ipsum dolor sit amet,
             consectetur
           </AddPhoto>
-          <Button
+          <ButtonTypeContainer>
+          <ButtonType
             type="button"
             style={{ backgroundColor: "#F59256", color: "white" }}
             onClick={() => setFormType("foundFirstForm")}
           >
             lost/found
-          </Button>
-          <Button
+          </ButtonType>
+          <ButtonType
             type="button"
             onClick={() => setFormType("goodHandsFirstForm")}
           >
             in good hands
-          </Button>
-          <Button type="button" onClick={() => setFormType("sellFirstForm")}>
+            </ButtonType>
+            </ButtonTypeContainer>
+          <ButtonType type="button" onClick={() => setFormType("sellFirstForm")}>
             sell
-          </Button>
+          </ButtonType>
 
           <InputBox>
             <InputLable htmlFor="title">
@@ -738,19 +745,21 @@ function Forma({ handleClose }) {
             Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
             consectetur
           </AddPhoto>
-          <Button type="button" onClick={() => setFormType("foundFirstForm")}>
+          <ButtonTypeContainer>
+          <ButtonType type="button" onClick={() => setFormType("foundFirstForm")}>
             lost/found
-          </Button>
-          <Button
+          </ButtonType>
+          <ButtonType
             type="button"
             style={{ backgroundColor: "#F59256", color: "white" }}
             onClick={() => setFormType("goodHandsFirstForm")}
           >
             in good hands
-          </Button>
-          <Button type="button" onClick={() => setFormType("sellFirstForm")}>
+            </ButtonType>
+            </ButtonTypeContainer>
+          <ButtonType type="button" onClick={() => setFormType("sellFirstForm")}>
             sell
-          </Button>
+          </ButtonType>
 
           <InputBox>
             <InputLable htmlFor="title">

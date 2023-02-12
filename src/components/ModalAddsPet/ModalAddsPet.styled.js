@@ -90,19 +90,19 @@ export const Image = styled.img`
 `;
 
 export const ModalContainer = styled.div`
-  width: 98%;
-  max-height: 98%;
-  position: fixed;
+ position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 98%;
+  max-height: 98%;
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: white;
   border-radius: 16px;
-  animation: ${slideIn} 300ms ease-out;
+  // animation: ${slideIn} 300ms ease-out;
   overflow-y: auto;
 
   ::-webkit-scrollbar {

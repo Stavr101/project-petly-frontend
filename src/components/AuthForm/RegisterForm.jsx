@@ -160,6 +160,7 @@ export default function RegisterForm() {
                   <FormEl>
                     <Wrapper>
                       <InputField
+                        autoFocus
                         type="text"
                         name="name"
                         placeholder={t("registration.name")}

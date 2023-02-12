@@ -74,6 +74,11 @@ export const InputField = styled(Field)`
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
   padding: 10px;
+  transition: filter 250ms;
+  &:hover,
+  :focus {
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  }
 `;
 
 export const ErrorMsg = styled.p`
@@ -91,6 +96,11 @@ export const BtnForm = styled.button`
   padding: 10px 28px;
   color: ${(p) => p.theme.colors.white};
   background-color: ${(p) => p.theme.colors.accent};
+  transition: box-shadow 250ms;
+
+  &:hover {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
 `;
 
 export const BtnFormRegister = styled.button`
@@ -101,6 +111,11 @@ export const BtnFormRegister = styled.button`
   padding: 10px 28px;
   color: ${(p) => p.theme.colors.white};
   background-color: ${(p) => p.theme.colors.accent};
+  transition: box-shadow 250ms;
+
+  &:hover {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
   @media screen and (min-width: 768px) {
     margin-top: 40px;
   }
@@ -114,6 +129,10 @@ export const BtnFormBack = styled.button`
   padding: 10px 28px;
   color: ${(p) => p.theme.colors.black};
   background-color: transparent;
+  transition: filter 250ms;
+  &:hover {
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  }
 `;
 
 export const Text = styled.p`
@@ -144,4 +163,8 @@ export const EyePassword = styled.button`
   background-color: transparent;
   border: none;
   color: rgba(27, 27, 27, 0.6);
+  transition: color 250ms;
+  &:hover {
+    color: ${(p) => p.theme.colors.black};
+  }
 `;

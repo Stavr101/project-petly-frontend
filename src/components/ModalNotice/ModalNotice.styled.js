@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import cross from "../ModalAddsPet/ImgModalAddsPet/clarity_close-cross.png";
 
-export const Overlay = styled.div`
+export default styled.div`
   position: fixed;
   z-index: 10;
   top: 0;
@@ -54,6 +54,9 @@ export const ModalNoticeBtnDel = styled.button`
   background-size: 28px 28px;
   background-repeat: no-repeat;
   background-position: center center;
+
+  transition: filter 250ms linear;
+
   :hover,
   :active {
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -224,6 +227,10 @@ export const ModalNoticeButton = styled.button`
   height: 40px;
   padding: 0;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   background-color: transparent;
   border-radius: 40px;
   border: 2px solid #f59256;
@@ -233,21 +240,22 @@ export const ModalNoticeButton = styled.button`
   letter-spacing: 0.04em;
   color: ${(p) => p.theme.colors.text.primary};
   cursor: pointer;
+  transition: box-shadow 250ms linear;
 
   @media screen and (min-width: 768px) {
     width: 160px;
+  }
+
+  :hover {
+    /* filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)); */
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+      rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   }
 `;
 
 export const ModalNoticeBtnContact = styled(ModalNoticeButton)`
   color: ${(p) => p.theme.colors.white};
   background-color: ${(p) => p.theme.colors.accent};
-`;
-
-export const ModalNoticeBtnFavorite = styled(ModalNoticeButton)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 export const ModalNoticeBtnLink = styled.a`

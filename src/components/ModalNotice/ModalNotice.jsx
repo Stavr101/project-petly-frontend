@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import Loader from "shared/loader/Loader";
 import moment from "moment";
 import { AiFillHeart } from "react-icons/ai";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
-import {
+import Overlay, {
   ModalNoticeAll,
   ModalNoticeBtnDel,
   ModalNoticeImg,
@@ -23,14 +23,13 @@ import {
   ModalNoticeCategotyDiv,
   ModalNoticeBtnLink,
   HeartSvgSpan,
-  ModalNoticeBtnFavorite,
   ModalNoticeBtnContact,
   ModalNoticeWrapperContent,
-  Overlay,
   ModalNoticeItemValueLink,
 } from "./ModalNotice.styled";
 import { createPortal } from "react-dom";
 import { useAuth } from "hooks";
+import NoticesDeleteSvg from "components/NoticeCategoryItem/NoticesDeleteSvg";
 
 const modalRoot = document.querySelector("#modal-root");
 
@@ -124,25 +123,35 @@ export default function ModalNotice({
                 <ModalNoticeTitle>{pet.title}</ModalNoticeTitle>
                 <ModalNoticeList>
                   <ModalNoticeLi>
-                    <ModalNoticeItemParametr>{t("notices.name")}</ModalNoticeItemParametr>
+                    <ModalNoticeItemParametr>
+                      {t("notices.name")}
+                    </ModalNoticeItemParametr>
                     <ModalNoticeItemValue>{pet.name}</ModalNoticeItemValue>
                   </ModalNoticeLi>
                   <ModalNoticeLi>
-                    <ModalNoticeItemParametr>{t("notices.birthday")}</ModalNoticeItemParametr>
+                    <ModalNoticeItemParametr>
+                      {t("notices.birthday")}
+                    </ModalNoticeItemParametr>
                     <ModalNoticeItemValue>
                       {pet.birthdate ? convertBirthdate(pet.birthdate) : "-"}
                     </ModalNoticeItemValue>
                   </ModalNoticeLi>
                   <ModalNoticeLi>
-                    <ModalNoticeItemParametr>{t("notices.breed")}</ModalNoticeItemParametr>
+                    <ModalNoticeItemParametr>
+                      {t("notices.breed")}
+                    </ModalNoticeItemParametr>
                     <ModalNoticeItemValue>{pet.breed}</ModalNoticeItemValue>
                   </ModalNoticeLi>
                   <ModalNoticeLi>
-                    <ModalNoticeItemParametr>{t("notices.place")}</ModalNoticeItemParametr>
+                    <ModalNoticeItemParametr>
+                      {t("notices.place")}
+                    </ModalNoticeItemParametr>
                     <ModalNoticeItemValue>{pet.location}</ModalNoticeItemValue>
                   </ModalNoticeLi>
                   <ModalNoticeLi>
-                    <ModalNoticeItemParametr>{t("notices.sex")}</ModalNoticeItemParametr>
+                    <ModalNoticeItemParametr>
+                      {t("notices.sex")}
+                    </ModalNoticeItemParametr>
                     <ModalNoticeItemValue>{pet.sex}</ModalNoticeItemValue>
                   </ModalNoticeLi>
 
@@ -156,7 +165,9 @@ export default function ModalNotice({
                   </ModalNoticeLi>
 
                   <ModalNoticeLi>
-                    <ModalNoticeItemParametr>{t("notices.phone")}</ModalNoticeItemParametr>
+                    <ModalNoticeItemParametr>
+                      {t("notices.phone")}
+                    </ModalNoticeItemParametr>
                     <ModalNoticeItemValueLink
                       href={`tel:${pet.owner ? pet.owner?.phone : ""}`}
                     >
@@ -183,7 +194,9 @@ export default function ModalNotice({
             </ModalNoticeWrapperContent>
 
             <ModalNoticeCommentsDiv>
-              <ModalNoticeCommentsSpan>{t("notices.comm")}</ModalNoticeCommentsSpan>
+              <ModalNoticeCommentsSpan>
+                {t("notices.comm")}
+              </ModalNoticeCommentsSpan>
               {pet.comments}
             </ModalNoticeCommentsDiv>
 
@@ -198,7 +211,7 @@ export default function ModalNotice({
                 </ModalNoticeBtnContact>
               </ModalNoticeButtonsItem>
               <ModalNoticeButtonsItem>
-                <ModalNoticeBtnFavorite
+                <ModalNoticeButton
                   type="button"
                   onClick={() => handleChangeFavorite(petId)}
                 >
@@ -206,7 +219,7 @@ export default function ModalNotice({
                   <HeartSvgSpan>
                     <AiFillHeart style={{ fill: "#f59256" }} />
                   </HeartSvgSpan>
-                </ModalNoticeBtnFavorite>
+                </ModalNoticeButton>
               </ModalNoticeButtonsItem>
 
               <ModalNoticeButtonsItem>
@@ -216,6 +229,9 @@ export default function ModalNotice({
                     onClick={() => handleDeletePet(petId)}
                   >
                     {t("notices.del")}
+                    <HeartSvgSpan>
+                      <NoticesDeleteSvg />
+                    </HeartSvgSpan>
                   </ModalNoticeButton>
                 ) : (
                   ""

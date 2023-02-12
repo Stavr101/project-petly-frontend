@@ -11,7 +11,7 @@ import {
 } from "./OurFriendsItem.styled";
 import OurFriendsTimeList from "../OurFriendsTimeList/OurFriendsTimeList";
 import { getDayIndex } from "../../utils/getDayIndex";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 const DAY_OF_THE_WEEK = getDayIndex(new Date().getDay());
 
@@ -67,7 +67,7 @@ const checkField = (fieldName, value) => {
 export const OurFriendsItem = ({ data }) => {
   const { title, url, addressUrl, imageUrl, address, workDays, phone, email } =
     data;
-  
+
   const { t } = useTranslation();
 
   return (
@@ -92,7 +92,7 @@ export const OurFriendsItem = ({ data }) => {
               dayOfTheWeek={DAY_OF_THE_WEEK}
             >
               <Box>
-                <Typography>{t("friends.time")}</Typography>
+                <p>{t("friends.time")}</p>
                 {checkField("time", workDays)}
               </Box>
             </OurFriendsTimeList>

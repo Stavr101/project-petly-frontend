@@ -79,6 +79,7 @@ export const ItemNoticesUlList = styled.ul`
   display: flex;
   flex-direction: column;
   min-height: 112px;
+  margin-bottom: 20px;
   gap: 8px;
 `;
 
@@ -130,7 +131,7 @@ export const ItemButtonNoticesLearnMore = styled.button`
 `;
 
 export const ItemNoticesListLi = styled.li`
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 `;
 
 export const ItemButtonNoticesDelete = styled.button`

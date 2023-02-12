@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { addPetToCategory } from "api/notices";
 import { useTranslation } from 'react-i18next';
 import {
+  ButtonType,
+  ButtonTypeContainer,
   Validations,
   InputBox,
   InputLable,
@@ -71,7 +73,6 @@ function Forma({ handleClose }) {
     goodHandsSecondForm: {
       sex: "",
       location: "",
-      avatarFile: null,
       avatarUrl: null,
       comment: "",
     },
@@ -205,7 +206,7 @@ function Forma({ handleClose }) {
     const { title, name, date, breed, sex, location, price, comment } =
       combinedForm;
 
-    console.log("sell", event);
+  
 
     const formDataFile = new FormData();
     formDataFile.append("title", title);
@@ -249,7 +250,6 @@ function Forma({ handleClose }) {
 
     const { title, name, date, breed, sex, location, comment } =
       combinedForm;
-    console.log(combinedForm);
 
     const formDataFile = new FormData();
     formDataFile.append("title", title);
@@ -344,7 +344,6 @@ function Forma({ handleClose }) {
   
   const hasGoodHandsSecondFormAllData = Object.values(formGoodHands.goodHandsSecondForm).every(
     (value) => value);
-  
   return (
     <>
       {formType === "sellFirstForm" && (
@@ -352,22 +351,25 @@ function Forma({ handleClose }) {
           <AddPhoto>
             {t("modal.info")}
           </AddPhoto>
-          <Button type="button" onClick={() => setFormType("foundFirstForm")}>
+          <ButtonTypeContainer>
+          <ButtonType type="button" onClick={() => setFormType("foundFirstForm")}>
             {t("modal.lost")}
-          </Button>
-          <Button
+          </ButtonType>
+          <ButtonType
             type="button"
             onClick={() => setFormType("goodHandsFirstForm")}
           >
             {t("modal.free")}
-          </Button>
-          <Button
+            </ButtonType>
+            </ButtonTypeContainer>
+          <ButtonType
             type="button"
             style={{ backgroundColor: "#F59256", color: "white" }}
             onClick={() => setFormType("sellFirstForm")}
           >
             {t("modal.sell")}
-          </Button>
+            </ButtonType>
+            
           <InputBox>
             <InputLable htmlFor="title">
               {t("modal.title")} <span>*</span>
@@ -509,6 +511,7 @@ function Forma({ handleClose }) {
               placeholder={t("modal.pricepl")}
             />
           </InputBox>
+          
           <InputLable htmlFor="avatarFile">{t("modal.img")}</InputLable>
           <DownloadContainer>
             {formSell.sellSecondForm.avatarFile && (
@@ -551,22 +554,24 @@ function Forma({ handleClose }) {
           <AddPhoto>
              {t("modal.info")}
           </AddPhoto>
-          <Button
+          <ButtonTypeContainer>
+          <ButtonType
             type="button"
             style={{ backgroundColor: "#F59256", color: "white" }}
             onClick={() => setFormType("foundFirstForm")}
           >
-            {t("modal.lost")}
-          </Button>
-          <Button
+            lost/found
+          </ButtonType>
+          <ButtonType
             type="button"
             onClick={() => setFormType("goodHandsFirstForm")}
           >
-            {t("modal.free")}
-          </Button>
-          <Button type="button" onClick={() => setFormType("sellFirstForm")}>
-            {t("modal.sell")}
-          </Button>
+            in good hands
+            </ButtonType>
+            </ButtonTypeContainer>
+          <ButtonType type="button" onClick={() => setFormType("sellFirstForm")}>
+            sell
+          </ButtonType>
 
           <InputBox>
             <InputLable htmlFor="title">
@@ -739,19 +744,21 @@ function Forma({ handleClose }) {
           <AddPhoto>
              {t("modal.info")}
           </AddPhoto>
-          <Button type="button" onClick={() => setFormType("foundFirstForm")}>
-            {t("modal.lost")}
-          </Button>
-          <Button
+          <ButtonTypeContainer>
+          <ButtonType type="button" onClick={() => setFormType("foundFirstForm")}>
+            lost/found
+          </ButtonType>
+          <ButtonType
             type="button"
             style={{ backgroundColor: "#F59256", color: "white" }}
             onClick={() => setFormType("goodHandsFirstForm")}
           >
-            {t("modal.free")}
-          </Button>
-          <Button type="button" onClick={() => setFormType("sellFirstForm")}>
-            {t("modal.sell")}
-          </Button>
+            in good hands
+            </ButtonType>
+            </ButtonTypeContainer>
+          <ButtonType type="button" onClick={() => setFormType("sellFirstForm")}>
+            sell
+          </ButtonType>
 
           <InputBox>
             <InputLable htmlFor="title">
@@ -916,7 +923,7 @@ function Forma({ handleClose }) {
             </Button>
             <Button
             type="submit"
-            // disabled={!hasGoodHandsSecondFormAllData}
+            disabled={!hasGoodHandsSecondFormAllData}
             >
               Done
             </Button>

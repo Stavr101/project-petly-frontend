@@ -28,7 +28,7 @@ import {
   ItemButtonNoticesDeleteSpan,
 } from "./NoticeCategoryItem.styled";
 
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 export default function NoticeCategoryItem({
   data,
@@ -58,6 +58,12 @@ export default function NoticeCategoryItem({
   const [open, setOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(favorite);
 
+  const categoriesForFront = {
+    sell: t('notices.sell'),
+   'lost-found': t('notices.lost'),
+   'for-free': t('notices.free'),
+  };
+
   const onLearnMoreClick = () => {
     setOpen(true);
   };
@@ -79,7 +85,7 @@ export default function NoticeCategoryItem({
       const res = await addPetToFavorite(_id);
       setIsFavorite(true);
 
-      Notify.success("Pet add to your'e favorite", {
+      Notify.success("Pet added to favorites", {
         timeout: 1500,
       });
       return res;
@@ -103,9 +109,11 @@ export default function NoticeCategoryItem({
 
         setArray(arrayNew);
       }
-      Notify.warning("You removed a pet from favorite", {
+
+      Notify.warning("Pet removed from favorites", {
         timeout: 1500,
       });
+
       return setIsFavorite(false);
     } catch (error) {
       console.log(error);
@@ -154,7 +162,7 @@ export default function NoticeCategoryItem({
           )}
           <ItemPositionNoticesDiv>
             <ItemPositionNoticesDivParagraf>
-              {categoryName}
+              {categoriesForFront[categoryName]}
             </ItemPositionNoticesDivParagraf>
             <ItemButtonNoticesHeartButton
               type="button"

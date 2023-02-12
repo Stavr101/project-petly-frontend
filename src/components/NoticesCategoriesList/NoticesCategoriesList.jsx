@@ -110,7 +110,7 @@ const NoticesCategoriesList = ({ pets, setPets }) => {
     <>
       {!pets.length && !loading && (
         <Typography variant="h5" component="p" textAlign={"center"}>
-          Sorry, there are no ads
+          {t("notification.noAdsFound")}
         </Typography>
       )}
       {Boolean(pets.length) && (

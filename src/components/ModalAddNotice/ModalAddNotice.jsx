@@ -511,6 +511,7 @@ function Forma({ handleClose }) {
               placeholder={t("modal.pricepl")}
             />
           </InputBox>
+          
           <InputLable htmlFor="avatarFile">{t("modal.img")}</InputLable>
           <DownloadContainer>
             {formSell.sellSecondForm.avatarFile && (

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { addPetToCategory } from "api/notices";
 import { useTranslation } from "react-i18next";
+import { useLocation, useParams } from "react-router-dom";
 import {
   ButtonType,
   ButtonTypeContainer,
@@ -79,6 +80,10 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
   const today = new Date().toISOString().substr(0, 10);
 
   const [formType, setFormType] = useState("sellFirstForm");
+
+  const { categoryName } = useParams();
+  const locationPets = useLocation();
+  const isOnOwnPage = locationPets.pathname.includes("own");
 
   const handleSellFirstFormChange = (event) => {
     setFormSell({
@@ -220,7 +225,9 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
 
     const res = await addPetToCategory(formDataFile);
 
-    setPetsAll((prev) => [res, ...prev]);
+    if (categoryName === res.categoryName || isOnOwnPage) {
+      setPetsAll((prev) => [res, ...prev]);
+    }
 
     setFormSell({
       sellFirstForm: {
@@ -264,7 +271,9 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
 
     const res = await addPetToCategory(formDataFile);
 
-    setPetsAll((prev) => [res, ...prev]);
+    if (categoryName === res.categoryName || isOnOwnPage) {
+      setPetsAll((prev) => [res, ...prev]);
+    }
 
     setFormFound({
       foundFirstForm: {
@@ -306,7 +315,9 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
 
     const res = await addPetToCategory(formDataFile);
 
-    setPetsAll((prev) => [res, ...prev]);
+    if (categoryName === res.categoryName || isOnOwnPage) {
+      setPetsAll((prev) => [res, ...prev]);
+    }
 
     setFormGoodHands({
       goodHandsFirstForm: {

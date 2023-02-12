@@ -30,6 +30,11 @@ font-size: ${p => p.theme.fontSizes.m};
 padding: 10px 28px;
 }
 
+&:hover {
+    color: ${p => p.theme.colors.accent};
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 &.active {
     background-color: ${p => p.theme.colors.accent};
     color: ${p => p.theme.colors.white};

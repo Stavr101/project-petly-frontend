@@ -374,7 +374,7 @@ function Forma({ handleClose }) {
             </InputLable>
             <Validations
               className={formSell.sellFirstForm.title.match(/^([a-zA-Z\s-]{2,48})?$/) ? "invalid" : ""}>
-              {t("modal.check")}
+              {t("validation.checkModal")}
             </Validations>
             <InputField
               type="text"
@@ -388,7 +388,7 @@ function Forma({ handleClose }) {
             <InputLable htmlFor="name">{t("modal.name")}</InputLable>
             <Validations
               className={formSell.sellFirstForm.name.match(/^([a-zA-Z\s-]{2,16})?$/) ? "invalid" : ""}>
-              Please enter between 2 and 16 letters
+              {t("validation.checkModal")}
             </Validations>
             <InputField
               type="text"
@@ -414,7 +414,7 @@ function Forma({ handleClose }) {
             <InputLable htmlFor="breed">{t("modal.breed")}</InputLable>
             <Validations
               className={formSell.sellFirstForm.breed.match(/^([a-zA-Z\s-]{2,16})?$/) ? "invalid" : ""}>
-              Please enter between 2 and 16 letters
+              {t("validation.checkModal")}
             </Validations>
             <InputField
               type="text"
@@ -525,7 +525,7 @@ function Forma({ handleClose }) {
             <CommentsContainer>
               <Validations
                 className={formSell.sellSecondForm.comment.match(/^(.{8,120})?$/) ? "invalid" : ""}>
-                Please enter between 8 and 120 symbols
+                {t("validation.commentcheckModal")}
               </Validations>
               <Comments
                 name="comment"
@@ -549,33 +549,32 @@ function Forma({ handleClose }) {
       {formType === "foundFirstForm" && (
         <FormContainer onSubmit={handleFoundSubmit}>
           <AddPhoto>
-            Lorem ipsum dolor sit a Lorem ipsum dolor sit amet,
-            consectetur
+             {t("modal.info")}
           </AddPhoto>
           <Button
             type="button"
             style={{ backgroundColor: "#F59256", color: "white" }}
             onClick={() => setFormType("foundFirstForm")}
           >
-            lost/found
+            {t("modal.lost")}
           </Button>
           <Button
             type="button"
             onClick={() => setFormType("goodHandsFirstForm")}
           >
-            in good hands
+            {t("modal.free")}
           </Button>
           <Button type="button" onClick={() => setFormType("sellFirstForm")}>
-            sell
+            {t("modal.sell")}
           </Button>
 
           <InputBox>
             <InputLable htmlFor="title">
-              Title of ad <span>*</span>
+              {t("modal.title")} <span>*</span>
             </InputLable>
             <Validations
               className={formFound.foundFirstForm.title.match(/^([a-zA-Z\s-]{2,48})?$/) ? "invalid" : ""}>
-              Please enter between 2 and 48 letters
+              {t("validation.checkModal")}
             </Validations>
             <InputField
               type="text"
@@ -589,7 +588,7 @@ function Forma({ handleClose }) {
             <InputLable htmlFor="name">Name pet</InputLable>
             <Validations
               className={formFound.foundFirstForm.name.match(/^([a-zA-Z\s-]{2,16})?$/) ? "invalid" : ""}>
-              Please enter between 2 and 16 letters
+              {t("validation.checkModal")}
             </Validations>
             <InputField
               type="text"
@@ -614,7 +613,7 @@ function Forma({ handleClose }) {
             <InputLable htmlFor="breed">Breed</InputLable>
             <Validations
               className={formFound.foundFirstForm.breed.match(/^([a-zA-Z\s-]{2,16})?$/) ? "invalid" : ""}>
-              Please enter between 2 and 16 letters
+              {t("validation.checkModal")}
             </Validations>
             <InputField
               type="text"
@@ -633,7 +632,7 @@ function Forma({ handleClose }) {
               onClick={() => setFormType("foundSecondForm")}
               disabled={!hasFoundFirstFormAllData}
             >
-              Next
+              {t("modal.next")}
             </Button>
           </ButtonContainer>
         </FormContainer>
@@ -738,26 +737,25 @@ function Forma({ handleClose }) {
       {formType === "goodHandsFirstForm" && (
         <FormContainer onSubmit={handleGoodHandsSubmit}>
           <AddPhoto>
-            Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
-            consectetur
+             {t("modal.info")}
           </AddPhoto>
           <Button type="button" onClick={() => setFormType("foundFirstForm")}>
-            lost/found
+            {t("modal.lost")}
           </Button>
           <Button
             type="button"
             style={{ backgroundColor: "#F59256", color: "white" }}
             onClick={() => setFormType("goodHandsFirstForm")}
           >
-            in good hands
+            {t("modal.free")}
           </Button>
           <Button type="button" onClick={() => setFormType("sellFirstForm")}>
-            sell
+            {t("modal.sell")}
           </Button>
 
           <InputBox>
             <InputLable htmlFor="title">
-              Title of ad <span>*</span>
+              {t("modal.title")} <span>*</span>
             </InputLable>
             <Validations
               className={formGoodHands.goodHandsFirstForm.title.match(/^([a-zA-Z\s-]{2,48})?$/) ? "invalid" : ""}>
@@ -800,7 +798,7 @@ function Forma({ handleClose }) {
             <InputLable htmlFor="breed">Breed</InputLable>
             <Validations
               className={formGoodHands.goodHandsFirstForm.breed.match(/^([a-zA-Z\s-]{2,16})?$/) ? "invalid" : ""}>
-              Please enter between 2 and 16 letters
+              {t("validation.checkModal")}
             </Validations>
             <InputField
               type="text"
@@ -820,7 +818,7 @@ function Forma({ handleClose }) {
               onClick={() => setFormType("goodHandsSecondForm")}
               disabled={!hasGoodHandsFirstFormAllData}
             >
-              Next
+              {t("modal.next")}
             </Button>
           </ButtonContainer>
         </FormContainer>
@@ -898,7 +896,7 @@ function Forma({ handleClose }) {
             <CommentsContainer>
               <Validations
                 className={formGoodHands.goodHandsSecondForm.comment.match(/^(.{8,120})?$/) ? "invalid" : ""}>
-                Please enter between 8 and 120 symbols
+                {t("validation.commentcheckModal")}
               </Validations>
               <Comments
                 name="comment"

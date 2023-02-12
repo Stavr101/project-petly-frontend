@@ -114,7 +114,7 @@ function Forma({ handleClose }) {
             <InputLable htmlFor="name">{t("modal.name")}</InputLable>
             <Validations
               className={form.firstForm.name.match(/^([a-zA-Z\s-]{2,16})?$/) ? "invalid" : ""}>
-              Please enter between 2 and 16 letters
+              {t("validation.checkModal")}
             </Validations>
             <InputField
               type="text"
@@ -142,7 +142,7 @@ function Forma({ handleClose }) {
             <InputLable htmlFor="breed">{t("modal.breed")}</InputLable>
             <Validations
               className={form.firstForm.breed.match(/^([a-zA-Z\s-]{2,16})?$/) ? "invalid" : ""}>
-              Please enter between 2 and 16 letters
+              {t("validation.checkModal")}
             </Validations>
             <InputField
               type="text"
@@ -187,7 +187,7 @@ function Forma({ handleClose }) {
             <CommentsContainer>
               <Validations
                 className={form.secondForm.comment.match(/^(.{8,120})?$/) ? "invalid" : ""}>
-                Please enter between 8 and 120 symbols
+               {t("validation.commentcheckModal")}
               </Validations>
               <Comments
                 name="comment"

@@ -32,7 +32,7 @@ export default function RegisterForm() {
     try {
       const res = await dispatch(authOperation.logIn(data));
       if (res.payload === 401) {
-        return Notify.failure("Email or password wrong");
+        return Notify.failure(t("notification.wrongLogin"));
       }
     } catch (error) {
       console.log(error);

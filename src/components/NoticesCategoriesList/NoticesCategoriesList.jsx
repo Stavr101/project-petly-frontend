@@ -12,8 +12,8 @@ import { List } from "components/NoticesCategoriesList/NoticesCategoriesList.sly
 import Error from "components/Error/Error";
 import { useTranslation } from "react-i18next";
 
-const NoticesCategoriesList = () => {
-  const [pets, setPets] = useState([]);
+const NoticesCategoriesList = ({ pets, setPets }) => {
+  // const [pets, setPets] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [hasMore, setHasMore] = useState(false);

@@ -9,9 +9,9 @@ import {
 import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { useAuth } from "hooks";
 import ModalAddNoticelApp from "components/ModalAddNotice/ModalAddNoticelApp";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
-export default function AddNoticeButton() {
+export default function AddNoticeButton({ petsAll, setPetsAll }) {
   const [isOpen, setIsOpen] = useState(false);
   const { isLoggedIn } = useAuth();
 
@@ -43,6 +43,8 @@ export default function AddNoticeButton() {
           <ModalAddNoticelApp
             onOpenModal={isOpen}
             onCloseModal={() => setIsOpen(false)}
+            petsAll={petsAll}
+            setPetsAll={setPetsAll}
           />
         ) : null}
       </Wrap>

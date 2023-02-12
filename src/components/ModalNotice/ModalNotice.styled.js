@@ -240,22 +240,26 @@ export const ModalNoticeButton = styled.button`
   letter-spacing: 0.04em;
   color: ${(p) => p.theme.colors.text.primary};
   cursor: pointer;
-  transition: box-shadow 250ms linear;
+  transition: background-color 250ms linear, color 250ms linear,
+    filter 250ms linear;
 
   @media screen and (min-width: 768px) {
     width: 160px;
   }
 
   :hover {
-    /* filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)); */
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
-      rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    color: ${(p) => p.theme.colors.white};
+    background-color: ${(p) => p.theme.colors.accent};
+    border: none;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    /* box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+      rgba(14, 30, 37, 0.32) 0px 2px 16px 0px; */
   }
 `;
 
 export const ModalNoticeBtnContact = styled(ModalNoticeButton)`
-  color: ${(p) => p.theme.colors.white};
-  background-color: ${(p) => p.theme.colors.accent};
+  /* color: ${(p) => p.theme.colors.white};
+  background-color: ${(p) => p.theme.colors.accent}; */
 `;
 
 export const ModalNoticeBtnLink = styled.a`

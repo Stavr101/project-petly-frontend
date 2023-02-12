@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { addPetToCategory } from "api/notices";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import {
   ButtonType,
   ButtonTypeContainer,
@@ -27,8 +27,7 @@ import {
   SexButtons,
 } from "./ModalAddNotice.styled";
 
-
-function Forma({ handleClose }) {
+function Forma({ handleClose, petsAll, setPetsAll }) {
   const { t } = useTranslation();
   // const dispatch = useDispatch();
   // const [errors, setErrors] = useState({});
@@ -197,16 +196,15 @@ function Forma({ handleClose }) {
     });
   };
 
-
   const sellHandleSubmit = async (event) => {
+    event.preventDefault();
+
     const combinedForm = {
       ...formSell.sellFirstForm,
       ...formSell.sellSecondForm,
     };
     const { title, name, date, breed, sex, location, price, comment } =
       combinedForm;
-
-  
 
     const formDataFile = new FormData();
     formDataFile.append("title", title);
@@ -220,7 +218,9 @@ function Forma({ handleClose }) {
     formDataFile.append("petAvatar", event.target.elements.avatarFile.files[0]);
     formDataFile.append("comments", comment);
 
-    addPetToCategory(formDataFile);
+    const res = await addPetToCategory(formDataFile);
+
+    setPetsAll((prev) => [res, ...prev]);
 
     setFormSell({
       sellFirstForm: {
@@ -238,6 +238,7 @@ function Forma({ handleClose }) {
         comment: "",
       },
     });
+
     handleClose();
   };
 
@@ -248,8 +249,7 @@ function Forma({ handleClose }) {
       ...formFound.foundSecondForm,
     };
 
-    const { title, name, date, breed, sex, location, comment } =
-      combinedForm;
+    const { title, name, date, breed, sex, location, comment } = combinedForm;
 
     const formDataFile = new FormData();
     formDataFile.append("title", title);
@@ -262,7 +262,9 @@ function Forma({ handleClose }) {
     formDataFile.append("petAvatar", event.target.elements[5].files[0]);
     formDataFile.append("comments", comment);
 
-    addPetToCategory(formDataFile);
+    const res = await addPetToCategory(formDataFile);
+
+    setPetsAll((prev) => [res, ...prev]);
 
     setFormFound({
       foundFirstForm: {
@@ -302,7 +304,9 @@ function Forma({ handleClose }) {
     formDataFile.append("petAvatar", event.target.elements[5].files[0]);
     formDataFile.append("comments", comment);
 
-    addPetToCategory(formDataFile);
+    const res = await addPetToCategory(formDataFile);
+
+    setPetsAll((prev) => [res, ...prev]);
 
     setFormGoodHands({
       goodHandsFirstForm: {
@@ -333,49 +337,60 @@ function Forma({ handleClose }) {
     (value) => value
   );
 
-  const hasFoundFirstFormAllData = Object.values(formFound.foundFirstForm).every(
-    (value) => value
-  );
-  const hasFoundSecondFormAllData = Object.values(formFound.foundSecondForm).every(
-    (value) => value);
+  const hasFoundFirstFormAllData = Object.values(
+    formFound.foundFirstForm
+  ).every((value) => value);
+  const hasFoundSecondFormAllData = Object.values(
+    formFound.foundSecondForm
+  ).every((value) => value);
 
-  const hasGoodHandsFirstFormAllData = Object.values(formGoodHands.goodHandsFirstForm).every(
-    (value) => value);
-  
-  const hasGoodHandsSecondFormAllData = Object.values(formGoodHands.goodHandsSecondForm).every(
-    (value) => value);
+  const hasGoodHandsFirstFormAllData = Object.values(
+    formGoodHands.goodHandsFirstForm
+  ).every((value) => value);
+
+  const hasGoodHandsSecondFormAllData = Object.values(
+    formGoodHands.goodHandsSecondForm
+  ).every((value) => value);
   return (
     <>
       {formType === "sellFirstForm" && (
         <FormContainer onSubmit={sellHandleSubmit}>
-          <AddPhoto>
-            {t("modal.info")}
-          </AddPhoto>
+          <AddPhoto>{t("modal.info")}</AddPhoto>
           <ButtonTypeContainer>
-          <ButtonType type="button" onClick={() => setFormType("foundFirstForm")}>
-            {t("modal.lost")}
-          </ButtonType>
-          <ButtonType
-            type="button"
-            onClick={() => setFormType("goodHandsFirstForm")}
-          >
-            {t("modal.free")}
+            <ButtonType
+              type="button"
+              onClick={() => setFormType("foundFirstForm")}
+            >
+              {t("modal.lost")}
             </ButtonType>
-            </ButtonTypeContainer>
+            <ButtonType
+              type="button"
+              onClick={() => setFormType("goodHandsFirstForm")}
+            >
+              {t("modal.free")}
+            </ButtonType>
+          </ButtonTypeContainer>
           <ButtonType
             type="button"
             style={{ backgroundColor: "#F59256", color: "white" }}
             onClick={() => setFormType("sellFirstForm")}
           >
             {t("modal.sell")}
-            </ButtonType>
-            
+          </ButtonType>
+
           <InputBox>
             <InputLable htmlFor="title">
               {t("modal.title")} <span>*</span>
             </InputLable>
             <Validations
-              className={formSell.sellFirstForm.title.match(/^([A-Za-zА-Яа-яІі-\s]{2,48})?$/) ? "invalid" : ""}>
+              className={
+                formSell.sellFirstForm.title.match(
+                  /^([A-Za-zА-Яа-яІі-\s]{2,48})?$/
+                )
+                  ? "invalid"
+                  : ""
+              }
+            >
               {t("modal.check")}
             </Validations>
             <InputField
@@ -389,7 +404,14 @@ function Forma({ handleClose }) {
           <InputBox>
             <InputLable htmlFor="name">{t("modal.name")}</InputLable>
             <Validations
-              className={formSell.sellFirstForm.name.match(/^([A-Za-zА-Яа-яІі-\s]{2,16})?$/) ? "invalid" : ""}>
+              className={
+                formSell.sellFirstForm.name.match(
+                  /^([A-Za-zА-Яа-яІі-\s]{2,16})?$/
+                )
+                  ? "invalid"
+                  : ""
+              }
+            >
               Please enter between 2 and 16 letters
             </Validations>
             <InputField
@@ -409,13 +431,19 @@ function Forma({ handleClose }) {
               onChange={handleSellFirstFormChange}
               placeholder={today}
               max={today}
-
             />
           </InputBox>
           <InputBox>
             <InputLable htmlFor="breed">{t("modal.breed")}</InputLable>
             <Validations
-              className={formSell.sellFirstForm.breed.match(/^([A-Za-zА-Яа-яІі-\s]{2,16})?$/) ? "invalid" : ""}>
+              className={
+                formSell.sellFirstForm.breed.match(
+                  /^([A-Za-zА-Яа-яІі-\s]{2,16})?$/
+                )
+                  ? "invalid"
+                  : ""
+              }
+            >
               Please enter between 2 and 16 letters
             </Validations>
             <InputField
@@ -481,10 +509,18 @@ function Forma({ handleClose }) {
 
           <InputBox>
             <InputLable htmlFor="location">
-              {t("modal.location")}<span>*</span>:
+              {t("modal.location")}
+              <span>*</span>:
             </InputLable>
             <Validations
-              className={formSell.sellSecondForm.location.match(/^$|^([A-Za-zА-Яа-яІі]+),\s([A-Za-zА-Яа-яІі]+)?$/) ? "invalid" : ""}>
+              className={
+                formSell.sellSecondForm.location.match(
+                  /^$|^([A-Za-zА-Яа-яІі]+),\s([A-Za-zА-Яа-яІі]+)?$/
+                )
+                  ? "invalid"
+                  : ""
+              }
+            >
               Please enter for exemple: Brovary, Kyiv
             </Validations>
             <InputField
@@ -497,10 +533,16 @@ function Forma({ handleClose }) {
           </InputBox>
           <InputBox>
             <InputLable htmlFor="price">
-              {t("modal.price")}<span>*</span>:
+              {t("modal.price")}
+              <span>*</span>:
             </InputLable>
             <Validations
-              className={formSell.sellSecondForm.price.match(/^(?!0)\d+$|^$/) ? "invalid" : ""}>
+              className={
+                formSell.sellSecondForm.price.match(/^(?!0)\d+$|^$/)
+                  ? "invalid"
+                  : ""
+              }
+            >
               Please enter price, for exemple: 340
             </Validations>
             <InputField
@@ -511,7 +553,7 @@ function Forma({ handleClose }) {
               placeholder={t("modal.pricepl")}
             />
           </InputBox>
-          
+
           <InputLable htmlFor="avatarFile">{t("modal.img")}</InputLable>
           <DownloadContainer>
             {formSell.sellSecondForm.avatarFile && (
@@ -527,7 +569,12 @@ function Forma({ handleClose }) {
           <InputBox>
             <CommentsContainer>
               <Validations
-                className={formSell.sellSecondForm.comment.match(/^(.{8,120})?$/) ? "invalid" : ""}>
+                className={
+                  formSell.sellSecondForm.comment.match(/^(.{8,120})?$/)
+                    ? "invalid"
+                    : ""
+                }
+              >
                 {t("validation.commentcheckModal")}
               </Validations>
               <Comments
@@ -551,25 +598,26 @@ function Forma({ handleClose }) {
       )}
       {formType === "foundFirstForm" && (
         <FormContainer onSubmit={handleFoundSubmit}>
-          <AddPhoto>
-             {t("modal.info")}
-          </AddPhoto>
+          <AddPhoto>{t("modal.info")}</AddPhoto>
           <ButtonTypeContainer>
-          <ButtonType
-            type="button"
-            style={{ backgroundColor: "#F59256", color: "white" }}
-            onClick={() => setFormType("foundFirstForm")}
-          >
-            lost/found
-          </ButtonType>
-          <ButtonType
-            type="button"
-            onClick={() => setFormType("goodHandsFirstForm")}
-          >
-            in good hands
+            <ButtonType
+              type="button"
+              style={{ backgroundColor: "#F59256", color: "white" }}
+              onClick={() => setFormType("foundFirstForm")}
+            >
+              lost/found
             </ButtonType>
-            </ButtonTypeContainer>
-          <ButtonType type="button" onClick={() => setFormType("sellFirstForm")}>
+            <ButtonType
+              type="button"
+              onClick={() => setFormType("goodHandsFirstForm")}
+            >
+              in good hands
+            </ButtonType>
+          </ButtonTypeContainer>
+          <ButtonType
+            type="button"
+            onClick={() => setFormType("sellFirstForm")}
+          >
             sell
           </ButtonType>
 
@@ -578,7 +626,14 @@ function Forma({ handleClose }) {
               {t("modal.title")} <span>*</span>
             </InputLable>
             <Validations
-              className={formFound.foundFirstForm.title.match(/^([A-Za-zА-Яа-яІі-\s]{2,48})?$/) ? "invalid" : ""}>
+              className={
+                formFound.foundFirstForm.title.match(
+                  /^([A-Za-zА-Яа-яІі-\s]{2,48})?$/
+                )
+                  ? "invalid"
+                  : ""
+              }
+            >
               Please enter between 2 and 48 letters
             </Validations>
             <InputField
@@ -592,7 +647,14 @@ function Forma({ handleClose }) {
           <InputBox>
             <InputLable htmlFor="name">Name pet</InputLable>
             <Validations
-              className={formFound.foundFirstForm.name.match(/^([A-Za-zА-Яа-яІі-\s]{2,16})?$/) ? "invalid" : ""}>
+              className={
+                formFound.foundFirstForm.name.match(
+                  /^([A-Za-zА-Яа-яІі-\s]{2,16})?$/
+                )
+                  ? "invalid"
+                  : ""
+              }
+            >
               Please enter between 2 and 16 letters
             </Validations>
             <InputField
@@ -617,7 +679,14 @@ function Forma({ handleClose }) {
           <InputBox>
             <InputLable htmlFor="breed">Breed</InputLable>
             <Validations
-              className={formFound.foundFirstForm.breed.match(/^([A-Za-zА-Яа-яІі-\s]{2,16})?$/) ? "invalid" : ""}>
+              className={
+                formFound.foundFirstForm.breed.match(
+                  /^([A-Za-zА-Яа-яІі-\s]{2,16})?$/
+                )
+                  ? "invalid"
+                  : ""
+              }
+            >
               Please enter between 2 and 16 letters
             </Validations>
             <InputField
@@ -686,7 +755,14 @@ function Forma({ handleClose }) {
               Location<span>*</span>:
             </InputLable>
             <Validations
-              className={formFound.foundSecondForm.location.match(/^$|^([A-Za-zА-Яа-яІі]+),\s([A-Za-zА-Яа-яІі]+)?$/) ? "invalid" : ""}>
+              className={
+                formFound.foundSecondForm.location.match(
+                  /^$|^([A-Za-zА-Яа-яІі]+),\s([A-Za-zА-Яа-яІі]+)?$/
+                )
+                  ? "invalid"
+                  : ""
+              }
+            >
               Please enter for exemple: Brovary, Kyiv
             </Validations>
             <InputField
@@ -713,7 +789,12 @@ function Forma({ handleClose }) {
           <InputBox>
             <CommentsContainer>
               <Validations
-                className={formFound.foundSecondForm.comment.match(/^(.{8,120})?$/) ? "invalid" : ""}>
+                className={
+                  formFound.foundSecondForm.comment.match(/^(.{8,120})?$/)
+                    ? "invalid"
+                    : ""
+                }
+              >
                 Please enter between 8 and 120 symbols
               </Validations>
               <Comments
@@ -723,17 +804,13 @@ function Forma({ handleClose }) {
                 onChange={handleFoundSecondFormChange}
                 placeholder="Type comments"
               />
-             
             </CommentsContainer>
           </InputBox>
           <ButtonContainer>
             <Button type="button" onClick={() => setFormType("foundFirstForm")}>
               Back
             </Button>
-            <Button
-              type="submit"
-            disabled={!hasFoundSecondFormAllData}
-            >
+            <Button type="submit" disabled={!hasFoundSecondFormAllData}>
               Done
             </Button>
           </ButtonContainer>
@@ -741,22 +818,26 @@ function Forma({ handleClose }) {
       )}
       {formType === "goodHandsFirstForm" && (
         <FormContainer onSubmit={handleGoodHandsSubmit}>
-          <AddPhoto>
-             {t("modal.info")}
-          </AddPhoto>
+          <AddPhoto>{t("modal.info")}</AddPhoto>
           <ButtonTypeContainer>
-          <ButtonType type="button" onClick={() => setFormType("foundFirstForm")}>
-            lost/found
-          </ButtonType>
+            <ButtonType
+              type="button"
+              onClick={() => setFormType("foundFirstForm")}
+            >
+              lost/found
+            </ButtonType>
+            <ButtonType
+              type="button"
+              style={{ backgroundColor: "#F59256", color: "white" }}
+              onClick={() => setFormType("goodHandsFirstForm")}
+            >
+              in good hands
+            </ButtonType>
+          </ButtonTypeContainer>
           <ButtonType
             type="button"
-            style={{ backgroundColor: "#F59256", color: "white" }}
-            onClick={() => setFormType("goodHandsFirstForm")}
+            onClick={() => setFormType("sellFirstForm")}
           >
-            in good hands
-            </ButtonType>
-            </ButtonTypeContainer>
-          <ButtonType type="button" onClick={() => setFormType("sellFirstForm")}>
             sell
           </ButtonType>
 
@@ -765,7 +846,14 @@ function Forma({ handleClose }) {
               {t("modal.title")} <span>*</span>
             </InputLable>
             <Validations
-              className={formGoodHands.goodHandsFirstForm.title.match(/^([A-Za-zА-Яа-яІі-\s]{2,48})?$/) ? "invalid" : ""}>
+              className={
+                formGoodHands.goodHandsFirstForm.title.match(
+                  /^([A-Za-zА-Яа-яІі-\s]{2,48})?$/
+                )
+                  ? "invalid"
+                  : ""
+              }
+            >
               Please enter between 2 and 48 letters
             </Validations>
             <InputField
@@ -779,7 +867,14 @@ function Forma({ handleClose }) {
           <InputBox>
             <InputLable htmlFor="name">Name pet</InputLable>
             <Validations
-              className={formGoodHands.goodHandsFirstForm.name.match(/^([A-Za-zА-Яа-яІі-\s]{2,16})?$/) ? "invalid" : ""}>
+              className={
+                formGoodHands.goodHandsFirstForm.name.match(
+                  /^([A-Za-zА-Яа-яІі-\s]{2,16})?$/
+                )
+                  ? "invalid"
+                  : ""
+              }
+            >
               Please enter between 2 and 16 letters
             </Validations>
             <InputField
@@ -804,7 +899,14 @@ function Forma({ handleClose }) {
           <InputBox>
             <InputLable htmlFor="breed">Breed</InputLable>
             <Validations
-              className={formGoodHands.goodHandsFirstForm.breed.match(/^([A-Za-zА-Яа-яІі-\s]{2,16})?$/) ? "invalid" : ""}>
+              className={
+                formGoodHands.goodHandsFirstForm.breed.match(
+                  /^([A-Za-zА-Яа-яІі-\s]{2,16})?$/
+                )
+                  ? "invalid"
+                  : ""
+              }
+            >
               Please enter between 2 and 16 letters
             </Validations>
             <InputField
@@ -814,7 +916,6 @@ function Forma({ handleClose }) {
               onChange={handleGoodHandsFirstFormChange}
               placeholder="Breed"
             />
-          
           </InputBox>
           <ButtonContainer>
             <Button type="button" onClick={handleClose}>
@@ -872,10 +973,16 @@ function Forma({ handleClose }) {
               Location<span>*</span>:
             </InputLable>
             <Validations
-              className={formGoodHands.goodHandsSecondForm.location.match(/^$|^([A-Za-zА-Яа-яІі]+),\s([A-Za-zА-Яа-яІі]+)?$/) ? "invalid" : ""}>
+              className={
+                formGoodHands.goodHandsSecondForm.location.match(
+                  /^$|^([A-Za-zА-Яа-яІі]+),\s([A-Za-zА-Яа-яІі]+)?$/
+                )
+                  ? "invalid"
+                  : ""
+              }
+            >
               Please enter for exemple: Brovary, Kyiv
             </Validations>
-
 
             <InputField
               type="text"
@@ -904,7 +1011,14 @@ function Forma({ handleClose }) {
           <InputBox>
             <CommentsContainer>
               <Validations
-                className={formGoodHands.goodHandsSecondForm.comment.match(/^(.{8,120})?$/) ? "invalid" : ""}>
+                className={
+                  formGoodHands.goodHandsSecondForm.comment.match(
+                    /^(.{8,120})?$/
+                  )
+                    ? "invalid"
+                    : ""
+                }
+              >
                 {t("validation.commentcheckModal")}
               </Validations>
               <Comments
@@ -923,10 +1037,7 @@ function Forma({ handleClose }) {
             >
               Back
             </Button>
-            <Button
-            type="submit"
-            disabled={!hasGoodHandsSecondFormAllData}
-            >
+            <Button type="submit" disabled={!hasGoodHandsSecondFormAllData}>
               Done
             </Button>
           </ButtonContainer>

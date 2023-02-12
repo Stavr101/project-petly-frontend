@@ -68,7 +68,6 @@ function Forma({ handleClose }) {
     goodHandsSecondForm: {
       sex: "",
       location: "",
-      avatarFile: null,
       avatarUrl: null,
       comment: "",
     },
@@ -202,7 +201,7 @@ function Forma({ handleClose }) {
     const { title, name, date, breed, sex, location, price, comment } =
       combinedForm;
 
-    console.log("sell", event);
+  
 
     const formDataFile = new FormData();
     formDataFile.append("title", title);
@@ -246,7 +245,6 @@ function Forma({ handleClose }) {
 
     const { title, name, date, breed, sex, location, comment } =
       combinedForm;
-    console.log(combinedForm);
 
     const formDataFile = new FormData();
     formDataFile.append("title", title);
@@ -341,7 +339,6 @@ function Forma({ handleClose }) {
   
   const hasGoodHandsSecondFormAllData = Object.values(formGoodHands.goodHandsSecondForm).every(
     (value) => value);
-  
   return (
     <>
       {formType === "sellFirstForm" && (
@@ -915,7 +912,7 @@ function Forma({ handleClose }) {
             </Button>
             <Button
             type="submit"
-            // disabled={!hasGoodHandsSecondFormAllData}
+            disabled={!hasGoodHandsSecondFormAllData}
             >
               Done
             </Button>

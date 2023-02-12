@@ -113,20 +113,20 @@ function Forma({ handleClose }) {
           <InputBox>
             <InputLable htmlFor="name">{t("modal.name")}</InputLable>
             <Validations
-              className={form.firstForm.name.match  ? "invalid" : ""}>
+              className={form.firstForm.name.match(/^([A-Za-zА-Яа-яІі-\s]{2,16})?$/) ? "invalid" : ""}>
               Please enter between 2 and 16 letters
             </Validations>
             <InputField
               type="text"
               name="name"
-              pattern="(/^([A-Za-zА-Яа-я\-\s]{2,16})?$/)"
+              pattern="/^([A-Za-zА-Яа-яІі-\s]{2,16})?$/"
               value={form.firstForm.name}
               onChange={handleFirstFormChange}
               placeholder={t("modal.namepl")}
             />
           </InputBox>
           <InputBox>
-            <InputLable htmlFor="date">{t("modal.birth")}</InputLable>
+            <InputLable htmlFor="breed">{t("modal.birth")}</InputLable>
             <InputField
               type="date"
               name="date"
@@ -141,13 +141,13 @@ function Forma({ handleClose }) {
           <InputBox>
             <InputLable htmlFor="breed">{t("modal.breed")}</InputLable>
             <Validations
-              className={form.firstForm.breed.match(/^([A-Za-zА-Яа-я\-\s]{2,16})?$/) ? "invalid" : ""}>
+              className={form.firstForm.breed.match(/^([A-Za-zА-Яа-яІі-\s]{2,16})?$/) ? "invalid" : ""}>
               Please enter between 2 and 16 letters
             </Validations>
             <InputField
               type="text"
               name="breed"
-              pattern="/^([A-Za-zА-Яа-я\-\s]{2,16})?$/"
+              pattern="/^([A-Za-zА-Яа-яІі-\s]{2,16})?$/"
               value={form.firstForm.breed}
               onChange={handleFirstFormChange}
               placeholder={t("modal.breedpl")}

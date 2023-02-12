@@ -28,7 +28,7 @@ import {
   ItemButtonNoticesDeleteSpan,
 } from "./NoticeCategoryItem.styled";
 
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 export default function NoticeCategoryItem({
   data,
@@ -103,9 +103,11 @@ export default function NoticeCategoryItem({
 
         setArray(arrayNew);
       }
+
       Notify.warning("Pet removed from favorites", {
         timeout: 1500,
       });
+
       return setIsFavorite(false);
     } catch (error) {
       console.log(error);

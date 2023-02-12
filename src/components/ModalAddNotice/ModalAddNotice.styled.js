@@ -50,6 +50,7 @@ export const InputFemaleButton = styled.button`
   color: ${(props) => (props.isSelected ? "#F59256" : "black")};
 
   :hover {
+    
     color: ${(props) => (props.isSelected ? "#F59256" : "black")};
   }
 `;
@@ -164,6 +165,7 @@ export const Image = styled.img`
 `;
 
 export const ModalContainer = styled.div`
+transition: 250ms;
  position: fixed;
   top: 50%;
   left: 50%;
@@ -333,8 +335,10 @@ export const ButtonOff = styled.button`
   background-image: url(${cross});
   background-size: 28px 28px;
   background-position: center center;
+  transition: 250ms;
   :hover,
   :active {
+    transition: 250ms;
     background-size: 30px 30px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   }
@@ -348,8 +352,10 @@ export const CancelButton = styled.button`
   margin-bottom: 20px;
   border: 2px solid #f59256;
   background-color: white;
+  transition: 250ms;
   :hover,
   :active {
+    transition: 250ms;
     background-color: #f59256;
     color: white;
     outline: none;
@@ -384,9 +390,10 @@ export const ButtonType = styled.button`
   margin-bottom: 12px;
   border: 2px solid #f59256;
   background-color: white;
-
+transition: 250ms;
   :hover,
   :active {
+    transition: 250ms;
     background-color: #f59256;
     color: white;
     outline: none;
@@ -410,8 +417,10 @@ export const Button = styled.button`
   margin-bottom: 12px;
   border: 2px solid #f59256;
   background-color: white;
+  transition: 250ms;
   :hover,
   :active {
+    transition: 250ms;
     background-color: #f59256;
     color: white;
     outline: none;
@@ -432,8 +441,10 @@ export const NextButton = styled.button`
   margin-bottom: 12px;
   border: 2px solid #f59256;
   background-color: white;
+  transition: 250ms;
   :hover,
   :active {
+    transition: 250ms;
     background-color: #f59256;
     color: white;
     outline: none;

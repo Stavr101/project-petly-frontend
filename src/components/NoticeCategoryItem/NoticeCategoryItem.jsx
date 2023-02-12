@@ -134,7 +134,7 @@ export default function NoticeCategoryItem({
     }
     try {
       if (owner === user._id) {
-        removeOwnPet(_id);
+        await removeOwnPet(_id);
         const arrayNew = array.filter((item) => item._id !== _id);
         setArray(arrayNew);
 

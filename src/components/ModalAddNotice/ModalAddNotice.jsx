@@ -375,8 +375,8 @@ function Forma({ handleClose }) {
               {t("modal.title")} <span>*</span>
             </InputLable>
             <Validations
-              className={formSell.sellFirstForm.title.match(/^([a-zA-Z\s-]{2,48})?$/) ? "invalid" : ""}>
-              {t("validation.checkModal")}
+              className={formSell.sellFirstForm.title.match(/^([A-Za-zА-Яа-я\-\s]{2,48})?$/) ? "invalid" : ""}>
+              {t("modal.check")}
             </Validations>
             <InputField
               type="text"
@@ -389,8 +389,8 @@ function Forma({ handleClose }) {
           <InputBox>
             <InputLable htmlFor="name">{t("modal.name")}</InputLable>
             <Validations
-              className={formSell.sellFirstForm.name.match(/^([a-zA-Z\s-]{2,16})?$/) ? "invalid" : ""}>
-              {t("validation.checkModal")}
+              className={formSell.sellFirstForm.name.match(/^([A-Za-zА-Яа-я\-\s]{2,16})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 16 letters
             </Validations>
             <InputField
               type="text"
@@ -415,8 +415,8 @@ function Forma({ handleClose }) {
           <InputBox>
             <InputLable htmlFor="breed">{t("modal.breed")}</InputLable>
             <Validations
-              className={formSell.sellFirstForm.breed.match(/^([a-zA-Z\s-]{2,16})?$/) ? "invalid" : ""}>
-              {t("validation.checkModal")}
+              className={formSell.sellFirstForm.breed.match(/^([A-Za-zА-Яа-я\-\s]{2,16})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 16 letters
             </Validations>
             <InputField
               type="text"
@@ -484,7 +484,7 @@ function Forma({ handleClose }) {
               {t("modal.location")}<span>*</span>:
             </InputLable>
             <Validations
-              className={formSell.sellSecondForm.location.match(/^$|^[a-zA-Z\s]+,[a-zA-Z\s]+$/) ? "invalid" : ""}>
+              className={formSell.sellSecondForm.location.match(/^$|^([A-Za-zА-Яа-я]+),\s([A-Za-zА-Яа-я]+)?$/) ? "invalid" : ""}>
               Please enter for exemple: Brovary, Kyiv
             </Validations>
             <InputField
@@ -578,8 +578,8 @@ function Forma({ handleClose }) {
               {t("modal.title")} <span>*</span>
             </InputLable>
             <Validations
-              className={formFound.foundFirstForm.title.match(/^([a-zA-Z\s-]{2,48})?$/) ? "invalid" : ""}>
-              {t("validation.checkModal")}
+              className={formFound.foundFirstForm.title.match(/^([A-Za-zА-Яа-я\-\s]{2,48})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 48 letters
             </Validations>
             <InputField
               type="text"
@@ -592,8 +592,8 @@ function Forma({ handleClose }) {
           <InputBox>
             <InputLable htmlFor="name">Name pet</InputLable>
             <Validations
-              className={formFound.foundFirstForm.name.match(/^([a-zA-Z\s-]{2,16})?$/) ? "invalid" : ""}>
-              {t("validation.checkModal")}
+              className={formFound.foundFirstForm.name.match(/^([A-Za-zА-Яа-я\-\s]{2,16})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 16 letters
             </Validations>
             <InputField
               type="text"
@@ -617,8 +617,8 @@ function Forma({ handleClose }) {
           <InputBox>
             <InputLable htmlFor="breed">Breed</InputLable>
             <Validations
-              className={formFound.foundFirstForm.breed.match(/^([a-zA-Z\s-]{2,16})?$/) ? "invalid" : ""}>
-              {t("validation.checkModal")}
+              className={formFound.foundFirstForm.breed.match(/^([A-Za-zА-Яа-я\-\s]{2,16})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 16 letters
             </Validations>
             <InputField
               type="text"
@@ -686,7 +686,7 @@ function Forma({ handleClose }) {
               Location<span>*</span>:
             </InputLable>
             <Validations
-              className={formFound.foundSecondForm.location.match(/^$|^[a-zA-Z\s]+,[a-zA-Z\s]+$/) ? "invalid" : ""}>
+              className={formFound.foundSecondForm.location.match(/^$|^([A-Za-zА-Яа-я]+),\s([A-Za-zА-Яа-я]+)?$/) ? "invalid" : ""}>
               Please enter for exemple: Brovary, Kyiv
             </Validations>
             <InputField
@@ -765,7 +765,7 @@ function Forma({ handleClose }) {
               {t("modal.title")} <span>*</span>
             </InputLable>
             <Validations
-              className={formGoodHands.goodHandsFirstForm.title.match(/^([a-zA-Z\s-]{2,48})?$/) ? "invalid" : ""}>
+              className={formGoodHands.goodHandsFirstForm.title.match(/^([A-Za-zА-Яа-я\-\s]{2,48})?$/) ? "invalid" : ""}>
               Please enter between 2 and 48 letters
             </Validations>
             <InputField
@@ -779,7 +779,7 @@ function Forma({ handleClose }) {
           <InputBox>
             <InputLable htmlFor="name">Name pet</InputLable>
             <Validations
-              className={formGoodHands.goodHandsFirstForm.name.match(/^([a-zA-Z\s-]{2,16})?$/) ? "invalid" : ""}>
+              className={formGoodHands.goodHandsFirstForm.name.match(/^([A-Za-zА-Яа-я\-\s]{2,16})?$/) ? "invalid" : ""}>
               Please enter between 2 and 16 letters
             </Validations>
             <InputField
@@ -804,8 +804,8 @@ function Forma({ handleClose }) {
           <InputBox>
             <InputLable htmlFor="breed">Breed</InputLable>
             <Validations
-              className={formGoodHands.goodHandsFirstForm.breed.match(/^([a-zA-Z\s-]{2,16})?$/) ? "invalid" : ""}>
-              {t("validation.checkModal")}
+              className={formGoodHands.goodHandsFirstForm.breed.match(/^([A-Za-zА-Яа-я\-\s]{2,16})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 16 letters
             </Validations>
             <InputField
               type="text"
@@ -872,9 +872,11 @@ function Forma({ handleClose }) {
               Location<span>*</span>:
             </InputLable>
             <Validations
-              className={formGoodHands.goodHandsSecondForm.location.match(/^$|^[a-zA-Z\s]+,[a-zA-Z\s]+$/) ? "invalid" : ""}>
+              className={formGoodHands.goodHandsSecondForm.location.match(/^$|^([A-Za-zА-Яа-я]+),\s([A-Za-zА-Яа-я]+)?$/) ? "invalid" : ""}>
               Please enter for exemple: Brovary, Kyiv
             </Validations>
+
+
             <InputField
               type="text"
               name="location"

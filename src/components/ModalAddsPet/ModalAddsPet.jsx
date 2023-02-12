@@ -113,20 +113,20 @@ function Forma({ handleClose }) {
           <InputBox>
             <InputLable htmlFor="name">{t("modal.name")}</InputLable>
             <Validations
-              className={form.firstForm.name.match(/^([a-zA-Z\s-]{2,16})?$/) ? "invalid" : ""}>
-              {t("validation.checkModal")}
+              className={form.firstForm.name.match  ? "invalid" : ""}>
+              Please enter between 2 and 16 letters
             </Validations>
             <InputField
               type="text"
               name="name"
-              pattern="/^([a-zA-Z\s-]{2,16})?$/"
+              pattern="(/^([A-Za-zА-Яа-я\-\s]{2,16})?$/)"
               value={form.firstForm.name}
               onChange={handleFirstFormChange}
               placeholder={t("modal.namepl")}
             />
           </InputBox>
           <InputBox>
-            <InputLable htmlFor="breed">{t("modal.birth")}</InputLable>
+            <InputLable htmlFor="date">{t("modal.birth")}</InputLable>
             <InputField
               type="date"
               name="date"
@@ -141,18 +141,17 @@ function Forma({ handleClose }) {
           <InputBox>
             <InputLable htmlFor="breed">{t("modal.breed")}</InputLable>
             <Validations
-              className={form.firstForm.breed.match(/^([a-zA-Z\s-]{2,16})?$/) ? "invalid" : ""}>
-              {t("validation.checkModal")}
+              className={form.firstForm.breed.match(/^([A-Za-zА-Яа-я\-\s]{2,16})?$/) ? "invalid" : ""}>
+              Please enter between 2 and 16 letters
             </Validations>
             <InputField
               type="text"
               name="breed"
-              pattern="/^([a-zA-Z\s-]{2,16})?$/"
+              pattern="/^([A-Za-zА-Яа-я\-\s]{2,16})?$/"
               value={form.firstForm.breed}
               onChange={handleFirstFormChange}
               placeholder={t("modal.breedpl")}
             />
-            {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
           </InputBox>
           <ButtonContainer>
             <Button type="button" onClick={handleClose}>

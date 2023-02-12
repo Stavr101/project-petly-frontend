@@ -79,7 +79,7 @@ export default function NoticeCategoryItem({
       const res = await addPetToFavorite(_id);
       setIsFavorite(true);
 
-      Notify.success("Pet add to your'e favorite", {
+      Notify.success("Pet added to favorites", {
         timeout: 1500,
       });
       return res;
@@ -103,7 +103,7 @@ export default function NoticeCategoryItem({
 
         setArray(arrayNew);
       }
-      Notify.warning("You removed a pet from favorite", {
+      Notify.warning("Pet removed from favorites", {
         timeout: 1500,
       });
       return setIsFavorite(false);

@@ -9,13 +9,8 @@ import { List } from "components/NoticesCategoriesList/NoticesCategoriesList.sly
 // import { getUserInfo } from "redux/users/operations";
 // import { useDispatch } from "react-redux";
 
-import Loader from "shared/loader/Loader";
 import Error from "components/Error/Error";
-import { getUserInfo } from "redux/users/operations";
-import { useDispatch } from "react-redux";
-import { useTranslation } from 'react-i18next';
-// import Loader from "shared/loader/Loader";
-// import { getUserData } from "redux/users/selectors";
+import { useTranslation } from "react-i18next";
 
 const NoticesCategoriesList = () => {
   const [pets, setPets] = useState([]);
@@ -151,7 +146,7 @@ const NoticesCategoriesList = () => {
         </Box>
       )}
       {error && <Error />}
-      {loading && <Loader />}
+      {/* {loading && <Loader />} */}
     </>
   );
 };

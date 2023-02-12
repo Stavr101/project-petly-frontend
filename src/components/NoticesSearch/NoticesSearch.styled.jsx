@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import SearchIcon from "@mui/icons-material/Search";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import {DebounceInput} from 'react-debounce-input';
 
 export const Search = styled.div`
   display: flex;
@@ -56,7 +57,7 @@ transform: scale(1.2);
   }
 `;
 
-export const FormInput = styled.input`
+export const FormInput = styled(DebounceInput)`
   width: 100%;
   font-weight: ${(p) => p.theme.fontWeights.semibold};
   font-size: 16px;

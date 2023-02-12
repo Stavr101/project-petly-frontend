@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useLocation, useSearchParams } from "react-router-dom";
 import {
   Search,
   SearchForm,
@@ -14,6 +14,11 @@ import { useTranslation } from 'react-i18next';
 const NoticesSearch = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState("");
+  const location = useLocation();
+
+  useEffect(() => {
+    setQuery("");
+  }, [location.pathname]);
 
   const handleChange = (e) => {
     setQuery(e.target.value.toLowerCase());
@@ -31,7 +36,7 @@ const NoticesSearch = () => {
     }
   };
 
-  const handleClear = (e) => {
+  const handleClear = () => {
     setSearchParams("")
     setQuery("")
   }
@@ -48,6 +53,7 @@ const NoticesSearch = () => {
           placeholder={t("news.search")}
           value={query}
           onChange={handleChange}
+          debounceTimeout={300}
         />
         <FormButton type="button">
           {!query ? (

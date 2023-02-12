@@ -18,8 +18,7 @@ letter-spacing: 0.04em;
 font-family: ${p => p.theme.fonts.manrope};
 font-size: 14px;
 line-height: 1.35;
-transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), font-weight 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms;
 
 @media (min-width: 768px) {
 padding: 8.5px 28px;
@@ -32,7 +31,8 @@ padding: 10px 28px;
 
 &:hover {
     color: ${p => p.theme.colors.accent};
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: ${(p) => p.theme.fontWeights.bold};
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 &.active {

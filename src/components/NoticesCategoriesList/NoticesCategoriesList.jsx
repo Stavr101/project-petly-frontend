@@ -108,11 +108,11 @@ const NoticesCategoriesList = ({ pets, setPets }) => {
 
   return (
     <>
-      {/* {!pets.length && (
+      {!pets.length && !loading && (
         <Typography variant="h5" component="p" textAlign={"center"}>
           Sorry, there are no ads
         </Typography>
-      )} */}
+      )}
       {Boolean(pets.length) && (
         <List id="top">
           {pets.map((item, index) => {

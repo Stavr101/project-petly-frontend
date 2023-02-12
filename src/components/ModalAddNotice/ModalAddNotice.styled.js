@@ -50,6 +50,7 @@ export const InputFemaleButton = styled.button`
   color: ${(props) => (props.isSelected ? "#F59256" : "black")};
 
   :hover {
+    
     color: ${(props) => (props.isSelected ? "#F59256" : "black")};
   }
 `;
@@ -96,6 +97,7 @@ const slideInPhoto = keyframes`
 `;
 
 export const AddPhoto = styled.p`
+margin-right: auto;
   font-size: 16px;
   text-align: center;
   margin-bottom: 20px;
@@ -141,6 +143,7 @@ export const DownloadContainer = styled.div`
   background-repeat: no-repeat;
   background-position: center center;
   @media (min-width: 768px) {
+    margin-right: auto;
     width: 182px;
     height: 182px;
   }
@@ -162,16 +165,28 @@ export const Image = styled.img`
 `;
 
 export const ModalContainer = styled.div`
-  width: 98%;
-  /* height: 98%; */
+transition: 250ms;
+ position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 94%;
+  max-height: 96%;
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: white;
   border-radius: 16px;
-  animation: ${slideIn} 300ms ease-out;
+  // animation: ${slideIn} 300ms ease-out;
   overflow-y: auto;
+
+@media (min-width: 768px) {
+    max-width: 608px;
+    /* height:400px; */
+ 
+  }
+
 
   ::-webkit-scrollbar {
     border-radius: 16px;
@@ -185,10 +200,7 @@ export const ModalContainer = styled.div`
     background-color: #f59256;
   }
 
-  @media (min-width: 768px) {
-    width: 608px;
-    max-height: 813px;
-  }
+  
 `;
 
 export const ModalTitle = styled.h2`
@@ -198,26 +210,26 @@ export const ModalTitle = styled.h2`
 
 export const FormContainer = styled.form`
   width: 240px;
-  max-height: 540px;
+  max-height: 840px;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   @media (min-width: 768px) {
     width: 448px;
-    height: 440px;
+    max-height: 840px;
   }
 `;
 export const NextFormContainer = styled.form`
   width: 240px;
-  height: 540px;
+  max-height: 840px;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   @media (min-width: 768px) {
-    max-width: 548px;
-    height: 440px;
+    width: 448px;
+    max-height: 840px;
   }
 `;
 export const CommentsContainer = styled.div``;
@@ -229,6 +241,11 @@ export const InputLable = styled.label`
   font-weight: 500;
   font-size: 18px;
   line-height: 36px;
+
+  @media (min-width: 768px) {
+    margin-right: auto;
+  }
+ 
 `;
 
 export const InputField = styled.input`
@@ -318,8 +335,10 @@ export const ButtonOff = styled.button`
   background-image: url(${cross});
   background-size: 28px 28px;
   background-position: center center;
+  transition: 250ms;
   :hover,
   :active {
+    transition: 250ms;
     background-size: 30px 30px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   }
@@ -333,8 +352,10 @@ export const CancelButton = styled.button`
   margin-bottom: 20px;
   border: 2px solid #f59256;
   background-color: white;
+  transition: 250ms;
   :hover,
   :active {
+    transition: 250ms;
     background-color: #f59256;
     color: white;
     outline: none;
@@ -369,9 +390,10 @@ export const ButtonType = styled.button`
   margin-bottom: 12px;
   border: 2px solid #f59256;
   background-color: white;
-
+transition: 250ms;
   :hover,
   :active {
+    transition: 250ms;
     background-color: #f59256;
     color: white;
     outline: none;
@@ -395,8 +417,10 @@ export const Button = styled.button`
   margin-bottom: 12px;
   border: 2px solid #f59256;
   background-color: white;
+  transition: 250ms;
   :hover,
   :active {
+    transition: 250ms;
     background-color: #f59256;
     color: white;
     outline: none;
@@ -417,8 +441,10 @@ export const NextButton = styled.button`
   margin-bottom: 12px;
   border: 2px solid #f59256;
   background-color: white;
+  transition: 250ms;
   :hover,
   :active {
+    transition: 250ms;
     background-color: #f59256;
     color: white;
     outline: none;

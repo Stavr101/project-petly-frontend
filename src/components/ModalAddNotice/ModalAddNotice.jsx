@@ -384,7 +384,9 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
             </InputLable>
             <Validations
               className={
-                formSell.sellFirstForm.title.match(/^([a-zA-Z\s-]{2,48})?$/)
+                formSell.sellFirstForm.title.match(
+                  /^([A-Za-zА-Яа-яІі-\s]{2,48})?$/
+                )
                   ? "invalid"
                   : ""
               }
@@ -403,7 +405,9 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
             <InputLable htmlFor="name">{t("modal.name")}</InputLable>
             <Validations
               className={
-                formSell.sellFirstForm.name.match(/^([a-zA-Z\s-]{2,16})?$/)
+                formSell.sellFirstForm.name.match(
+                  /^([A-Za-zА-Яа-яІі-\s]{2,16})?$/
+                )
                   ? "invalid"
                   : ""
               }
@@ -433,7 +437,9 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
             <InputLable htmlFor="breed">{t("modal.breed")}</InputLable>
             <Validations
               className={
-                formSell.sellFirstForm.breed.match(/^([a-zA-Z\s-]{2,16})?$/)
+                formSell.sellFirstForm.breed.match(
+                  /^([A-Za-zА-Яа-яІі-\s]{2,16})?$/
+                )
                   ? "invalid"
                   : ""
               }
@@ -509,7 +515,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
             <Validations
               className={
                 formSell.sellSecondForm.location.match(
-                  /^$|^[a-zA-Z\s]+,[a-zA-Z\s]+$/
+                  /^$|^([A-Za-zА-Яа-яІі]+),\s([A-Za-zА-Яа-яІі]+)?$/
                 )
                   ? "invalid"
                   : ""
@@ -547,6 +553,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
               placeholder={t("modal.pricepl")}
             />
           </InputBox>
+
           <InputLable htmlFor="avatarFile">{t("modal.img")}</InputLable>
           <DownloadContainer>
             {formSell.sellSecondForm.avatarFile && (
@@ -568,7 +575,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
                     : ""
                 }
               >
-                Please enter between 8 and 120 symbols
+                {t("validation.commentcheckModal")}
               </Validations>
               <Comments
                 name="comment"
@@ -591,9 +598,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
       )}
       {formType === "foundFirstForm" && (
         <FormContainer onSubmit={handleFoundSubmit}>
-          <AddPhoto>
-            Lorem ipsum dolor sit a Lorem ipsum dolor sit amet, consectetur
-          </AddPhoto>
+          <AddPhoto>{t("modal.info")}</AddPhoto>
           <ButtonTypeContainer>
             <ButtonType
               type="button"
@@ -618,11 +623,13 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
 
           <InputBox>
             <InputLable htmlFor="title">
-              Title of ad <span>*</span>
+              {t("modal.title")} <span>*</span>
             </InputLable>
             <Validations
               className={
-                formFound.foundFirstForm.title.match(/^([a-zA-Z\s-]{2,48})?$/)
+                formFound.foundFirstForm.title.match(
+                  /^([A-Za-zА-Яа-яІі-\s]{2,48})?$/
+                )
                   ? "invalid"
                   : ""
               }
@@ -641,7 +648,9 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
             <InputLable htmlFor="name">Name pet</InputLable>
             <Validations
               className={
-                formFound.foundFirstForm.name.match(/^([a-zA-Z\s-]{2,16})?$/)
+                formFound.foundFirstForm.name.match(
+                  /^([A-Za-zА-Яа-яІі-\s]{2,16})?$/
+                )
                   ? "invalid"
                   : ""
               }
@@ -671,7 +680,9 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
             <InputLable htmlFor="breed">Breed</InputLable>
             <Validations
               className={
-                formFound.foundFirstForm.breed.match(/^([a-zA-Z\s-]{2,16})?$/)
+                formFound.foundFirstForm.breed.match(
+                  /^([A-Za-zА-Яа-яІі-\s]{2,16})?$/
+                )
                   ? "invalid"
                   : ""
               }
@@ -695,7 +706,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
               onClick={() => setFormType("foundSecondForm")}
               disabled={!hasFoundFirstFormAllData}
             >
-              Next
+              {t("modal.next")}
             </Button>
           </ButtonContainer>
         </FormContainer>
@@ -746,7 +757,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
             <Validations
               className={
                 formFound.foundSecondForm.location.match(
-                  /^$|^[a-zA-Z\s]+,[a-zA-Z\s]+$/
+                  /^$|^([A-Za-zА-Яа-яІі]+),\s([A-Za-zА-Яа-яІі]+)?$/
                 )
                   ? "invalid"
                   : ""
@@ -807,10 +818,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
       )}
       {formType === "goodHandsFirstForm" && (
         <FormContainer onSubmit={handleGoodHandsSubmit}>
-          <AddPhoto>
-            Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
-            consectetur
-          </AddPhoto>
+          <AddPhoto>{t("modal.info")}</AddPhoto>
           <ButtonTypeContainer>
             <ButtonType
               type="button"
@@ -835,12 +843,12 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
 
           <InputBox>
             <InputLable htmlFor="title">
-              Title of ad <span>*</span>
+              {t("modal.title")} <span>*</span>
             </InputLable>
             <Validations
               className={
                 formGoodHands.goodHandsFirstForm.title.match(
-                  /^([a-zA-Z\s-]{2,48})?$/
+                  /^([A-Za-zА-Яа-яІі-\s]{2,48})?$/
                 )
                   ? "invalid"
                   : ""
@@ -861,7 +869,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
             <Validations
               className={
                 formGoodHands.goodHandsFirstForm.name.match(
-                  /^([a-zA-Z\s-]{2,16})?$/
+                  /^([A-Za-zА-Яа-яІі-\s]{2,16})?$/
                 )
                   ? "invalid"
                   : ""
@@ -893,7 +901,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
             <Validations
               className={
                 formGoodHands.goodHandsFirstForm.breed.match(
-                  /^([a-zA-Z\s-]{2,16})?$/
+                  /^([A-Za-zА-Яа-яІі-\s]{2,16})?$/
                 )
                   ? "invalid"
                   : ""
@@ -918,7 +926,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
               onClick={() => setFormType("goodHandsSecondForm")}
               disabled={!hasGoodHandsFirstFormAllData}
             >
-              Next
+              {t("modal.next")}
             </Button>
           </ButtonContainer>
         </FormContainer>
@@ -967,7 +975,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
             <Validations
               className={
                 formGoodHands.goodHandsSecondForm.location.match(
-                  /^$|^[a-zA-Z\s]+,[a-zA-Z\s]+$/
+                  /^$|^([A-Za-zА-Яа-яІі]+),\s([A-Za-zА-Яа-яІі]+)?$/
                 )
                   ? "invalid"
                   : ""
@@ -975,6 +983,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
             >
               Please enter for exemple: Brovary, Kyiv
             </Validations>
+
             <InputField
               type="text"
               name="location"
@@ -1010,7 +1019,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
                     : ""
                 }
               >
-                Please enter between 8 and 120 symbols
+                {t("validation.commentcheckModal")}
               </Validations>
               <Comments
                 name="comment"

@@ -87,8 +87,6 @@
         "breed": "Breed",
         "breedpl": "Type breed",
         "birth": "Date of birth",
-        "check": "Please enter between 2 and 16 letters",
-        "commentcheck": "Please enter between 8 and 120 symbols",
         "photo": "Add photo and some comments",
         "sell": "sell",
         "lost": "lost/found",
@@ -150,10 +148,14 @@
     },
 
     "notification": {
-    "notAuthorized": "You must be authorized"
+        "notAuthorized": "You must be authorized",
+        "wrongLogin": "Email or password is wrong"
     },
 
     "validation": {
-
+        "requiredEmail": "Email is a required field",
+        "requiredPass": "Password is a required field",
+        "checkModal": "Please enter between 2 and 16 letters",
+        "commentcheckModal": "Please enter between 8 and 120 symbols"
     }
 }

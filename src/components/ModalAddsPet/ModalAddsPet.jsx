@@ -113,13 +113,13 @@ function Forma({ handleClose }) {
           <InputBox>
             <InputLable htmlFor="name">{t("modal.name")}</InputLable>
             <Validations
-              className={form.firstForm.name.match(/^([a-zA-Z\s-]{2,16})?$/) ? "invalid" : ""}>
+              className={form.firstForm.name.match(/^([A-Za-zА-Яа-яІі-\s]{2,16})?$/) ? "invalid" : ""}>
               Please enter between 2 and 16 letters
             </Validations>
             <InputField
               type="text"
               name="name"
-              pattern="/^([a-zA-Z\s-]{2,16})?$/"
+              pattern="/^([A-Za-zА-Яа-яІі-\s]{2,16})?$/"
               value={form.firstForm.name}
               onChange={handleFirstFormChange}
               placeholder={t("modal.namepl")}
@@ -141,18 +141,17 @@ function Forma({ handleClose }) {
           <InputBox>
             <InputLable htmlFor="breed">{t("modal.breed")}</InputLable>
             <Validations
-              className={form.firstForm.breed.match(/^([a-zA-Z\s-]{2,16})?$/) ? "invalid" : ""}>
+              className={form.firstForm.breed.match(/^([A-Za-zА-Яа-яІі-\s]{2,16})?$/) ? "invalid" : ""}>
               Please enter between 2 and 16 letters
             </Validations>
             <InputField
               type="text"
               name="breed"
-              pattern="/^([a-zA-Z\s-]{2,16})?$/"
+              pattern="/^([A-Za-zА-Яа-яІі-\s]{2,16})?$/"
               value={form.firstForm.breed}
               onChange={handleFirstFormChange}
               placeholder={t("modal.breedpl")}
             />
-            {/* {errors.breed && <div>{errors.firstForm.breed}</div>} */}
           </InputBox>
           <ButtonContainer>
             <Button type="button" onClick={handleClose}>
@@ -187,7 +186,7 @@ function Forma({ handleClose }) {
             <CommentsContainer>
               <Validations
                 className={form.secondForm.comment.match(/^(.{8,120})?$/) ? "invalid" : ""}>
-                Please enter between 8 and 120 symbols
+               {t("validation.commentcheckModal")}
               </Validations>
               <Comments
                 name="comment"

@@ -38,12 +38,12 @@ export default function UserDataItem({
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (valueUser === e.target.value) {
+
+    if (!editedValue) {
       setActiveBtn(true);
       setIsEditing(false);
       return;
     }
-
     const validInput = paramValid;
 
     if (nameInput === 'birthday') {

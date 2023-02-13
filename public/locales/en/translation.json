@@ -89,7 +89,7 @@
         "breed": "Breed",
         "breedpl": "Type breed",
         "birth": "Date of birth",
-        "photo": "Add photo and some comments",
+        "photo": "Add photo and some comments:",
         "sell": "sell",
         "lost": "lost/found",
         "free": "in good hands",
@@ -169,7 +169,10 @@
         "passMax": "Too Long!",
         "noSpaces": "Spaces are not allowed",
         "passMatch": "Passwords must match",
-        "checkModal": "Please enter between 2 and 16 letters",
-        "commentcheckModal": "Please enter between 8 and 120 symbols"
+        "checkModalTitle": "Please enter between 2 and 48 letters",
+        "checkModalField": "Please enter between 2 and 16 letters",
+        "checkModalComm": "Please enter between 8 and 120 symbols",
+        "checkModalLoc": "Please enter for exemple: Brovary, Kyiv",
+        "checkModalPrice": "Please enter price, for exemple: 340"
     }
 }

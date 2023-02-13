@@ -72,8 +72,10 @@
         "comm": "Comments:",
         "month": "month",
         "months": "months",
+        "months2": "months",
         "year": "year",
         "years": "years",
+        "years2": "years",
         "less": "< 1 month",
         "contact": "Contact",
         "addto": "Add to",
@@ -87,7 +89,7 @@
         "breed": "Breed",
         "breedpl": "Type breed",
         "birth": "Date of birth",
-        "photo": "Add photo and some comments",
+        "photo": "Add photo and some comments:",
         "sell": "sell",
         "lost": "lost/found",
         "free": "in good hands",
@@ -149,13 +151,28 @@
 
     "notification": {
         "notAuthorized": "You must be authorized",
-        "wrongLogin": "Email or password is wrong"
+        "wrongLogin": "Email or password is wrong",
+        "noAdsFound": "Sorry, no ads were found by your query."
     },
 
     "validation": {
         "requiredEmail": "Email is a required field",
         "requiredPass": "Password is a required field",
-        "checkModal": "Please enter between 2 and 16 letters",
-        "commentcheckModal": "Please enter between 8 and 120 symbols"
+        "requiredPassConfirm": "Confirm Password is a required field",
+        "requiredName": "Name is a required field",
+        "requiredAddress": "Address is a required field",
+        "requiredPhone": "Phone is a required field",
+        "addressExample": "For example: Bucha, Kyiv",
+        "phoneExample": "Example: +380111111111",
+        "invalidEmail": "Invalid email",
+        "passMin": "Min length 7 symbols",
+        "passMax": "Too Long!",
+        "noSpaces": "Spaces are not allowed",
+        "passMatch": "Passwords must match",
+        "checkModalTitle": "Please enter between 2 and 48 letters",
+        "checkModalField": "Please enter between 2 and 16 letters",
+        "checkModalComm": "Please enter between 8 and 120 symbols",
+        "checkModalLoc": "Please enter for exemple: Brovary, Kyiv",
+        "checkModalPrice": "Please enter price, for exemple: 340"
     }
 }

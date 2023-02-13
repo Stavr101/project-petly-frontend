@@ -1,4 +1,6 @@
-export const currentAge = (date) => {
+import i18n from "i18next";
+
+  export const currentAge = (date) => {
   const dif = Date.now() - new Date(date);
   const second = 1000;
   const minute = second * 60;
@@ -16,13 +18,13 @@ export const currentAge = (date) => {
 
   if (transformedYear > 0) {
     if (transformedMonth) {
-      return `${transformedYear} ${transformedYear === 1 ? "year" : "years"}`;
+      return `${transformedYear} ${transformedYear === 1 ? i18n.t('notices.year') : 5 > transformedYear ? i18n.t('notices.years2') : i18n.t('notices.years')}`;
     }
-    return `${transformedYear} ${transformedYear === 1 ? "year" : "years"}`;
+    return `${transformedYear} ${transformedYear === 1 ? i18n.t('notices.year') : i18n.t('notices.years')}`;
   }
 
   if (transformedMonth) {
-    return `${transformedMonth} ${transformedMonth === 1 ? "month" : "months"}`;
+    return `${transformedMonth} ${transformedMonth === 1 ? i18n.t('notices.month') : 5 > transformedMonth ? i18n.t('notices.months2') : i18n.t('notices.months')}`;
   }
-  return "< 1 month";
+  return i18n.t('notices.less');
 };

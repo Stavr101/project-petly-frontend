@@ -107,7 +107,7 @@ const NoticesCategoriesList = ({ pets, setPets }) => {
           textAlign={"center"}
           sx={{ mt: 15 }}
         >
-          Sorry, there are no ads
+          {t("notification.noAdsFound")}
         </Typography>
       )}
       {Boolean(pets.length) && (

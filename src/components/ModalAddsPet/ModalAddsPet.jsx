@@ -114,7 +114,7 @@ function Forma({ handleClose }) {
             <InputLable htmlFor="name">{t("modal.name")}</InputLable>
             <Validations
               className={form.firstForm.name.match(/^([A-Za-zА-Яа-яІі-\s]{2,16})?$/) ? "invalid" : ""}>
-              Please enter between 2 and 16 letters
+              {t("validation.checkModal")}
             </Validations>
             <InputField
               type="text"
@@ -142,7 +142,7 @@ function Forma({ handleClose }) {
             <InputLable htmlFor="breed">{t("modal.breed")}</InputLable>
             <Validations
               className={form.firstForm.breed.match(/^([A-Za-zА-Яа-яІі-\s]{2,16})?$/) ? "invalid" : ""}>
-              Please enter between 2 and 16 letters
+              {t("validation.checkModal")}
             </Validations>
             <InputField
               type="text"

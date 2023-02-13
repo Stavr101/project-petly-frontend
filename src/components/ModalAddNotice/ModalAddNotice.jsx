@@ -402,7 +402,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
                   : ""
               }
             >
-              {t("modal.check")}
+              {t("validation.checkModalTitle")}
             </Validations>
             <InputField
               type="text"
@@ -423,7 +423,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
                   : ""
               }
             >
-              Please enter between 2 and 16 letters
+              {t("validation.checkModalField")}
             </Validations>
             <InputField
               type="text"
@@ -455,7 +455,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
                   : ""
               }
             >
-              Please enter between 2 and 16 letters
+              {t("validation.checkModalField")}
             </Validations>
             <InputField
               type="text"
@@ -532,7 +532,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
                   : ""
               }
             >
-              Please enter for exemple: Brovary, Kyiv
+              {t("validation.checkModalLoc")}
             </Validations>
             <InputField
               type="text"
@@ -554,7 +554,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
                   : ""
               }
             >
-              Please enter price, for exemple: 340
+              {t("validation.checkModalPrice")}
             </Validations>
             <InputField
               type="text"
@@ -586,7 +586,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
                     : ""
                 }
               >
-                {t("validation.commentcheckModal")}
+                {t("validation.checkModalComm")}
               </Validations>
               <Comments
                 name="comment"
@@ -616,20 +616,20 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
               style={{ backgroundColor: "#F59256", color: "white" }}
               onClick={() => setFormType("foundFirstForm")}
             >
-              lost/found
+              {t("modal.lost")}
             </ButtonType>
             <ButtonType
               type="button"
               onClick={() => setFormType("goodHandsFirstForm")}
             >
-              in good hands
+              {t("modal.free")}
             </ButtonType>
           </ButtonTypeContainer>
           <ButtonType
             type="button"
             onClick={() => setFormType("sellFirstForm")}
           >
-            sell
+            {t("modal.sell")}
           </ButtonType>
 
           <InputBox>
@@ -645,18 +645,18 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
                   : ""
               }
             >
-              Please enter between 2 and 48 letters
+               {t("validation.checkModalTitle")}
             </Validations>
             <InputField
               type="text"
               name="title"
               value={formFound.foundFirstForm.title}
               onChange={handleFoundFirstFormChange}
-              placeholder="Type name"
+              placeholder={t("modal.titlepl")}
             />
           </InputBox>
           <InputBox>
-            <InputLable htmlFor="name">Name pet</InputLable>
+            <InputLable htmlFor="name">{t("modal.name")}</InputLable>
             <Validations
               className={
                 formFound.foundFirstForm.name.match(
@@ -666,18 +666,18 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
                   : ""
               }
             >
-              Please enter between 2 and 16 letters
+              {t("validation.checkModalField")}
             </Validations>
             <InputField
               type="text"
               name="name"
               value={formFound.foundFirstForm.name}
               onChange={handleFoundFirstFormChange}
-              placeholder="Name pet"
+              placeholder={t("modal.namepl")}
             />
           </InputBox>
           <InputBox>
-            <InputLable htmlFor="date">Date of birth</InputLable>
+            <InputLable htmlFor="date">{t("modal.birth")}</InputLable>
             <InputField
               type="date"
               name="date"
@@ -688,7 +688,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
             />
           </InputBox>
           <InputBox>
-            <InputLable htmlFor="breed">Breed</InputLable>
+            <InputLable htmlFor="breed">{t("modal.breed")}</InputLable>
             <Validations
               className={
                 formFound.foundFirstForm.breed.match(
@@ -698,19 +698,19 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
                   : ""
               }
             >
-              Please enter between 2 and 16 letters
+              {t("validation.checkModalField")}
             </Validations>
             <InputField
               type="text"
               name="breed"
               value={formFound.foundFirstForm.breed}
               onChange={handleFoundFirstFormChange}
-              placeholder="Breed"
+              placeholder={t("modal.breedpl")}
             />
           </InputBox>
           <ButtonContainer>
             <Button type="button" onClick={handleClose}>
-              Cancel
+              {t("modal.canc")}
             </Button>
             <Button
               type="button"
@@ -740,7 +740,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
                   checked={formFound.foundSecondForm.sex === "male"}
                   onChange={handleFoundRadioChange}
                 />
-                <LabelMale htmlfor="radio1">Male</LabelMale>
+                <LabelMale htmlfor="radio1">{t("modal.m")}</LabelMale>
               </InputMaleButton>
             </InputContainer>
 
@@ -756,14 +756,14 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
                   checked={formFound.foundSecondForm.sex === "female"}
                   onChange={handleFoundRadioChange}
                 />
-                <LabelFemale htmlfor="radio1">Female</LabelFemale>
+                <LabelFemale htmlfor="radio1">{t("modal.f")}</LabelFemale>
               </InputFemaleButton>
             </InputContainer>
           </SexButtons>
 
           <InputBox>
             <InputLable htmlFor="location">
-              Location<span>*</span>:
+              {t("modal.location")}<span>*</span>:
             </InputLable>
             <Validations
               className={
@@ -774,18 +774,18 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
                   : ""
               }
             >
-              Please enter for exemple: Brovary, Kyiv
+             {t("validation.checkModalLoc")}
             </Validations>
             <InputField
               type="text"
               name="location"
               value={formFound.foundSecondForm.location}
               onChange={handleFoundSecondFormChange}
-              placeholder="Location"
+              placeholder={t("modal.locationpl")}
             />
           </InputBox>
 
-          <InputLable htmlFor="avatarUrl">Load the pet's image:</InputLable>
+          <InputLable htmlFor="avatarUrl">{t("modal.img")}</InputLable>
           <DownloadContainer>
             {formFound.foundSecondForm.avatarUrl && (
               <Image src={formFound.foundSecondForm.avatarUrl} alt="uploaded" />
@@ -806,23 +806,23 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
                     : ""
                 }
               >
-                Please enter between 8 and 120 symbols
+                {t("validation.checkModalComm")}
               </Validations>
               <Comments
                 name="comment"
                 type="text"
                 value={formFound.foundSecondForm.comment}
                 onChange={handleFoundSecondFormChange}
-                placeholder="Type comments"
+                placeholder={t("modal.comm")}
               />
             </CommentsContainer>
           </InputBox>
           <ButtonContainer>
             <Button type="button" onClick={() => setFormType("foundFirstForm")}>
-              Back
+              {t("modal.back")}
             </Button>
             <Button type="submit" disabled={!hasFoundSecondFormAllData}>
-              Done
+              {t("modal.done")}
             </Button>
           </ButtonContainer>
         </NextFormContainer>
@@ -835,21 +835,21 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
               type="button"
               onClick={() => setFormType("foundFirstForm")}
             >
-              lost/found
+              {t("modal.lost")}
             </ButtonType>
             <ButtonType
               type="button"
               style={{ backgroundColor: "#F59256", color: "white" }}
               onClick={() => setFormType("goodHandsFirstForm")}
             >
-              in good hands
+              {t("modal.free")}
             </ButtonType>
           </ButtonTypeContainer>
           <ButtonType
             type="button"
             onClick={() => setFormType("sellFirstForm")}
           >
-            sell
+            {t("modal.sell")}
           </ButtonType>
 
           <InputBox>
@@ -865,18 +865,18 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
                   : ""
               }
             >
-              Please enter between 2 and 48 letters
+               {t("validation.checkModalTitle")}
             </Validations>
             <InputField
               type="text"
               name="title"
               value={formGoodHands.goodHandsFirstForm.title}
               onChange={handleGoodHandsFirstFormChange}
-              placeholder="Type name"
+              placeholder={t("modal.titlepl")}
             />
           </InputBox>
           <InputBox>
-            <InputLable htmlFor="name">Name pet</InputLable>
+            <InputLable htmlFor="name">{t("modal.name")}</InputLable>
             <Validations
               className={
                 formGoodHands.goodHandsFirstForm.name.match(
@@ -886,18 +886,18 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
                   : ""
               }
             >
-              Please enter between 2 and 16 letters
+              {t("validation.checkModalField")}
             </Validations>
             <InputField
               type="text"
               name="name"
               value={formGoodHands.goodHandsFirstForm.name}
               onChange={handleGoodHandsFirstFormChange}
-              placeholder="Name pet"
+              placeholder={t("modal.namepl")}
             />
           </InputBox>
           <InputBox>
-            <InputLable htmlFor="date">Date of birth</InputLable>
+            <InputLable htmlFor="date">{t("modal.birth")}</InputLable>
             <InputField
               type="date"
               name="date"
@@ -908,7 +908,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
             />
           </InputBox>
           <InputBox>
-            <InputLable htmlFor="breed">Breed</InputLable>
+            <InputLable htmlFor="breed">{t("modal.breed")}</InputLable>
             <Validations
               className={
                 formGoodHands.goodHandsFirstForm.breed.match(
@@ -918,19 +918,19 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
                   : ""
               }
             >
-              Please enter between 2 and 16 letters
+              {t("validation.checkModalField")}
             </Validations>
             <InputField
               type="text"
               name="breed"
               value={formGoodHands.goodHandsFirstForm.breed}
               onChange={handleGoodHandsFirstFormChange}
-              placeholder="Breed"
+              placeholder={t("modal.breedpl")}
             />
           </InputBox>
           <ButtonContainer>
             <Button type="button" onClick={handleClose}>
-              Cancel
+              {t("modal.canc")}
             </Button>
             <Button
               type="button"
@@ -960,7 +960,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
                   checked={formGoodHands.goodHandsSecondForm.sex === "male"}
                   onChange={handleGoodHandsRadioChange}
                 />
-                <LabelMale htmlfor="radio1">Male</LabelMale>
+                <LabelMale htmlfor="radio1">{t("modal.m")}</LabelMale>
               </InputMaleButton>
             </InputContainer>
             <InputContainer>
@@ -975,13 +975,13 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
                   checked={formGoodHands.goodHandsSecondForm.sex === "female"}
                   onChange={handleGoodHandsRadioChange}
                 />
-                <LabelFemale htmlfor="radio1">Female</LabelFemale>
+                <LabelFemale htmlfor="radio1">{t("modal.f")}</LabelFemale>
               </InputFemaleButton>
             </InputContainer>
           </SexButtons>
           <InputBox>
             <InputLable htmlFor="location">
-              Location<span>*</span>:
+              {t("modal.location")}<span>*</span>:
             </InputLable>
             <Validations
               className={
@@ -992,7 +992,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
                   : ""
               }
             >
-              Please enter for exemple: Brovary, Kyiv
+              {t("validation.checkModalLoc")}
             </Validations>
 
             <InputField
@@ -1000,11 +1000,11 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
               name="location"
               value={formGoodHands.goodHandsSecondForm.location}
               onChange={handleGoodHandsSecondFormChange}
-              placeholder="Location"
+              placeholder={t("modal.locationpl")}
             />
           </InputBox>
 
-          <InputLable htmlFor="avatarUrl">Load the pet's image:</InputLable>
+          <InputLable htmlFor="avatarUrl">{t("modal.img")}</InputLable>
           <DownloadContainer>
             {formGoodHands.goodHandsSecondForm.avatarUrl && (
               <Image
@@ -1030,14 +1030,14 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
                     : ""
                 }
               >
-                {t("validation.commentcheckModal")}
+                {t("validation.checkModalComm")}
               </Validations>
               <Comments
                 name="comment"
                 type="text"
                 value={formGoodHands.goodHandsSecondForm.comment}
                 onChange={handleGoodHandsSecondFormChange}
-                placeholder="Type comments"
+                placeholder={t("modal.comm")}
               />
             </CommentsContainer>
           </InputBox>
@@ -1046,10 +1046,10 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
               type="button"
               onClick={() => setFormType("goodHandsFirstForm")}
             >
-              Back
+              {t("modal.back")}
             </Button>
             <Button type="submit" disabled={!hasGoodHandsSecondFormAllData}>
-              Done
+              {t("modal.done")}
             </Button>
           </ButtonContainer>
         </NextFormContainer>

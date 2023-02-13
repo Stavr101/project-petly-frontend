@@ -97,7 +97,9 @@ const slideInPhoto = keyframes`
 `;
 
 export const AddPhoto = styled.p`
+margin-left: auto;
 margin-right: auto;
+
   font-size: 16px;
   text-align: center;
   margin-bottom: 20px;

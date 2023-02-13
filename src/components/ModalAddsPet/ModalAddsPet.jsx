@@ -113,13 +113,13 @@ function Forma({ handleClose }) {
           <InputBox>
             <InputLable htmlFor="name">{t("modal.name")}</InputLable>
             <Validations
-              className={form.firstForm.name.match(/^([A-Za-zА-Яа-яІі-\s]{2,16})?$/) ? "invalid" : ""}>
+              className={form.firstForm.name.match(/^([A-Za-zА-Яа-яІіЇїЄєҐґ-\s]{2,16})?$/) ? "invalid" : ""}>
               {t("validation.checkModal")}
             </Validations>
             <InputField
               type="text"
               name="name"
-              pattern="/^([A-Za-zА-Яа-яІі-\s]{2,16})?$/"
+              pattern="/^([A-Za-zА-Яа-яІіЇїЄєҐґ-\s]{2,16})?$/"
               value={form.firstForm.name}
               onChange={handleFirstFormChange}
               placeholder={t("modal.namepl")}
@@ -141,13 +141,13 @@ function Forma({ handleClose }) {
           <InputBox>
             <InputLable htmlFor="breed">{t("modal.breed")}</InputLable>
             <Validations
-              className={form.firstForm.breed.match(/^([A-Za-zА-Яа-яІі-\s]{2,16})?$/) ? "invalid" : ""}>
+              className={form.firstForm.breed.match(/^([A-Za-zА-Яа-яІіЇїЄєҐґ-\s]{2,16})?$/) ? "invalid" : ""}>
               {t("validation.checkModal")}
             </Validations>
             <InputField
               type="text"
               name="breed"
-              pattern="/^([A-Za-zА-Яа-яІі-\s]{2,16})?$/"
+              pattern="/^([A-Za-zА-Яа-яІіЇїЄєҐґ-\s]{2,16})?$/"
               value={form.firstForm.breed}
               onChange={handleFirstFormChange}
               placeholder={t("modal.breedpl")}

@@ -11,7 +11,6 @@ import Error from "components/Error/Error";
 import { useTranslation } from "react-i18next";
 
 const NoticesCategoriesList = ({ pets, setPets }) => {
-  // const [pets, setPets] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [hasMore, setHasMore] = useState(false);
@@ -101,9 +100,14 @@ const NoticesCategoriesList = ({ pets, setPets }) => {
 
   return (
     <>
-     {!pets.length && !loading && !error && (
-        <Typography variant="h4" component="p" textAlign={"center"} sx={{mt:15}}>
-          {t("notification.noAdsFound")}
+      {!pets.length && !loading && !error && (
+        <Typography
+          variant="h4"
+          component="p"
+          textAlign={"center"}
+          sx={{ mt: 15 }}
+        >
+          Sorry, there are no ads
         </Typography>
       )}
       {Boolean(pets.length) && (
@@ -139,7 +143,6 @@ const NoticesCategoriesList = ({ pets, setPets }) => {
         </Box>
       )}
       {error && <Error />}
-      {/* {loading && <Loader />} */}
     </>
   );
 };

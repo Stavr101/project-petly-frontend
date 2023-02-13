@@ -396,7 +396,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
             <Validations
               className={
                 formSell.sellFirstForm.title.match(
-                  /^([A-Za-zА-Яа-яІі-\s]{2,48})?$/
+                  /^([A-Za-zА-Яа-яІіЇїЄєҐґ-\s]{2,48})?$/
                 )
                   ? "invalid"
                   : ""
@@ -417,7 +417,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
             <Validations
               className={
                 formSell.sellFirstForm.name.match(
-                  /^([A-Za-zА-Яа-яІі-\s]{2,16})?$/
+                  /^([A-Za-zА-Яа-яІіЇїЄєҐґ-\s]{2,16})?$/
                 )
                   ? "invalid"
                   : ""
@@ -449,7 +449,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
             <Validations
               className={
                 formSell.sellFirstForm.breed.match(
-                  /^([A-Za-zА-Яа-яІі-\s]{2,16})?$/
+                  /^([A-Za-zА-Яа-яІіЇїЄєҐґ-\s]{2,16})?$/
                 )
                   ? "invalid"
                   : ""
@@ -526,7 +526,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
             <Validations
               className={
                 formSell.sellSecondForm.location.match(
-                  /^$|^([A-Za-zА-Яа-яІі]+),\s([A-Za-zА-Яа-яІі]+)?$/
+                  /^$|^([A-Za-zА-Яа-яІіЇїЄєҐґ]+),\s([A-Za-zА-Яа-яІіЇїЄєҐґ]+)?$/
                 )
                   ? "invalid"
                   : ""
@@ -639,7 +639,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
             <Validations
               className={
                 formFound.foundFirstForm.title.match(
-                  /^([A-Za-zА-Яа-яІі-\s]{2,48})?$/
+                  /^([A-Za-zА-Яа-яІіЇїЄєҐґ-\s]{2,48})?$/
                 )
                   ? "invalid"
                   : ""
@@ -660,7 +660,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
             <Validations
               className={
                 formFound.foundFirstForm.name.match(
-                  /^([A-Za-zА-Яа-яІі-\s]{2,16})?$/
+                  /^([A-Za-zА-Яа-яІіЇїЄєҐґ-\s]{2,16})?$/
                 )
                   ? "invalid"
                   : ""
@@ -692,7 +692,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
             <Validations
               className={
                 formFound.foundFirstForm.breed.match(
-                  /^([A-Za-zА-Яа-яІі-\s]{2,16})?$/
+                  /^([A-Za-zА-Яа-яІіЇїЄєҐґ-\s]{2,16})?$/
                 )
                   ? "invalid"
                   : ""
@@ -768,7 +768,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
             <Validations
               className={
                 formFound.foundSecondForm.location.match(
-                  /^$|^([A-Za-zА-Яа-яІі]+),\s([A-Za-zА-Яа-яІі]+)?$/
+                  /^$|^([A-Za-zА-Яа-яІіЇїЄєҐґ]+),\s([A-Za-zА-Яа-яІіЇїЄєҐґ]+)?$/
                 )
                   ? "invalid"
                   : ""
@@ -859,7 +859,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
             <Validations
               className={
                 formGoodHands.goodHandsFirstForm.title.match(
-                  /^([A-Za-zА-Яа-яІі-\s]{2,48})?$/
+                  /^([A-Za-zА-Яа-яІіЇїЄєҐґ-\s]{2,48})?$/
                 )
                   ? "invalid"
                   : ""
@@ -880,7 +880,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
             <Validations
               className={
                 formGoodHands.goodHandsFirstForm.name.match(
-                  /^([A-Za-zА-Яа-яІі-\s]{2,16})?$/
+                  /^([A-Za-zА-Яа-яІіЇїЄєҐґ-\s]{2,16})?$/
                 )
                   ? "invalid"
                   : ""
@@ -912,7 +912,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
             <Validations
               className={
                 formGoodHands.goodHandsFirstForm.breed.match(
-                  /^([A-Za-zА-Яа-яІі-\s]{2,16})?$/
+                  /^([A-Za-zА-Яа-яІіЇїЄєҐґ-\s]{2,16})?$/
                 )
                   ? "invalid"
                   : ""
@@ -986,7 +986,7 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
             <Validations
               className={
                 formGoodHands.goodHandsSecondForm.location.match(
-                  /^$|^([A-Za-zА-Яа-яІі]+),\s([A-Za-zА-Яа-яІі]+)?$/
+                  /^$|^([A-Za-zА-Яа-яІіЇїЄєҐґ]+),\s([A-Za-zА-Яа-яІіЇїЄєҐґ]+)?$/
                 )
                   ? "invalid"
                   : ""

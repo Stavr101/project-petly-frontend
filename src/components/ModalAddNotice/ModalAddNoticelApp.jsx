@@ -18,14 +18,6 @@ import {
 
 import Forma from "./ModalAddNotice";
 
-// const useStyles = makeStyles({
-//   root: {
-//     display: 'flex',
-//     height: '100vh',
-//     alignItems: 'center'
-//   }
-// });
-
 export default function ModalAddsPetApp({
   onOpenModal,
   onCloseModal,
@@ -36,8 +28,7 @@ export default function ModalAddsPetApp({
   const [pets, setPets] = useState(
     () => JSON.parse(window.localStorage.getItem("pets")) ?? []
   );
-  // const [modalOpen, setModalOpen] = useState(false);
-
+ 
   //Запис в локал сторидж
   useEffect(() => {
     localStorage.setItem("pets", JSON.stringify(pets));
@@ -57,13 +48,6 @@ export default function ModalAddsPetApp({
     setPets((pets) => [data, ...pets]);
   };
 
-  // const onOpenModal = (e) => {
-  //   setModalOpen(true);
-  // };
-  // const handleClose = (e) => {
-  //   e.preventDefault();
-  //   setModalOpen(false);
-  // };
 
   return (
     <>

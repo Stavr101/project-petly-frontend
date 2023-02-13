@@ -114,7 +114,7 @@ function Forma({ handleClose }) {
             <InputLable htmlFor="name">{t("modal.name")}</InputLable>
             <Validations
               className={form.firstForm.name.match(/^([A-Za-zА-Яа-яІіЇїЄєҐґ-\s]{2,16})?$/) ? "invalid" : ""}>
-              {t("validation.checkModal")}
+              {t("validation.checkModalField")}
             </Validations>
             <InputField
               type="text"
@@ -142,7 +142,7 @@ function Forma({ handleClose }) {
             <InputLable htmlFor="breed">{t("modal.breed")}</InputLable>
             <Validations
               className={form.firstForm.breed.match(/^([A-Za-zА-Яа-яІіЇїЄєҐґ-\s]{2,16})?$/) ? "invalid" : ""}>
-              {t("validation.checkModal")}
+              {t("validation.checkModalField")}
             </Validations>
             <InputField
               type="text"
@@ -186,7 +186,7 @@ function Forma({ handleClose }) {
             <CommentsContainer>
               <Validations
                 className={form.secondForm.comment.match(/^(.{8,120})?$/) ? "invalid" : ""}>
-               {t("validation.commentcheckModal")}
+               {t("validation.checkModalComm")}
               </Validations>
               <Comments
                 name="comment"

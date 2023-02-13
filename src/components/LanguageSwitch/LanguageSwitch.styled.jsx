@@ -8,11 +8,12 @@ width: fit-content;
 `;
 
 export const LanguageOption = styled.input`
+position: relative;
 appearance: none;
 cursor: pointer;
 border-radius: 50%;
 border:  ${p => p.theme.borders.normal}  ${p => p.theme.colors.accent};
-padding: 15px 15px;
+padding: 20px 20px;
 background: ${p => p.theme.colors.white};
 color: ${p => p.theme.colors.black};
 font-size: 15px;
@@ -36,5 +37,7 @@ font-weight: ${(p) => p.theme.fontWeights.bold};
 &::before {
 content: attr(label);
 text-align: center;
+position: absolute;
+transform: translate(-50%, -50%);
 }
 `

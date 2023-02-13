@@ -126,7 +126,11 @@ function Forma({ handleClose }) {
             />
           </InputBox>
           <InputBox>
-            <InputLable htmlFor="breed">{t("modal.birth")}</InputLable>
+            <InputLable htmlFor="date">{t("modal.birth")}</InputLable>
+             <Validations
+              className={form.firstForm.date.match(/^([A-Za-zА-Яа-яІіЇїЄєҐґ-\s]{2,16})?$/) ? "invalid" : ""}>
+              {t("validation.checkModal")}
+            </Validations>
             <InputField
               type="date"
               name="date"

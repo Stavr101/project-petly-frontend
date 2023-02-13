@@ -435,6 +435,10 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
           </InputBox>
           <InputBox>
             <InputLable htmlFor="date">{t("modal.birth")}</InputLable>
+            <Validations
+              className={"p" ? "invalid" : ""}>
+              {t("validation.checkModal")}
+            </Validations>
             <InputField
               type="date"
               name="date"
@@ -678,6 +682,10 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
           </InputBox>
           <InputBox>
             <InputLable htmlFor="date">{t("modal.birth")}</InputLable>
+            <Validations
+              className={"p" ? "invalid" : ""}>
+              {t("validation.checkModal")}
+            </Validations>
             <InputField
               type="date"
               name="date"
@@ -898,6 +906,10 @@ function Forma({ handleClose, petsAll, setPetsAll }) {
           </InputBox>
           <InputBox>
             <InputLable htmlFor="date">{t("modal.birth")}</InputLable>
+       <Validations
+              className={"p" ? "invalid" : ""}>
+              {t("validation.checkModal")}
+            </Validations>
             <InputField
               type="date"
               name="date"

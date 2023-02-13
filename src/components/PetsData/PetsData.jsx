@@ -17,7 +17,7 @@ import {
 } from './PetsData.styled';
 import { PetList } from 'components/PetsList/PetsList.styled';
 
-export default function PetsData() {
+export default function PetsData({ pets, setPets }) {
   const isLoading = useSelector(getLoading);
   const error = useSelector(getError);
   const petsData = useSelector(getPets);
@@ -36,14 +36,16 @@ export default function PetsData() {
   return (
     <PetsWrapper>
       <PetsTitleWrapper>
-        <UserPetsTitle>{t("user.pets")}</UserPetsTitle>
+        <UserPetsTitle>{t('user.pets')}</UserPetsTitle>
         <PetBtnWrapper>
-          <AddPetTitleBtn>{t("notices.add")}</AddPetTitleBtn>
+          <AddPetTitleBtn>{t('notices.add')}</AddPetTitleBtn>
           <AddPetBtn onClick={() => setIsOpen(true)} />
         </PetBtnWrapper>
       </PetsTitleWrapper>
       {isOpen ? (
         <ModalAddsPetApp
+          petsData={pets}
+          setPets={setPets}
           onOpenModal={isOpen}
           onCloseModal={() => setIsOpen(false)}
         />
@@ -52,12 +54,14 @@ export default function PetsData() {
         <PetList />
       ) : (
         <NonPetWrapper>
-          <p>
-            {t("user.nopets")}
-          </p>
+          <p>{t('user.nopets')}</p>
         </NonPetWrapper>
       )}
-      {isLoading && !error ? <UserLoader /> : <PetsList dataPets={petsData} />}
+      {isLoading && !error ? (
+        <UserLoader />
+      ) : (
+        <PetsList dataPets={pets} setDataPets={setPets} />
+      )}
     </PetsWrapper>
   );
 }

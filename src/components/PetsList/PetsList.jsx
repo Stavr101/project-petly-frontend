@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getPetInfo, deletePet } from 'redux/pets/operations';
-import { getPets } from 'redux/pets/selectors';
 import {
   PetWrapper,
   PetAvatar,
@@ -18,25 +17,22 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { useTranslation } from 'react-i18next';
 
 export default function PetsList({ dataPets }) {
-  // const petsData = useSelector(getPets);
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
+  const [petId, setPetId] = useState('');
 
-  const handleClickOpen = () => {
+  const removePet = () => {
+    const action = deletePet(petId);
+    dispatch(action);
+    dispatch(getPetInfo());
+  };
+  const handleClickOpen = id => {
     setOpen(true);
+    setPetId(id);
   };
 
   const handleClose = () => {
     setOpen(false);
-  };
-
-  const isPets = Boolean(dataPets.length);
-
-  const removePet = _id => {
-    const action = deletePet(_id);
-    dispatch(action);
-
-    // dispatch(getPetInfo());
   };
 
   const { t } = useTranslation();
@@ -54,36 +50,39 @@ export default function PetsList({ dataPets }) {
           <PetList>
             <PetItem>
               <PetDescriptionInfo>
-                <PetTitleInfo>{t("user.petname")} </PetTitleInfo> {name}
+                <PetTitleInfo>{t('user.petname')} </PetTitleInfo> {name}
               </PetDescriptionInfo>
             </PetItem>
             <PetItem>
               <PetDescriptionInfo>
-                <PetTitleInfo>{t("user.petbirth")} </PetTitleInfo>
+                <PetTitleInfo>{t('user.petbirth')} </PetTitleInfo>
                 {date.split('-').reverse().join('.')}
               </PetDescriptionInfo>
             </PetItem>
             <PetItem>
               <PetDescriptionInfo>
-                <PetTitleInfo>{t("user.petbreed")} </PetTitleInfo>
+                <PetTitleInfo>{t('user.petbreed')} </PetTitleInfo>
                 {breed}
               </PetDescriptionInfo>
             </PetItem>
             <PetItem>
               <PetDescriptionInfo>
-                <PetTitleInfo>{t("user.petcomm")} </PetTitleInfo>
+                <PetTitleInfo>{t('user.petcomm')} </PetTitleInfo>
                 {comment}
               </PetDescriptionInfo>
             </PetItem>
           </PetList>
-          <DeleteBtn variant="outlined" onClick={handleClickOpen}></DeleteBtn>
+          <DeleteBtn
+            variant="outlined"
+            onClick={() => handleClickOpen(_id)}
+          ></DeleteBtn>
           <Dialog
             open={open}
             // onClose={handleClose}
             aria-labelledby="alert-dialog-title"
           >
             <DialogTitle id="alert-dialog-title">
-              {t("user.removeconf")}
+              {t('user.removeconf')}
             </DialogTitle>
             <DialogActions>
               <Button
@@ -92,16 +91,16 @@ export default function PetsList({ dataPets }) {
                   color: '#F59256',
                 }}
               >
-                {t("user.no")}
+                {t('user.no')}
               </Button>
               <Button
-                onClick={() => removePet(_id)}
+                onClick={removePet}
                 autoFocus
                 style={{
                   color: '#F59256',
                 }}
               >
-                {t("user.yes")}
+                {t('user.yes')}
               </Button>
             </DialogActions>
           </Dialog>
@@ -109,15 +108,6 @@ export default function PetsList({ dataPets }) {
       );
     }
   );
-  // return isPets ? (
-  //   <ul>{elements}</ul>
-  // ) : (
-  //   <PetWrapper>
-  //     <p>
-  //       You don't have any animals added yet. If you want to add your pet, click
-  //       button "Add pets"
-  //     </p>
-  //   </PetWrapper>
-  // );
+
   return <ul>{elements}</ul>;
 }

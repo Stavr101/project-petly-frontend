@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Loader from "shared/loader/Loader";
 import moment from "moment";
 import { AiFillHeart } from "react-icons/ai";
+import { HiTrash } from "react-icons/hi2";
 import { useTranslation } from "react-i18next";
 
 import Overlay, {
@@ -23,13 +24,11 @@ import Overlay, {
   ModalNoticeCategotyDiv,
   ModalNoticeBtnLink,
   HeartSvgSpan,
-  ModalNoticeBtnContact,
   ModalNoticeWrapperContent,
   ModalNoticeItemValueLink,
 } from "./ModalNotice.styled";
 import { createPortal } from "react-dom";
 import { useAuth } from "hooks";
-import NoticesDeleteSvg from "components/NoticeCategoryItem/NoticesDeleteSvg";
 
 const modalRoot = document.querySelector("#modal-root");
 
@@ -39,6 +38,7 @@ export default function ModalNotice({
   handleChangeFavorite,
   handleDeletePet,
   isFavorite,
+  categoriesForFront,
 }) {
   const { user } = useAuth();
 
@@ -115,7 +115,7 @@ export default function ModalNotice({
                 )}
 
                 <ModalNoticeCategotyDiv>
-                  {pet.categoryName}
+                  {categoriesForFront[pet.categoryName]}
                 </ModalNoticeCategotyDiv>
               </ModalNoticeWrapperImg>
 
@@ -202,13 +202,13 @@ export default function ModalNotice({
 
             <ModalNoticeButtonsList>
               <ModalNoticeButtonsItem>
-                <ModalNoticeBtnContact type="button">
+                <ModalNoticeButton type="button">
                   <ModalNoticeBtnLink
                     href={pet.owner ? `tel:${pet.owner.phone}` : "#"}
                   >
                     {t("notices.contact")}
                   </ModalNoticeBtnLink>
-                </ModalNoticeBtnContact>
+                </ModalNoticeButton>
               </ModalNoticeButtonsItem>
               <ModalNoticeButtonsItem>
                 <ModalNoticeButton
@@ -217,7 +217,7 @@ export default function ModalNotice({
                 >
                   {!isFavorite ? t("notices.addto") : t("notices.remove")}
                   <HeartSvgSpan>
-                    <AiFillHeart style={{ fill: "#f59256" }} />
+                    <AiFillHeart />
                   </HeartSvgSpan>
                 </ModalNoticeButton>
               </ModalNoticeButtonsItem>
@@ -230,7 +230,7 @@ export default function ModalNotice({
                   >
                     {t("notices.del")}
                     <HeartSvgSpan>
-                      <NoticesDeleteSvg />
+                      <HiTrash />
                     </HeartSvgSpan>
                   </ModalNoticeButton>
                 ) : (

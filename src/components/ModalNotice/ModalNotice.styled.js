@@ -247,32 +247,39 @@ export const ModalNoticeButton = styled.button`
     width: 160px;
   }
 
+  > span {
+    color: ${(p) => p.theme.colors.accent};
+    transition: color 250ms linear;
+  }
+
   :hover {
     color: ${(p) => p.theme.colors.white};
     background-color: ${(p) => p.theme.colors.accent};
     border: none;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    /* box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
-      rgba(14, 30, 37, 0.32) 0px 2px 16px 0px; */
-  }
-`;
 
-export const ModalNoticeBtnContact = styled(ModalNoticeButton)`
-  /* color: ${(p) => p.theme.colors.white};
-  background-color: ${(p) => p.theme.colors.accent}; */
+    > span {
+      color: ${(p) => p.theme.colors.white};
+    }
+  }
 `;
 
 export const ModalNoticeBtnLink = styled.a`
   display: flex;
   height: 100%;
+  width: 100%;
   align-items: center;
   justify-content: center;
-  color: ${(p) => p.theme.colors.white};
+  color: ${(p) => p.theme.colors.text.primary};
+  transition: color 200ms linear;
+
+  :hover {
+    color: ${(p) => p.theme.colors.white};
+  }
 `;
 
 export const HeartSvgSpan = styled.span`
   width: 16px;
   height: 16px;
   margin-left: 8px;
-  color: ${(p) => p.theme.colors.accent};
 `;

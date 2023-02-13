@@ -1,6 +1,7 @@
 ///                   AUTH
 const pwd = /^[\S]{7,32}$/;
-const location = /[a-zA-Z]+, [a-zA-Z]+/i;
+const location =
+  /^$|^([A-Za-zА-Яа-яІіЇїЄєҐґ]+),\s([A-Za-zА-Яа-яІіЇїЄєҐґ\s]+)?$/;
 const mobile = /^\+380\d{9}$/;
 const email = /^(?=.{10,63}$)([A-Za-z0-9._-]{2,}@[A-Za-z0-9._-]{2,})$/;
 

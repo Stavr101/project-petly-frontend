@@ -61,13 +61,13 @@ export default function UserDataList() {
           )}
           <LabelEditPhoto type="button" onClick={onButtonClick}>
             <SVG src={editAvatar} />
-            {t("user.edit")}
+            {t('user.edit')}
           </LabelEditPhoto>
         </FormWrapper>
       </AvatarInfoWrapper>
       <UserInfoList>
         <UserInfoItem>
-          <UserInfoTitle>{t("user.name")}</UserInfoTitle>
+          <UserInfoTitle>{t('user.name')}</UserInfoTitle>
           {name ? (
             <UserDataItem
               userIdD={_id}
@@ -106,7 +106,7 @@ export default function UserDataList() {
           )}
         </UserInfoItem>
         <UserInfoItem>
-          <UserInfoTitle>{t("user.birthday")}</UserInfoTitle>
+          <UserInfoTitle>{t('user.birthday')}</UserInfoTitle>
           {birthday ? (
             <UserDataItem
               typeInput="date"
@@ -115,7 +115,7 @@ export default function UserDataList() {
               activeBtn={activeBtn}
               setActiveBtn={setActiveBtn}
               pattern={regExp.bdayRegexp}
-              min="1930-01-01"
+              min="1935-01-01"
               max="2015-12-31"
             />
           ) : (
@@ -129,7 +129,7 @@ export default function UserDataList() {
         </UserInfoItem>
 
         <UserInfoItem>
-          <UserInfoTitle>{t("user.phone")}</UserInfoTitle>
+          <UserInfoTitle>{t('user.phone')}</UserInfoTitle>
           {phone ? (
             <UserDataItem
               typeInput="phone"
@@ -149,7 +149,7 @@ export default function UserDataList() {
         </UserInfoItem>
 
         <UserInfoItem>
-          <UserInfoTitle>{t("user.city")}</UserInfoTitle>
+          <UserInfoTitle>{t('user.city')}</UserInfoTitle>
           {address ? (
             <UserDataItem
               typeInput="text"

@@ -19,6 +19,8 @@ export default function UserDataItem({
   activeBtn,
   setActiveBtn,
   paramValid,
+  min,
+  max,
 }) {
   const user = useSelector(getUserData);
   const dispatch = useDispatch();
@@ -80,6 +82,8 @@ export default function UserDataItem({
             name={nameInput}
             value={editedValue}
             onChange={handleChange}
+            min={min}
+            max={max}
           />
           <UpdateBtn onClick={handleSubmit}></UpdateBtn>
         </>

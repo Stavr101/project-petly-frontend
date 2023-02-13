@@ -8,8 +8,8 @@ const email = /^(?=.{10,63}$)([A-Za-z0-9._-]{2,}@[A-Za-z0-9._-]{2,})$/;
 
 const bdayRegexp =
   /^(0?[1-9]|[12][0-9]|3[01])[\.\-](0?[1-9]|1[012])[\.\-]\d{4}$/;
-const nameRegexp = /^[A-Za-zА-Яа-яІіЇї-\s]+$/;
-const address = /^[A-Za-zА-Яа-яІіЇї-\s]+$/;
+const nameRegexp = /^([A-Za-zА-Яа-яІіЇїЄєҐґ\s])+$/;
+const address = /^([A-Za-zА-Яа-яІіЇїЄєҐґ\s])+$/;
 const phoneRegexpUser =
   /(?=.*\+[0-9]{3}\s?[0-9]{2}\s?[0-9]{3}\s?[0-9]{2}\s?[0-9]{2}$)/;
 

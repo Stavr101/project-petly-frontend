@@ -53,6 +53,9 @@
     "eject": "react-scripts eject",
     "lint:js": "eslint src/**/*.{js,jsx}"
   },
+  "engines": {
+    "node": "22.14.0"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
